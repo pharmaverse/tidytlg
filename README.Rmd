@@ -1,27 +1,38 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 # tidytlg
-
 <!-- badges: start -->
-
-<!-- <img src="man/figures/logo.png" align="right" height = "13"/> -->
+ <!-- <img src="man/figures/logo.png" align="right" height = "13"/> -->
 <!-- badges: end -->
 
-The goal of tidytlg is to generate table, listings, and graphs (TLG)
-using Tidyverse. This can be achieved multiple ways with this package.
+The goal of tidytlg is to generate table, listings, and graphs (TLG) using Tidyverse.  This can be achieved multiple ways with this package.
 
--   Functional method: build a custom script for each TLG
--   Metadata method: build a generic script that utilizes column and
-    table metadata to produce each TLG result
+* Functional method:    build a custom script for each TLG
+* Metadata method:  build a generic script that utilizes column and table metadata to produce each TLG result
+
 
 ## Installation
 
 The recommended install is using R Studio Package Manager.
+```{r, eval = FALSE}
+
+```
 
 ## Functional method example
 
-``` r
+```{r custom, eval = FALSE}
 library(dplyr)
 library(tidytlg)
 
@@ -64,9 +75,10 @@ gentlg(huxme       = tbl ,
        wcol        = .30)
 ```
 
+
 ## Metadata method example
 
-``` r
+```{r metadata, eval = FALSE}
 library(dplyr)
 library(tidytlg)
 
@@ -93,3 +105,4 @@ gentlg(huxme       = tbl,
        title_file = system.file("extdata/titles.xls", package = "tidytlg"),
        wcol        = .30)
 ```
+

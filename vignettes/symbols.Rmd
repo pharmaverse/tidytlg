@@ -1,0 +1,131 @@
+---
+title: "Tips & Tricks:  Including Symbols, Superscripts, Subscripts & Line Breaks"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{symbols}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Symbols
+
+Symbols can be added to the label column via unicode.  Here is a quick reference to commonly used symbols.
+
+
+```{r setup, echo = FALSE}
+library(huxtable)
+
+opath <- "."
+
+df <- tibble::tribble(
+  ~Symbol, ~`Textual Description`,  ~Unicode,  
+  "\u2190", "Left arrow", "\\u2190", 
+  "\u2192", "Right arrow", "\\u2192", 
+  "\u2264", "Less-than or equal to", "\\u2264", 
+  "\u2265", "Greater-than or equal to", "\\u2265", 
+  "\u2260", "Not equal to", "\\u2260", 
+  "\u00b1", "Plus-minus sign", "\\u00b1", 
+  "\u03b1", "Alpha", "\\u03b1", 
+  "\u03b2", "Beta", "\\u03b2", 
+  "\u03bc", "Mu", "\\u03bc", 
+  "\u00ab", "Non-breaking space", "\\u00ab"
+)
+df
+
+# quick_rtf(hux(df),
+#           file = "./test.rtf")
+# 
+# 
+```
+
+
+Here is an example call to tidytlg::gentlg() that will add the symbols to the label column.
+
+
+```{r eval = FALSE}
+
+df <- tibble::tibble(
+  label = c("\u2264", "\u2265"),
+  col1 = c("100", "200")
+)
+
+tidytlg::gentlg(df,
+                file = "demo")
+
+```
+
+
+# Superscripts and Subscripts
+
+Superscripts and Subscripts can be added to the label column via unicode.
+
+```{r eval = FALSE}
+
+df <- tibble::tibble(
+  label = c("This is a superscript a{\\super a}", 
+            "This is a subscript b{\\sub b}"),
+  col1 = c("100", "200")
+)
+
+tidytlg::gentlg(df,
+                file = "demo")
+
+```
+
+
+Superscripts and Subscripts can be added to the footnotes via unicode as well.
+
+```{r eval = FALSE}
+
+df <- tibble::tibble(
+  label = c("This is a superscript a{\\super a}", 
+            "This is a subscript b{\\sub b}"),
+  col1 = c("100", "200")
+)
+
+tidytlg::gentlg(df,
+                file = "demo",
+                footers = "This is a footnote superscript{\\super a}")
+
+```
+
+# Inline RTF Line Breaks
+
+Sometimes you need add a line break into your RTF.  Inserting '\\\\\\n' into your string will add your line break for you.
+
+
+```{r eval = FALSE}
+
+df <- tibble::tibble(
+  label = c("Bodysystem \\\n Preferred Term"),
+  col1 = c("100")
+)
+
+tidytlg::gentlg(df,
+                file = "demo")
+
+
+```
+
+If you need a line break followed by a tab, just add in '\\\\li180'.
+
+```{r eval = FALSE}
+
+df <- tibble::tibble(
+  label = c("Bodysystem\\\n\\li180Preferred Term"),
+  col1 = c("100")
+)
+
+tidytlg::gentlg(df,
+                file = "demo")
+
+
+```
+

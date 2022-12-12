@@ -1,0 +1,17 @@
+library/
+local/
+cellar/
+lock/
+python/
+staging/
+.Rproj.user
+.RData
+inst/doc
+.Rhistory
+vignettes/*.rtf
+vignettes/*.png
+inst/examples/*
+benchmark/*
+.Rprofile
+/doc/
+/Meta/

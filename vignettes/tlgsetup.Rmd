@@ -1,0 +1,77 @@
+---
+title: "Column Metadata & How tidytlg Sets Up Your Data Using tlgsetup"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{tlgsetup}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message=FALSE}
+library(dplyr)
+library(tidytlg)
+```
+
+The tlgsetup helper function was created to support generating different column structures for our outputs.  This allows us to specify column types once that can be used across multiple outputs.  This metadata can be hardcoded as well (please see the code below), or pulled from another source like a dataframe, file or database.
+
+Here we see an example of the column metadata which defines our columns, how to combine columns, column labels and spanning headers across columns.
+
+```{r}
+column_metadata <-
+  tibble::tribble(
+    ~tbltype, ~coldef, ~decode,                ~span1,      
+    "type1",  "0",     "Placebo",              "",       
+    "type1",  "54",    "Low Dose",             "Xanomeline",
+    "type1",  "81",    "High Dose",            "Xanomeline",
+    "type1",  "54+81", "Total Xanomeline",     ""
+  )
+column_metadata
+```
+
+In this example, we would summarize Placebo, Xanomeline Low Dose, and Xanomeline High Dose which are already available in the data. The helper function will add the observations to the data for the Total Xanomeline column based off of `coldef`.  So for our adsl data, we will add a spanning header for Xanomeline and a total Xanomeline column which is a combination of the Xanomeline Low Dose and Xanomeline High Dose.
+
+In addition, the helper function will add the factor variable `colnbr` which is used as our new column summary variable.  Note that our column summary variable has been converted to a factor.  This is required and allows us to define column order as well as label in one variable.
+
+Let's read in adsl and check the dimensions.
+
+```{r}
+data("cdisc_adsl")
+adsl <- cdisc_adsl %>%
+  filter(ITTFL == "Y") %>%
+  select(USUBJID, TRT01PN, TRT01P, ITTFL, SEX, RACE, AGE)
+glimpse(adsl)
+```
+
+```{r echo = FALSE}
+paste0("Dimensions prior to the tlgsetup call are ", dim(adsl)[1] , " rows and ", dim(adsl)[2], " columns.")
+```
+
+Now let's pass the adsl data through our tlgsetup function to add observations to support the `type1` column structure and check out the dimensions.
+
+```{r warning=FALSE}
+setup_table <- tlgsetup(adsl,
+                        var = "TRT01PN",
+                        column_metadata = column_metadata)
+glimpse(setup_table)
+```
+
+```{r echo = FALSE}
+paste0("Dimensions after to the rmtsetup call are ", dim(setup_table)[1] , " rows and ", dim(setup_table)[2], " columns.")
+```
+
+Here we see we have added two new variables, `colnbr` and `tbltype`, which will now be used as our treatment variable when generating our results.
+
+If we take a look at the observation counts for `colnbr`, we see the 168 records added to the data support `Total Xanomeline` as we expected!
+```{r}
+setup_table %>%
+  group_by(colnbr) %>%
+  count()
+```
+

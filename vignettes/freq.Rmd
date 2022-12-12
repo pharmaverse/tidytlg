@@ -1,0 +1,265 @@
+---
+title: "Frequency Analysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{freq}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(dplyr)
+library(tidytlg)
+```
+
+## Introduction
+
+The `freq` and `nested_freq` functions are called to produce categorical-type summary statistics (i.e. counts and percentages) for character variables.  These functions can be used to create all different types of categorical summary statistics tables.
+
+### Counts: statlist = statlist("n")
+
+There are many uses for `freq`, the first one we'll show is to create the first row of analysis set summary of population counts in the output.  In the following table the `subset` argument is used to create the one row summary with the row heading specified in the `rowtext` argument.
+
+```{r}
+tbl <- cdisc_adsl %>% 
+  freq(colvar = "TRT01PN", 
+       rowvar = "ITTFL", 
+       statlist = statlist("n"),
+       subset = ITTFL == "Y",
+       rowtext = "Analysis set: ITT")
+  
+knitr::kable(tbl)
+```
+
+
+### Big N row, counts and percentages: statlist = statlist(c("N", "n (x.x%)"))
+
+A typical call of using the `freq` function is to create the `tbl` chunk with:
+
+-   the row of big N indicating number of subjects having values in the character variable for each treatment group
+
+-   summary of counts and percentages for each category in the character variable such as age groups, gender, race, ethnicity, etc.
+
+```{r}
+tbl <- cdisc_adsl %>% 
+  freq(colvar = "TRT01PN", 
+       rowvar = "SEX", 
+       statlist = statlist(c("N","n (x.x%)")),
+       row_header = "Sex")
+
+knitr::kable(tbl)
+```
+
+
+### Using factor to order category summary
+
+In the above table, `F` appears first and then `M` is shown. This is because `SEX` is a character variable and alphabetical sorting is applied to the summarized results. We can convert `SEX` to a factor variable with the customized order and labels for enabling the user-defined sorting.
+
+```{r}
+tbl <- cdisc_adsl %>% 
+  mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female"))) %>% 
+  freq(colvar = "TRT01PN", 
+       rowvar = "SEX", 
+       statlist = statlist(c("N","n (x.x%)")),
+       row_header = "Sex")
+
+knitr::kable(tbl)
+```
+
+
+### Counts, denominators, and percentages: statlist = statlist(c("n/N (x.x%)"))
+
+In some outputs, the table mock-up may require showing the percentage denominator, which can be done by specifying `statlist = statlist("n/N (x.x%)")`.
+
+```{r}
+tbl <- cdisc_adsl %>% 
+  mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female"))) %>% 
+  freq(colvar = "TRT01PN", 
+       rowvar = "SEX", 
+       statlist = statlist("n/N (x.x%)"),
+       row_header = "Sex")
+
+knitr::kable(tbl)
+```
+
+
+### By processing: statlist = statlist(c("N", "n (x.x%)"))
+
+By-processing splits the summary statistics by another character variable that can be specified in the argument of `rowbyvar` or `tablebyvar`. For the example shown below, age group categories are summarized by the `SEX` variable. In this scenario, the denominator should also be split by `SEX` in addition to `TRT01PN`, which can be done by `statlist(c("N","n (x.x%)"), denoms_by = c("SEX", "TRT01PN"))`.
+
+```{r}
+tbl <- cdisc_adsl %>% 
+  mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female"))) %>% 
+  freq(colvar = "TRT01PN",
+       rowbyvar = "SEX",
+       rowvar = "AGEGR1", 
+       statlist = statlist(c("N","n (x.x%)"), denoms_by = c("SEX", "TRT01PN")),
+       row_header = "Age group") 
+
+knitr::kable(tbl)
+```
+
+By default, the denominators are calculated by using `colvar`, `tablebyvar`, and `rowbyvar`. The above `freq` function call will also produce the same results without specifying the `denoms_by` argument inside the `statlist` function. 
+
+### Padding factor levels on and off
+
+When using `rowbyvar` to create by-processing summaries, some levels of the `rowvar` may have zero records as shown in the example below.
+
+```{r}
+tbl <- cdisc_adsl %>% 
+  freq(colvar = "TRT01PN",
+       rowbyvar = "ETHNIC",
+       rowvar = "RACE",
+       statlist = statlist(c("N","n (x.x%)")),
+       row_header = "Race")
+
+knitr::kable(tbl)
+```
+
+To remove the zero record rows and create the data driven summary, users can specify the `pad = FALSE` in the `freq` function.
+
+```{r}
+tbl <- cdisc_adsl %>% 
+  freq(colvar = "TRT01PN",
+       rowbyvar = "ETHNIC",
+       rowvar = "RACE",
+       statlist = statlist(c("N","n (x.x%)")),
+       row_header = "Race",
+       pad = FALSE)
+
+knitr::kable(tbl)
+```
+
+### Denominator Dataframe
+
+When using frequency analysis you do not need to always use your main dataframe to calculate your denominators.  For example, an adverse event table may use ADSL as the denominator dataframe instead of ADAE even though the counts are coming from ADAE.  The example below shows a table counting AEDECOD but using ADSL to calculate the denominators.
+
+```{r}
+adae <- cdisc_adae %>%
+  rename(TRT01AN = TRTAN)
+
+tbl <- adae %>%
+  freq(denom_df = cdisc_adsl,
+       colvar = "TRT01AN",
+       rowvar = "AEDECOD",
+       descending_by = "81") 
+
+knitr::kable(head(tbl, 10))
+```
+
+### By processing and denominators: statlist = statlist(c("n (x.x)"), denoms_by = "TRT01AN")
+
+When using by variables such as `tablebyvar` and `rowbyvar` the denominators may need to be changed to work correctly.  This also works in conjunction with the `denom_df` argument.  By default, the denominators are calculated by using `colvar`, `tablebyvar`, and `rowbyvar`.  This works well if you are using the same dataframe for counts and denominators but this is not always the case.  In the following example we are doing a similar table as above but using AESEV as a `rowbyvar`.  In this example we don't want our denoms by AESEV since that variable is not in ADSL, which is where our denominators are coming from.  To change the variables by which our denoms are calculated by we use the `denoms_by` argument to the `statlist` function.  Below you can see that we are using only our `colvar` of TRT01PN as our `denoms_by`.
+
+```{r}
+tbl <- adae %>%
+  freq(denom_df = cdisc_adsl,
+       colvar = "TRT01AN",
+       rowvar = "AEDECOD",
+       rowbyvar = "AESEV",
+       statlist = statlist(c("n (x.x)"), denoms_by = "TRT01AN")) 
+
+knitr::kable(head(tbl, 10))
+```
+
+### Available statlist formats for frequency summary
+
+We have shown the common use cases of calling different variants of the statlist for frequency summaries. The table below describes all available options to be specified for the `statlist` in `freq`.
+
++--------------+-----------------------------------------------------+
+| Statlist     | Description                                         |
++==============+:===================================================:+
+| n            | count                                               |
++--------------+-----------------------------------------------------+
+| n (x.x)      | count (percentage without %)                        |
++--------------+-----------------------------------------------------+
+| n (x.x%)     | count (percentage with %)                           |
++--------------+-----------------------------------------------------+
+| n/N          | count/denominator                                   |
++--------------+-----------------------------------------------------+
+| n/N (x.x)    | count/denominator (percentage without %)            |
++--------------+-----------------------------------------------------+
+| n/N (x.x%)   | count/denominator (percentage with %)               |
++--------------+-----------------------------------------------------+
+
+To learn more about using the `statlist` function for freq analysis, please type `?statlist` in your console.
+
+## Nested Frequency Analysis
+
+A major portion of Adverse Events (AE) summary tables require summarizing number of subjects with treatment-emergent adverse events by system organ class and preferred term, which is in a nested structure and needs additional processing on top of the `freq` function. Therefore, we developed the `nested_freq` function to address the nested structure (counts within counts):
+
+* `rowvar`: we can specify nested levels separated by `*` (e.g. `AEBODSYS*AEDECOD`); this can be expanded to three levels
+
+* `descending_by`: the name of the column for sorting in descending frequency order
+
+* `cutoff_stat`: the value to cutoff by, n (count) or pct (percentage); default = 'pct'
+
+* `cutoff`: numeric value of the percentage/count threshold in any treatment group for cutting the data to be presented; for example, `cutoff = 1.0` means to only keep the preferred term rows with percentages >= 1% when cutoff_stat = 'pct'.
+
+In the example below, we will show you how to use these arguments in the `nested_freq` function call for creating the AE summary table by AEBODSYS and AEDECOD.
+
+```{r, message=FALSE}
+adae <- cdisc_adae %>%
+  filter(SAFFL == "Y", TRTEMFL == "Y") %>% 
+  filter(AEBODSYS %in% c("GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS")) %>%
+  rename(TRT01AN = TRTAN)
+
+adsl <- cdisc_adsl %>% 
+  filter(SAFFL == "Y")
+```
+
+For illustration purpose, we subset the adae data to only contain records in the 2 categories of system organ class: GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS, SKIN AND SUBCUTANEOUS TISSUE DISORDERS. So the table output is not too long and will be easier to visualize. In addition, we would like to sort the output by the active drug group (TRT01AN = 81) with descending frequency. Therefore, we specify `descending_by = "81"`. 
+
+```{r}
+tbl <- nested_freq(adae,
+                   denom_df = adsl,
+                   colvar = "TRT01AN",
+                   rowvar = "AEBODSYS*AEDECOD",
+                   statlist = statlist("n (x.x%)"),
+                   descending_by = "81",
+                   row_header = "System organ class \\\n Preferred term")
+
+knitr::kable(tbl)
+```
+
+As shown in the output above, the most frequent system organ class is **GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS**, followed by **SKIN AND SUBCUTANEOUS TISSUE DISORDERS**. Within each system organ class, the preferred terms are also sorted by descending frequency. When there is a tie in the counts, the preferred terms are sorted alphabetically.
+
+The cutoff feature is controlled by two arguments: `cutoff` and `cutoff_stat`. If we want to remove the rows of preferred terms with only 1 count in any treatment columns, we can specify `cutoff = 2` and `cutoff_stat = "n"` in the nested_freq call below.
+
+```{r}
+tbl <- nested_freq(adae,
+                   denom_df = adsl,
+                   colvar = "TRT01AN",
+                   rowvar = "AEBODSYS*AEDECOD",
+                   statlist = statlist("n (x.x%)"),
+                   descending_by = "81",
+                   cutoff = 2,
+                   cutoff_stat = "n",
+                   row_header = "System organ class \\\n Preferred term")
+
+knitr::kable(tbl)
+```
+
+The same cutoff results can also be achieved by specifying the cutoff percentage: `cutoff = 25` and `cutoff_stat = "pct"`. In our example, we only have 5 subjects in each arm and one subject count is equal to 20%, and so we need more than 20% as the cutoff.
+
+For only keeping the preferred terms with at least 2 counts in the active arm of `TRT01AN = 81` (i.e. not considering the other arms), we can specify `cutoff = "81 >= 2" and `cutoff_stat = "n"`.
+
+
+```{r}
+tbl <- nested_freq(adae,
+                   denom_df = adsl,
+                   colvar = "TRT01AN",
+                   rowvar = "AEBODSYS*AEDECOD",
+                   statlist = statlist("n (x.x%)"),
+                   descending_by = "81",
+                   cutoff = "81 >= 2",
+                   cutoff_stat = "n",
+                   row_header = "System organ class \\\n Preferred term")
+
+knitr::kable(tbl)
+```
+

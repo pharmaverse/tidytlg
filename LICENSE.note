@@ -1,0 +1,3 @@
+The tidytlg package is distributed under the Apache License 2.0. The tidytlg package includes portion of the huxtable package, which is licensed under MIT.
+
+Full copy of the license agreement for the huxtable package is included in `inst/lib/huxtable`.
