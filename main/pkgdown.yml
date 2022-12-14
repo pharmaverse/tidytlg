@@ -1,0 +1,12 @@
+pandoc: 2.7.3
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  freq: freq.html
+  symbols: symbols.html
+  tbl_manipulation: tbl_manipulation.html
+  tidytlg: tidytlg.html
+  tlgsetup: tlgsetup.html
+  univar: univar.html
+last_built: 2022-12-14T20:24Z
+
