@@ -1,5 +1,5 @@
 Package: tidytlg
-Title: Create TLGs using Tidyverse
+Title: Create TLGs using the Tidyverse
 Version: 0.0.1
 Authors@R: 
      c(person(given = "Nicholas",
