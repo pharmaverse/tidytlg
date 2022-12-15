@@ -67,7 +67,7 @@ Imports:
     stringr (>= 1.4.0),
     forcats (>= 0.5.1),
     purrr (>= 0.3.4),
-    huxtable (>= 5.1.0),
+    huxtable (>= 5.5.1),
     assertthat (>= 0.2.1),
     glue (>= 1.4.2),
     here (>= 0.1),
