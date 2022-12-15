@@ -1,7 +1,7 @@
 #' Bind a set of tidytlg tables together with formatting variables
-#' 
-#' bind_table combines analysis results with formatting variables (indentme, newrows, newpage) 
-#' based on by variables (tablebyvar, rowbyvar), such that appropriate formatting (indentation, 
+#'
+#' bind_table combines analysis results with formatting variables (indentme, newrows, newpage)
+#' based on by variables (tablebyvar, rowbyvar), such that appropriate formatting (indentation,
 #' line break, page break) can be applied in creating the output. It can also attach the column
 #' metadata attribute, which will be automatically used in `gentlg` for creating output.
 #'
@@ -261,6 +261,7 @@ add_anbr <- function(df, env = parent.frame()) {
   }
 }
 
+#' Filters _denoms for current tablebyvar in `cur_tby` var
 #' get_tby_denoms
 #'
 #' @param denoms_
@@ -271,7 +272,6 @@ add_anbr <- function(df, env = parent.frame()) {
 #'
 #' @return `denoms_` filtered for tablebyvar
 #' @noRd
-#' Filters _denoms for current tablebyvar in `cur_tby` var
 get_tby_denoms <- function(denoms_, tablebyvar, cur_tby, colvar) {
   tmp <- denoms_ %>%
     filter(!!sym(paste0("denom_", tablebyvar)) == as.character(cur_tby))

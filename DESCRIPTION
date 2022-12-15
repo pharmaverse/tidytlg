@@ -44,7 +44,7 @@ Description: Generate table, listings, and graphs (TLG) using Tidyverse.
 License: Apache License 2.0 | file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Suggests: 
     testthat (>= 2.1.0),
@@ -70,7 +70,6 @@ Imports:
     huxtable (>= 5.5.1),
     assertthat (>= 0.2.1),
     glue (>= 1.4.2),
-    here (>= 0.1),
     usethis (>= 1.6.3),
     crayon (>= 1.4.1),
     tidyselect (>= 1.1.1),

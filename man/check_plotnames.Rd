@@ -11,7 +11,7 @@ check_plotnames(plotnames)
 }
 \value{
 NULL
-Throws error if opath dies not exist
+Throws error if \code{plotnames} do not exist
 }
 \description{
 check_plotnames

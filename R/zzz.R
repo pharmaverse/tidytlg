@@ -32,4 +32,5 @@ NULL
 globalVariables(c(".", "name", "alpha", "value", "N", "pct", "denom", "results",
                   "n_ord", "n_ord2", "n_ord3", "data_nest", "nested_treatment",
                   "nested_level", "nest_treatment", "stat", "extra", "prec",
-                  "IDENTIFIER", "TABLE ID", "decode", "colnbr", "newrows"))
+                  "IDENTIFIER", "TABLE ID", "decode", "colnbr", "newrows","el",
+                  "sorter","coldef","V1"))

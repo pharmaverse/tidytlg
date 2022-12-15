@@ -7,30 +7,36 @@
 add_newrows(df, tableby = NULL, groupby = NULL)
 }
 \arguments{
-\item{df}{dataframe of results.  must contain the anbr variable that is added by add_headers()}
+\item{df}{dataframe of results.  must contain the anbr variable that is
+added by add_format()}
 
-\item{tableby}{character vector containing table by variables used to generate the results}
+\item{tableby}{character vector containing table by variables used to
+generate the results}
 
-\item{groupby}{character vector containing group by variables used to generate the results}
+\item{groupby}{character vector containing group by variables used to
+generate the results}
 }
 \value{
-dataframe with the variable newrows and roworder addded.  newrows is used by gentlg to insert line breaks.
+dataframe with the variable newrows and roworder added.
+newrows is used by gentlg to insert line breaks.
 }
 \description{
-The newrows variable is used by \code{gentlg()} to define when to add a blank row to the output.
-Data will be grouped by anbr and the variables passed into the tableby and groupby parameters.
-\code{newrows} will be set to 1 for the first record in each group, except for the first row in the data.
+The newrows variable is used by \code{gentlg()} to define when to add a blank row
+to the output. Data will be grouped by anbr and the variables passed into
+the tableby and groupby parameters.\code{newrows} will be set to 1 for the first
+record in each group, except for the first row in the data.
 The first row will always be set to 0.
 }
 \examples{
-# Example showing how newrows is set to one for each new anbr except the first
+# Example showing how newrows is set to one for each new anbr except
+# the first
 tbl <-
   structure(
     list(rowvar = c("RANDFL", "AGE", "AGE", "AGE", "AGE", "AGE"),
-         anbr   = c(1L, 2L, 2L, 2L, 2L, 2L),
-         label  = c("Analysis set: Subjects Randomized", "Age (Years)", "N",
-        "Mean (SD)", "Range", "IQ Range"),
-         row_type = c("COUNT", "UNIVAR", "UNIVAR", "UNIVAR", "UNIVAR", "UNIVAR")
+     anbr   = c(1L, 2L, 2L, 2L, 2L, 2L),
+     label  = c("Analysis set: Subjects Randomized", "Age (Years)", "N",
+     "Mean (SD)", "Range", "IQ Range"),
+     row_type = c("COUNT", "UNIVAR", "UNIVAR", "UNIVAR", "UNIVAR", "UNIVAR")
       ),
     row.names = c(NA,-6L),
     class = c("tbl_df", "tbl", "data.frame")
@@ -54,25 +60,25 @@ tbl2 <- tibble::tribble(
 add_newrows(tbl2, tableby = "SEX")
 
 tbl3 <- tibble::tribble(
-  ~anbr, ~SEX,                  ~ETHNIC,                   ~label,         ~row_type,
-  "01",  "F",                       NA,                "Sex : F", "TABLE_BY_HEADER",
-  "01",  "F",     "HISPANIC OR LATINO",     "HISPANIC OR LATINO",      "BY_HEADER1",
-  "01",  "F",     "HISPANIC OR LATINO",                    "<65",           "VALUE",
-  "01",  "F",     "HISPANIC OR LATINO",                    ">80",           "VALUE",
-  "01",  "F",     "HISPANIC OR LATINO",                  "65-80",           "VALUE",
-  "01",  "F", "NOT HISPANIC OR LATINO", "NOT HISPANIC OR LATINO",      "BY_HEADER1",
-  "01",  "F", "NOT HISPANIC OR LATINO",                    "<65",           "VALUE",
-  "01",  "F", "NOT HISPANIC OR LATINO",                  "65-80",           "VALUE",
-  "01",  "F", "NOT HISPANIC OR LATINO",                    ">80",           "VALUE",
-  "01",  "M",                       NA,                "Sex : M", "TABLE_BY_HEADER",
-  "01",  "M",     "HISPANIC OR LATINO",     "HISPANIC OR LATINO",      "BY_HEADER1",
-  "01",  "M",     "HISPANIC OR LATINO",                    "<65",           "VALUE",
-  "01",  "M",     "HISPANIC OR LATINO",                  "65-80",           "VALUE",
-  "01",  "M",     "HISPANIC OR LATINO",                    ">80",           "VALUE",
-  "01",  "M", "NOT HISPANIC OR LATINO", "NOT HISPANIC OR LATINO",      "BY_HEADER1",
-  "01",  "M", "NOT HISPANIC OR LATINO",                    "<65",           "VALUE",
-  "01",  "M", "NOT HISPANIC OR LATINO",                  "65-80",           "VALUE",
-  "01",  "M", "NOT HISPANIC OR LATINO",                    ">80",           "VALUE"
+~anbr, ~SEX,           ~ETHNIC,                  ~label,         ~row_type,
+ "01",  "F",                NA,                "Sex : F", "TABLE_BY_HEADER",
+ "01",  "F", "HISPANIC OR LATINO", "HISPANIC OR LATINO",      "BY_HEADER1",
+ "01",  "F", "HISPANIC OR LATINO",               "<65",           "VALUE",
+ "01",  "F", "HISPANIC OR LATINO",               ">80",           "VALUE",
+ "01",  "F", "HISPANIC OR LATINO",             "65-80",           "VALUE",
+ "01", "F", "NOT HISPANIC OR LATINO", "NOT HISPANIC OR LATINO", "BY_HEADER1",
+ "01", "F", "NOT HISPANIC OR LATINO",                    "<65",      "VALUE",
+ "01", "F", "NOT HISPANIC OR LATINO",                  "65-80",      "VALUE",
+ "01", "F", "NOT HISPANIC OR LATINO",                    ">80",      "VALUE",
+ "01", "M",                       NA,           "Sex : M", "TABLE_BY_HEADER",
+ "01", "M",    "HISPANIC OR LATINO",   "HISPANIC OR LATINO",    "BY_HEADER1",
+ "01", "M",    "HISPANIC OR LATINO",                  "<65",         "VALUE",
+ "01", "M",    "HISPANIC OR LATINO",                "65-80",         "VALUE",
+ "01", "M",     "HISPANIC OR LATINO",               ">80",           "VALUE",
+ "01", "M", "NOT HISPANIC OR LATINO", "NOT HISPANIC OR LATINO", "BY_HEADER1",
+ "01", "M", "NOT HISPANIC OR LATINO",              "<65",           "VALUE",
+ "01",  "M", "NOT HISPANIC OR LATINO",            "65-80",           "VALUE",
+ "01",  "M", "NOT HISPANIC OR LATINO",              ">80",           "VALUE"
 )
 
 add_newrows(tbl3, tableby = "SEX", groupby = "ETHNIC")

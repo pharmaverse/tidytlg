@@ -4,9 +4,9 @@
 \name{cdisc advs}
 \alias{cdisc advs}
 \alias{cdisc_advs}
-\title{ADVS data copied from the 2013 CDISC Pilot}
+\title{ADVS data created from subsetting the CDISC ADVS dataset}
 \format{
-A data frame with 254 rows and 48 variables:
+A data frame with 1938 rows and 35 variables:
 \describe{
 \item{STUDYID}{Study Identifier}
 \item{SITEID}{Study Site Identifier}
@@ -46,13 +46,14 @@ A data frame with 254 rows and 48 variables:
 }
 }
 \source{
-CDISC SDTM/ADAM Pilot Project. \url{https://www.cdisc.org/sdtmadam-pilot-project}
+CDISC SDTM/ADAM Pilot Project.
+\url{https://www.cdisc.org/sdtmadam-pilot-project}
 }
 \usage{
 cdisc_advs
 }
 \description{
-ADVS data copied from the 2013 CDISC Pilot
+ADVS data created from subsetting the CDISC ADVS dataset
 }
 \examples{
 \dontrun{

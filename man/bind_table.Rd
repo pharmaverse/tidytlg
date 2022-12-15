@@ -2,7 +2,7 @@
 % Please edit documentation in R/bind_table.R
 \name{bind_table}
 \alias{bind_table}
-\title{Bind a set of tidytlg tables together based on tablebyvars}
+\title{Bind a set of tidytlg tables together with formatting variables}
 \usage{
 bind_table(
   ...,
@@ -35,11 +35,13 @@ Required if \code{add_count} is TRUE.}
 \item{add_format}{(optional) Should format be added to the output table?
 This is done using the add_format function. (default = TRUE)}
 
-\item{column_metadata_file}{(optional) An excel file for column_metadata. Does
-not change the behavior of the function binds the column metadata for \code{gentlg}.
-If a column_metadata dataframe is passed in too, this is ignored.}
+\item{column_metadata_file}{(optional) An excel file for column_metadata.
+Does not change the behavior of the function binds the column metadata
+for \code{gentlg}. If a column_metadata dataframe is passed in too,
+this is ignored.}
 
-\item{column_metadata}{(optional) A dataframe containing the column metadata. This will be used in place of column_metadata_file.}
+\item{column_metadata}{(optional) A dataframe containing the column metadata.
+This will be used in place of column_metadata_file.}
 
 \item{tbltype}{(optional) A value used to subset the column_metadata_file.}
 }
@@ -47,7 +49,10 @@ If a column_metadata dataframe is passed in too, this is ignored.}
 The tidytlg tables bound together reflecting the tablebyvars used
 }
 \description{
-Bind a set of tidytlg tables together based on tablebyvars
+bind_table combines analysis results with formatting variables (indentme, newrows, newpage)
+based on by variables (tablebyvar, rowbyvar), such that appropriate formatting (indentation,
+line break, page break) can be applied in creating the output. It can also attach the column
+metadata attribute, which will be automatically used in \code{gentlg} for creating output.
 }
 \examples{
 library(magrittr)
