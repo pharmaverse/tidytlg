@@ -7,14 +7,16 @@
 spanning_headers(column_metadata)
 }
 \arguments{
-\item{column_metadata}{dataframe containing the column metadata that is passed to tlgsetup (see tlgsetup for details)}
+\item{column_metadata}{dataframe containing the column metadata that is
+passed to \code{tlgsetup()} (see \code{tlgsetup()} for details)}
 }
 \value{
 List of character vectors containing column headers for an output.
 }
 \description{
-This will create the list object to be passed to gentlg  You can create as many spanning headers
-as you like, just add variables prefixed with span to the column metadata.
+This will create the list object to be passed to \code{gentlg()} You can create as
+many spanning headers as you like, just add variables prefixed with span to
+the column metadata.
 }
 \examples{
 column_metadata <-

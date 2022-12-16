@@ -4,9 +4,9 @@
 \name{cdisc adlb}
 \alias{cdisc adlb}
 \alias{cdisc_adlb}
-\title{ADLB data copied from the 2013 CDISC Pilot}
+\title{ADLB data created from subsetting the CDISC ADLB dataset}
 \format{
-A data frame with 254 rows and 48 variables:
+A data frame with 2154 rows and 46 variables:
 \describe{
 \item{STUDYID}{Study Identifier}
 \item{SUBJID}{Subject Identifier for the Study}
@@ -55,13 +55,14 @@ A data frame with 254 rows and 48 variables:
 }
 }
 \source{
-CDISC SDTM/ADAM Pilot Project. \url{https://www.cdisc.org/sdtmadam-pilot-project}
+CDISC SDTM/ADAM Pilot Project.
+\url{https://www.cdisc.org/sdtmadam-pilot-project}
 }
 \usage{
 cdisc_adlb
 }
 \description{
-ADLB data copied from the 2013 CDISC Pilot
+ADLB data created from subsetting the CDISC ADLB dataset
 }
 \examples{
 \dontrun{

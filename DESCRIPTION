@@ -70,7 +70,6 @@ Imports:
     huxtable (>= 5.1.0),
     assertthat (>= 0.2.1),
     glue (>= 1.4.2),
-    here (>= 0.1),
     usethis (>= 1.6.3),
     crayon (>= 1.4.1),
     tidyselect (>= 1.1.1),

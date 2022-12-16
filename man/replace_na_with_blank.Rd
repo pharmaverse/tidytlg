@@ -10,7 +10,8 @@ replace_na_with_blank(x)
 \item{x}{variable to check for NA and replace with "".}
 }
 \value{
-x with NA's replaced with "".  Factors will add "" as the first level.
+x with NA's replaced with "".  Factors will add ""
+as the first level.
 }
 \description{
 Used to swap in "" for by variables so the headers sort correctly to the top

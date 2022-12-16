@@ -13,18 +13,24 @@ rmdpstitle(
 )
 }
 \arguments{
-\item{df}{dataframe with three variables; table name, row identifier (TITLE or FOOTNOTEn), and title/footnote text to display}
+\item{df}{dataframe with three variables; table name, row identifier (TITLE
+or FOOTNOTEn), and title/footnote text to display}
 
-\item{tblid}{character vector containing the table id, optional, used to subset df to a specific table (defaults to tblid)}
+\item{tblid}{character vector containing the table id, optional, used to
+subset df to a specific table (defaults to tblid)}
 
-\item{idvar}{character vector containing the variable in df that contains your table id}
+\item{idvar}{character vector containing the variable in df that contains
+your table id}
 
-\item{identifier}{character vector containing the variable name in df that contains your record identifier (defaults to "identifier")}
+\item{identifier}{character vector containing the variable name in df that
+contains your record identifier (defaults to "identifier")}
 
-\item{text}{character vector containing the variable name in df that contains your title and footnote text (defaults to "text")}
+\item{text}{character vector containing the variable name in df that
+contains your title and footnote text (defaults to "text")}
 }
 \value{
-list of length two, the first element contains the titles as a tibble and the second contains the footnotes as a list
+list of length two, the first element contains the titles as a tibble
+and the second contains the footnotes as a list
 }
 \description{
 Get Titles and Footnotes for all TLGs or one specific TLG
