@@ -267,8 +267,8 @@ test_that("missing values are displayed as expected", {
 
   expected$gear <- factor(expected$gear)
 
-  # expect_equal(freq(mtcars2,colvar = "am",rowvar = "cyl",rowbyvar = "gear",statlist = statlist(c("n","n (x.x%)")),row_header = "Cars cylinders",display_missing = TRUE),
-  #              expected,ignore_attr = TRUE)
+  expect_equal(freq(mtcars2,colvar = "am",rowvar = "cyl",rowbyvar = "gear",statlist = statlist(c("n","n (x.x%)")),row_header = "Cars cylinders",display_missing = TRUE),
+               expected,ignore_attr = TRUE)
 
 
   expected <- tibble::tribble(
@@ -307,8 +307,8 @@ test_that("missing values are displayed as expected", {
 
   expected$gear <- factor(expected$gear)
 
-  # expect_equal(freq(mtcars2,colvar = "am",rowvar = "cyl",rowbyvar = "gear",statlist = statlist(c("n","n (x.x%)")),row_header = "Cars cylinders",display_missing = TRUE),
-  #              expected,ignore_attr = TRUE)
+  expect_equal(freq(mtcars2,colvar = "am",rowvar = "cyl",rowbyvar = "gear",statlist = statlist(c("n","n (x.x%)")),row_header = "Cars cylinders",display_missing = TRUE),
+               expected,ignore_attr = TRUE)
 
 expected <- tibble::tribble(
   ~label,          ~X0,         ~X1,    ~row_type, ~group_level, ~gear,
@@ -345,9 +345,9 @@ expected <- tibble::tribble(
 )
 
 expected$gear <- factor(expected$gear)
-# expect_equal(freq(mtcars2,colvar = "am",rowvar = "cyl",rowbyvar = "gear",statlist = statlist(c("n","n (x.x%)")),row_header = "Cars cylinders",display_missing = TRUE),
-#              expected,ignore_attr = TRUE
-#              )
+expect_equal(freq(mtcars2,colvar = "am",rowvar = "cyl",rowbyvar = "gear",statlist = statlist(c("n","n (x.x%)")),row_header = "Cars cylinders",display_missing = TRUE),
+             expected,ignore_attr = TRUE
+             )
 
 
 })
