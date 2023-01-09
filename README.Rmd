@@ -24,6 +24,7 @@ The goal of tidytlg is to generate table, listings, and graphs (TLG) using Tidyv
 
 
 ## Installation
+
 ### Development version
 ```{r, eval = FALSE}
 # install.packages("devtools")
