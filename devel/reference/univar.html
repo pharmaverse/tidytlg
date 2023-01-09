@@ -96,8 +96,8 @@
 
 
 <dt>colvar</dt>
-<dd><p>(required) character vector of the treatment variable within the
-dataframe</p></dd>
+<dd><p>(required) character vector of the treatment variable within
+the dataframe</p></dd>
 
 
 <dt>tablebyvar</dt>
@@ -110,28 +110,28 @@ dataframe</p></dd>
 
 
 <dt>rowbyvar</dt>
-<dd><p>(optional) repeat rowvar by variable within df</p></dd>
+<dd><p>(optional) repeat <code>rowvar</code> by variable within df</p></dd>
 
 
 <dt>statlist</dt>
-<dd><p>(optional) character vector of stats to keep (default = c("N",
-"MEANSD", "MEDIAN", "RANGE", "IQRANGE"))</p></dd>
+<dd><p>(optional) statlist object of stats to keep (default =
+statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE")))</p></dd>
 
 
 <dt>decimal</dt>
-<dd><p>(optional) decimal precision root level, when using presisionby
-this will be used as the base decimal cap (default = 1)</p></dd>
+<dd><p>(optional) decimal precision root level, when using
+<code>presisionby</code> this will be used as the base decimal cap (default = 1)</p></dd>
 
 
 <dt>precisionby</dt>
-<dd><p>(optional) vector of by variable(s) to use when calculating
-parameter based precision</p></dd>
+<dd><p>(optional) vector of by variable(s) to use when
+calculating parameter based precision</p></dd>
 
 
 <dt>precisionon</dt>
-<dd><p>(optional) variable to use when calculating
-parameter based precision. If precisionby is specified but not precisionon
-this will default to rowvar</p></dd>
+<dd><p>(optional) variable to use when calculating parameter
+based precision. If <code>precisionby</code> is specified but not <code>precisionon</code> this will
+default to <code>rowvar</code></p></dd>
 
 
 <dt>wide</dt>
@@ -140,12 +140,12 @@ columns to labels (default = FALSE)</p></dd>
 
 
 <dt>alpha</dt>
-<dd><p>(optional) alpha level for 2-sided confidence interval
-(default = 0.05)</p></dd>
+<dd><p>(optional) alpha level for 2-sided confidence interval (default
+= 0.05)</p></dd>
 
 
 <dt>rowtext</dt>
-<dd><p>(optional) A text string to replace the 'label' value on the
+<dd><p>(optional) A text string to replace the <code>label</code> value on the
 table. Useful for tables with a single row.</p></dd>
 
 
@@ -154,8 +154,8 @@ table. Useful for tables with a single row.</p></dd>
 
 
 <dt>.keep</dt>
-<dd><p>(optional) Should the rowbyvar and tablebyvar be output in the
-table.  If FALSE, rowbyvar will still be output in the label column.
+<dd><p>(optional) Should the <code>rowbyvar</code> and <code>tablebyvar</code> be output in the
+table.  If FALSE, <code>rowbyvar</code> will still be output in the <code>label</code> column.
 (default = TRUE)</p></dd>
 
 
@@ -175,6 +175,87 @@ useful if a table needs to be merged or reordered in any way after build.</p></d
 <p>dataframe of results</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">adsl</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/structure.html" class="external-link">structure</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      USUBJID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DEMO-101"</span>, <span class="st">"DEMO-102"</span>, <span class="st">"DEMO-103"</span>, <span class="st">"DEMO-104"</span>,</span></span>
+<span class="r-in"><span>                  <span class="st">"DEMO-105"</span>, <span class="st">"DEMO-106"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      AGE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">59</span>, <span class="fl">51</span>, <span class="fl">57</span>, <span class="fl">65</span>, <span class="fl">21</span>, <span class="fl">80</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      WEIGHTBL <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">83.6</span>, <span class="fl">75</span>, <span class="fl">84</span>, <span class="fl">90</span>, <span class="fl">65</span>, <span class="fl">70</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      colnbr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/structure.html" class="external-link">structure</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">3L</span>, <span class="fl">2L</span>, <span class="fl">2L</span>, <span class="fl">3L</span>, <span class="fl">1L</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        .Label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Placebo"</span>, <span class="st">"Low"</span>, <span class="st">"High"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        class <span class="op">=</span> <span class="st">"factor"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">6L</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    class <span class="op">=</span> <span class="st">"data.frame"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># N, Mean(SD), Median, Range, IQ Range for a rowvar by colvar</span></span></span>
+<span class="r-in"><span><span class="fu">univar</span><span class="op">(</span><span class="va">adsl</span></span></span>
+<span class="r-in"><span>       ,colvar <span class="op">=</span> <span class="st">"colnbr"</span></span></span>
+<span class="r-in"><span>       ,rowvar <span class="op">=</span> <span class="st">"AGE"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># N and Mean for a rowvar by colvar</span></span></span>
+<span class="r-in"><span><span class="fu">univar</span><span class="op">(</span><span class="va">adsl</span></span></span>
+<span class="r-in"><span>       ,colvar   <span class="op">=</span> <span class="st">"colnbr"</span></span></span>
+<span class="r-in"><span>       ,rowvar   <span class="op">=</span> <span class="st">"AGE"</span></span></span>
+<span class="r-in"><span>       ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"MEAN"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># N and Mean for a rowvar by colvar and a by variable</span></span></span>
+<span class="r-in"><span><span class="fu">univar</span><span class="op">(</span><span class="va">adsl</span></span></span>
+<span class="r-in"><span>       ,colvar   <span class="op">=</span> <span class="st">"colnbr"</span></span></span>
+<span class="r-in"><span>       ,rowvar   <span class="op">=</span> <span class="st">"AGE"</span></span></span>
+<span class="r-in"><span>       ,rowbyvar <span class="op">=</span> <span class="st">"SEX"</span></span></span>
+<span class="r-in"><span>       ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"MEAN"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Below illustrates how make the same calls to univar() as above, using table</span></span></span>
+<span class="r-in"><span><span class="co"># and column metadata # along with generate_results().</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">column_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="op">~</span><span class="va">tbltype</span>, <span class="op">~</span><span class="va">coldef</span>,   <span class="op">~</span><span class="va">decode</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"type1"</span>,     <span class="st">"0"</span>,  <span class="st">"Placebo"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"type1"</span>,     <span class="st">"54"</span>,     <span class="st">"Low"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"type1"</span>,     <span class="st">"81"</span>,    <span class="st">"High"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># N, Mean(SD), Median, Range, IQ Range for a rowvar by colvar</span></span></span>
+<span class="r-in"><span><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="op">~</span><span class="va">anbr</span>,  <span class="op">~</span><span class="va">func</span>,    <span class="op">~</span><span class="va">df</span>, <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">tbltype</span>, <span class="op">~</span><span class="va">colvar</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"1"</span>, <span class="st">"univar"</span>, <span class="st">"cdisc_adae"</span>,   <span class="st">"AGE"</span>,  <span class="st">"type1"</span>, <span class="st">"TRTP"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="generate_results.html">generate_results</a></span><span class="op">(</span><span class="va">table_metadata</span>, column_metadata <span class="op">=</span> <span class="va">column_metadata</span>,</span></span>
+<span class="r-in"><span>                 tbltype <span class="op">=</span> <span class="st">"type1"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># N and Mean for a rowvar by colvar</span></span></span>
+<span class="r-in"><span><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="op">~</span><span class="va">anbr</span>,  <span class="op">~</span><span class="va">func</span>,    <span class="op">~</span><span class="va">df</span>, <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">tbltype</span>,  <span class="op">~</span><span class="va">colvar</span>, <span class="op">~</span><span class="va">statlist</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"1"</span>, <span class="st">"univar"</span>, <span class="st">"cdisc_adae"</span>,   <span class="st">"AGE"</span>,  <span class="st">"type1"</span>, <span class="st">"TRTP"</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"MEAN"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="generate_results.html">generate_results</a></span><span class="op">(</span><span class="va">table_metadata</span>, column_metadata <span class="op">=</span> <span class="va">column_metadata</span>,</span></span>
+<span class="r-in"><span>                 tbltype <span class="op">=</span> <span class="st">"type1"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># N and Mean for a rowvar by colvar and a by variable</span></span></span>
+<span class="r-in"><span><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="op">~</span><span class="va">anbr</span>,  <span class="op">~</span><span class="va">func</span>,    <span class="op">~</span><span class="va">df</span>, <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">tbltype</span>,  <span class="op">~</span><span class="va">colvar</span>, <span class="op">~</span><span class="va">statlist</span>,  <span class="op">~</span><span class="va">by</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"1"</span>, <span class="st">"univar"</span>, <span class="st">"cdisc_adae"</span>,   <span class="st">"AGE"</span>,  <span class="st">"type1"</span>, <span class="st">"TRTP"</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"MEAN"</span><span class="op">)</span><span class="op">)</span>, <span class="st">"SEX"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># generate_results(table_metadata, column_metadata)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

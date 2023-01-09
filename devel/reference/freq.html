@@ -113,18 +113,18 @@
 
 
 <dt>rowvar</dt>
-<dd><p>(required) character vector of variables to summarize within
-the dataframe</p></dd>
+<dd><p>(required) character vector of variables to summarize within the
+dataframe</p></dd>
 
 
 <dt>rowbyvar</dt>
-<dd><p>(optional) repeat rowvar by variable within df</p></dd>
+<dd><p>(optional) repeat <code>rowvar</code> by variable within df</p></dd>
 
 
 <dt>statlist</dt>
-<dd><p>(optional) character vector of length 1 or 2 specifying list
-of statistics and format desired (e.g c("N", "n (x.x\<!-- %)")) -->
-(default = "n (x.x)")</p></dd>
+<dd><p>(optional) statlist object of stats to keep of length 1 or 2 specifying list
+of statistics and format desired (e.g statlist(c("N", "n (x.x\<!-- %)"))) (default = statlist(c("n -->
+(x.x)")))</p></dd>
 
 
 <dt>decimal</dt>
@@ -133,35 +133,37 @@ of statistics and format desired (e.g c("N", "n (x.x\<!-- %)")) -->
 
 <dt>nested</dt>
 <dd><p>(optional) INTERNAL USE ONLY. The default should not be changed.
-Switch on when this function is called by nested_freq
-so we will not include the by variables as part of the group denominators
-(default = FALSE)</p></dd>
+Switch on when this function is called by <code><a href="nested_freq.html">nested_freq()</a></code> so we will not include
+the by variables as part of the group denominators (default = FALSE)</p></dd>
 
 
 <dt>cutoff</dt>
 <dd><p>(optional) percentage cutoff threshold. This can be passed as a
 numeric cutoff, in that case any rows with greater than or equal to that
 cutoff will be preserved, others will be dropped. To specify a single column
-to define the cutoff logic, pass a character value of the form "colName &gt;= value"
-and only that column will be used.</p></dd>
+to define the cutoff logic, pass a character value of the form "colName &gt;=
+value" and only that column will be used.</p></dd>
 
 
 <dt>cutoff_stat</dt>
-<dd><p>(optional) The value to cutoff by, n or pct. (default = 'pct')</p></dd>
+<dd><p>(optional) The value to cutoff by, n or pct. (default =
+'pct'). Can be done with multiple columns by adding &amp; or | ex. <code>col1</code> &gt;=
+<code>val1</code> &amp; <code>col2</code> &gt;= <code>val2</code></p></dd>
 
 
 <dt>subset</dt>
 <dd><p>(optional) An R expression that will be passed to a
 <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code> function to subset the data.frame. This is performed on
 the numerator before any other derivations. Denominators must be
-preprocessed and passed through using 'denom_df'.</p></dd>
+preprocessed and passed through using <code>denom_df</code>.</p></dd>
 
 
 <dt>descending_by</dt>
-<dd><p>(optional) The column or columns to sort descending values by.
-Can also provide a named list to do ascending order ex. c("VarName1" = "asc", "VarName2" = "desc")
-would sort by VarName1 in ascending order and VarName2 in descending order.
-If not provided, the columns will be sorted alphabetically.</p></dd>
+<dd><p>(optional) The column or columns to sort descending
+counts. Can also provide a named list to do ascending order ex.
+c("VarName1" = "asc", "VarName2" = "desc") would sort by VarName1 in
+ascending order and VarName2 in descending order. In case of a tie in count
+or <code>descending_by</code> not provided, the columns will be sorted alphabetically.</p></dd>
 
 
 <dt>display_missing</dt>
@@ -171,12 +173,12 @@ missing values are displayed, denominators will include missing values.
 
 
 <dt>rowtext</dt>
-<dd><p>(optional) A character vector used to rename the 'label'
+<dd><p>(optional) A character vector used to rename the <code>label</code>
 column. If named, names will give the new level and values will be the
-replaced value. If unnamed, and the table has only one row, the rowtext
-will rename the label of the row. If the rowtext is unnamed, the table has
-no rows, and there is a subset, the table will be populated with zeros and
-the label will be the only row.</p></dd>
+replaced value. If unnamed, and the table has only one row, the rowtext will
+rename the label of the row. If the rowtext is unnamed, the table has no
+rows, and there is a subset, the table will be populated with zeros and the
+label will be the only row.</p></dd>
 
 
 <dt>row_header</dt>
@@ -184,8 +186,8 @@ the label will be the only row.</p></dd>
 
 
 <dt>.keep</dt>
-<dd><p>(optional) Should the rowbyvar and tablebyvar be output in the
-table.  If FALSE, rowbyvar will still be output in the label column.
+<dd><p>(optional) Should the <code>rowbyvar</code> and <code>tablebyvar</code> be output in the
+table.  If FALSE, <code>rowbyvar</code> will still be output in the <code>label</code> column.
 (default = TRUE)</p></dd>
 
 
@@ -215,11 +217,11 @@ should be included in the final table. (default = TRUE)</p></dd>
 
 
 <p>By default, a frequency table is sorted based on the factor level of the
-'rowvar' variable. If the 'rowvar' variable isn't a factor, it will be sorted
-alphabetically. This behavior can be modified in two ways, the first is the
-<code><a href="char2factor.html">char2factor()</a></code> function that offers a interface for releveling a variable
-based on a numeric variable, like VISITN. The second is based on the
-<code>descending_by</code> argument which will sort based on counts on a variable.</p>
+<code>rowvar</code> variable. If the <code>rowvar</code> variable isn't a factor, it will be
+sorted alphabetically. This behavior can be modified in two ways, the first
+is the <code><a href="char2factor.html">char2factor()</a></code> function that offers a interface for releveling a
+variable based on a numeric variable, like VISITN. The second is based on
+the <code>descending_by</code> argument which will sort based on counts on a variable.</p>
     </div>
 
     <div id="ref-examples">
@@ -359,8 +361,8 @@ based on a numeric variable, like VISITN. The second is based on the
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​`Xanomeline High Dose`,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​`Xanomeline Low Dose`, ³​row_type, ⁴​group_level</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Below illustrates how to make the same calls to freq() as above, using table</span></span></span>
-<span class="r-in"><span><span class="co"># and column metadata.</span></span></span>
+<span class="r-in"><span><span class="co"># Below illustrates how to make the same calls to freq() as above, using</span></span></span>
+<span class="r-in"><span><span class="co"># table and column metadata.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="st">"~/tidytlg/inst/extdata"</span></span></span>
 <span class="r-in"><span></span></span>

@@ -89,13 +89,14 @@
 <dt>column_metadata_file</dt>
 <dd><p>An excel file with the data for column_metadata.
 The file is read in with <code><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">readxl::read_excel()</a></code>. Should not be used with
-<code>column_metadata</code> argument. Restuls in a dataframe containing the column metadata that is
-passed to tlgsetup (see <code><a href="tlgsetup.html">tlgsetup()</a></code> for details).
-If a column_metadata dataframe is passed in too, this is ignored.</p></dd>
+<code>column_metadata</code> argument. Results in a dataframe containing the column
+metadata that is passed to tlgsetup (see <code><a href="tlgsetup.html">tlgsetup()</a></code> for details). If a
+column_metadata dataframe is passed in too, this is ignored.</p></dd>
 
 
 <dt>column_metadata</dt>
-<dd><p>A dataframe containing the column metadata. This will be used in place of column_metadata_file.</p></dd>
+<dd><p>A dataframe containing the column metadata. This will
+be used in place of <code>column_metadata_file</code>.</p></dd>
 
 
 <dt>env</dt>
@@ -104,12 +105,13 @@ If a column_metadata dataframe is passed in too, this is ignored.</p></dd>
 
 
 <dt>tbltype</dt>
-<dd><p>If used, this will be used to subset the column_metadata based
-on the tbltype column.</p></dd>
+<dd><p>If used, this will be used to subset the <code>column_metadata</code> based
+on the <code>tbltype</code> column.</p></dd>
 
 
 <dt>add_count</dt>
-<dd><p>Passed to <code>bind_table</code> should counts be added for tablebyvars?</p></dd>
+<dd><p>Passed to <code><a href="bind_table.html">bind_table()</a></code> should counts be added for
+<code>tablebyvars</code>?</p></dd>
 
 </dl></div>
     <div id="value">

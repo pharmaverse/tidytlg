@@ -86,13 +86,13 @@ table.</p></dd>
 for allowable arguments.</p></dd>
 
 </dl></div>
-    <div id="statlists-for-freq-and-nested-freq">
-    <h2>Statlists for freq and nested_freq</h2>
+    <div id="statlists-for-freq-and-nested-freq-">
+    <h2>Statlists for <code><a href="freq.html">freq()</a></code> and <code><a href="nested_freq.html">nested_freq()</a></code></h2>
     
 
 <p><code><a href="freq.html">freq()</a></code> statlists can be composed of n(count), N(denominator), and
 x.x(percentage, formatted with or without a percent sign). Denominators will
-include missing values iff the 'display_missing' argument is TRUE, otherwise
+include missing values if the 'display_missing' argument is TRUE, otherwise
 they will be excluded. They can be arranged
 in the following ways:</p><ul><li><p>n</p></li>
 <li><p>n/N</p></li>
@@ -108,8 +108,7 @@ subjects.</p></li>
 <li><p>distinct_by - A character value used to select the variable that
 should be used to "distinct" the freq tables. Defaults to USUBJID.</p></li>
 <li><p>zero_denom - The string to display when there are no records found
-in an entire denominator group. As in the denominator is zero. Defaults
-to "-"</p></li>
+in an entire denominator group. Defaults to "-"</p></li>
 <li><p>zero_n - The string to display when there are no records found for
 a numerator. Defaults to "0".</p></li>
 </ul></div>
@@ -139,8 +138,10 @@ a numerator. Defaults to "0".</p></li>
 <li><p>MEDIQRANGE</p></li>
 <li><p>MEAN_CI</p></li>
 <li><p>GeoMEAN_CI</p></li>
-</ul><p>where GeoMEAN: Geometric Mean, CV: Coefficient of Variation, GSD: Geometric Std. Dev.,
-GSE: Geometric Std. Error, MEAN_CI: Mean (95% C.I.), GeoMEAN_CI: Geometric Mean (95% C.I.)</p>
+</ul><p>where GeoMEAN: Geometric Mean, CV: Coefficient of Variation, GSD: Geometric
+Std. Dev., GSE: Geometric Std. Error, MEAN_CI: Mean (95% C.I.), GeoMEAN_CI:
+Geometric Mean (95% C.I.). In calculating geometric statistics, if there are zero values in the inputs,
+zero values will be excluded before calculating geometric statistics.</p>
     </div>
 
     <div id="ref-examples">
