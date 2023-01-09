@@ -37,55 +37,57 @@ freq(
 
 \item{tablebyvar}{(optional) repeat entire table by variable within df}
 
-\item{rowvar}{(required) character vector of variables to summarize within
-the dataframe}
+\item{rowvar}{(required) character vector of variables to summarize within the
+dataframe}
 
-\item{rowbyvar}{(optional) repeat rowvar by variable within df}
+\item{rowbyvar}{(optional) repeat \code{rowvar} by variable within df}
 
-\item{statlist}{(optional) character vector of length 1 or 2 specifying list
-of statistics and format desired (e.g c("N", "n (x.x\\%)"))
-(default = "n (x.x)")}
+\item{statlist}{(optional) statlist object of stats to keep of length 1 or 2 specifying list
+of statistics and format desired (e.g statlist(c("N", "n (x.x\\%)"))) (default = statlist(c("n
+(x.x)")))}
 
 \item{decimal}{(optional) decimal precision root level default (default = 1)}
 
 \item{nested}{(optional) INTERNAL USE ONLY. The default should not be changed.
-Switch on when this function is called by nested_freq
-so we will not include the by variables as part of the group denominators
-(default = FALSE)}
+Switch on when this function is called by \code{nested_freq()} so we will not include
+the by variables as part of the group denominators (default = FALSE)}
 
 \item{cutoff}{(optional) percentage cutoff threshold. This can be passed as a
 numeric cutoff, in that case any rows with greater than or equal to that
 cutoff will be preserved, others will be dropped. To specify a single column
-to define the cutoff logic, pass a character value of the form "{colName} >= {value}"
-and only that column will be used.}
+to define the cutoff logic, pass a character value of the form "{colName} >=
+{value}" and only that column will be used.}
 
-\item{cutoff_stat}{(optional) The value to cutoff by, n or pct. (default = 'pct')}
+\item{cutoff_stat}{(optional) The value to cutoff by, n or pct. (default =
+'pct'). Can be done with multiple columns by adding & or | ex. \code{col1} >=
+\code{val1} & \code{col2} >= \code{val2}}
 
 \item{subset}{(optional) An R expression that will be passed to a
 \code{dplyr::filter()} function to subset the data.frame. This is performed on
 the numerator before any other derivations. Denominators must be
-preprocessed and passed through using 'denom_df'.}
+preprocessed and passed through using \code{denom_df}.}
 
-\item{descending_by}{(optional) The column or columns to sort descending values by.
-Can also provide a named list to do ascending order ex. c("VarName1" = "asc", "VarName2" = "desc")
-would sort by VarName1 in ascending order and VarName2 in descending order.
-If not provided, the columns will be sorted alphabetically.}
+\item{descending_by}{(optional) The column or columns to sort descending
+counts. Can also provide a named list to do ascending order ex.
+c("VarName1" = "asc", "VarName2" = "desc") would sort by VarName1 in
+ascending order and VarName2 in descending order. In case of a tie in count
+or \code{descending_by} not provided, the columns will be sorted alphabetically.}
 
 \item{display_missing}{(optional) Should the "missing" values be displayed? If
 missing values are displayed, denominators will include missing values.
 (default = FALSE)}
 
-\item{rowtext}{(optional) A character vector used to rename the 'label'
+\item{rowtext}{(optional) A character vector used to rename the \code{label}
 column. If named, names will give the new level and values will be the
-replaced value. If unnamed, and the table has only one row, the rowtext
-will rename the label of the row. If the rowtext is unnamed, the table has
-no rows, and there is a subset, the table will be populated with zeros and
-the label will be the only row.}
+replaced value. If unnamed, and the table has only one row, the rowtext will
+rename the label of the row. If the rowtext is unnamed, the table has no
+rows, and there is a subset, the table will be populated with zeros and the
+label will be the only row.}
 
 \item{row_header}{(optional) A character vector to be added to the table.}
 
-\item{.keep}{(optional) Should the rowbyvar and tablebyvar be output in the
-table.  If FALSE, rowbyvar will still be output in the label column.
+\item{.keep}{(optional) Should the \code{rowbyvar} and \code{tablebyvar} be output in the
+table.  If FALSE, \code{rowbyvar} will still be output in the \code{label} column.
 (default = TRUE)}
 
 \item{.ord}{Should the ordering columns be output with the table? This is
@@ -106,11 +108,11 @@ Frequency counts and percentages for a variable by treatment and/or group.
 
 
 By default, a frequency table is sorted based on the factor level of the
-'rowvar' variable. If the 'rowvar' variable isn't a factor, it will be sorted
-alphabetically. This behavior can be modified in two ways, the first is the
-\code{char2factor()} function that offers a interface for releveling a variable
-based on a numeric variable, like VISITN. The second is based on the
-\code{descending_by} argument which will sort based on counts on a variable.
+\code{rowvar} variable. If the \code{rowvar} variable isn't a factor, it will be
+sorted alphabetically. This behavior can be modified in two ways, the first
+is the \code{char2factor()} function that offers a interface for releveling a
+variable based on a numeric variable, like VISITN. The second is based on
+the \code{descending_by} argument which will sort based on counts on a variable.
 }
 
 \examples{
@@ -164,8 +166,8 @@ freq(cdisc_adsl
      ,cutoff = "Placebo >= 3"
      ,cutoff_stat = "n")
 
-# Below illustrates how to make the same calls to freq() as above, using table
-# and column metadata.
+# Below illustrates how to make the same calls to freq() as above, using
+# table and column metadata.
 
 path <- "~/tidytlg/inst/extdata"
 

@@ -3,28 +3,36 @@
 \docType{data}
 \name{table_metadata}
 \alias{table_metadata}
-\title{Metadata describing the data, functions and arguments needed to produce your results.}
+\title{Metadata describing the data, functions and arguments needed to produce your
+results.}
 \format{
 A data frame with one row per function call and 16 variables:
 \describe{
 \item{func}{name of the function you wish to call}
 \item{df}{data frame to pass to the function call}
-\item{subset}{filter df records, this is passed directly to filter, ex. "AESER == 'Y'"}
-\item{rowvar}{variable being summarized that will pass to the function call}
+\item{subset}{filter df records, this is passed directly to filter,
+ex. "AESER == 'Y'"}
+\item{rowvar}{variable being summarized that will pass to the function
+call}
 \item{rowtext}{row label text to display in the table}
 \item{row_header}{header text to display above row summary}
-\item{statlist}{list of statistics in the analysis, see individual functions for what is available per function (eg. "N, n (x.x)")}
+\item{statlist}{list of statistics in the analysis, see individual
+functions for what is available per function (eg. "N, n (x.x)")}
 \item{colvar}{variable used to determine the columns of the table}
 \item{decimal}{decimal precision}
-\item{rowbyvar}{repeat rowvar summary by this variable/s, comma separated for multiple (eg. "ETHNIC, AGEGR1")}
-\item{tablebyvar}{repeat the entire table summary by this variable/s, comma separated for multiple (eg. "ETHNIC, AGEGR1")}
-\item{denom_df}{used to set denominators if df does not contain all required records}
+\item{rowbyvar}{repeat rowvar summary by this variable/s, comma separated
+for multiple (eg. "ETHNIC, AGEGR1")}
+\item{tablebyvar}{repeat the entire table summary by this variable/s,
+comma separated for multiple (eg. "ETHNIC, AGEGR1")}
+\item{denom_df}{used to set denominators if df does not contain
+all required records}
 }
 }
 \usage{
 table_metadata
 }
 \description{
-Metadata describing the data, functions and arguments needed to produce your results.
+Metadata describing the data, functions and arguments needed to produce your
+results.
 }
 \keyword{datasets}

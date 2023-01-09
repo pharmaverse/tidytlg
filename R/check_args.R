@@ -581,12 +581,12 @@ check_statlist <- function(func, astatlist) {
 
 
 #' check_statlist_N
-#'
+#' Throws error if N is used with no other args used by freq functions
 #' @param func argument base function name
 #' @param astatlist statlist to test
 #'
 #' @return NULL
-#' Throws error if N is used with no other args used by freq functions
+#' @noRd
 check_statlist_N <- function(func, astatlist) {
   if (!("N" %in% astatlist)) {
     return()
@@ -696,11 +696,11 @@ check_wcol <- function(huxme, wcol) {
 }
 
 #' check_plotnames
-#'
+#' Throws error if `plotnames` do not exist
 #' @param plotnames plotname to check
 #'
 #' @return NULL
-#' Throws error if `plotnames` do not exist
+#' @noRd
 check_plotnames <- function(plotnames) {
   if (is.null(plotnames)) {
     return()

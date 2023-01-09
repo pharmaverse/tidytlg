@@ -17,11 +17,11 @@ for allowable arguments.}
 The {statlist} is the interface for the presentation of data in a tidytlg
 table.
 }
-\section{Statlists for freq and nested_freq}{
+\section{Statlists for \code{freq()} and \code{nested_freq()}}{
 
 \code{freq()} statlists can be composed of n(count), N(denominator), and
 x.x(percentage, formatted with or without a percent sign). Denominators will
-include missing values iff the 'display_missing' argument is TRUE, otherwise
+include missing values if the 'display_missing' argument is TRUE, otherwise
 they will be excluded. They can be arranged
 in the following ways:
 \itemize{
@@ -43,8 +43,7 @@ subjects.}
 \item{distinct_by - A character value used to select the variable that
 should be used to "distinct" the freq tables. Defaults to USUBJID.}
 \item{zero_denom - The string to display when there are no records found
-in an entire denominator group. As in the denominator is zero. Defaults
-to "-"}
+in an entire denominator group. Defaults to "-"}
 \item{zero_n - The string to display when there are no records found for
 a numerator. Defaults to "0".}
 }
@@ -78,8 +77,10 @@ Available statistics to pass to statlist:
 \item{GeoMEAN_CI}
 }
 
-where GeoMEAN: Geometric Mean, CV: Coefficient of Variation, GSD: Geometric Std. Dev.,
-GSE: Geometric Std. Error, MEAN_CI: Mean (95\% C.I.), GeoMEAN_CI: Geometric Mean (95\% C.I.)
+where GeoMEAN: Geometric Mean, CV: Coefficient of Variation, GSD: Geometric
+Std. Dev., GSE: Geometric Std. Error, MEAN_CI: Mean (95\% C.I.), GeoMEAN_CI:
+Geometric Mean (95\% C.I.). In calculating geometric statistics, if there are zero values in the inputs,
+zero values will be excluded before calculating geometric statistics.
 }
 
 \examples{

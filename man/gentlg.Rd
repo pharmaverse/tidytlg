@@ -27,29 +27,31 @@ gentlg(
 )
 }
 \arguments{
-\item{huxme}{(optional) For tables and listings, An input dataframe containing all columns
-of interest. For graphs, either NULL or a ggplot object.}
+\item{huxme}{(optional) For tables and listings, An input dataframe
+containing all columns of interest. For graphs, either NULL or a ggplot
+object.}
 
 \item{tlf}{(optional) String, representing the output choice. Choices are
 "Table" "Listing" "Figure". Abbreviations are allowed eg "T" for Table.
 Strings can be either upper- or lowercase. (Default = "Table")}
 
 \item{format}{(optional) String, representing the output format. Choices are
-"rtf" and "HTML". Strings can be either upper- or lowercase. (Default = "rtf")}
+"rtf" and "html". Strings can be either upper- or lowercase.(Default = "rtf")}
 
-\item{colspan}{(optional) A list of character vectors representing the spanning headers
-to be used for the table or listing. The first vector represents the top
-spanning header, etc. Each vector should have a length equal to the number of
-columns in the output data frame. A spanning header is identified through the
-use of the same column name in adjacent elements.}
+\item{colspan}{(optional) A list of character vectors representing the
+spanning headers to be used for the table or listing. The first vector
+represents the top spanning header, etc. Each vector should have a length
+equal to the number of columns in the output data frame. A spanning header
+is identified through the use of the same column name in adjacent elements.}
 
-\item{idvars}{(optional) Character vector defining the columns of a listing where
-repeated values should be removed recursively. If NULL then all column names
-are used in the algorithm. If NA, then the listing remains as is.}
+\item{idvars}{(optional) Character vector defining the columns of a listing
+where repeated values should be removed recursively. If NULL then
+all column names are used in the algorithm. If NA, then the listing remains
+as is.}
 
-\item{plotnames}{(optional) Character vector containing the names of the png files, with
-their extension to be incorporated for figure outputs. The png files need to
-be located in the path defined by the parameter opath.}
+\item{plotnames}{(optional) Character vector containing the names of the png
+files, with their extension to be incorporated for figure outputs.
+The png files need to be located in the path defined by the parameter \code{opath}.}
 
 \item{plotwidth}{(optional) Numerical value that indicates the plot width in
 cm for figure outputs. (Default = 6)}
@@ -64,7 +66,7 @@ When a single numerical value is used, this will be taken as the column width
 for the first column. The other columns will be equally spaced across the
 remainder of the available space. Alternatively, a vector can be used to
 represent the widths of all columns in the final output. The order of the
-arguments needs to correspond to the order of the columns in the huxme
+arguments needs to correspond to the order of the columns in the \code{huxme}
 dataset, that are not part of the formatting algorithms
 (eg anbr, roworder, newpage, newrow, indentme, boldme, by_value, by_order).
 The sum of the widths in the vector needs to be less or equal to one. When
@@ -77,27 +79,31 @@ The sum of the widths in the vector needs to be less or equal to one. When
 \item{opath}{(optional) File path pointing to the output files
 (including .png files for graphs). (Default = ".")}
 
-\item{title_file}{An Excel file that will be read in with \code{readxl::read_excel()} to
-be used as the 'title' and 'footers' arugment. The use of 'titles' or
-'footers' will override the values passed by this argument. The file should
-be either an xls or xlsx file with the columns 'TABLE ID', 'IDENTIFIER', and
-'TEXT'. The file will be read in, subset to where the tblid matches the tlf argument, and identifiers
-with 'title' or 'footnote' will be used to populate the table.}
+\item{title_file}{An Excel file that will be read in
+with \code{readxl::read_excel()} to be used as the \code{title} and \code{footers} arugment.
+The use of \code{title} or \code{footers} will override the values passed by this
+argument. The file should be either an xls or xlsx file with the columns
+'TABLE ID', 'IDENTIFIER', and TEXT'. The file will be read in, subset to
+where the tblid matches the tlf argument, and identifiers with 'title' or
+'footnote' will be used to populate the table.}
 
 \item{file}{(required) String. Output identifier.
-File name will be adjusted to be lowercase and have - and _ removed, this will not affect table title.}
+File name will be adjusted to be lowercase and have - and _ removed,
+this will not affect table title.}
 
 \item{title}{(required) String. Title of the output.}
 
 \item{footers}{(optional) Character vector, containing strings of footnotes
 to be included.}
 
-\item{print.hux}{(optional) Logical, indicating whether the output should be printed to
-RTF ('format' = "rtf") / displayed as HTML ('format' = "HTML").
-(Default = TRUE) Note that RTF is written using the ReporteR::quick_rtf_jnj
-function and that the HTML is displayed via the huxtable::print_html function.}
+\item{print.hux}{(optional) Logical, indicating whether the output should be
+printed to RTF ('format' = "rtf") / displayed as HTML ('format' = "HTML").
+(Default = TRUE) Note that RTF is written using \code{quick_rtf_jnj()}
+function and that the HTML is displayed via the huxtable::print_html
+function.}
 
-\item{watermark}{(optional) String containing the desired watermark for RTF outputs.}
+\item{watermark}{(optional) String containing the desired watermark for
+RTF outputs.}
 
 \item{colheader}{(optional) Character vector that contains the column labels
 for a table or listing. Default uses the column labels of huxme.}
@@ -106,81 +112,100 @@ for a table or listing. Default uses the column labels of huxme.}
 right side of the footer section in the format page x/y. (Default = FALSE)}
 }
 \value{
-Formatted huxtable with desired properties for output to an RTF/HTML according to the J&J Standard requirements.\cr
+Formatted huxtable with desired properties for output to an RTF/HTML
 }
 \description{
-Generate and output a huxtable with desired properties according
-to the J&J Standard layout requirements. During this function call, the
-huxtable can be written to an RTF or displayed in HTML.
+Generate and output a huxtable with desired properties
+During this function call, the huxtable can be written to an RTF or
+displayed in HTML.
 }
 \section{Huxme Details}{
 
-For tables and listings, formatting of the output can be dictated through the formatting columns
-("newrows", "indentme", "boldme", "newpage"), present in the input dataframe.
+For tables and listings, formatting of the output can be dictated through the
+formatting columns
+(\code{newrows}, \code{indentme}, \code{boldme}, \code{newpage}), present in the input dataframe.
 The final huxtable will display all columns of the input dataframe, except
 any recognized formatting/sorting columns.
 For tables, the algorithm uses
-the column "label" as first column. The remaining columns are treated as
+the column \code{label} as first column. The remaining columns are treated as
 summary columns.
 For graphs, you can pass a ggplot object directly into huxme and gentlg will
-save a png with with \code{ggsave} and output an rtf.
+save a png with with \code{ggplot2::ggsave()} and output an rtf.
 }
 
 \examples{
 \dontrun{
 
 final <- data.frame(
- label      = c('Overall', 'Safety Analysis Set',
-                'Any Adverse event{\\\\super a}', '- Serious Adverse Event'),
- Drug_A     = c("", "40", "10 (25\%)", "0"),
- Drug_B     = c("", "40", "10 (25\%)", "0"),
- anbr       = c(1,2,3,4),
- roworder   = c(1,1,1,1),
- boldme     = c(1,0,0,0),
- newrows    = c(0,0,1,0),
- indentme   = c(0,0,0,1),
- newpage    = c(0,0,0,0)
+  label = c(
+    "Overall", "Safety Analysis Set",
+    "Any Adverse event{\\\\super a}", "- Serious Adverse Event"
+  ),
+  Drug_A = c("", "40", "10 (25\%)", "0"),
+  Drug_B = c("", "40", "10 (25\%)", "0"),
+  anbr = c(1, 2, 3, 4),
+  roworder = c(1, 1, 1, 1),
+  boldme = c(1, 0, 0, 0),
+  newrows = c(0, 0, 1, 0),
+  indentme = c(0, 0, 0, 1),
+  newpage = c(0, 0, 0, 0)
 )
 
 # Produce output in rtf format
-gentlg(huxme        = final
-      ,wcol        = c(0.70, 0.15, 0.15)
-      ,file        = "TSFAEX"
-      ,title       = "This is Amazing Demonstration 1"
-      ,footers     = c("Note: For demonstrative purposes only",
-                       "{\\\\super a} Subjects are counted once for any given event."))
+gentlg(
+  huxme = final,
+  wcol = c(0.70, 0.15, 0.15),
+  file = "TSFAEX",
+  title = "This is Amazing Demonstration 1",
+  footers = c(
+    "Note: For demonstrative purposes only",
+    "{\\\\super a} Subjects are counted once for any given event."
+  )
+)
 
 # Pass in column headers instead of using variable name
-gentlg(huxme        = final
-      ,wcol        = c(0.70, 0.15, 0.15)
-      ,file        = "TSFAEX"
-      ,colheader   = c("", "Drug A", "Drug B")
-      ,title       = "This is Amazing Demonstration 1"
-      ,footers     = c("Note: For demonstrative purposes only",
-                       "{\\\\super a} Subjects are counted once for any given event."))
+gentlg(
+  huxme = final,
+  wcol = c(0.70, 0.15, 0.15),
+  file = "TSFAEX",
+  colheader = c("", "Drug A", "Drug B"),
+  title = "This is Amazing Demonstration 1",
+  footers = c(
+    "Note: For demonstrative purposes only",
+    "{\\\\super a} Subjects are counted once for any given event."
+  )
+)
 # Use a watermark
-gentlg(huxme        = final
-      ,wcol        = c(0.70, 0.15, 0.15)
-      ,file        = "TSFAEX"
-      ,colheader   = c("", "Drug A", "Drug B")
-      ,title       = "This is Amazing Demonstration 1"
-      ,footers     = c("Note: For demonstrative purposes only",
-                       "{\\\\super a} Subjects are counted once for any given event.")
-      ,watermark   = "Confidential")
+gentlg(
+  huxme = final,
+  wcol = c(0.70, 0.15, 0.15),
+  file = "TSFAEX",
+  colheader = c("", "Drug A", "Drug B"),
+  title = "This is Amazing Demonstration 1",
+  footers = c(
+    "Note: For demonstrative purposes only",
+    "{\\\\super a} Subjects are counted once for any given event."
+  ),
+  watermark = "Confidential"
+)
 
 # Produce output in HTML format
-hux <- gentlg(huxme        = final
-             ,file        = "TSFAEX"
-             ,colheader   = c("", "Drug A", "Drug B")
-             ,title       = "This is Amazing Demonstration 1"
-             ,footers     = c("Note: For demonstrative purposes only",
-                              "{\\\\super a} Subjects are counted once for any given event.")
-             ,watermark   = "Confidential"
-             ,format      = "HTML"
-             ,print.hux   = FALSE)
+hux <- gentlg(
+  huxme = final,
+  file = "TSFAEX",
+  colheader = c("", "Drug A", "Drug B"),
+  title = "This is Amazing Demonstration 1",
+  footers = c(
+    "Note: For demonstrative purposes only",
+    "{\\\\super a} Subjects are counted once for any given event."
+  ),
+  watermark = "Confidential",
+  format = "HTML",
+  print.hux = FALSE
+)
 
 # Export to HTML page
-huxtable::quick_html(hux, file = "TSFAEX.html", open=F)
+huxtable::quick_html(hux, file = "TSFAEX.html", open = FALSE)
 }
 }
 \references{

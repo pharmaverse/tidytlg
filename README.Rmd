@@ -25,9 +25,10 @@ The goal of tidytlg is to generate table, listings, and graphs (TLG) using Tidyv
 
 ## Installation
 
-The recommended install is using R Studio Package Manager.
+### Development version
 ```{r, eval = FALSE}
-
+# install.packages("devtools")
+devtools::install_github("pharmaverse/tidytlg")
 ```
 
 ## Functional method example

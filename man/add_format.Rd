@@ -2,34 +2,37 @@
 % Please edit documentation in R/add_format.R
 \name{add_format}
 \alias{add_format}
-\title{Add the formatting variables of indentme, newrows, newpage, and roworder to the results dataframe}
+\title{Add the formatting variables of \code{indentme}, \code{newrows}, \code{newpage}, and \code{roworder} to
+the results dataframe}
 \usage{
 add_format(df, tableby = NULL, groupby = NULL, .keep = FALSE)
 }
 \arguments{
-\item{df}{(required) dataframe of results and must contain the anbr variable}
+\item{df}{(required) dataframe of results and must contain the \code{anbr} variable}
 
 \item{tableby}{(optional) character vector containing table by variables}
 
 \item{groupby}{(optional) character vector containing group by variables}
 
-\item{.keep}{(optional) should tableby and groupby variables be kept in the
+\item{.keep}{(optional) should \code{tableby} and \code{groupby} variables be kept in the
 final dataframe.  (default = FALSE)}
 }
 \value{
-dataframe with the formatting variables added
+dataframe with the formatting variables indentme, newrows, newpage, and roworder added
 }
 \description{
-Add the formatting variables of indentme, newrows, newpage, and roworder to the results dataframe
+Add the formatting variables of \code{indentme}, \code{newrows}, \code{newpage}, and \code{roworder} to
+the results dataframe
 }
 \examples{
-df <- tibble::tibble(row_type =  c("TABLE_BY_HEADER", "HEADER", "BY_HEADER1", "N", "VALUE",
+df <- tibble::tibble(row_type =
+      c("TABLE_BY_HEADER", "HEADER", "BY_HEADER1", "N", "VALUE",
                                    "COUNTS", "UNIVAR", "NESTED", "NESTED"),
-                                   nested_level =  c(NA, NA, NA, NA, NA, NA, NA, 1, 2),
-                                   group_level =  c(0, 0, 0, 0, 0, 0, 0, 0, 0),
-                                   label        =  c(NA, NA, NA, NA, NA, "N",NA, NA, NA),
-                                   by           =  c(NA, NA, NA, NA, NA, NA, NA, NA, NA),
-                                   tableby      =  c(NA, NA, NA, NA, NA, NA, NA, NA, NA),
-                                   anbr      =  c(1:9))
+        nested_level =  c(NA, NA, NA, NA, NA, NA, NA, 1, 2),
+        group_level =  c(0, 0, 0, 0, 0, 0, 0, 0, 0),
+        label        =  c(NA, NA, NA, NA, NA, "N",NA, NA, NA),
+        by           =  c(NA, NA, NA, NA, NA, NA, NA, NA, NA),
+        tableby      =  c(NA, NA, NA, NA, NA, NA, NA, NA, NA),
+        anbr      =  c(1:9))
 add_format(df)
 }

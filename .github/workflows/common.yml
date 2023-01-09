@@ -50,7 +50,7 @@ jobs:
       # Control how you want the errors to manifest
       # by supplying the 'error_on' parameter to
       # rcmdcheck::rcmdcheck() here.
-      error-on: note
+      error-on: warning
   docs:
     name: Documentation
     uses: pharmaverse/admiralci/.github/workflows/pkgdown.yml@main

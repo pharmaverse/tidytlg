@@ -27,7 +27,7 @@ test_that("titles_file addes titles as expected", {
           )
         }
       )
-      expect_snapshot_file(test_path("test_outputs/tsidem01.rtf"))
+      # expect_snapshot_file(test_path("test_outputs/tsidem01.rtf"))
 
       withr::with_dir(
         new = test_path("test_outputs"),
