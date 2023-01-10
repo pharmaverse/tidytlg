@@ -1,7 +1,7 @@
 #' Bind a set of tidytlg tables together with formatting variables
-#' 
-#' bind_table combines analysis results with formatting variables (indentme, newrows, newpage) 
-#' based on by variables (tablebyvar, rowbyvar), such that appropriate formatting (indentation, 
+#'
+#' bind_table combines analysis results with formatting variables (indentme, newrows, newpage)
+#' based on by variables (tablebyvar, rowbyvar), such that appropriate formatting (indentation,
 #' line break, page break) can be applied in creating the output. It can also attach the column
 #' metadata attribute, which will be automatically used in `gentlg` for creating output.
 #'
@@ -185,13 +185,14 @@ bind_table <- function(...,
 
 #' add_rowtext_by
 #'
+#' Adds in new rows with `label` equal to `rowtext` for each `tablebyvar` group
+#'
 #' @param df dataframe
 #' @param tablebyvar df field that breaks apart table
 #' @param env environment
 #'
 #' @return df with rowtext row header added
 #' @noRd
-#' Adds in new rows with `label` equal to `rowtext` for each `tablebyvar` group
 add_rowtext_by <- function(df, tablebyvar, env) {
 
   if (any(df[[tablebyvar]] == "")) {
@@ -218,14 +219,14 @@ add_rowtext_by <- function(df, tablebyvar, env) {
 
 #' add_anbr
 #'
+#' Adds or updates anbr counter field in `df` which comes from `anbr_counter`
+#' variable in `env`
+#'
 #' @param df dataframe
 #' @param env environment
 #'
-#'
 #' @return df with rowby row header added
 #' @noRd
-#' Adds or updates anbr counter field in `df` which comes from `anbr_counter`
-#' variable in `env`
 add_anbr <- function(df, env = parent.frame()) {
   # check if the counter variable exists in the specified env
   if (!exists("anbr_counter", envir = env)) {
@@ -263,15 +264,15 @@ add_anbr <- function(df, env = parent.frame()) {
 
 #' get_tby_denoms
 #'
-#' @param denoms_
-#' @param tablebyvar
-#' @param cur_tby
-#' @param colvar
+#' Filters _denoms for current tablebyvar in `cur_tby` var
 #'
+#' @param denoms_ denominator
+#' @param tablebyvar repeat entire table by variable within df
+#' @param cur_tby current by
+#' @param colvar treatment variable within df to use to summarize
 #'
 #' @return `denoms_` filtered for tablebyvar
 #' @noRd
-#' Filters _denoms for current tablebyvar in `cur_tby` var
 get_tby_denoms <- function(denoms_, tablebyvar, cur_tby, colvar) {
   tmp <- denoms_ %>%
     filter(!!sym(paste0("denom_", tablebyvar)) == as.character(cur_tby))

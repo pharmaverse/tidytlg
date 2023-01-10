@@ -18,18 +18,20 @@ tlgsetup(
 \item{var}{character vector that identifies the numeric column/treatment
 variable}
 
-\item{column_metadata_file}{A file containing the column metadata. Read
-in with \code{readxl::read_excel()}. If a column_metadata dataframe is passed in too, this is ignored.}
+\item{column_metadata_file}{A file containing the column metadata. Read in
+with \code{readxl::read_excel()}. If a \code{column_metadata} dataframe is passed in
+too, this is ignored.}
 
-\item{column_metadata}{A dataframe containing the column metadata. This will be used in place of column_metadata_file.}
+\item{column_metadata}{A dataframe containing the column metadata. This will
+be used in place of \code{column_metadata_file}.}
 
-\item{tbltype}{A value used to subset the column_metadata, both this and the
+\item{tbltype}{A value used to subset the \code{column_metadata}, both this and the
 file requirements are needed to bind the data to the table.}
 }
 \value{
 dataframe with observations added to support the column type as well
-as the factor variable colnbr which is used as our new column summary
-variable.Regardless of if a coldef exists in data, the column will exist in
+as the factor variable \code{colnbr} which is used as our new column summary
+variable. Regardless of if a \code{coldef} exists in data, the column will exist in
 the table.
 }
 \description{

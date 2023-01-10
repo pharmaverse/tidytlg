@@ -2,7 +2,8 @@
 % Please edit documentation in R/utility.R
 \name{char2factor}
 \alias{char2factor}
-\title{Convert character variable to a factor based off it's numeric variable counterpart.}
+\title{Convert character variable to a factor based off it's numeric variable
+counterpart.}
 \usage{
 char2factor(df, c_var, n_var)
 }
@@ -11,13 +12,15 @@ char2factor(df, c_var, n_var)
 
 \item{c_var}{character variable within the data frame.}
 
-\item{n_var}{numeric variable counter part within the data frame to control the levels.}
+\item{n_var}{numeric variable counter part within the data frame to control
+the levels.}
 }
 \value{
 A factor.
 }
 \description{
-Convert character variable to a factor based off it's numeric variable counterpart.
+Convert character variable to a factor based off it's numeric variable
+counterpart.
 }
 \examples{
 df <- tibble::tribble(

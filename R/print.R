@@ -3,6 +3,7 @@
 #' When inputting a variable to the console, print is implicitly called on the object.
 #' This S3 method prints out a nice format for the user.
 #' @export
+#' @noRd
 print.tidytlg.freq <- function(x, ...) {
   cat(paste0(c("Column Variables: ", attr(x, "colvar"), "\n")))
 

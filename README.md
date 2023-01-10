@@ -17,7 +17,12 @@ using Tidyverse. This can be achieved multiple ways with this package.
 
 ## Installation
 
-The recommended install is using R Studio Package Manager.
+### Development version
+
+``` r
+# install.packages("devtools")
+devtools::install_github("pharmaverse/tidytlg")
+```
 
 ## Functional method example
 

@@ -5,7 +5,7 @@
 # merge header updates rtf output to add merging tags to the title row
 #' merger_header
 #'
-#' @result The current RTF output
+#' @param result The current RTF output
 #'
 #' @return Returns the RTF output but with the Title rows merged
 #' @noRd
@@ -23,8 +23,8 @@ merger_header <- function(result) {
 # Adds padding to `colvar` row to add line break between `colvar` headers
 #' pad_header
 #'
-#' @result The current RTF output
-#' @nheader Number of headers which is equal to `colspan` + 1
+#' @param result The current RTF output
+#' @param nheader Number of headers which is equal to `colspan` + 1
 #'
 #' @return Returns the RTF output but with padding added to colvar column
 #' @noRd

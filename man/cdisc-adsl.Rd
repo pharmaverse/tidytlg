@@ -4,9 +4,9 @@
 \name{cdisc adsl}
 \alias{cdisc adsl}
 \alias{cdisc_adsl}
-\title{ADSL data copied from the 2013 CDISC Pilot}
+\title{ADSL data created from subsetting the CDISC ADSL with 15 subjects (5 subjects in each arm)}
 \format{
-A data frame with 254 rows and 48 variables:
+A data frame with 15 rows and 49 variables:
 \describe{
 \item{STUDYID}{Study Identifier}
 \item{USUBJID}{Unique Subject Identifier}
@@ -54,18 +54,21 @@ A data frame with 254 rows and 48 variables:
 \item{VISNUMEN}{End of Trt Visit (Vis 12 or Early Term.)}
 \item{RFENDT}{Date of Discontinuation/Completion}
 \item{DCDECOD}{Standardized Disposition Term}
+\item{EOSSTT}{End of Study Status}
 \item{DCREASCD}{Reason for Discontinuation}
 \item{MMSETOT}{MMSE Total}
+
 }
 }
 \source{
-CDISC SDTM/ADAM Pilot Project. \url{https://www.cdisc.org/sdtmadam-pilot-project}
+CDISC SDTM/ADAM Pilot Project.
+\url{https://www.cdisc.org/sdtmadam-pilot-project}
 }
 \usage{
 cdisc_adsl
 }
 \description{
-ADSL data copied from the 2013 CDISC Pilot
+ADSL data created from subsetting the CDISC ADSL with 15 subjects (5 subjects in each arm)
 }
 \examples{
 \dontrun{

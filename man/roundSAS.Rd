@@ -32,6 +32,7 @@ rounds to the nearest even number (i.e. 0.5 is rounded to 0; 1.5 is rounded
 to 2), whereas SAS rounds to the nearest number (i.e. 0.5 is rounded to 1;
 1.5 is rounded to 2). The roundSAS function is an alternative rounding
 function for R that ensures rounding to the nearest number, as done in SAS.
+roundSAS comes from this Stack Overflow post https://stackoverflow.com/questions/12688717/round-up-from-5
 }
 \examples{
 ### input data vector with midpoint decimals
