@@ -77,7 +77,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -93,7 +100,7 @@
       <h1 data-toc-skip>Column Metadata &amp; How tidytlg Sets Up Your Data Using tlgsetup</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/tidytlg/blob/HEAD/vignettes/tlgsetup.Rmd" class="external-link"><code>vignettes/tlgsetup.Rmd</code></a></small>
       <div class="hidden name"><code>tlgsetup.Rmd</code></div>
 
     </div>
@@ -102,7 +109,7 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span></span></code></pre></div>
 <p>The tlgsetup helper function was created to support generating different column structures for our outputs. This allows us to specify column types once that can be used across multiple outputs. This metadata can be hardcoded as well (please see the code below), or pulled from another source like a dataframe, file or database.</p>
 <p>Here we see an example of the column metadata which defines our columns, how to combine columns, column labels and spanning headers across columns.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">

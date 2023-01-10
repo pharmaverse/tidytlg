@@ -77,7 +77,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -93,7 +100,7 @@
       <h1 data-toc-skip>Get Started</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/tidytlg/blob/HEAD/vignettes/tidytlg.Rmd" class="external-link"><code>vignettes/tidytlg.Rmd</code></a></small>
       <div class="hidden name"><code>tidytlg.Rmd</code></div>
 
     </div>
@@ -144,7 +151,7 @@
 <code class="sourceCode R"><span><span class="co"># Prep Environment -------------------------------------------------------------------------------------</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># read adsl from PhUSE test data factory</span></span>
 <span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span></span>
@@ -579,7 +586,7 @@
 </tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
-<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 10JAN2023, 13:57</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 10JAN2023, 15:58</div></td></tr>
 </table>
 <p>Users can also include superscripts, subscripts, or line breaks via unicode. Please see the <code><a href="../articles/symbols.html">vignette("symbols")</a></code> for more details. Besides using <code>univar</code>, <code>freq</code>, and <code>nested_freq</code> functions to create the <code>tbl</code> dataframe, users can use other R packages to create analysis results and perform data wrangling to fit the <code>tbl</code> structure, which can be passed into the <code>gentlg</code> function call for generating the desired outputs.</p>
 </div>
@@ -597,7 +604,7 @@
 <code class="sourceCode R"><span><span class="co"># Prep Environment ---------------------------------------------------------------------------------------</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span></span>
 <span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span></span>
@@ -727,7 +734,7 @@
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
 </tr>
-<tr><td colspan="8" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [listing01.html][] 10JAN2023, 13:57</div></td></tr>
+<tr><td colspan="8" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [listing01.html][] 10JAN2023, 15:58</div></td></tr>
 </table>
 </div>
 <div class="section level2">
@@ -746,7 +753,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># read adsl from PhUSE test data factory</span></span>
 <span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span></span>
@@ -798,7 +805,7 @@
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># read adsl from PhUSE test data factory</span></span>
 <span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span></span>
@@ -967,7 +974,7 @@
 </tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
-<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 10JAN2023, 13:57</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 10JAN2023, 15:58</div></td></tr>
 </table>
 </div>
 <div class="section level2">
@@ -982,7 +989,7 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># read adsl from PhUSE test data factory</span></span>
 <span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span></span>
@@ -1270,7 +1277,7 @@
 </tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
-<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 10JAN2023, 13:57</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 10JAN2023, 15:58</div></td></tr>
 </table>
 <p>In summary, <code>rowbyvar</code> is used to create the by-variable summary for one <code>rowvar</code> in a single function call. To perform sub-group analysis, users need to specify <code>tablebyvar</code> in every function calls except the analysis population row.</p>
 </div>
