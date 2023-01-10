@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# tidytlg
+# tidytlg <img src='man/figures/logo.png' align="right" height="200" style="float:right; height:200px;" />
 <!-- badges: start -->
  <!-- <img src="man/figures/logo.png" align="right" height = "13"/> -->
 <!-- badges: end -->
