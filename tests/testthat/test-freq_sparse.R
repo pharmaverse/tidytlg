@@ -2,7 +2,7 @@
 test_that("sparse data is handled correctly", {
   mtcars2 <- mtcars %>%
     rownames_to_column(var = "USUBJID") %>%
-    mutate(across(.fns = as.factor)) %>%
+    mutate(across(.cols = everything(), .fns = as.factor)) %>%
     filter(FALSE)
 
   expected <- tibble::tribble(
