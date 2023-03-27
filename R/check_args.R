@@ -516,7 +516,8 @@ check_var_duplicates <- function(func, arglist) {
   df_dupes <- df_dupes %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
-      CHECK = length(args_req_check) == length(unique(dplyr::c_across())))
+      CHECK = length(args_req_check) == length(unique(dplyr::c_across(cols = everything())))
+      )
 
   if (df_dupes$CHECK[1]) {
     return()
