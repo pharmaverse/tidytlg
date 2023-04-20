@@ -249,20 +249,18 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Descending By:  Factored Sorting </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Denominators By Variables:  colnbr </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    label                  Active Placebo Compa…¹ row_t…² neste…³ group…⁴ AEBOD…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Cardiac disorders      1 (50… 1 (50.… 0       NESTED        0       0 Cardia…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Arrhythmia supraventr… 1 (50… 0       0       NESTED        1       0 Cardia…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Cardiac failure        0      1 (50.… 0       NESTED        1       0 Cardia…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Infections and infest… 1 (50… 0       1 (50.… NESTED        0       0 Infect…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Pneumonia              1 (50… 0       0       NESTED        1       0 Infect…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Upper respiratory tra… 0      0       1 (50.… NESTED        1       0 Infect…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Respiratory, thoracic… 0      0       1 (50.… NESTED        0       0 Respir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Chronic obstructive p… 0      0       1 (50.… NESTED        1       0 Respir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Skin and subcutaneous… 0      1 (50.… 0       NESTED        0       0 Skin a…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Pustular psoriasis     0      1 (50.… 0       NESTED        1       0 Skin a…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​Comparator, ²​row_type, ³​nested_level,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​group_level, ⁵​AEBODSYS</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    label    Active Placebo Comparator row_type nested_level group_level AEBODSYS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Cardiac… 1 (50… 1 (50.… 0          NESTED              0           0 Cardiac…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Arrhyth… 1 (50… 0       0          NESTED              1           0 Cardiac…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Cardiac… 0      1 (50.… 0          NESTED              1           0 Cardiac…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Infecti… 1 (50… 0       1 (50.0%)  NESTED              0           0 Infecti…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Pneumon… 1 (50… 0       0          NESTED              1           0 Infecti…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Upper r… 0      0       1 (50.0%)  NESTED              1           0 Infecti…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Respira… 0      0       1 (50.0%)  NESTED              0           0 Respira…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Chronic… 0      0       1 (50.0%)  NESTED              1           0 Respira…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Skin an… 0      1 (50.… 0          NESTED              0           0 Skin an…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Pustula… 0      1 (50.… 0          NESTED              1           0 Skin an…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Frequency and percent for three levels of nesting (for illustrative</span></span></span>
 <span class="r-in"><span><span class="co"># purpose)</span></span></span>
@@ -277,22 +275,21 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Descending By:  Factored Sorting </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Denominators By Variables:  colnbr </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    label           Active Placebo Compa…¹ row_t…² neste…³ group…⁴ SITEID AEBOD…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 100             1 (50… 1 (50.… 1 (50.… NESTED        0       1 100    100    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Cardiac disord… 1 (50… 1 (50.… 0       NESTED        1       1 100    Cardia…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Arrhythmia sup… 1 (50… 0       0       NESTED        2       1 100    Cardia…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Cardiac failure 0      1 (50.… 0       NESTED        2       1 100    Cardia…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Respiratory, t… 0      0       1 (50.… NESTED        1       1 100    Respir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Chronic obstru… 0      0       1 (50.… NESTED        2       1 100    Respir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 200             1 (50… 1 (50.… 1 (50.… NESTED        0       1 200    200    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Infections and… 1 (50… 0       1 (50.… NESTED        1       1 200    Infect…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Pneumonia       1 (50… 0       0       NESTED        2       1 200    Infect…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Upper respirat… 0      0       1 (50.… NESTED        2       1 200    Infect…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> Skin and subcu… 0      1 (50.… 0       NESTED        1       1 200    Skin a…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> Pustular psori… 0      1 (50.… 0       NESTED        2       1 200    Skin a…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​Comparator, ²​row_type, ³​nested_level,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​group_level, ⁵​AEBODSYS</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    label      Active Placebo Comparator row_type nested_level group_level SITEID</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 100        1 (50… 1 (50.… 1 (50.0%)  NESTED              0           1 100   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Cardiac d… 1 (50… 1 (50.… 0          NESTED              1           1 100   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Arrhythmi… 1 (50… 0       0          NESTED              2           1 100   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Cardiac f… 0      1 (50.… 0          NESTED              2           1 100   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Respirato… 0      0       1 (50.0%)  NESTED              1           1 100   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Chronic o… 0      0       1 (50.0%)  NESTED              2           1 100   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 200        1 (50… 1 (50.… 1 (50.0%)  NESTED              0           1 200   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Infection… 1 (50… 0       1 (50.0%)  NESTED              1           1 200   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Pneumonia  1 (50… 0       0          NESTED              2           1 200   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Upper res… 0      0       1 (50.0%)  NESTED              2           1 200   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> Skin and … 0      1 (50.… 0          NESTED              1           1 200   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> Pustular … 0      1 (50.… 0          NESTED              2           1 200   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: AEBODSYS &lt;fct&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Cut records where pct meets threshold for a any column</span></span></span>
 <span class="r-in"><span><span class="fu">nested_freq</span><span class="op">(</span><span class="va">cdisc_adae</span></span></span>
@@ -308,17 +305,16 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Descending By:  Factored Sorting </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Denominators By Variables:  TRTA </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   label                  Placebo Xanom…¹ Xanom…² row_t…³ neste…⁴ group…⁵ AEBOD…⁶</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> GENERAL DISORDERS AND… 2 (40.… 5 (100… 3 (75.… NESTED        0       0 GENERA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> APPLICATION SITE ERYT… 1 (20.… 4 (80.… 1 (25.… NESTED        1       0 GENERA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> APPLICATION SITE PRUR… 1 (20.… 5 (100… 2 (50.… NESTED        1       0 GENERA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> FATIGUE                0       2 (40.… 1 (25.… NESTED        1       0 GENERA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> SKIN AND SUBCUTANEOUS… 2 (40.… 2 (40.… 3 (75.… NESTED        0       0 SKIN A…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ERYTHEMA               1 (20.… 0       3 (75.… NESTED        1       0 SKIN A…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> PRURITUS               1 (20.… 0       2 (50.… NESTED        1       0 SKIN A…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​`Xanomeline High Dose`,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​`Xanomeline Low Dose`, ³​row_type, ⁴​nested_level, ⁵​group_level, ⁶​AEBODSYS</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   label            Placebo `Xanomeline High Dose` `Xanomeline Low Dose` row_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> GENERAL DISORDE… 2 (40.… 5 (100.0%)             3 (75.0%)             NESTED  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> APPLICATION SIT… 1 (20.… 4 (80.0%)              1 (25.0%)             NESTED  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> APPLICATION SIT… 1 (20.… 5 (100.0%)             2 (50.0%)             NESTED  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> FATIGUE          0       2 (40.0%)              1 (25.0%)             NESTED  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> SKIN AND SUBCUT… 2 (40.… 2 (40.0%)              3 (75.0%)             NESTED  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ERYTHEMA         1 (20.… 0                      3 (75.0%)             NESTED  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> PRURITUS         1 (20.… 0                      2 (50.0%)             NESTED  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: nested_level &lt;dbl&gt;, group_level &lt;dbl&gt;, AEBODSYS &lt;fct&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Cut records where pct meets threshold for a specific column</span></span></span>
 <span class="r-in"><span><span class="fu">nested_freq</span><span class="op">(</span><span class="va">cdisc_adae</span></span></span>
@@ -334,15 +330,13 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Descending By:  Factored Sorting </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Denominators By Variables:  TRTAN </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   label                        `0`   `54`  `81`  row_t…¹ neste…² group…³ AEBOD…⁴</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> GENERAL DISORDERS AND ADMIN… 2 (4… 3 (7… 5 (1… NESTED        0       0 GENERA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> APPLICATION SITE PRURITUS    1 (2… 2 (5… 5 (1… NESTED        1       0 GENERA…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> SKIN AND SUBCUTANEOUS TISSU… 2 (4… 3 (7… 2 (4… NESTED        0       0 SKIN A…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ERYTHEMA                     1 (2… 3 (7… 0     NESTED        1       0 SKIN A…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> PRURITUS                     1 (2… 2 (5… 0     NESTED        1       0 SKIN A…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​row_type, ²​nested_level, ³​group_level,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​AEBODSYS</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   label             `0`   `54`  `81`  row_type nested_level group_level AEBODSYS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> GENERAL DISORDER… 2 (4… 3 (7… 5 (1… NESTED              0           0 GENERAL…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> APPLICATION SITE… 1 (2… 2 (5… 5 (1… NESTED              1           0 GENERAL…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> SKIN AND SUBCUTA… 2 (4… 3 (7… 2 (4… NESTED              0           0 SKIN AN…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ERYTHEMA          1 (2… 3 (7… 0     NESTED              1           0 SKIN AN…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> PRURITUS          1 (2… 2 (5… 0     NESTED              1           0 SKIN AN…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Frequency and percent for two levels of nesting and sort by descending</span></span></span>
 <span class="r-in"><span><span class="co"># active</span></span></span>
@@ -358,20 +352,18 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Descending By:  Active </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Denominators By Variables:  colnbr </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    label                  Active Placebo Compa…¹ row_t…² neste…³ group…⁴ AEBOD…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Cardiac disorders      1 (50… 1 (50.… 0       NESTED        0       0 Cardia…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Arrhythmia supraventr… 1 (50… 0       0       NESTED        1       0 Cardia…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Cardiac failure        0      1 (50.… 0       NESTED        1       0 Cardia…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Infections and infest… 1 (50… 0       1 (50.… NESTED        0       0 Infect…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Pneumonia              1 (50… 0       0       NESTED        1       0 Infect…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Upper respiratory tra… 0      0       1 (50.… NESTED        1       0 Infect…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Respiratory, thoracic… 0      0       1 (50.… NESTED        0       0 Respir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Chronic obstructive p… 0      0       1 (50.… NESTED        1       0 Respir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Skin and subcutaneous… 0      1 (50.… 0       NESTED        0       0 Skin a…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Pustular psoriasis     0      1 (50.… 0       NESTED        1       0 Skin a…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​Comparator, ²​row_type, ³​nested_level,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​group_level, ⁵​AEBODSYS</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    label    Active Placebo Comparator row_type nested_level group_level AEBODSYS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Cardiac… 1 (50… 1 (50.… 0          NESTED              0           0 Cardiac…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Arrhyth… 1 (50… 0       0          NESTED              1           0 Cardiac…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Cardiac… 0      1 (50.… 0          NESTED              1           0 Cardiac…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Infecti… 1 (50… 0       1 (50.0%)  NESTED              0           0 Infecti…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Pneumon… 1 (50… 0       0          NESTED              1           0 Infecti…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Upper r… 0      0       1 (50.0%)  NESTED              1           0 Infecti…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Respira… 0      0       1 (50.0%)  NESTED              0           0 Respira…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Chronic… 0      0       1 (50.0%)  NESTED              1           0 Respira…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Skin an… 0      1 (50.… 0          NESTED              0           0 Skin an…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Pustula… 0      1 (50.… 0          NESTED              1           0 Skin an…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Below illustrates how make the same calls to nested_freq() as above, using</span></span></span>
 <span class="r-in"><span><span class="co"># table and # column metadata along with generate_results().</span></span></span>

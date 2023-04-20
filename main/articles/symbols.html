@@ -94,10 +94,11 @@
 
       
 
-      </header><script src="symbols_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Tips &amp; Tricks: Including Symbols, Superscripts, Subscripts &amp; Line Breaks</h1>
+      <h1 data-toc-skip>Tips &amp; Tricks: Including Symbols,
+Superscripts, Subscripts &amp; Line Breaks</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaverse/tidytlg/blob/HEAD/vignettes/symbols.Rmd" class="external-link"><code>vignettes/symbols.Rmd</code></a></small>
@@ -110,7 +111,8 @@
 <div class="section level2">
 <h2 id="symbols">Symbols<a class="anchor" aria-label="anchor" href="#symbols"></a>
 </h2>
-<p>Symbols can be added to the label column via unicode. Here is a quick reference to commonly used symbols.</p>
+<p>Symbols can be added to the label column via unicode. Here is a quick
+reference to commonly used symbols.</p>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:setup">
 <col>
 <col>
@@ -171,7 +173,8 @@
 <td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">\u00ab</td>
 </tr>
 </table>
-<p>Here is an example call to tidytlg::gentlg() that will add the symbols to the label column.</p>
+<p>Here is an example call to tidytlg::gentlg() that will add the
+symbols to the label column.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
@@ -185,7 +188,8 @@
 <div class="section level2">
 <h2 id="superscripts-and-subscripts">Superscripts and Subscripts<a class="anchor" aria-label="anchor" href="#superscripts-and-subscripts"></a>
 </h2>
-<p>Superscripts and Subscripts can be added to the label column via unicode.</p>
+<p>Superscripts and Subscripts can be added to the label column via
+unicode.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
@@ -196,7 +200,8 @@
 <span></span>
 <span><span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,</span>
 <span>                file <span class="op">=</span> <span class="st">"demo"</span><span class="op">)</span></span></code></pre></div>
-<p>Superscripts and Subscripts can be added to the footnotes via unicode as well.</p>
+<p>Superscripts and Subscripts can be added to the footnotes via unicode
+as well.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
@@ -212,7 +217,8 @@
 <div class="section level2">
 <h2 id="inline-rtf-line-breaks">Inline RTF Line Breaks<a class="anchor" aria-label="anchor" href="#inline-rtf-line-breaks"></a>
 </h2>
-<p>Sometimes you need add a line break into your RTF. Inserting ‘\\\n’ into your string will add your line break for you.</p>
+<p>Sometimes you need add a line break into your RTF. Inserting ‘\\\n’
+into your string will add your line break for you.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
@@ -222,7 +228,8 @@
 <span></span>
 <span><span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,</span>
 <span>                file <span class="op">=</span> <span class="st">"demo"</span><span class="op">)</span></span></code></pre></div>
-<p>If you need a line break followed by a tab, just add in ‘\\li180’.</p>
+<p>If you need a line break followed by a tab, just add in
+‘\\li180’.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>

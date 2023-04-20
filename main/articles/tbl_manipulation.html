@@ -94,7 +94,7 @@
 
       
 
-      </header><script src="tbl_manipulation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Manipulating tbl data frame</h1>
@@ -110,17 +110,26 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>The <code>tbl</code> data frame is the main input to the <code>gentlg</code> function for creating the RTF/HTML outputs. This vignette will show you the <code>tbl</code> structure and how the <code>tbl</code> variables are in action for rendering the RTF/HTML outputs.</p>
+<p>The <code>tbl</code> data frame is the main input to the
+<code>gentlg</code> function for creating the RTF/HTML outputs. This
+vignette will show you the <code>tbl</code> structure and how the
+<code>tbl</code> variables are in action for rendering the RTF/HTML
+outputs.</p>
 <div class="section level3">
 <h3 id="basic-tbl-data-frame">Basic tbl data frame<a class="anchor" aria-label="anchor" href="#basic-tbl-data-frame"></a>
 </h3>
-<p>The basic variables of tbl includes label, col1, col2, …, coln, where</p>
+<p>The basic variables of tbl includes label, col1, col2, …, coln,
+where</p>
 <ul>
 <li><p>label: row text displayed on the 1st column of the table</p></li>
-<li><p>col1: statistic results displayed on the 2nd column of the table</p></li>
-<li><p>col2: statistic results displayed on the 3rd column of the table.</p></li>
+<li><p>col1: statistic results displayed on the 2nd column of the
+table</p></li>
+<li><p>col2: statistic results displayed on the 3rd column of the
+table.</p></li>
 </ul>
-<p>The example below shows you a very basic tbl data frame, and how this tbl is transformed through the <code>gentlg</code> function call to create the HTML output.</p>
+<p>The example below shows you a very basic tbl data frame, and how this
+tbl is transformed through the <code>gentlg</code> function call to
+create the HTML output.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span></span>
@@ -203,18 +212,22 @@
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
 </tr>
-<tr><td colspan="4" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [demo1.html][] 10JAN2023, 15:58</div></td></tr>
+<tr><td colspan="4" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [demo1.html][] 20APR2023, 19:08</div></td></tr>
 </table>
 </div>
 </div>
 <div class="section level2">
 <h2 id="formatting-table">Formatting table<a class="anchor" aria-label="anchor" href="#formatting-table"></a>
 </h2>
-<p>The above example does not have any formatting in actions on the table. To enable formatting, additional variables will need to be created in the <code>tbl</code> data frame.</p>
+<p>The above example does not have any formatting in actions on the
+table. To enable formatting, additional variables will need to be
+created in the <code>tbl</code> data frame.</p>
 <div class="section level3">
 <h3 id="add-new-row">Add new row<a class="anchor" aria-label="anchor" href="#add-new-row"></a>
 </h3>
-<p>For inserting a blank line prior to the 2nd row (i.e. Age (Years)), we will need to add the <code>newrows</code> variable with value = <code>1</code>.</p>
+<p>For inserting a blank line prior to the 2nd row (i.e. Age (Years)),
+we will need to add the <code>newrows</code> variable with value =
+<code>1</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>newrows <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">label</span> <span class="op">==</span> <span class="st">"Age (Years)"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
@@ -301,13 +314,15 @@
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
 </tr>
-<tr><td colspan="4" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [demo2.html][] 10JAN2023, 15:58</div></td></tr>
+<tr><td colspan="4" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [demo2.html][] 20APR2023, 19:08</div></td></tr>
 </table>
 </div>
 <div class="section level3">
 <h3 id="add-indentation">Add indentation<a class="anchor" aria-label="anchor" href="#add-indentation"></a>
 </h3>
-<p>For adding 1 indentation to the <code>N</code> row, we will need to add the <code>indentme</code> variable with value = 1, which indicates 1 indentation (2 will result in 2 indentation, and so on).</p>
+<p>For adding 1 indentation to the <code>N</code> row, we will need to
+add the <code>indentme</code> variable with value = 1, which indicates 1
+indentation (2 will result in 2 indentation, and so on).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>indentme <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">label</span> <span class="op">==</span> <span class="st">"N"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
@@ -398,13 +413,14 @@
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
 </tr>
-<tr><td colspan="4" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [demo3.html][] 10JAN2023, 15:58</div></td></tr>
+<tr><td colspan="4" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [demo3.html][] 20APR2023, 19:08</div></td></tr>
 </table>
 </div>
 <div class="section level3">
 <h3 id="enable-bold-font">Enable bold font<a class="anchor" aria-label="anchor" href="#enable-bold-font"></a>
 </h3>
-<p>To enable bolding on the row of <code>Age (Years)</code>, the <code>boldme</code> variable with value = 1 will need to be added.</p>
+<p>To enable bolding on the row of <code>Age (Years)</code>, the
+<code>boldme</code> variable with value = 1 will need to be added.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>boldme <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">label</span> <span class="op">==</span> <span class="st">"Age (Years)"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
@@ -499,21 +515,35 @@
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
 </tr>
-<tr><td colspan="4" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [demo4.html][] 10JAN2023, 15:58</div></td></tr>
+<tr><td colspan="4" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [demo4.html][] 20APR2023, 19:08</div></td></tr>
 </table>
-<p>There is another formatting variable called <code>newpage</code>, where assigning <code>newpage = 1</code> will start a new page in the output.</p>
+<p>There is another formatting variable called <code>newpage</code>,
+where assigning <code>newpage = 1</code> will start a new page in the
+output.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="fomatting-functions">Fomatting functions<a class="anchor" aria-label="anchor" href="#fomatting-functions"></a>
 </h2>
-<p>Besides manually adding the formatting variables to <code>tbl</code>, we have developed several formatting functions to facilitate the formatting process:</p>
+<p>Besides manually adding the formatting variables to <code>tbl</code>,
+we have developed several formatting functions to facilitate the
+formatting process:</p>
 <ul>
-<li><p><code>add_newrows</code>: add <code>newrows</code> variable to the <code>tbl</code> based on <code>row_type</code></p></li>
-<li><p><code>add_indent</code>: add <code>indentme</code> variable to the <code>tbl</code> based on <code>row_type</code></p></li>
-<li><p><code>add_newpage</code>: add <code>newpage</code> variable to the <code>tbl</code> based on <code>row_type</code>.</p></li>
+<li><p><code>add_newrows</code>: add <code>newrows</code> variable to
+the <code>tbl</code> based on <code>row_type</code></p></li>
+<li><p><code>add_indent</code>: add <code>indentme</code> variable to
+the <code>tbl</code> based on <code>row_type</code></p></li>
+<li><p><code>add_newpage</code>: add <code>newpage</code> variable to
+the <code>tbl</code> based on <code>row_type</code>.</p></li>
 </ul>
-<p>The <code>row_type</code> variable is created in the tbl by calling the <code>freq</code>, <code>nested_freq</code>, and <code>univar</code> functions, which is used by the above functions for setting up the formatting variables. The <code>tbl</code> example below is obtained by calling the <code>univar</code> function for summarizing the age statistics in the CDISC ADSL dataset. After calling the <code>univar</code> function, we create the <code>anbr</code> (analysis number) variable as the identifier of this <code>tbl</code> chunk.</p>
+<p>The <code>row_type</code> variable is created in the tbl by calling
+the <code>freq</code>, <code>nested_freq</code>, and <code>univar</code>
+functions, which is used by the above functions for setting up the
+formatting variables. The <code>tbl</code> example below is obtained by
+calling the <code>univar</code> function for summarizing the age
+statistics in the CDISC ADSL dataset. After calling the
+<code>univar</code> function, we create the <code>anbr</code> (analysis
+number) variable as the identifier of this <code>tbl</code> chunk.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
@@ -524,7 +554,16 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>anbr <span class="op">=</span> <span class="st">"01"</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="15%">
+<col width="17%">
+<col width="15%">
+<col width="15%">
+<col width="11%">
+<col width="15%">
+<col width="6%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">0</th>
@@ -564,7 +603,10 @@
 </tr>
 </tbody>
 </table>
-<p>The <code>add_format</code> function, which incorporates all 3 formatting functions above (<code>add_indent</code>, <code>add_newrows</code>, <code>add_newpage</code>), can then be applied to the <code>tbl</code> for creating the formatting variables.</p>
+<p>The <code>add_format</code> function, which incorporates all 3
+formatting functions above (<code>add_indent</code>,
+<code>add_newrows</code>, <code>add_newpage</code>), can then be applied
+to the <code>tbl</code> for creating the formatting variables.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
@@ -577,6 +619,18 @@
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="12%">
+<col width="13%">
+<col width="12%">
+<col width="12%">
+<col width="9%">
+<col width="5%">
+<col width="9%">
+<col width="9%">
+<col width="8%">
+<col width="8%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">0</th>
@@ -671,7 +725,7 @@
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.6 (6.73)</td>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">72.2 (9.23)</td>
 </tr>
-<tr><td colspan="4" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [demo5.html][] 10JAN2023, 15:58</div></td></tr>
+<tr><td colspan="4" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [demo5.html][] 20APR2023, 19:08</div></td></tr>
 </table>
 <p>The default indentation for each row_type is shown below.</p>
 <table class="table">

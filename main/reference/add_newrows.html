@@ -188,27 +188,26 @@ newrows is used by gentlg to insert line breaks.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">add_newrows</span><span class="op">(</span><span class="va">tbl3</span>, tableby <span class="op">=</span> <span class="st">"SEX"</span>, groupby <span class="op">=</span> <span class="st">"ETHNIC"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 18 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    anbr  SEX   ETHNIC                 label              row_t…¹ rowor…² newrows</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01    F     <span style="color: #BB0000;">NA</span>                     Sex : F            TABLE_…       1       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 01    F     HISPANIC OR LATINO     HISPANIC OR LATINO BY_HEA…       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 01    F     HISPANIC OR LATINO     &lt;65                VALUE         2       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 01    F     HISPANIC OR LATINO     &gt;80                VALUE         3       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 01    F     HISPANIC OR LATINO     65-80              VALUE         4       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 01    F     NOT HISPANIC OR LATINO NOT HISPANIC OR L… BY_HEA…       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 01    F     NOT HISPANIC OR LATINO &lt;65                VALUE         2       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 01    F     NOT HISPANIC OR LATINO 65-80              VALUE         3       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 01    F     NOT HISPANIC OR LATINO &gt;80                VALUE         4       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 01    M     <span style="color: #BB0000;">NA</span>                     Sex : M            TABLE_…       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 01    M     HISPANIC OR LATINO     HISPANIC OR LATINO BY_HEA…       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 01    M     HISPANIC OR LATINO     &lt;65                VALUE         2       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 01    M     HISPANIC OR LATINO     65-80              VALUE         3       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 01    M     HISPANIC OR LATINO     &gt;80                VALUE         4       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 01    M     NOT HISPANIC OR LATINO NOT HISPANIC OR L… BY_HEA…       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 01    M     NOT HISPANIC OR LATINO &lt;65                VALUE         2       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 01    M     NOT HISPANIC OR LATINO 65-80              VALUE         3       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 01    M     NOT HISPANIC OR LATINO &gt;80                VALUE         4       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​row_type, ²​roworder</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    anbr  SEX   ETHNIC                 label            row_type roworder newrows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01    F     <span style="color: #BB0000;">NA</span>                     Sex : F          TABLE_B…        1       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 01    F     HISPANIC OR LATINO     HISPANIC OR LAT… BY_HEAD…        1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 01    F     HISPANIC OR LATINO     &lt;65              VALUE           2       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 01    F     HISPANIC OR LATINO     &gt;80              VALUE           3       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 01    F     HISPANIC OR LATINO     65-80            VALUE           4       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 01    F     NOT HISPANIC OR LATINO NOT HISPANIC OR… BY_HEAD…        1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 01    F     NOT HISPANIC OR LATINO &lt;65              VALUE           2       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 01    F     NOT HISPANIC OR LATINO 65-80            VALUE           3       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 01    F     NOT HISPANIC OR LATINO &gt;80              VALUE           4       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 01    M     <span style="color: #BB0000;">NA</span>                     Sex : M          TABLE_B…        1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 01    M     HISPANIC OR LATINO     HISPANIC OR LAT… BY_HEAD…        1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 01    M     HISPANIC OR LATINO     &lt;65              VALUE           2       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 01    M     HISPANIC OR LATINO     65-80            VALUE           3       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 01    M     HISPANIC OR LATINO     &gt;80              VALUE           4       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 01    M     NOT HISPANIC OR LATINO NOT HISPANIC OR… BY_HEAD…        1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 01    M     NOT HISPANIC OR LATINO &lt;65              VALUE           2       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 01    M     NOT HISPANIC OR LATINO 65-80            VALUE           3       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 01    M     NOT HISPANIC OR LATINO &gt;80              VALUE           4       0</span>
 </code></pre></div>
     </div>
   </div>

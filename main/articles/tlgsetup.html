@@ -94,10 +94,11 @@
 
       
 
-      </header><script src="tlgsetup_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Column Metadata &amp; How tidytlg Sets Up Your Data Using tlgsetup</h1>
+      <h1 data-toc-skip>Column Metadata &amp; How tidytlg Sets Up Your
+Data Using tlgsetup</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/pharmaverse/tidytlg/blob/HEAD/vignettes/tlgsetup.Rmd" class="external-link"><code>vignettes/tlgsetup.Rmd</code></a></small>
@@ -110,8 +111,14 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span></span></code></pre></div>
-<p>The tlgsetup helper function was created to support generating different column structures for our outputs. This allows us to specify column types once that can be used across multiple outputs. This metadata can be hardcoded as well (please see the code below), or pulled from another source like a dataframe, file or database.</p>
-<p>Here we see an example of the column metadata which defines our columns, how to combine columns, column labels and spanning headers across columns.</p>
+<p>The tlgsetup helper function was created to support generating
+different column structures for our outputs. This allows us to specify
+column types once that can be used across multiple outputs. This
+metadata can be hardcoded as well (please see the code below), or pulled
+from another source like a dataframe, file or database.</p>
+<p>Here we see an example of the column metadata which defines our
+columns, how to combine columns, column labels and spanning headers
+across columns.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">column_metadata</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
@@ -129,8 +136,18 @@
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> type1   54     Low Dose         <span style="color: #949494;">"</span>Xanomeline<span style="color: #949494;">"</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> type1   81     High Dose        <span style="color: #949494;">"</span>Xanomeline<span style="color: #949494;">"</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> type1   54+81  Total Xanomeline <span style="color: #949494;">""</span></span></span></code></pre></div>
-<p>In this example, we would summarize Placebo, Xanomeline Low Dose, and Xanomeline High Dose which are already available in the data. The helper function will add the observations to the data for the Total Xanomeline column based off of <code>coldef</code>. So for our adsl data, we will add a spanning header for Xanomeline and a total Xanomeline column which is a combination of the Xanomeline Low Dose and Xanomeline High Dose.</p>
-<p>In addition, the helper function will add the factor variable <code>colnbr</code> which is used as our new column summary variable. Note that our column summary variable has been converted to a factor. This is required and allows us to define column order as well as label in one variable.</p>
+<p>In this example, we would summarize Placebo, Xanomeline Low Dose, and
+Xanomeline High Dose which are already available in the data. The helper
+function will add the observations to the data for the Total Xanomeline
+column based off of <code>coldef</code>. So for our adsl data, we will
+add a spanning header for Xanomeline and a total Xanomeline column which
+is a combination of the Xanomeline Low Dose and Xanomeline High
+Dose.</p>
+<p>In addition, the helper function will add the factor variable
+<code>colnbr</code> which is used as our new column summary variable.
+Note that our column summary variable has been converted to a factor.
+This is required and allows us to define column order as well as label
+in one variable.</p>
 <p>Let’s read in adsl and check the dimensions.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"cdisc_adsl"</span><span class="op">)</span></span>
@@ -148,7 +165,9 @@
 <span><span class="co">#&gt; $ RACE    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "WHITE", "WHITE", "WHITE", "WHITE", "WHITE", "WHITE", "WHITE",…</span></span>
 <span><span class="co">#&gt; $ AGE     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 63, 64, 85, 52, 84, 74, 68, 81, 84, 71, 71, 77, 81, 75, 57</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] "Dimensions prior to the tlgsetup call are 15 rows and 7 columns."</span></span></code></pre>
-<p>Now let’s pass the adsl data through our tlgsetup function to add observations to support the <code>type1</code> column structure and check out the dimensions.</p>
+<p>Now let’s pass the adsl data through our tlgsetup function to add
+observations to support the <code>type1</code> column structure and
+check out the dimensions.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">setup_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/tlgsetup.html">tlgsetup</a></span><span class="op">(</span><span class="va">adsl</span>,</span>
 <span>                        var <span class="op">=</span> <span class="st">"TRT01PN"</span>,</span>
@@ -166,8 +185,12 @@
 <span><span class="co">#&gt; $ RACE    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "WHITE", "WHITE", "WHITE", "WHITE", "WHITE", "WHITE", "WHITE",…</span></span>
 <span><span class="co">#&gt; $ AGE     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 63, 64, 85, 52, 84, 74, 68, 81, 84, 71, 71, 77, 81, 75, 57, 74…</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] "Dimensions after to the rmtsetup call are 25 rows and 9 columns."</span></span></code></pre>
-<p>Here we see we have added two new variables, <code>colnbr</code> and <code>tbltype</code>, which will now be used as our treatment variable when generating our results.</p>
-<p>If we take a look at the observation counts for <code>colnbr</code>, we see the 168 records added to the data support <code>Total Xanomeline</code> as we expected!</p>
+<p>Here we see we have added two new variables, <code>colnbr</code> and
+<code>tbltype</code>, which will now be used as our treatment variable
+when generating our results.</p>
+<p>If we take a look at the observation counts for <code>colnbr</code>,
+we see the 168 records added to the data support
+<code>Total Xanomeline</code> as we expected!</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">setup_table</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">colnbr</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>

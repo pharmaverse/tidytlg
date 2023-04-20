@@ -341,11 +341,10 @@ the <code>descending_by</code> argument which will sort based on counts on a var
 <span class="r-out co"><span class="r-pr">#&gt;</span> Descending By:  Factored Sorting </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Denominators By Variables:  TRT01P </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   label                  Placebo   Xanomeline High Dos…¹ Xanom…² row_t…³ group…⁴</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> NOT HISPANIC OR LATINO 3 (60.0%) 5 (100.0%)            5 (100… VALUE         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​`Xanomeline High Dose`,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​`Xanomeline Low Dose`, ³​row_type, ⁴​group_level</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   label            Placebo `Xanomeline High Dose` `Xanomeline Low Dose` row_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> NOT HISPANIC OR… 3 (60.… 5 (100.0%)             5 (100.0%)            VALUE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: group_level &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Cut records where count meets threshold for a specific column</span></span></span>
 <span class="r-in"><span><span class="fu">freq</span><span class="op">(</span><span class="va">cdisc_adsl</span></span></span>
@@ -361,11 +360,10 @@ the <code>descending_by</code> argument which will sort based on counts on a var
 <span class="r-out co"><span class="r-pr">#&gt;</span> Descending By:  Factored Sorting </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Denominators By Variables:  TRT01P </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   label                  Placebo   Xanomeline High Dos…¹ Xanom…² row_t…³ group…⁴</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> NOT HISPANIC OR LATINO 3 (60.0%) 5 (100.0%)            5 (100… VALUE         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​`Xanomeline High Dose`,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​`Xanomeline Low Dose`, ³​row_type, ⁴​group_level</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   label            Placebo `Xanomeline High Dose` `Xanomeline Low Dose` row_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> NOT HISPANIC OR… 3 (60.… 5 (100.0%)             5 (100.0%)            VALUE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: group_level &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Below illustrates how to make the same calls to freq() as above, using</span></span></span>
 <span class="r-in"><span><span class="co"># table and column metadata.</span></span></span>
