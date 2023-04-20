@@ -406,7 +406,7 @@ derive_count <- function(df, by, statlist, count_name) {
 
   df %>%
     # Convert variables we're counting across to factors if they aren't already
-    mutate(across(all_of(unname(by)), as.factor)) %>%
+    mutate(across(.cols = all_of(unname(by)), as.factor)) %>%
     # If the data should be distinct, make it so, otherwise do nothing
     distinct_check(by, statlist) %>%
     # Group variables to count across and count them
@@ -551,7 +551,7 @@ sort_freq <- function(df,
     for (i in 1:(length(rowvar) - 1)) {
       df <- df %>%
         mutate(
-          across("nested_level",
+          across(.cols = "nested_level",
                  function(x) x != (i - 1), .names = paste0("ntop", rowvar[i]))
         )
     }
@@ -572,7 +572,7 @@ sort_freq <- function(df,
         df <- df %>%
           mutate(
             dplyr::across(
-              sort_col,
+              .cols = sort_col,
               function(x) {
                 ifelse(row_type %>% stringr::str_detect("(HEADER|^N$)"), -x, x)
               }
@@ -605,7 +605,7 @@ sort_freq <- function(df,
         ) %>%
         ungroup() %>%
         mutate(
-          across("sorter", function(x) x, .names = paste0("sort", rowvar[i]))
+          across(.cols = "sorter", function(x) x, .names = paste0("sort", rowvar[i]))
         ) %>%
         select(-sorter)
       sortvar <- c(
@@ -750,7 +750,7 @@ pivot_freq <- function(df, colvar, rowvar, rowbyvar, tablebyvar, statlist,
   if (nrow(res) != 0) {
     res <- res %>%
       mutate(
-        across(paste0("n", levels(df[[colvar]])),
+        across(.cols = paste0("n", levels(df[[colvar]])),
                function(x) {
                  ifelse(row_type %>%
                           stringr::str_detect("HEADER"),
