@@ -71,7 +71,7 @@ Users can also include the column that is derived from combination of individual
 knitr::include_graphics("column_header.PNG")
 ```
 
-We will use the adsl data from the [PHUSE Test Data Factory](https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM) to illustrate the creation of a demographic table.
+We will use the adsl data from the [PHUSE Test Data Factory](https://github.com/phuse-org/TestDataFactory/tree/main/Updated/TDF_ADaM) to illustrate the creation of a demographic table.
 
 ```{r, message=FALSE}
 # Prep Environment -------------------------------------------------------------------------------------

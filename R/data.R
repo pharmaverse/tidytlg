@@ -1,7 +1,6 @@
 #' ADSL data created from subsetting the CDISC ADSL with 15 subjects (5 subjects in each arm)
 #'
 #' @source CDISC SDTM/ADAM Pilot Project.
-#'   \url{https://www.cdisc.org/sdtmadam-pilot-project}
 #'
 #' @format A data frame with 15 rows and 49 variables:
 #' \describe{
@@ -67,7 +66,6 @@
 #'  ADAE data created from subsetting the CDISC ADAE dataset
 #'
 #' @source CDISC SDTM/ADAM Pilot Project.
-#'   \url{https://www.cdisc.org/sdtmadam-pilot-project}
 #'
 #' @format A data frame with 84 rows and 55 variables:
 #' \describe{
@@ -139,7 +137,6 @@
 #' ADLB data created from subsetting the CDISC ADLB dataset
 #'
 #' @source CDISC SDTM/ADAM Pilot Project.
-#'   \url{https://www.cdisc.org/sdtmadam-pilot-project}
 #'
 #' @format A data frame with 2154 rows and 46 variables:
 #' \describe{
@@ -200,7 +197,6 @@
 #' ADVS data created from subsetting the CDISC ADVS dataset
 #'
 #' @source CDISC SDTM/ADAM Pilot Project.
-#'   \url{https://www.cdisc.org/sdtmadam-pilot-project}
 #'
 #' @format A data frame with 1938 rows and 35 variables:
 #' \describe{

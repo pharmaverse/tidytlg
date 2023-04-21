@@ -68,7 +68,6 @@ A data frame with 84 rows and 55 variables:
 }
 \source{
 CDISC SDTM/ADAM Pilot Project.
-\url{https://www.cdisc.org/sdtmadam-pilot-project}
 }
 \usage{
 cdisc_adae
