@@ -1,5 +1,5 @@
 Package: tidytlg
-Title: Create TLGs using the Tidyverse
+Title: Create TLGs using the 'tidyverse'
 Version: 0.1.0
 Authors@R: 
      c(person(given = "Nicholas",
@@ -40,7 +40,7 @@ Authors@R:
            role = "cph",
            comment = "Author of included huxtable library")
      )
-Description: Generate table, listings, and graphs (TLG) using Tidyverse.
+Description: Generate table, listings, and graphs (TLG) using 'tidyverse.'
 License: Apache License 2.0 | file LICENSE
 URL: https://github.com/pharmaverse/tidytlg
 BugReports: https://github.com/pharmaverse/tidytlg/issues
