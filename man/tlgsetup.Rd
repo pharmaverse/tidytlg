@@ -40,19 +40,15 @@ other columns. tlgsetup is called internally by \code{generate_results()} and ca
 be run manually for custom tables.
 }
 \examples{
-
-# Using an external excel file of column metadata
-path <- "~/tidytlg/demog_demo"
-
 df <-
   tibble::tribble(
-   ~TRT01AN, ~USUBJID,
-    0,        "A",
-    54,       "B",
-    81,       "C"
-  )
+  ~TRT01AN, ~USUBJID,
+  0,        "A",
+ 54,       "B",
+ 81,       "C"
+)
 
-# tlgsetup(df, "TRT01AN", column_metadata_file = tidytlg_metadata(path))
+tlgsetup(df, "TRT01AN", column_metadata = column_metadata)
 
 # Using a dataframe of column metadata
 column_metadata <-
@@ -64,5 +60,5 @@ column_metadata <-
     "type1",  "54+81", "Total Xanomeline",     ""
   )
 
-# tlgsetup(df, "TRT01AN", column_metadata = column_metadata)
+tlgsetup(df, "TRT01AN", column_metadata = column_metadata)
 }
