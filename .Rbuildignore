@@ -26,3 +26,5 @@
 ^data-raw$
 \.github
 ^cran-comments\.md$
+^LICENSE$
+^LICENSE\.note$

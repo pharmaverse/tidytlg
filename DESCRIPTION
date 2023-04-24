@@ -41,7 +41,7 @@ Authors@R:
            comment = "Author of included huxtable library")
      )
 Description: Generate table, listings, and graphs (TLG) using 'tidyverse.'
-License: Apache License 2.0 | file LICENSE
+License: Apache License 2.0
 URL: https://github.com/pharmaverse/tidytlg
 BugReports: https://github.com/pharmaverse/tidytlg/issues
 Encoding: UTF-8
