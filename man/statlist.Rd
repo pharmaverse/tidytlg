@@ -13,6 +13,10 @@ table.}
 \item{...}{(optional) Additional configuration for stats. See sections below
 for allowable arguments.}
 }
+\value{
+A statlist object that can be passed in the 'statlist' argument of
+\code{freq}, \code{nested_freq}, or \code{univar}.
+}
 \description{
 The {statlist} is the interface for the presentation of data in a tidytlg
 table.
@@ -51,7 +55,6 @@ a numerator. Defaults to "0".}
 
 \section{Statlists for univar statlists}{
 
-Available statistics to pass to statlist:
 \itemize{
 \item{N}
 \item{SUM}
@@ -79,8 +82,9 @@ Available statistics to pass to statlist:
 
 where GeoMEAN: Geometric Mean, CV: Coefficient of Variation, GSD: Geometric
 Std. Dev., GSE: Geometric Std. Error, MEAN_CI: Mean (95\% C.I.), GeoMEAN_CI:
-Geometric Mean (95\% C.I.). In calculating geometric statistics, if there are zero values in the inputs,
-zero values will be excluded before calculating geometric statistics.
+Geometric Mean (95\% C.I.). In calculating geometric statistics, if there
+are zero values in the inputs, zero values will be excluded before
+calculating geometric statistics.
 }
 
 \examples{
