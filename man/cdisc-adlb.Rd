@@ -63,11 +63,6 @@ cdisc_adlb
 \description{
 ADLB data created from subsetting the CDISC ADLB dataset
 }
-\examples{
-\dontrun{
- data("cdisc_adlb")
-}
-}
 \keyword{CDISC}
 \keyword{adlb}
 \keyword{datasets}

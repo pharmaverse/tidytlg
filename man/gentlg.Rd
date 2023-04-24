@@ -134,7 +134,6 @@ save a png with with \code{ggplot2::ggsave()} and output an rtf.
 }
 
 \examples{
-\dontrun{
 
 final <- data.frame(
   label = c(
@@ -206,7 +205,9 @@ hux <- gentlg(
 
 # Export to HTML page
 huxtable::quick_html(hux, file = "TSFAEX.html", open = FALSE)
-}
+
+# clean up.
+file.remove("TSFAEX.html", "tsfaex.rtf")
 }
 \references{
 \url{https://github.com/hughjonesd/huxtable}

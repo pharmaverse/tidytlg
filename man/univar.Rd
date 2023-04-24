@@ -76,7 +76,6 @@ dataframe of results
 Univariate statitstics for a variables by treatment and/or group.
 }
 \examples{
-\dontrun{
 adsl <-
   structure(
     list(
@@ -126,7 +125,7 @@ column_metadata <- tibble::tribble(
 # N, Mean(SD), Median, Range, IQ Range for a rowvar by colvar
 table_metadata <- tibble::tribble(
   ~anbr,  ~func,    ~df, ~rowvar, ~tbltype, ~colvar,
-  "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTP"
+  "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTA"
 )
 
 generate_results(table_metadata, column_metadata = column_metadata,
@@ -136,7 +135,7 @@ generate_results(table_metadata, column_metadata = column_metadata,
 # N and Mean for a rowvar by colvar
 table_metadata <- tibble::tribble(
   ~anbr,  ~func,    ~df, ~rowvar, ~tbltype,  ~colvar, ~statlist,
-  "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTP",
+  "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTA",
   statlist(c("N","MEAN"))
 )
 
@@ -147,10 +146,10 @@ generate_results(table_metadata, column_metadata = column_metadata,
 # N and Mean for a rowvar by colvar and a by variable
 table_metadata <- tibble::tribble(
   ~anbr,  ~func,    ~df, ~rowvar, ~tbltype,  ~colvar, ~statlist,  ~by,
-  "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTP",
+  "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTA",
   statlist(c("N","MEAN")), "SEX"
 )
 
-# generate_results(table_metadata, column_metadata)
-}
+generate_results(table_metadata, column_metadata = column_metadata,
+                 tbltype = "type1")
 }

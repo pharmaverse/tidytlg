@@ -57,10 +57,6 @@
 #' }
 #' @keywords datasets CDISC adsl
 #' @name cdisc adsl
-#' @examples
-#' \dontrun{
-#'  data("cdisc_adsl")
-#' }
 "cdisc_adsl"
 
 #'  ADAE data created from subsetting the CDISC ADAE dataset
@@ -128,10 +124,6 @@
 #' }
 #' @keywords datasets CDISC adae
 #' @name cdisc adae
-#' @examples
-#' \dontrun{
-#'  data("cdisc_adae")
-#' }
 "cdisc_adae"
 
 #' ADLB data created from subsetting the CDISC ADLB dataset
@@ -187,10 +179,6 @@
 #' }
 #' @keywords datasets CDISC adlb
 #' @name cdisc adlb
-#' @examples
-#' \dontrun{
-#'  data("cdisc_adlb")
-#' }
 "cdisc_adlb"
 
 
@@ -235,14 +223,9 @@
 #'  \item{VSSEQ}{Sequence Number}
 #'  \item{ANL01FL}{Analysis 01 - Special Interest Flag}
 #'  \item{ABLFL}{Baseline Record Flag}
-
 #' }
 #' @keywords datasets CDISC advs
 #' @name cdisc advs
-#' @examples
-#' \dontrun{
-#'  data("cdisc_advs")
-#' }
 "cdisc_advs"
 
 

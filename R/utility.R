@@ -76,9 +76,7 @@ roxygen2_data <- function(df, study = NULL, pkg = "~/tidytlg") {
   examp   <-
     c(
       "#' @examples",
-      "#' \\dontrun{",
       paste0("#'  data(\"", deparse(substitute(df)), "\")"),
-      "#' }",
       paste0("\"", deparse(substitute(df)), "\"")
     )
 

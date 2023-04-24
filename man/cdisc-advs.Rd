@@ -54,11 +54,6 @@ cdisc_advs
 \description{
 ADVS data created from subsetting the CDISC ADVS dataset
 }
-\examples{
-\dontrun{
- data("cdisc_advs")
-}
-}
 \keyword{CDISC}
 \keyword{advs}
 \keyword{datasets}
