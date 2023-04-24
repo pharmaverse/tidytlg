@@ -36,24 +36,9 @@ replace_na_with_blank <- function(x) {
 #' @param study study name.
 #' @param pkg package path.
 #'
-#' @return Roxygen2 documentation for the data frame.
+#' @noRd
 #'
-#' @examples
-#' \dontrun{
-#'   ds <- list.files(path = "~/reporter/data")
-#'   ds
-#'   roxygen2_data(cdisc_adsl)
-#'   roxygen2_data(cdisc_adae)
-#'   roxygen2_data(cdisc_advs)
-#'   roxygen2_data(cdisc_adlbc)
-#'   roxygen2_data(cdisc_adlbh)
-#'   roxygen2_data(cdisc_adlbhy)
-#'   roxygen2_data(cdisc_adqsadas)
-#'   roxygen2_data(cdisc_adqscibc)
-#'   roxygen2_data(cdisc_adqsnpix)
-#'   roxygen2_data(cdisc_adtte)
-#'  }
-
+#' @return Roxygen2 documentation for the data frame.
 roxygen2_data <- function(df, study = NULL, pkg = "~/tidytlg") {
   name  <-  deparse(substitute(df))
 
