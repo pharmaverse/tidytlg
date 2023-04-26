@@ -55,13 +55,6 @@ displayed in HTML."><meta property="og:image" content="/logo.png"><!-- mathjax -
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -269,8 +262,7 @@ save a png with with <code><a href="https://ggplot2.tidyverse.org/reference/ggsa
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="st">"Overall"</span>, <span class="st">"Safety Analysis Set"</span>,</span></span>
@@ -297,6 +289,8 @@ save a png with with <code><a href="https://ggplot2.tidyverse.org/reference/ggsa
 <span class="r-in"><span>    <span class="st">"{\\super a} Subjects are counted once for any given event."</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Column header not used; 9 column header provided, but data contain 3 columns</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>path[1]="-": No such file or directory</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Pass in column headers instead of using variable name</span></span></span>
 <span class="r-in"><span><span class="fu">gentlg</span><span class="op">(</span></span></span>
@@ -310,6 +304,7 @@ save a png with with <code><a href="https://ggplot2.tidyverse.org/reference/ggsa
 <span class="r-in"><span>    <span class="st">"{\\super a} Subjects are counted once for any given event."</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>path[1]="-": No such file or directory</span>
 <span class="r-in"><span><span class="co"># Use a watermark</span></span></span>
 <span class="r-in"><span><span class="fu">gentlg</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  huxme <span class="op">=</span> <span class="va">final</span>,</span></span>
@@ -323,6 +318,7 @@ save a png with with <code><a href="https://ggplot2.tidyverse.org/reference/ggsa
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
 <span class="r-in"><span>  watermark <span class="op">=</span> <span class="st">"Confidential"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>path[1]="-": No such file or directory</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Produce output in HTML format</span></span></span>
 <span class="r-in"><span><span class="va">hux</span> <span class="op">&lt;-</span> <span class="fu">gentlg</span><span class="op">(</span></span></span>
@@ -338,10 +334,14 @@ save a png with with <code><a href="https://ggplot2.tidyverse.org/reference/ggsa
 <span class="r-in"><span>  format <span class="op">=</span> <span class="st">"HTML"</span>,</span></span>
 <span class="r-in"><span>  print.hux <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>path[1]="-": No such file or directory</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Export to HTML page</span></span></span>
 <span class="r-in"><span><span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/quick-output.html" class="external-link">quick_html</a></span><span class="op">(</span><span class="va">hux</span>, file <span class="op">=</span> <span class="st">"TSFAEX.html"</span>, open <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># clean up.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="st">"TSFAEX.html"</span>, <span class="st">"tsfaex.rtf"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE TRUE</span>
 </code></pre></div>
     </div>
   </div>

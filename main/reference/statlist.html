@@ -54,13 +54,6 @@ table."><meta property="og:image" content="/logo.png"><!-- mathjax --><script sr
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -102,6 +95,13 @@ table.</p></dd>
 for allowable arguments.</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>A statlist object that can be passed in the 'statlist' argument of
+<code>freq</code>, <code>nested_freq</code>, or <code>univar</code>.</p>
+    </div>
     <div id="statlists-for-freq-and-nested-freq-">
     <h2>Statlists for <code><a href="freq.html">freq()</a></code> and <code><a href="nested_freq.html">nested_freq()</a></code></h2>
     
@@ -132,7 +132,7 @@ a numerator. Defaults to "0".</p></li>
     <h2>Statlists for univar statlists</h2>
     
 
-<p>Available statistics to pass to statlist:</p><ul><li><p>N</p></li>
+<ul><li><p>N</p></li>
 <li><p>SUM</p></li>
 <li><p>MEAN</p></li>
 <li><p>GeoMEAN</p></li>
@@ -156,8 +156,9 @@ a numerator. Defaults to "0".</p></li>
 <li><p>GeoMEAN_CI</p></li>
 </ul><p>where GeoMEAN: Geometric Mean, CV: Coefficient of Variation, GSD: Geometric
 Std. Dev., GSE: Geometric Std. Error, MEAN_CI: Mean (95% C.I.), GeoMEAN_CI:
-Geometric Mean (95% C.I.). In calculating geometric statistics, if there are zero values in the inputs,
-zero values will be excluded before calculating geometric statistics.</p>
+Geometric Mean (95% C.I.). In calculating geometric statistics, if there
+are zero values in the inputs, zero values will be excluded before
+calculating geometric statistics.</p>
     </div>
 
     <div id="ref-examples">
