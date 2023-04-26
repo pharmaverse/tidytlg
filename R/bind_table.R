@@ -29,7 +29,6 @@
 #' @examples
 #' library(magrittr)
 #'
-#' \dontrun{
 #' # bind tables together
 #' t1 <- cdisc_adsl %>%
 #'   freq(colvar = "TRT01PN",
@@ -50,6 +49,7 @@
 #' t1 <- cdisc_adsl %>%
 #'   freq(colvar = "TRT01PN",
 #'        rowvar = "ITTFL",
+#'        rowbyvar = "SEX",
 #'        statlist = statlist("n"),
 #'        subset = ITTFL == "Y",
 #'        rowtext = "Analysis set: ITT")
@@ -86,7 +86,6 @@
 #'
 #' # w/counts
 #' bind_table(t1, t2, tablebyvar = "SEX", add_count = TRUE, colvar = "TRT01PN")
-#' }
 bind_table <- function(...,
                        colvar = NULL,
                        tablebyvar = NULL,

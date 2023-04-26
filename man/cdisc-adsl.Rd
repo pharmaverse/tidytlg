@@ -69,11 +69,6 @@ cdisc_adsl
 \description{
 ADSL data created from subsetting the CDISC ADSL with 15 subjects (5 subjects in each arm)
 }
-\examples{
-\dontrun{
- data("cdisc_adsl")
-}
-}
 \keyword{CDISC}
 \keyword{adsl}
 \keyword{datasets}

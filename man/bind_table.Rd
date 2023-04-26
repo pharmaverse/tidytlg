@@ -57,7 +57,6 @@ metadata attribute, which will be automatically used in \code{gentlg} for creati
 \examples{
 library(magrittr)
 
-\dontrun{
 # bind tables together
 t1 <- cdisc_adsl \%>\%
   freq(colvar = "TRT01PN",
@@ -78,6 +77,7 @@ bind_table(t1, t2)
 t1 <- cdisc_adsl \%>\%
   freq(colvar = "TRT01PN",
        rowvar = "ITTFL",
+       rowbyvar = "SEX",
        statlist = statlist("n"),
        subset = ITTFL == "Y",
        rowtext = "Analysis set: ITT")
@@ -114,5 +114,4 @@ bind_table(t1, t2, tablebyvar = "SEX", prefix = "Gender: ")
 
 # w/counts
 bind_table(t1, t2, tablebyvar = "SEX", add_count = TRUE, colvar = "TRT01PN")
-}
 }

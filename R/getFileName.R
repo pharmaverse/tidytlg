@@ -1,6 +1,6 @@
 #' @title getFileName
 #'
-#' @description This function returns the file path up untill the program's
+#' @description This function returns the file path up until the program's
 #'   name.
 #'
 #' @author Steven haesendonckx {shaesen2@@its.jnj.com}

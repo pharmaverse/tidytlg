@@ -41,7 +41,6 @@
 #' }
 #'
 #' @section Statlists for univar statlists:
-#' Available statistics to pass to statlist:
 #' \itemize{
 #'   \item{N}
 #'   \item{SUM}
@@ -67,10 +66,14 @@
 #'   \item{GeoMEAN_CI}
 #' }
 #'
-#' where GeoMEAN: Geometric Mean, CV: Coefficient of Variation, GSD: Geometric
-#' Std. Dev., GSE: Geometric Std. Error, MEAN_CI: Mean (95% C.I.), GeoMEAN_CI:
-#' Geometric Mean (95% C.I.). In calculating geometric statistics, if there are zero values in the inputs, 
-#' zero values will be excluded before calculating geometric statistics.
+#'   where GeoMEAN: Geometric Mean, CV: Coefficient of Variation, GSD: Geometric
+#'   Std. Dev., GSE: Geometric Std. Error, MEAN_CI: Mean (95% C.I.), GeoMEAN_CI:
+#'   Geometric Mean (95% C.I.). In calculating geometric statistics, if there
+#'   are zero values in the inputs, zero values will be excluded before
+#'   calculating geometric statistics.
+#'
+#' @return A statlist object that can be passed in the 'statlist' argument of
+#'   `freq`, `nested_freq`, or `univar`.
 #'
 #' @export
 #'

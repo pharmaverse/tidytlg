@@ -75,11 +75,6 @@ cdisc_adae
 \description{
 ADAE data created from subsetting the CDISC ADAE dataset
 }
-\examples{
-\dontrun{
- data("cdisc_adae")
-}
-}
 \keyword{CDISC}
 \keyword{adae}
 \keyword{datasets}
