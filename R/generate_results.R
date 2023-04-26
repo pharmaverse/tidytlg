@@ -141,7 +141,7 @@ do_tidytlg <-
              column_metadata = column_metadata,
              column_metadata_file = column_metadata_file,
              tbltype = tbltype)
-  if (!is.null(x$denom_df) && exists(x$denom_df))
+  if (!is.null(x$denom_df) && exists(x$denom_df, envir = env))
     x$denom_df <- get(x$denom_df, envir = env) %>%
     tlgsetup(var = x$colvar,
              column_metadata = column_metadata,
