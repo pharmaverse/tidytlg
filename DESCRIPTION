@@ -41,6 +41,10 @@ Authors@R:
            comment = "Author of included huxtable library")
      )
 Description: Generate table, listings, and graphs (TLG) using 'tidyverse.'
+  Tables can both be created functionally, using a standard TLG process, or by
+  specifying table and column metadata to create generic analysis summaries.
+  The 'envsetup' package can also be leveraged to create environments for table
+  creation.
 License: Apache License 2.0
 URL: https://github.com/pharmaverse/tidytlg
 BugReports: https://github.com/pharmaverse/tidytlg/issues

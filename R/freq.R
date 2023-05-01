@@ -122,9 +122,6 @@
 #' # Below illustrates how to make the same calls to freq() as above, using
 #' # table and column metadata.
 #'
-#' path <- "~/tidytlg/inst/extdata"
-#'
-#' \dontrun{
 #' # Unique subject count of a single variable
 #' table_metadata <- tibble::tribble(
 #'   ~anbr,  ~func,          ~df,   ~rowvar,      ~statlist,  ~colvar,
@@ -132,7 +129,7 @@
 #' )
 #'
 #' generate_results(table_metadata,
-#'                  column_metadata_file = tidytlg_metadata(path),
+#'                  column_metadata = column_metadata,
 #'                  tbltype = "type1")
 #'
 #' # Unique subject count and percent of a single variable
@@ -142,7 +139,7 @@
 #' )
 #'
 #' generate_results(table_metadata,
-#'                  column_metadata_file = tidytlg_metadata(path),
+#'                  column_metadata = column_metadata,
 #'                  tbltype = "type1")
 #'
 #' # Cut records where count meets threshold for any column
@@ -152,7 +149,7 @@
 #'   cutoff_stat = "n")
 #'
 #' generate_results(table_metadata,
-#'                  column_metadata_file = tidytlg_metadata(path),
+#'                  column_metadata = column_metadata,
 #'                  tbltype = "type1")
 #'
 #' # Cut records where count meets threshold for a specific column
@@ -162,9 +159,8 @@
 #'   cutoff = 'col1 >= 3', cutoff_stat = "n")
 #'
 #' generate_results(table_metadata,
-#'                  column_metadata_file = tidytlg_metadata(path),
+#'                  column_metadata = column_metadata,
 #'                  tbltype = "type1")
-#' }
 freq <- function(df,
                  denom_df = df,
                  colvar = NULL,

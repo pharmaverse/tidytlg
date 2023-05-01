@@ -169,9 +169,6 @@ freq(cdisc_adsl
 # Below illustrates how to make the same calls to freq() as above, using
 # table and column metadata.
 
-path <- "~/tidytlg/inst/extdata"
-
-\dontrun{
 # Unique subject count of a single variable
 table_metadata <- tibble::tribble(
   ~anbr,  ~func,          ~df,   ~rowvar,      ~statlist,  ~colvar,
@@ -179,7 +176,7 @@ table_metadata <- tibble::tribble(
 )
 
 generate_results(table_metadata,
-                 column_metadata_file = tidytlg_metadata(path),
+                 column_metadata = column_metadata,
                  tbltype = "type1")
 
 # Unique subject count and percent of a single variable
@@ -189,7 +186,7 @@ table_metadata <- tibble::tribble(
 )
 
 generate_results(table_metadata,
-                 column_metadata_file = tidytlg_metadata(path),
+                 column_metadata = column_metadata,
                  tbltype = "type1")
 
 # Cut records where count meets threshold for any column
@@ -199,7 +196,7 @@ table_metadata <- tibble::tibble(
   cutoff_stat = "n")
 
 generate_results(table_metadata,
-                 column_metadata_file = tidytlg_metadata(path),
+                 column_metadata = column_metadata,
                  tbltype = "type1")
 
 # Cut records where count meets threshold for a specific column
@@ -209,7 +206,6 @@ table_metadata <- tibble::tibble(
   cutoff = 'col1 >= 3', cutoff_stat = "n")
 
 generate_results(table_metadata,
-                 column_metadata_file = tidytlg_metadata(path),
+                 column_metadata = column_metadata,
                  tbltype = "type1")
-}
 }

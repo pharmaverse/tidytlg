@@ -9,11 +9,6 @@
 #' @param file name of the file
 #'
 #' @noRd
-#'
-#' @examples
-#'  \dontrun{
-#'   getFileName()
-#'  }
 getFileName <-  function() {
 
   ##### If run from MCD BATCH\
