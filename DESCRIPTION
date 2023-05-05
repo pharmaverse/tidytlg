@@ -40,8 +40,8 @@ Authors@R:
            role = "cph",
            comment = "Author of included huxtable library")
      )
-Description: Generate table, listings, and graphs (TLG) using 'tidyverse.'
-  Tables can both be created functionally, using a standard TLG process, or by
+Description: Generate tables, listings, and graphs (TLG) using 'tidyverse.'
+  Tables can be created functionally, using a standard TLG process, or by
   specifying table and column metadata to create generic analysis summaries.
   The 'envsetup' package can also be leveraged to create environments for table
   creation.

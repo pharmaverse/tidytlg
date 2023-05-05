@@ -2,9 +2,8 @@
 
 ### Resubmission Actions:
 
-Per a Review by Benjamin Altmann dated April 28, 2023:
+Per a Review by Victoria Wimmer dated May 3, 2023:
 
-- 'dontrun' was removed from freq documentation
 - Package DESCRIPTION was updated
 
 ### Testing
