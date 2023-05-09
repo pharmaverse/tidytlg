@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidytlg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
@@ -79,13 +79,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -534,7 +527,7 @@ footnotes for the specified <code>tblid</code>.</p>
 <code class="sourceCode R"><span><span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"Table01"</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,</span>
-<span>       opath       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>, </span>
+<span>       opath       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">working_dir</span><span class="op">)</span>, </span>
 <span>       file        <span class="op">=</span> <span class="va">tblid</span>,</span>
 <span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
 <span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -683,7 +676,7 @@ argument as FALSE in the <code>gentlg</code> call.</p>
 </tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
-<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 05MAY2023, 12:54</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 09MAY2023, 15:25</div></td></tr>
 </table>
 <p>Users can also include superscripts, subscripts, or line breaks via
 unicode. Please see the <code><a href="../articles/symbols.html">vignette("symbols")</a></code> for more
@@ -855,7 +848,7 @@ single number as the column width and apply to every column.</p></li>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
 </tr>
-<tr><td colspan="8" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [listing01.html][] 05MAY2023, 12:54</div></td></tr>
+<tr><td colspan="8" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [listing01.html][] 09MAY2023, 15:25</div></td></tr>
 </table>
 </div>
 <div class="section level2">
@@ -903,7 +896,7 @@ height approximately the same as the png image.</p></li>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">SEX</span>, nrow<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create png file</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">tblid</span>,<span class="st">".png"</span><span class="op">)</span><span class="op">)</span>, width<span class="op">=</span><span class="fl">2800</span>, height<span class="op">=</span><span class="fl">1300</span>, res<span class="op">=</span><span class="fl">300</span>, type <span class="op">=</span> <span class="st">"cairo"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">working_dir</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">tblid</span>,<span class="st">".png"</span><span class="op">)</span><span class="op">)</span>, width<span class="op">=</span><span class="fl">2800</span>, height<span class="op">=</span><span class="fl">1300</span>, res<span class="op">=</span><span class="fl">300</span>, type <span class="op">=</span> <span class="st">"cairo"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">plot</span></span>
 <span><span class="co">#&gt; Warning: Removed 1 rows containing missing values (`geom_point()`).</span></span>
@@ -919,7 +912,7 @@ height approximately the same as the png image.</p></li>
 <span>       plotwidth <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>       plotheight <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       opath       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>, </span>
+<span>       opath       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">working_dir</span><span class="op">)</span>,, </span>
 <span>       file <span class="op">=</span> <span class="va">tblid</span>,</span>
 <span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="graph01.PNG" width="750px"></p>
@@ -1118,7 +1111,7 @@ the column metadata in the <code>generate_results</code> call.</p>
 </tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
-<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 05MAY2023, 12:54</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 09MAY2023, 15:25</div></td></tr>
 </table>
 </div>
 <div class="section level2">
@@ -1443,7 +1436,7 @@ gender using <code>tablebyvar</code>.</p>
 </tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
-<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 05MAY2023, 12:55</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 09MAY2023, 15:25</div></td></tr>
 </table>
 <p>In summary, <code>rowbyvar</code> is used to create the by-variable
 summary for one <code>rowvar</code> in a single function call. To
