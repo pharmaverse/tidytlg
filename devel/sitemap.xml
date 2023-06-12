@@ -34,6 +34,9 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/news/index.html</loc>
+  </url>
+  <url>
     <loc>/reference/add_format.html</loc>
   </url>
   <url>
@@ -89,9 +92,6 @@
   </url>
   <url>
     <loc>/reference/roundSAS.html</loc>
-  </url>
-  <url>
-    <loc>/reference/roxygen2_data.html</loc>
   </url>
   <url>
     <loc>/reference/spanning_headers.html</loc>

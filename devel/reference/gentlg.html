@@ -19,7 +19,7 @@ displayed in HTML."><meta property="og:image" content="/logo.png"><!-- mathjax -
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidytlg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
@@ -52,7 +52,16 @@ displayed in HTML."><meta property="og:image" content="/logo.png"><!-- mathjax -
       <a href="../articles/univar.html">Univariate Statistics Analysis</a>
     </li>
   </ul></li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -62,7 +71,7 @@ displayed in HTML."><meta property="og:image" content="/logo.png"><!-- mathjax -
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Output a tidytlg table</h1>
-    
+    <small class="dont-index">Source: <a href="https://github.com/pharmaverse/tidytlg/blob/HEAD/R/gentlg.R" class="external-link"><code>R/gentlg.R</code></a></small>
     <div class="hidden name"><code>gentlg.Rd</code></div>
     </div>
 
@@ -73,27 +82,27 @@ displayed in HTML.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gentlg</span><span class="op">(</span></span>
-<span>  huxme <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  tlf <span class="op">=</span> <span class="st">"Table"</span>,</span>
-<span>  format <span class="op">=</span> <span class="st">"rtf"</span>,</span>
-<span>  colspan <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  idvars <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  plotnames <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  plotwidth <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  plotheight <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  wcol <span class="op">=</span> <span class="fl">0.45</span>,</span>
-<span>  orientation <span class="op">=</span> <span class="st">"portrait"</span>,</span>
-<span>  opath <span class="op">=</span> <span class="st">"."</span>,</span>
-<span>  title_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  file <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  footers <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  print.hux <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  watermark <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  colheader <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  pagenum <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">gentlg</span><span class="op">(</span>
+  huxme <span class="op">=</span> <span class="cn">NULL</span>,
+  tlf <span class="op">=</span> <span class="st">"Table"</span>,
+  format <span class="op">=</span> <span class="st">"rtf"</span>,
+  colspan <span class="op">=</span> <span class="cn">NULL</span>,
+  idvars <span class="op">=</span> <span class="cn">NULL</span>,
+  plotnames <span class="op">=</span> <span class="cn">NULL</span>,
+  plotwidth <span class="op">=</span> <span class="cn">NULL</span>,
+  plotheight <span class="op">=</span> <span class="cn">NULL</span>,
+  wcol <span class="op">=</span> <span class="fl">0.45</span>,
+  orientation <span class="op">=</span> <span class="st">"portrait"</span>,
+  opath <span class="op">=</span> <span class="st">"."</span>,
+  title_file <span class="op">=</span> <span class="cn">NULL</span>,
+  file <span class="op">=</span> <span class="cn">NULL</span>,
+  title <span class="op">=</span> <span class="cn">NULL</span>,
+  footers <span class="op">=</span> <span class="cn">NULL</span>,
+  print.hux <span class="op">=</span> <span class="cn">TRUE</span>,
+  watermark <span class="op">=</span> <span class="cn">NULL</span>,
+  colheader <span class="op">=</span> <span class="cn">NULL</span>,
+  pagenum <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -253,79 +262,86 @@ save a png with with <code><a href="https://ggplot2.tidyverse.org/reference/ggsa
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="st">"Overall"</span>, <span class="st">"Safety Analysis Set"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"Any Adverse event{\\super a}"</span>, <span class="st">"- Serious Adverse Event"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  Drug_A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"40"</span>, <span class="st">"10 (25%)"</span>, <span class="st">"0"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  Drug_B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"40"</span>, <span class="st">"10 (25%)"</span>, <span class="st">"0"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  anbr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  roworder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  boldme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  newrows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  indentme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  newpage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Produce output in rtf format</span></span></span>
-<span class="r-in"><span><span class="fu">gentlg</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  huxme <span class="op">=</span> <span class="va">final</span>,</span></span>
-<span class="r-in"><span>  wcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.70</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  file <span class="op">=</span> <span class="st">"TSFAEX"</span>,</span></span>
-<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"This is Amazing Demonstration 1"</span>,</span></span>
-<span class="r-in"><span>  footers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="st">"Note: For demonstrative purposes only"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"{\\super a} Subjects are counted once for any given event."</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Pass in column headers instead of using variable name</span></span></span>
-<span class="r-in"><span><span class="fu">gentlg</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  huxme <span class="op">=</span> <span class="va">final</span>,</span></span>
-<span class="r-in"><span>  wcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.70</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  file <span class="op">=</span> <span class="st">"TSFAEX"</span>,</span></span>
-<span class="r-in"><span>  colheader <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"Drug A"</span>, <span class="st">"Drug B"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"This is Amazing Demonstration 1"</span>,</span></span>
-<span class="r-in"><span>  footers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="st">"Note: For demonstrative purposes only"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"{\\super a} Subjects are counted once for any given event."</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># Use a watermark</span></span></span>
-<span class="r-in"><span><span class="fu">gentlg</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  huxme <span class="op">=</span> <span class="va">final</span>,</span></span>
-<span class="r-in"><span>  wcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.70</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  file <span class="op">=</span> <span class="st">"TSFAEX"</span>,</span></span>
-<span class="r-in"><span>  colheader <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"Drug A"</span>, <span class="st">"Drug B"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"This is Amazing Demonstration 1"</span>,</span></span>
-<span class="r-in"><span>  footers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="st">"Note: For demonstrative purposes only"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"{\\super a} Subjects are counted once for any given event."</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  watermark <span class="op">=</span> <span class="st">"Confidential"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Produce output in HTML format</span></span></span>
-<span class="r-in"><span><span class="va">hux</span> <span class="op">&lt;-</span> <span class="fu">gentlg</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  huxme <span class="op">=</span> <span class="va">final</span>,</span></span>
-<span class="r-in"><span>  file <span class="op">=</span> <span class="st">"TSFAEX"</span>,</span></span>
-<span class="r-in"><span>  colheader <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"Drug A"</span>, <span class="st">"Drug B"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  title <span class="op">=</span> <span class="st">"This is Amazing Demonstration 1"</span>,</span></span>
-<span class="r-in"><span>  footers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="st">"Note: For demonstrative purposes only"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"{\\super a} Subjects are counted once for any given event."</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  watermark <span class="op">=</span> <span class="st">"Confidential"</span>,</span></span>
-<span class="r-in"><span>  format <span class="op">=</span> <span class="st">"HTML"</span>,</span></span>
-<span class="r-in"><span>  print.hux <span class="op">=</span> <span class="cn">FALSE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Export to HTML page</span></span></span>
-<span class="r-in"><span><span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/quick-output.html" class="external-link">quick_html</a></span><span class="op">(</span><span class="va">hux</span>, file <span class="op">=</span> <span class="st">"TSFAEX.html"</span>, open <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
+<span class="r-in"><span class="va">final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span class="r-in">  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span class="r-in">    <span class="st">"Overall"</span>, <span class="st">"Safety Analysis Set"</span>,</span>
+<span class="r-in">    <span class="st">"Any Adverse event{\\super a}"</span>, <span class="st">"- Serious Adverse Event"</span></span>
+<span class="r-in">  <span class="op">)</span>,</span>
+<span class="r-in">  Drug_A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"40"</span>, <span class="st">"10 (25%)"</span>, <span class="st">"0"</span><span class="op">)</span>,</span>
+<span class="r-in">  Drug_B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"40"</span>, <span class="st">"10 (25%)"</span>, <span class="st">"0"</span><span class="op">)</span>,</span>
+<span class="r-in">  anbr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span class="r-in">  roworder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span class="r-in">  boldme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span class="r-in">  newrows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span class="r-in">  indentme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span class="r-in">  newpage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Produce output in rtf format</span></span>
+<span class="r-in"><span class="fu">gentlg</span><span class="op">(</span></span>
+<span class="r-in">  huxme <span class="op">=</span> <span class="va">final</span>,</span>
+<span class="r-in">  wcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.70</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>,</span>
+<span class="r-in">  file <span class="op">=</span> <span class="st">"TSFAEX"</span>,</span>
+<span class="r-in">  title <span class="op">=</span> <span class="st">"This is Amazing Demonstration 1"</span>,</span>
+<span class="r-in">  footers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span class="r-in">    <span class="st">"Note: For demonstrative purposes only"</span>,</span>
+<span class="r-in">    <span class="st">"{\\super a} Subjects are counted once for any given event."</span></span>
+<span class="r-in">  <span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Column header not used; 9 column header provided, but data contain 3 columns</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>path[1]="-": No such file or directory</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Pass in column headers instead of using variable name</span></span>
+<span class="r-in"><span class="fu">gentlg</span><span class="op">(</span></span>
+<span class="r-in">  huxme <span class="op">=</span> <span class="va">final</span>,</span>
+<span class="r-in">  wcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.70</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>,</span>
+<span class="r-in">  file <span class="op">=</span> <span class="st">"TSFAEX"</span>,</span>
+<span class="r-in">  colheader <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"Drug A"</span>, <span class="st">"Drug B"</span><span class="op">)</span>,</span>
+<span class="r-in">  title <span class="op">=</span> <span class="st">"This is Amazing Demonstration 1"</span>,</span>
+<span class="r-in">  footers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span class="r-in">    <span class="st">"Note: For demonstrative purposes only"</span>,</span>
+<span class="r-in">    <span class="st">"{\\super a} Subjects are counted once for any given event."</span></span>
+<span class="r-in">  <span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>path[1]="-": No such file or directory</span>
+<span class="r-in"><span class="co"># Use a watermark</span></span>
+<span class="r-in"><span class="fu">gentlg</span><span class="op">(</span></span>
+<span class="r-in">  huxme <span class="op">=</span> <span class="va">final</span>,</span>
+<span class="r-in">  wcol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.70</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span><span class="op">)</span>,</span>
+<span class="r-in">  file <span class="op">=</span> <span class="st">"TSFAEX"</span>,</span>
+<span class="r-in">  colheader <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"Drug A"</span>, <span class="st">"Drug B"</span><span class="op">)</span>,</span>
+<span class="r-in">  title <span class="op">=</span> <span class="st">"This is Amazing Demonstration 1"</span>,</span>
+<span class="r-in">  footers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span class="r-in">    <span class="st">"Note: For demonstrative purposes only"</span>,</span>
+<span class="r-in">    <span class="st">"{\\super a} Subjects are counted once for any given event."</span></span>
+<span class="r-in">  <span class="op">)</span>,</span>
+<span class="r-in">  watermark <span class="op">=</span> <span class="st">"Confidential"</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>path[1]="-": No such file or directory</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Produce output in HTML format</span></span>
+<span class="r-in"><span class="va">hux</span> <span class="op">&lt;-</span> <span class="fu">gentlg</span><span class="op">(</span></span>
+<span class="r-in">  huxme <span class="op">=</span> <span class="va">final</span>,</span>
+<span class="r-in">  file <span class="op">=</span> <span class="st">"TSFAEX"</span>,</span>
+<span class="r-in">  colheader <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"Drug A"</span>, <span class="st">"Drug B"</span><span class="op">)</span>,</span>
+<span class="r-in">  title <span class="op">=</span> <span class="st">"This is Amazing Demonstration 1"</span>,</span>
+<span class="r-in">  footers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span class="r-in">    <span class="st">"Note: For demonstrative purposes only"</span>,</span>
+<span class="r-in">    <span class="st">"{\\super a} Subjects are counted once for any given event."</span></span>
+<span class="r-in">  <span class="op">)</span>,</span>
+<span class="r-in">  watermark <span class="op">=</span> <span class="st">"Confidential"</span>,</span>
+<span class="r-in">  format <span class="op">=</span> <span class="st">"HTML"</span>,</span>
+<span class="r-in">  print.hux <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>path[1]="-": No such file or directory</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Export to HTML page</span></span>
+<span class="r-in"><span class="fu">huxtable</span><span class="fu">::</span><span class="fu"><a href="https://hughjonesd.github.io/huxtable/reference/quick-output.html" class="external-link">quick_html</a></span><span class="op">(</span><span class="va">hux</span>, file <span class="op">=</span> <span class="st">"TSFAEX.html"</span>, open <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># clean up.</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="st">"TSFAEX.html"</span>, <span class="st">"tsfaex.rtf"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE TRUE</span>
 </code></pre></div>
     </div>
   </div>

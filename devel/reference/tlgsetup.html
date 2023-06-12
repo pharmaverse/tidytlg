@@ -19,7 +19,7 @@ be run manually for custom tables."><meta property="og:image" content="/logo.png
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidytlg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
@@ -52,7 +52,16 @@ be run manually for custom tables."><meta property="og:image" content="/logo.png
       <a href="../articles/univar.html">Univariate Statistics Analysis</a>
     </li>
   </ul></li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -62,7 +71,7 @@ be run manually for custom tables."><meta property="og:image" content="/logo.png
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Setup data to support the specified column type</h1>
-    
+    <small class="dont-index">Source: <a href="https://github.com/pharmaverse/tidytlg/blob/HEAD/R/tlgsetup.R" class="external-link"><code>R/tlgsetup.R</code></a></small>
     <div class="hidden name"><code>tlgsetup.Rd</code></div>
     </div>
 
@@ -73,13 +82,13 @@ be run manually for custom tables.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tlgsetup</span><span class="op">(</span></span>
-<span>  <span class="va">df</span>,</span>
-<span>  <span class="va">var</span>,</span>
-<span>  column_metadata_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  column_metadata <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  tbltype <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tlgsetup</span><span class="op">(</span>
+  <span class="va">df</span>,
+  <span class="va">var</span>,
+  column_metadata_file <span class="op">=</span> <span class="cn">NULL</span>,
+  column_metadata <span class="op">=</span> <span class="cn">NULL</span>,
+  tbltype <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -121,31 +130,54 @@ the table.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Using an external excel file of column metadata</span></span></span>
-<span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="st">"~/tidytlg/demog_demo"</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>   <span class="op">~</span><span class="va">TRT01AN</span>, <span class="op">~</span><span class="va">USUBJID</span>,</span></span>
-<span class="r-in"><span>    <span class="fl">0</span>,        <span class="st">"A"</span>,</span></span>
-<span class="r-in"><span>    <span class="fl">54</span>,       <span class="st">"B"</span>,</span></span>
-<span class="r-in"><span>    <span class="fl">81</span>,       <span class="st">"C"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># tlgsetup(df, "TRT01AN", column_metadata_file = tidytlg_metadata(path))</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Using a dataframe of column metadata</span></span></span>
-<span class="r-in"><span><span class="va">column_metadata</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="op">~</span><span class="va">tbltype</span>, <span class="op">~</span><span class="va">coldef</span>, <span class="op">~</span><span class="va">decode</span>,                <span class="op">~</span><span class="va">span1</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"type1"</span>,  <span class="st">"0"</span>,     <span class="st">"Placebo"</span>,              <span class="st">""</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"type1"</span>,  <span class="st">"54"</span>,    <span class="st">"Low Dose"</span>,             <span class="st">"Xanomeline"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"type1"</span>,  <span class="st">"81"</span>,    <span class="st">"High Dose"</span>,            <span class="st">"Xanomeline"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"type1"</span>,  <span class="st">"54+81"</span>, <span class="st">"Total Xanomeline"</span>,     <span class="st">""</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># tlgsetup(df, "TRT01AN", column_metadata = column_metadata)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span></span>
+<span class="r-in">  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span class="r-in">  <span class="op">~</span><span class="va">TRT01AN</span>, <span class="op">~</span><span class="va">USUBJID</span>,</span>
+<span class="r-in">  <span class="fl">0</span>,        <span class="st">"A"</span>,</span>
+<span class="r-in"> <span class="fl">54</span>,       <span class="st">"B"</span>,</span>
+<span class="r-in"> <span class="fl">81</span>,       <span class="st">"C"</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">tlgsetup</span><span class="op">(</span><span class="va">df</span>, <span class="st">"TRT01AN"</span>, column_metadata <span class="op">=</span> <span class="va">column_metadata</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    tbltype colnbr TRT01AN USUBJID</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> type1   col1   0       A      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> type1   col2   54      B      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> type1   col3   81      C      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> type2   col4   0       A      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> type2   col5   54      B      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> type2   col6   81      C      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> type2   col7   54      B      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> type2   col7   81      C      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> type3   col8   0       A      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> type3   col9   54      B      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> type3   col10  81      C      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> type3   col11  54      B      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> type3   col11  81      C      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> type3   col12  0       A      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> type3   col12  54      B      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> type3   col12  81      C      </span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Using a dataframe of column metadata</span></span>
+<span class="r-in"><span class="va">column_metadata</span> <span class="op">&lt;-</span></span>
+<span class="r-in">  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span class="r-in">    <span class="op">~</span><span class="va">tbltype</span>, <span class="op">~</span><span class="va">coldef</span>, <span class="op">~</span><span class="va">decode</span>,                <span class="op">~</span><span class="va">span1</span>,</span>
+<span class="r-in">    <span class="st">"type1"</span>,  <span class="st">"0"</span>,     <span class="st">"Placebo"</span>,              <span class="st">""</span>,</span>
+<span class="r-in">    <span class="st">"type1"</span>,  <span class="st">"54"</span>,    <span class="st">"Low Dose"</span>,             <span class="st">"Xanomeline"</span>,</span>
+<span class="r-in">    <span class="st">"type1"</span>,  <span class="st">"81"</span>,    <span class="st">"High Dose"</span>,            <span class="st">"Xanomeline"</span>,</span>
+<span class="r-in">    <span class="st">"type1"</span>,  <span class="st">"54+81"</span>, <span class="st">"Total Xanomeline"</span>,     <span class="st">""</span></span>
+<span class="r-in">  <span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">tlgsetup</span><span class="op">(</span><span class="va">df</span>, <span class="st">"TRT01AN"</span>, column_metadata <span class="op">=</span> <span class="va">column_metadata</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   tbltype colnbr TRT01AN USUBJID</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> type1   col1   0       A      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> type1   col2   54      B      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> type1   col3   81      C      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> type1   col4   54      B      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> type1   col4   81      C      </span>
 </code></pre></div>
     </div>
   </div>

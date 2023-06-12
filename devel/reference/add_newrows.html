@@ -21,7 +21,7 @@ The first row will always be set to 0."><meta property="og:image" content="/logo
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidytlg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
@@ -54,7 +54,16 @@ The first row will always be set to 0."><meta property="og:image" content="/logo
       <a href="../articles/univar.html">Univariate Statistics Analysis</a>
     </li>
   </ul></li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -64,7 +73,7 @@ The first row will always be set to 0."><meta property="og:image" content="/logo
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Add the newrows variable to the results dataframe.</h1>
-    
+    <small class="dont-index">Source: <a href="https://github.com/pharmaverse/tidytlg/blob/HEAD/R/add_newrows.R" class="external-link"><code>R/add_newrows.R</code></a></small>
     <div class="hidden name"><code>add_newrows.Rd</code></div>
     </div>
 
@@ -77,7 +86,7 @@ The first row will always be set to 0.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_newrows</span><span class="op">(</span><span class="va">df</span>, tableby <span class="op">=</span> <span class="cn">NULL</span>, groupby <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">add_newrows</span><span class="op">(</span><span class="va">df</span>, tableby <span class="op">=</span> <span class="cn">NULL</span>, groupby <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -107,21 +116,21 @@ newrows is used by gentlg to insert line breaks.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example showing how newrows is set to one for each new anbr except</span></span></span>
-<span class="r-in"><span><span class="co"># the first</span></span></span>
-<span class="r-in"><span><span class="va">tbl</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/structure.html" class="external-link">structure</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>rowvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RANDFL"</span>, <span class="st">"AGE"</span>, <span class="st">"AGE"</span>, <span class="st">"AGE"</span>, <span class="st">"AGE"</span>, <span class="st">"AGE"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>     anbr   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">2L</span>, <span class="fl">2L</span>, <span class="fl">2L</span>, <span class="fl">2L</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>     label  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Analysis set: Subjects Randomized"</span>, <span class="st">"Age (Years)"</span>, <span class="st">"N"</span>,</span></span>
-<span class="r-in"><span>     <span class="st">"Mean (SD)"</span>, <span class="st">"Range"</span>, <span class="st">"IQ Range"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>     row_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"COUNT"</span>, <span class="st">"UNIVAR"</span>, <span class="st">"UNIVAR"</span>, <span class="st">"UNIVAR"</span>, <span class="st">"UNIVAR"</span>, <span class="st">"UNIVAR"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="op">-</span><span class="fl">6L</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tbl_df"</span>, <span class="st">"tbl"</span>, <span class="st">"data.frame"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">add_newrows</span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Example showing how newrows is set to one for each new anbr except</span></span>
+<span class="r-in"><span class="co"># the first</span></span>
+<span class="r-in"><span class="va">tbl</span> <span class="op">&lt;-</span></span>
+<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/structure.html" class="external-link">structure</a></span><span class="op">(</span></span>
+<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>rowvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RANDFL"</span>, <span class="st">"AGE"</span>, <span class="st">"AGE"</span>, <span class="st">"AGE"</span>, <span class="st">"AGE"</span>, <span class="st">"AGE"</span><span class="op">)</span>,</span>
+<span class="r-in">     anbr   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">2L</span>, <span class="fl">2L</span>, <span class="fl">2L</span>, <span class="fl">2L</span><span class="op">)</span>,</span>
+<span class="r-in">     label  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Analysis set: Subjects Randomized"</span>, <span class="st">"Age (Years)"</span>, <span class="st">"N"</span>,</span>
+<span class="r-in">     <span class="st">"Mean (SD)"</span>, <span class="st">"Range"</span>, <span class="st">"IQ Range"</span><span class="op">)</span>,</span>
+<span class="r-in">     row_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"COUNT"</span>, <span class="st">"UNIVAR"</span>, <span class="st">"UNIVAR"</span>, <span class="st">"UNIVAR"</span>, <span class="st">"UNIVAR"</span>, <span class="st">"UNIVAR"</span><span class="op">)</span></span>
+<span class="r-in">      <span class="op">)</span>,</span>
+<span class="r-in">    row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="op">-</span><span class="fl">6L</span><span class="op">)</span>,</span>
+<span class="r-in">    class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tbl_df"</span>, <span class="st">"tbl"</span>, <span class="st">"data.frame"</span><span class="op">)</span></span>
+<span class="r-in">  <span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">add_newrows</span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   rowvar  anbr label                             row_type roworder newrows</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -131,21 +140,21 @@ newrows is used by gentlg to insert line breaks.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> AGE        2 Mean (SD)                         UNIVAR          3       0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> AGE        2 Range                             UNIVAR          4       0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> AGE        2 IQ Range                          UNIVAR          5       0</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Example of use when you have results summarized by one or more variables</span></span></span>
-<span class="r-in"><span><span class="va">tbl2</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="op">~</span><span class="va">anbr</span>, <span class="op">~</span><span class="va">SEX</span>,    <span class="op">~</span><span class="va">label</span>,         <span class="op">~</span><span class="va">row_type</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"01"</span>,  <span class="st">"F"</span>, <span class="st">"Sex : F"</span>, <span class="st">"TABLE_BY_HEADER"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"01"</span>,  <span class="st">"F"</span>,     <span class="st">"&lt;65"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"01"</span>,  <span class="st">"F"</span>,   <span class="st">"65-80"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"01"</span>,  <span class="st">"F"</span>,     <span class="st">"&gt;80"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"01"</span>,  <span class="st">"M"</span>, <span class="st">"Sex : M"</span>, <span class="st">"TABLE_BY_HEADER"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"01"</span>,  <span class="st">"M"</span>,     <span class="st">"&lt;65"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"01"</span>,  <span class="st">"M"</span>,   <span class="st">"65-80"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"01"</span>,  <span class="st">"M"</span>,     <span class="st">"&gt;80"</span>,           <span class="st">"VALUE"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">add_newrows</span><span class="op">(</span><span class="va">tbl2</span>, tableby <span class="op">=</span> <span class="st">"SEX"</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Example of use when you have results summarized by one or more variables</span></span>
+<span class="r-in"><span class="va">tbl2</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span class="r-in">  <span class="op">~</span><span class="va">anbr</span>, <span class="op">~</span><span class="va">SEX</span>,    <span class="op">~</span><span class="va">label</span>,         <span class="op">~</span><span class="va">row_type</span>,</span>
+<span class="r-in">  <span class="st">"01"</span>,  <span class="st">"F"</span>, <span class="st">"Sex : F"</span>, <span class="st">"TABLE_BY_HEADER"</span>,</span>
+<span class="r-in">  <span class="st">"01"</span>,  <span class="st">"F"</span>,     <span class="st">"&lt;65"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in">  <span class="st">"01"</span>,  <span class="st">"F"</span>,   <span class="st">"65-80"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in">  <span class="st">"01"</span>,  <span class="st">"F"</span>,     <span class="st">"&gt;80"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in">  <span class="st">"01"</span>,  <span class="st">"M"</span>, <span class="st">"Sex : M"</span>, <span class="st">"TABLE_BY_HEADER"</span>,</span>
+<span class="r-in">  <span class="st">"01"</span>,  <span class="st">"M"</span>,     <span class="st">"&lt;65"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in">  <span class="st">"01"</span>,  <span class="st">"M"</span>,   <span class="st">"65-80"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in">  <span class="st">"01"</span>,  <span class="st">"M"</span>,     <span class="st">"&gt;80"</span>,           <span class="st">"VALUE"</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">add_newrows</span><span class="op">(</span><span class="va">tbl2</span>, tableby <span class="op">=</span> <span class="st">"SEX"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   anbr  SEX   label   row_type        roworder newrows</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -157,52 +166,51 @@ newrows is used by gentlg to insert line breaks.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 01    M     &lt;65     VALUE                  2       0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> 01    M     65-80   VALUE                  3       0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> 01    M     &gt;80     VALUE                  4       0</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">tbl3</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span><span class="op">~</span><span class="va">anbr</span>, <span class="op">~</span><span class="va">SEX</span>,           <span class="op">~</span><span class="va">ETHNIC</span>,                  <span class="op">~</span><span class="va">label</span>,         <span class="op">~</span><span class="va">row_type</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>,  <span class="st">"F"</span>,                <span class="cn">NA</span>,                <span class="st">"Sex : F"</span>, <span class="st">"TABLE_BY_HEADER"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>,  <span class="st">"F"</span>, <span class="st">"HISPANIC OR LATINO"</span>, <span class="st">"HISPANIC OR LATINO"</span>,      <span class="st">"BY_HEADER1"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>,  <span class="st">"F"</span>, <span class="st">"HISPANIC OR LATINO"</span>,               <span class="st">"&lt;65"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>,  <span class="st">"F"</span>, <span class="st">"HISPANIC OR LATINO"</span>,               <span class="st">"&gt;80"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>,  <span class="st">"F"</span>, <span class="st">"HISPANIC OR LATINO"</span>,             <span class="st">"65-80"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"F"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>, <span class="st">"BY_HEADER1"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"F"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,                    <span class="st">"&lt;65"</span>,      <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"F"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,                  <span class="st">"65-80"</span>,      <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"F"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,                    <span class="st">"&gt;80"</span>,      <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"M"</span>,                       <span class="cn">NA</span>,           <span class="st">"Sex : M"</span>, <span class="st">"TABLE_BY_HEADER"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"M"</span>,    <span class="st">"HISPANIC OR LATINO"</span>,   <span class="st">"HISPANIC OR LATINO"</span>,    <span class="st">"BY_HEADER1"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"M"</span>,    <span class="st">"HISPANIC OR LATINO"</span>,                  <span class="st">"&lt;65"</span>,         <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"M"</span>,    <span class="st">"HISPANIC OR LATINO"</span>,                <span class="st">"65-80"</span>,         <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"M"</span>,     <span class="st">"HISPANIC OR LATINO"</span>,               <span class="st">"&gt;80"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"M"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>, <span class="st">"BY_HEADER1"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>, <span class="st">"M"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,              <span class="st">"&lt;65"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>,  <span class="st">"M"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,            <span class="st">"65-80"</span>,           <span class="st">"VALUE"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"01"</span>,  <span class="st">"M"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,              <span class="st">"&gt;80"</span>,           <span class="st">"VALUE"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">add_newrows</span><span class="op">(</span><span class="va">tbl3</span>, tableby <span class="op">=</span> <span class="st">"SEX"</span>, groupby <span class="op">=</span> <span class="st">"ETHNIC"</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">tbl3</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span class="r-in"><span class="op">~</span><span class="va">anbr</span>, <span class="op">~</span><span class="va">SEX</span>,           <span class="op">~</span><span class="va">ETHNIC</span>,                  <span class="op">~</span><span class="va">label</span>,         <span class="op">~</span><span class="va">row_type</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>,  <span class="st">"F"</span>,                <span class="cn">NA</span>,                <span class="st">"Sex : F"</span>, <span class="st">"TABLE_BY_HEADER"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>,  <span class="st">"F"</span>, <span class="st">"HISPANIC OR LATINO"</span>, <span class="st">"HISPANIC OR LATINO"</span>,      <span class="st">"BY_HEADER1"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>,  <span class="st">"F"</span>, <span class="st">"HISPANIC OR LATINO"</span>,               <span class="st">"&lt;65"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>,  <span class="st">"F"</span>, <span class="st">"HISPANIC OR LATINO"</span>,               <span class="st">"&gt;80"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>,  <span class="st">"F"</span>, <span class="st">"HISPANIC OR LATINO"</span>,             <span class="st">"65-80"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"F"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>, <span class="st">"BY_HEADER1"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"F"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,                    <span class="st">"&lt;65"</span>,      <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"F"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,                  <span class="st">"65-80"</span>,      <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"F"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,                    <span class="st">"&gt;80"</span>,      <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"M"</span>,                       <span class="cn">NA</span>,           <span class="st">"Sex : M"</span>, <span class="st">"TABLE_BY_HEADER"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"M"</span>,    <span class="st">"HISPANIC OR LATINO"</span>,   <span class="st">"HISPANIC OR LATINO"</span>,    <span class="st">"BY_HEADER1"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"M"</span>,    <span class="st">"HISPANIC OR LATINO"</span>,                  <span class="st">"&lt;65"</span>,         <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"M"</span>,    <span class="st">"HISPANIC OR LATINO"</span>,                <span class="st">"65-80"</span>,         <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"M"</span>,     <span class="st">"HISPANIC OR LATINO"</span>,               <span class="st">"&gt;80"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"M"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>, <span class="st">"BY_HEADER1"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>, <span class="st">"M"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,              <span class="st">"&lt;65"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>,  <span class="st">"M"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,            <span class="st">"65-80"</span>,           <span class="st">"VALUE"</span>,</span>
+<span class="r-in"> <span class="st">"01"</span>,  <span class="st">"M"</span>, <span class="st">"NOT HISPANIC OR LATINO"</span>,              <span class="st">"&gt;80"</span>,           <span class="st">"VALUE"</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">add_newrows</span><span class="op">(</span><span class="va">tbl3</span>, tableby <span class="op">=</span> <span class="st">"SEX"</span>, groupby <span class="op">=</span> <span class="st">"ETHNIC"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 18 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    anbr  SEX   ETHNIC                 label              row_t…¹ rowor…² newrows</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01    F     <span style="color: #BB0000;">NA</span>                     Sex : F            TABLE_…       1       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 01    F     HISPANIC OR LATINO     HISPANIC OR LATINO BY_HEA…       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 01    F     HISPANIC OR LATINO     &lt;65                VALUE         2       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 01    F     HISPANIC OR LATINO     &gt;80                VALUE         3       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 01    F     HISPANIC OR LATINO     65-80              VALUE         4       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 01    F     NOT HISPANIC OR LATINO NOT HISPANIC OR L… BY_HEA…       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 01    F     NOT HISPANIC OR LATINO &lt;65                VALUE         2       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 01    F     NOT HISPANIC OR LATINO 65-80              VALUE         3       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 01    F     NOT HISPANIC OR LATINO &gt;80                VALUE         4       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 01    M     <span style="color: #BB0000;">NA</span>                     Sex : M            TABLE_…       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 01    M     HISPANIC OR LATINO     HISPANIC OR LATINO BY_HEA…       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 01    M     HISPANIC OR LATINO     &lt;65                VALUE         2       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 01    M     HISPANIC OR LATINO     65-80              VALUE         3       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 01    M     HISPANIC OR LATINO     &gt;80                VALUE         4       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 01    M     NOT HISPANIC OR LATINO NOT HISPANIC OR L… BY_HEA…       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 01    M     NOT HISPANIC OR LATINO &lt;65                VALUE         2       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 01    M     NOT HISPANIC OR LATINO 65-80              VALUE         3       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 01    M     NOT HISPANIC OR LATINO &gt;80                VALUE         4       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​row_type, ²​roworder</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    anbr  SEX   ETHNIC                 label            row_type roworder newrows</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01    F     <span style="color: #BB0000;">NA</span>                     Sex : F          TABLE_B…        1       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 01    F     HISPANIC OR LATINO     HISPANIC OR LAT… BY_HEAD…        1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 01    F     HISPANIC OR LATINO     &lt;65              VALUE           2       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 01    F     HISPANIC OR LATINO     &gt;80              VALUE           3       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 01    F     HISPANIC OR LATINO     65-80            VALUE           4       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 01    F     NOT HISPANIC OR LATINO NOT HISPANIC OR… BY_HEAD…        1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 01    F     NOT HISPANIC OR LATINO &lt;65              VALUE           2       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 01    F     NOT HISPANIC OR LATINO 65-80            VALUE           3       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 01    F     NOT HISPANIC OR LATINO &gt;80              VALUE           4       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 01    M     <span style="color: #BB0000;">NA</span>                     Sex : M          TABLE_B…        1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 01    M     HISPANIC OR LATINO     HISPANIC OR LAT… BY_HEAD…        1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 01    M     HISPANIC OR LATINO     &lt;65              VALUE           2       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 01    M     HISPANIC OR LATINO     65-80            VALUE           3       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 01    M     HISPANIC OR LATINO     &gt;80              VALUE           4       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 01    M     NOT HISPANIC OR LATINO NOT HISPANIC OR… BY_HEAD…        1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 01    M     NOT HISPANIC OR LATINO &lt;65              VALUE           2       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 01    M     NOT HISPANIC OR LATINO 65-80            VALUE           3       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 01    M     NOT HISPANIC OR LATINO &gt;80              VALUE           4       0</span>
 </code></pre></div>
     </div>
   </div>

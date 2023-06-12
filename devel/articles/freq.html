@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidytlg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
@@ -76,8 +76,18 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -87,13 +97,13 @@
 
       
 
-      </header><script src="freq_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Frequency Analysis</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/tidytlg/blob/HEAD/vignettes/freq.Rmd" class="external-link"><code>vignettes/freq.Rmd</code></a></small>
       <div class="hidden name"><code>freq.Rmd</code></div>
 
     </div>
@@ -103,20 +113,27 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>The <code>freq</code> and <code>nested_freq</code> functions are called to produce categorical-type summary statistics (i.e. counts and percentages) for character variables. These functions can be used to create all different types of categorical summary statistics tables.</p>
+<p>The <code>freq</code> and <code>nested_freq</code> functions are
+called to produce categorical-type summary statistics (i.e. counts and
+percentages) for character variables. These functions can be used to
+create all different types of categorical summary statistics tables.</p>
 <div class="section level3">
 <h3 id="counts-statlist-statlistn">Counts: statlist = statlist(“n”)<a class="anchor" aria-label="anchor" href="#counts-statlist-statlistn"></a>
 </h3>
-<p>There are many uses for <code>freq</code>, the first one we’ll show is to create the first row of analysis set summary of population counts in the output. In the following table the <code>subset</code> argument is used to create the one row summary with the row heading specified in the <code>rowtext</code> argument.</p>
+<p>There are many uses for <code>freq</code>, the first one we’ll show
+is to create the first row of analysis set summary of population counts
+in the output. In the following table the <code>subset</code> argument
+is used to create the one row summary with the row heading specified in
+the <code>rowtext</code> argument.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
-<span>       rowvar <span class="op">=</span> <span class="st">"ITTFL"</span>, </span>
-<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n"</span><span class="op">)</span>,</span>
-<span>       subset <span class="op">=</span> <span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span>,</span>
-<span>       rowtext <span class="op">=</span> <span class="st">"Analysis set: ITT"</span><span class="op">)</span></span>
-<span>  </span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
+       rowvar <span class="op">=</span> <span class="st">"ITTFL"</span>, 
+       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n"</span><span class="op">)</span>,
+       subset <span class="op">=</span> <span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span>,
+       rowtext <span class="op">=</span> <span class="st">"Analysis set: ITT"</span><span class="op">)</span>
+  
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -137,21 +154,26 @@
 </table>
 </div>
 <div class="section level3">
-<h3 id="big-n-row-counts-and-percentages-statlist-statlistcn-n-x-x">Big N row, counts and percentages: statlist = statlist(c(“N”, “n (x.x%)”))<a class="anchor" aria-label="anchor" href="#big-n-row-counts-and-percentages-statlist-statlistcn-n-x-x"></a>
+<h3 id="big-n-row-counts-and-percentages-statlist-statlistcn-n-x-x">Big N row, counts and percentages: statlist = statlist(c(“N”, “n
+(x.x%)”))<a class="anchor" aria-label="anchor" href="#big-n-row-counts-and-percentages-statlist-statlistcn-n-x-x"></a>
 </h3>
-<p>A typical call of using the <code>freq</code> function is to create the <code>tbl</code> chunk with:</p>
+<p>A typical call of using the <code>freq</code> function is to create
+the <code>tbl</code> chunk with:</p>
 <ul>
-<li><p>the row of big N indicating number of subjects having values in the character variable for each treatment group</p></li>
-<li><p>summary of counts and percentages for each category in the character variable such as age groups, gender, race, ethnicity, etc.</p></li>
+<li><p>the row of big N indicating number of subjects having values in
+the character variable for each treatment group</p></li>
+<li><p>summary of counts and percentages for each category in the
+character variable such as age groups, gender, race, ethnicity,
+etc.</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
-<span>       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, </span>
-<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
+       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, 
+       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,
+       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -200,16 +222,20 @@
 <div class="section level3">
 <h3 id="using-factor-to-order-category-summary">Using factor to order category summary<a class="anchor" aria-label="anchor" href="#using-factor-to-order-category-summary"></a>
 </h3>
-<p>In the above table, <code>F</code> appears first and then <code>M</code> is shown. This is because <code>SEX</code> is a character variable and alphabetical sorting is applied to the summarized results. We can convert <code>SEX</code> to a factor variable with the customized order and labels for enabling the user-defined sorting.</p>
+<p>In the above table, <code>F</code> appears first and then
+<code>M</code> is shown. This is because <code>SEX</code> is a character
+variable and alphabetical sorting is applied to the summarized results.
+We can convert <code>SEX</code> to a factor variable with the customized
+order and labels for enabling the user-defined sorting.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
-<span>       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, </span>
-<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
+       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, 
+       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,
+       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -256,18 +282,21 @@
 </table>
 </div>
 <div class="section level3">
-<h3 id="counts-denominators-and-percentages-statlist-statlistcnn-x-x">Counts, denominators, and percentages: statlist = statlist(c(“n/N (x.x%)”))<a class="anchor" aria-label="anchor" href="#counts-denominators-and-percentages-statlist-statlistcnn-x-x"></a>
+<h3 id="counts-denominators-and-percentages-statlist-statlistcnn-x-x">Counts, denominators, and percentages: statlist = statlist(c(“n/N
+(x.x%)”))<a class="anchor" aria-label="anchor" href="#counts-denominators-and-percentages-statlist-statlistcnn-x-x"></a>
 </h3>
-<p>In some outputs, the table mock-up may require showing the percentage denominator, which can be done by specifying <code>statlist = statlist("n/N (x.x%)")</code>.</p>
+<p>In some outputs, the table mock-up may require showing the percentage
+denominator, which can be done by specifying
+<code>statlist = statlist("n/N (x.x%)")</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
-<span>       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, </span>
-<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n/N (x.x%)"</span><span class="op">)</span>,</span>
-<span>       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
+       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, 
+       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n/N (x.x%)"</span><span class="op">)</span>,
+       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -308,18 +337,33 @@
 <div class="section level3">
 <h3 id="by-processing-statlist-statlistcn-n-x-x">By processing: statlist = statlist(c(“N”, “n (x.x%)”))<a class="anchor" aria-label="anchor" href="#by-processing-statlist-statlistcn-n-x-x"></a>
 </h3>
-<p>By-processing splits the summary statistics by another character variable that can be specified in the argument of <code>rowbyvar</code> or <code>tablebyvar</code>. For the example shown below, age group categories are summarized by the <code>SEX</code> variable. In this scenario, the denominator should also be split by <code>SEX</code> in addition to <code>TRT01PN</code>, which can be done by <code>statlist(c("N","n (x.x%)"), denoms_by = c("SEX", "TRT01PN"))</code>.</p>
+<p>By-processing splits the summary statistics by another character
+variable that can be specified in the argument of <code>rowbyvar</code>
+or <code>tablebyvar</code>. For the example shown below, age group
+categories are summarized by the <code>SEX</code> variable. In this
+scenario, the denominator should also be split by <code>SEX</code> in
+addition to <code>TRT01PN</code>, which can be done by
+<code>statlist(c("N","n (x.x%)"), denoms_by = c("SEX", "TRT01PN"))</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,</span>
-<span>       rowbyvar <span class="op">=</span> <span class="st">"SEX"</span>,</span>
-<span>       rowvar <span class="op">=</span> <span class="st">"AGEGR1"</span>, </span>
-<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span>, denoms_by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"TRT01PN"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>       row_header <span class="op">=</span> <span class="st">"Age group"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,
+       rowbyvar <span class="op">=</span> <span class="st">"SEX"</span>,
+       rowvar <span class="op">=</span> <span class="st">"AGEGR1"</span>, 
+       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span>, denoms_by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"TRT01PN"</span><span class="op">)</span><span class="op">)</span>,
+       row_header <span class="op">=</span> <span class="st">"Age group"</span><span class="op">)</span> 
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="14%">
+<col width="14%">
+<col width="15%">
+<col width="14%">
+<col width="15%">
+<col width="16%">
+<col width="9%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">0</th>
@@ -440,22 +484,37 @@
 </tr>
 </tbody>
 </table>
-<p>By default, the denominators are calculated by using <code>colvar</code>, <code>tablebyvar</code>, and <code>rowbyvar</code>. The above <code>freq</code> function call will also produce the same results without specifying the <code>denoms_by</code> argument inside the <code>statlist</code> function.</p>
+<p>By default, the denominators are calculated by using
+<code>colvar</code>, <code>tablebyvar</code>, and <code>rowbyvar</code>.
+The above <code>freq</code> function call will also produce the same
+results without specifying the <code>denoms_by</code> argument inside
+the <code>statlist</code> function.</p>
 </div>
 <div class="section level3">
 <h3 id="padding-factor-levels-on-and-off">Padding factor levels on and off<a class="anchor" aria-label="anchor" href="#padding-factor-levels-on-and-off"></a>
 </h3>
-<p>When using <code>rowbyvar</code> to create by-processing summaries, some levels of the <code>rowvar</code> may have zero records as shown in the example below.</p>
+<p>When using <code>rowbyvar</code> to create by-processing summaries,
+some levels of the <code>rowvar</code> may have zero records as shown in
+the example below.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,</span>
-<span>       rowbyvar <span class="op">=</span> <span class="st">"ETHNIC"</span>,</span>
-<span>       rowvar <span class="op">=</span> <span class="st">"RACE"</span>,</span>
-<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>       row_header <span class="op">=</span> <span class="st">"Race"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,
+       rowbyvar <span class="op">=</span> <span class="st">"ETHNIC"</span>,
+       rowvar <span class="op">=</span> <span class="st">"RACE"</span>,
+       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,
+       row_header <span class="op">=</span> <span class="st">"Race"</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="22%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="11%">
+<col width="22%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">0</th>
@@ -540,18 +599,29 @@
 </tr>
 </tbody>
 </table>
-<p>To remove the zero record rows and create the data driven summary, users can specify the <code>pad = FALSE</code> in the <code>freq</code> function.</p>
+<p>To remove the zero record rows and create the data driven summary,
+users can specify the <code>pad = FALSE</code> in the <code>freq</code>
+function.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,</span>
-<span>       rowbyvar <span class="op">=</span> <span class="st">"ETHNIC"</span>,</span>
-<span>       rowvar <span class="op">=</span> <span class="st">"RACE"</span>,</span>
-<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>       row_header <span class="op">=</span> <span class="st">"Race"</span>,</span>
-<span>       pad <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,
+       rowbyvar <span class="op">=</span> <span class="st">"ETHNIC"</span>,
+       rowvar <span class="op">=</span> <span class="st">"RACE"</span>,
+       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,
+       row_header <span class="op">=</span> <span class="st">"Race"</span>,
+       pad <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="22%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="11%">
+<col width="22%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">0</th>
@@ -640,19 +710,31 @@
 <div class="section level3">
 <h3 id="denominator-dataframe">Denominator Dataframe<a class="anchor" aria-label="anchor" href="#denominator-dataframe"></a>
 </h3>
-<p>When using frequency analysis you do not need to always use your main dataframe to calculate your denominators. For example, an adverse event table may use ADSL as the denominator dataframe instead of ADAE even though the counts are coming from ADAE. The example below shows a table counting AEDECOD but using ADSL to calculate the denominators.</p>
+<p>When using frequency analysis you do not need to always use your main
+dataframe to calculate your denominators. For example, an adverse event
+table may use ADSL as the denominator dataframe instead of ADAE even
+though the counts are coming from ADAE. The example below shows a table
+counting AEDECOD but using ADSL to calculate the denominators.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TRT01AN <span class="op">=</span> <span class="va">TRTAN</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>denom_df <span class="op">=</span> <span class="va">cdisc_adsl</span>,</span>
-<span>       colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,</span>
-<span>       rowvar <span class="op">=</span> <span class="st">"AEDECOD"</span>,</span>
-<span>       descending_by <span class="op">=</span> <span class="st">"81"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TRT01AN <span class="op">=</span> <span class="va">TRTAN</span><span class="op">)</span>
+
+<span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>denom_df <span class="op">=</span> <span class="va">cdisc_adsl</span>,
+       colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,
+       rowvar <span class="op">=</span> <span class="st">"AEDECOD"</span>,
+       descending_by <span class="op">=</span> <span class="st">"81"</span><span class="op">)</span> 
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="36%">
+<col width="11%">
+<col width="11%">
+<col width="12%">
+<col width="11%">
+<col width="15%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">0</th>
@@ -746,19 +828,42 @@
 </table>
 </div>
 <div class="section level3">
-<h3 id="by-processing-and-denominators-statlist-statlistcn-x-x-denoms_by-trt01an">By processing and denominators: statlist = statlist(c(“n (x.x)”), denoms_by = “TRT01AN”)<a class="anchor" aria-label="anchor" href="#by-processing-and-denominators-statlist-statlistcn-x-x-denoms_by-trt01an"></a>
+<h3 id="by-processing-and-denominators-statlist-statlistcn-x-x-denoms_by-trt01an">By processing and denominators: statlist = statlist(c(“n (x.x)”),
+denoms_by = “TRT01AN”)<a class="anchor" aria-label="anchor" href="#by-processing-and-denominators-statlist-statlistcn-x-x-denoms_by-trt01an"></a>
 </h3>
-<p>When using by variables such as <code>tablebyvar</code> and <code>rowbyvar</code> the denominators may need to be changed to work correctly. This also works in conjunction with the <code>denom_df</code> argument. By default, the denominators are calculated by using <code>colvar</code>, <code>tablebyvar</code>, and <code>rowbyvar</code>. This works well if you are using the same dataframe for counts and denominators but this is not always the case. In the following example we are doing a similar table as above but using AESEV as a <code>rowbyvar</code>. In this example we don’t want our denoms by AESEV since that variable is not in ADSL, which is where our denominators are coming from. To change the variables by which our denoms are calculated by we use the <code>denoms_by</code> argument to the <code>statlist</code> function. Below you can see that we are using only our <code>colvar</code> of TRT01PN as our <code>denoms_by</code>.</p>
+<p>When using by variables such as <code>tablebyvar</code> and
+<code>rowbyvar</code> the denominators may need to be changed to work
+correctly. This also works in conjunction with the <code>denom_df</code>
+argument. By default, the denominators are calculated by using
+<code>colvar</code>, <code>tablebyvar</code>, and <code>rowbyvar</code>.
+This works well if you are using the same dataframe for counts and
+denominators but this is not always the case. In the following example
+we are doing a similar table as above but using AESEV as a
+<code>rowbyvar</code>. In this example we don’t want our denoms by AESEV
+since that variable is not in ADSL, which is where our denominators are
+coming from. To change the variables by which our denoms are calculated
+by we use the <code>denoms_by</code> argument to the
+<code>statlist</code> function. Below you can see that we are using only
+our <code>colvar</code> of TRT01PN as our <code>denoms_by</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>denom_df <span class="op">=</span> <span class="va">cdisc_adsl</span>,</span>
-<span>       colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,</span>
-<span>       rowvar <span class="op">=</span> <span class="st">"AEDECOD"</span>,</span>
-<span>       rowbyvar <span class="op">=</span> <span class="st">"AESEV"</span>,</span>
-<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n (x.x)"</span><span class="op">)</span>, denoms_by <span class="op">=</span> <span class="st">"TRT01AN"</span><span class="op">)</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>denom_df <span class="op">=</span> <span class="va">cdisc_adsl</span>,
+       colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,
+       rowvar <span class="op">=</span> <span class="st">"AEDECOD"</span>,
+       rowbyvar <span class="op">=</span> <span class="st">"AESEV"</span>,
+       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n (x.x)"</span><span class="op">)</span>, denoms_by <span class="op">=</span> <span class="st">"TRT01AN"</span><span class="op">)</span><span class="op">)</span> 
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="32%">
+<col width="10%">
+<col width="10%">
+<col width="11%">
+<col width="12%">
+<col width="14%">
+<col width="7%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">0</th>
@@ -865,7 +970,10 @@
 <div class="section level3">
 <h3 id="available-statlist-formats-for-frequency-summary">Available statlist formats for frequency summary<a class="anchor" aria-label="anchor" href="#available-statlist-formats-for-frequency-summary"></a>
 </h3>
-<p>We have shown the common use cases of calling different variants of the statlist for frequency summaries. The table below describes all available options to be specified for the <code>statlist</code> in <code>freq</code>.</p>
+<p>We have shown the common use cases of calling different variants of
+the statlist for frequency summaries. The table below describes all
+available options to be specified for the <code>statlist</code> in
+<code>freq</code>.</p>
 <table style="width:96%;" class="table">
 <colgroup>
 <col width="20%">
@@ -902,39 +1010,60 @@
 </tr>
 </tbody>
 </table>
-<p>To learn more about using the <code>statlist</code> function for freq analysis, please type <code><a href="../reference/statlist.html">?statlist</a></code> in your console.</p>
+<p>To learn more about using the <code>statlist</code> function for freq
+analysis, please type <code><a href="../reference/statlist.html">?statlist</a></code> in your console.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="nested-frequency-analysis">Nested Frequency Analysis<a class="anchor" aria-label="anchor" href="#nested-frequency-analysis"></a>
 </h2>
-<p>A major portion of Adverse Events (AE) summary tables require summarizing number of subjects with treatment-emergent adverse events by system organ class and preferred term, which is in a nested structure and needs additional processing on top of the <code>freq</code> function. Therefore, we developed the <code>nested_freq</code> function to address the nested structure (counts within counts):</p>
+<p>A major portion of Adverse Events (AE) summary tables require
+summarizing number of subjects with treatment-emergent adverse events by
+system organ class and preferred term, which is in a nested structure
+and needs additional processing on top of the <code>freq</code>
+function. Therefore, we developed the <code>nested_freq</code> function
+to address the nested structure (counts within counts):</p>
 <ul>
-<li><p><code>rowvar</code>: we can specify nested levels separated by <code>*</code> (e.g. <code>AEBODSYS*AEDECOD</code>); this can be expanded to three levels</p></li>
-<li><p><code>descending_by</code>: the name of the column for sorting in descending frequency order</p></li>
-<li><p><code>cutoff_stat</code>: the value to cutoff by, n (count) or pct (percentage); default = ‘pct’</p></li>
-<li><p><code>cutoff</code>: numeric value of the percentage/count threshold in any treatment group for cutting the data to be presented; for example, <code>cutoff = 1.0</code> means to only keep the preferred term rows with percentages &gt;= 1% when cutoff_stat = ‘pct’.</p></li>
+<li><p><code>rowvar</code>: we can specify nested levels separated by
+<code>*</code> (e.g. <code>AEBODSYS*AEDECOD</code>); this can be
+expanded to three levels</p></li>
+<li><p><code>descending_by</code>: the name of the column for sorting in
+descending frequency order</p></li>
+<li><p><code>cutoff_stat</code>: the value to cutoff by, n (count) or
+pct (percentage); default = ‘pct’</p></li>
+<li><p><code>cutoff</code>: numeric value of the percentage/count
+threshold in any treatment group for cutting the data to be presented;
+for example, <code>cutoff = 1.0</code> means to only keep the preferred
+term rows with percentages &gt;= 1% when cutoff_stat = ‘pct’.</p></li>
 </ul>
-<p>In the example below, we will show you how to use these arguments in the <code>nested_freq</code> function call for creating the AE summary table by AEBODSYS and AEDECOD.</p>
+<p>In the example below, we will show you how to use these arguments in
+the <code>nested_freq</code> function call for creating the AE summary
+table by AEBODSYS and AEDECOD.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span>, <span class="va">TRTEMFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">AEBODSYS</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS"</span>,<span class="st">"SKIN AND SUBCUTANEOUS TISSUE DISORDERS"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TRT01AN <span class="op">=</span> <span class="va">TRTAN</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span></span></code></pre></div>
-<p>For illustration purpose, we subset the adae data to only contain records in the 2 categories of system organ class: GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS, SKIN AND SUBCUTANEOUS TISSUE DISORDERS. So the table output is not too long and will be easier to visualize. In addition, we would like to sort the output by the active drug group (TRT01AN = 81) with descending frequency. Therefore, we specify <code>descending_by = "81"</code>.</p>
+<code class="sourceCode R"><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span>, <span class="va">TRTEMFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">AEBODSYS</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS"</span>,<span class="st">"SKIN AND SUBCUTANEOUS TISSUE DISORDERS"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TRT01AN <span class="op">=</span> <span class="va">TRTAN</span><span class="op">)</span>
+
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span></code></pre></div>
+<p>For illustration purpose, we subset the adae data to only contain
+records in the 2 categories of system organ class: GENERAL DISORDERS AND
+ADMINISTRATION SITE CONDITIONS, SKIN AND SUBCUTANEOUS TISSUE DISORDERS.
+So the table output is not too long and will be easier to visualize. In
+addition, we would like to sort the output by the active drug group
+(TRT01AN = 81) with descending frequency. Therefore, we specify
+<code>descending_by = "81"</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,</span>
-<span>                   denom_df <span class="op">=</span> <span class="va">adsl</span>,</span>
-<span>                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,</span>
-<span>                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span>
-<span>                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span>
-<span>                   descending_by <span class="op">=</span> <span class="st">"81"</span>,</span>
-<span>                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,
+                   denom_df <span class="op">=</span> <span class="va">adsl</span>,
+                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,
+                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,
+                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,
+                   descending_by <span class="op">=</span> <span class="st">"81"</span>,
+                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="30%">
@@ -966,17 +1095,20 @@ Preferred term</td>
 <td align="left">HEADER</td>
 <td align="right">NA</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 <td align="left">2 (40.0%)</td>
 <td align="left">3 (60.0%)</td>
 <td align="left">5 (100.0%)</td>
 <td align="left">NESTED</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="odd">
 <td align="left">APPLICATION SITE PRURITUS</td>
@@ -986,7 +1118,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
 <td align="left">APPLICATION SITE ERYTHEMA</td>
@@ -996,7 +1129,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="odd">
 <td align="left">FATIGUE</td>
@@ -1006,7 +1140,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
 <td align="left">APPLICATION SITE IRRITATION</td>
@@ -1016,7 +1151,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="odd">
 <td align="left">APPLICATION SITE PAIN</td>
@@ -1026,7 +1162,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
 <td align="left">APPLICATION SITE VESICLES</td>
@@ -1036,7 +1173,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="odd">
 <td align="left">APPLICATION SITE DERMATITIS</td>
@@ -1046,7 +1184,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
 <td align="left">APPLICATION SITE URTICARIA</td>
@@ -1056,7 +1195,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="odd">
 <td align="left">PYREXIA</td>
@@ -1066,7 +1206,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
 <td align="left">SKIN AND SUBCUTANEOUS TISSUE DISORDERS</td>
@@ -1130,20 +1271,29 @@ Preferred term</td>
 </tr>
 </tbody>
 </table>
-<p>As shown in the output above, the most frequent system organ class is <strong>GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</strong>, followed by <strong>SKIN AND SUBCUTANEOUS TISSUE DISORDERS</strong>. Within each system organ class, the preferred terms are also sorted by descending frequency. When there is a tie in the counts, the preferred terms are sorted alphabetically.</p>
-<p>The cutoff feature is controlled by two arguments: <code>cutoff</code> and <code>cutoff_stat</code>. If we want to remove the rows of preferred terms with only 1 count in any treatment columns, we can specify <code>cutoff = 2</code> and <code>cutoff_stat = "n"</code> in the nested_freq call below.</p>
+<p>As shown in the output above, the most frequent system organ class is
+<strong>GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</strong>,
+followed by <strong>SKIN AND SUBCUTANEOUS TISSUE DISORDERS</strong>.
+Within each system organ class, the preferred terms are also sorted by
+descending frequency. When there is a tie in the counts, the preferred
+terms are sorted alphabetically.</p>
+<p>The cutoff feature is controlled by two arguments:
+<code>cutoff</code> and <code>cutoff_stat</code>. If we want to remove
+the rows of preferred terms with only 1 count in any treatment columns,
+we can specify <code>cutoff = 2</code> and
+<code>cutoff_stat = "n"</code> in the nested_freq call below.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,</span>
-<span>                   denom_df <span class="op">=</span> <span class="va">adsl</span>,</span>
-<span>                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,</span>
-<span>                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span>
-<span>                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span>
-<span>                   descending_by <span class="op">=</span> <span class="st">"81"</span>,</span>
-<span>                   cutoff <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>                   cutoff_stat <span class="op">=</span> <span class="st">"n"</span>,</span>
-<span>                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,
+                   denom_df <span class="op">=</span> <span class="va">adsl</span>,
+                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,
+                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,
+                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,
+                   descending_by <span class="op">=</span> <span class="st">"81"</span>,
+                   cutoff <span class="op">=</span> <span class="fl">2</span>,
+                   cutoff_stat <span class="op">=</span> <span class="st">"n"</span>,
+                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="30%">
@@ -1175,17 +1325,20 @@ Preferred term</td>
 <td align="left">HEADER</td>
 <td align="right">NA</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 <td align="left">2 (40.0%)</td>
 <td align="left">3 (60.0%)</td>
 <td align="left">5 (100.0%)</td>
 <td align="left">NESTED</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="odd">
 <td align="left">APPLICATION SITE PRURITUS</td>
@@ -1195,7 +1348,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
 <td align="left">APPLICATION SITE ERYTHEMA</td>
@@ -1205,7 +1359,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="odd">
 <td align="left">FATIGUE</td>
@@ -1215,7 +1370,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
 <td align="left">SKIN AND SUBCUTANEOUS TISSUE DISORDERS</td>
@@ -1239,20 +1395,27 @@ Preferred term</td>
 </tr>
 </tbody>
 </table>
-<p>The same cutoff results can also be achieved by specifying the cutoff percentage: <code>cutoff = 25</code> and <code>cutoff_stat = "pct"</code>. In our example, we only have 5 subjects in each arm and one subject count is equal to 20%, and so we need more than 20% as the cutoff.</p>
-<p>For only keeping the preferred terms with at least 2 counts in the active arm of <code>TRT01AN = 81</code> (i.e. not considering the other arms), we can specify <code>cutoff = "81 &gt;= 2" and</code>cutoff_stat = “n”`.</p>
+<p>The same cutoff results can also be achieved by specifying the cutoff
+percentage: <code>cutoff = 25</code> and
+<code>cutoff_stat = "pct"</code>. In our example, we only have 5
+subjects in each arm and one subject count is equal to 20%, and so we
+need more than 20% as the cutoff.</p>
+<p>For only keeping the preferred terms with at least 2 counts in the
+active arm of <code>TRT01AN = 81</code> (i.e. not considering the other
+arms), we can specify <code>cutoff = "81 &gt;= 2" and</code>cutoff_stat
+= “n”`.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,</span>
-<span>                   denom_df <span class="op">=</span> <span class="va">adsl</span>,</span>
-<span>                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,</span>
-<span>                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span>
-<span>                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span>
-<span>                   descending_by <span class="op">=</span> <span class="st">"81"</span>,</span>
-<span>                   cutoff <span class="op">=</span> <span class="st">"81 &gt;= 2"</span>,</span>
-<span>                   cutoff_stat <span class="op">=</span> <span class="st">"n"</span>,</span>
-<span>                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,
+                   denom_df <span class="op">=</span> <span class="va">adsl</span>,
+                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,
+                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,
+                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,
+                   descending_by <span class="op">=</span> <span class="st">"81"</span>,
+                   cutoff <span class="op">=</span> <span class="st">"81 &gt;= 2"</span>,
+                   cutoff_stat <span class="op">=</span> <span class="st">"n"</span>,
+                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="30%">
@@ -1284,17 +1447,20 @@ Preferred term</td>
 <td align="left">HEADER</td>
 <td align="right">NA</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 <td align="left">2 (40.0%)</td>
 <td align="left">3 (60.0%)</td>
 <td align="left">5 (100.0%)</td>
 <td align="left">NESTED</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="odd">
 <td align="left">APPLICATION SITE PRURITUS</td>
@@ -1304,7 +1470,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="even">
 <td align="left">APPLICATION SITE ERYTHEMA</td>
@@ -1314,7 +1481,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 <tr class="odd">
 <td align="left">FATIGUE</td>
@@ -1324,7 +1492,8 @@ Preferred term</td>
 <td align="left">NESTED</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS</td>
+<td align="left">GENERAL DISORDERS AND ADMINISTRATION SITE
+CONDITIONS</td>
 </tr>
 </tbody>
 </table>

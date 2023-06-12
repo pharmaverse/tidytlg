@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidytlg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
@@ -76,8 +76,18 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -87,13 +97,13 @@
 
       
 
-      </header><script src="tidytlg_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Get Started</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/tidytlg/blob/HEAD/vignettes/tidytlg.Rmd" class="external-link"><code>vignettes/tidytlg.Rmd</code></a></small>
       <div class="hidden name"><code>tidytlg.Rmd</code></div>
 
     </div>
@@ -103,130 +113,211 @@
 <div class="section level2">
 <h2 id="overview-of-tlg-programming">Overview of TLG Programming<a class="anchor" aria-label="anchor" href="#overview-of-tlg-programming"></a>
 </h2>
-<p><code>tidytlg</code> provides a framework of creating TLG outputs for clinical study report. The TLG programming workflow includes the following steps:</p>
+<p><code>tidytlg</code> provides a framework of creating TLG outputs for
+clinical study report. The TLG programming workflow includes the
+following steps:</p>
 <ul>
-<li><p>Prep environment: set up the R environment for the I/O paths.</p></li>
-<li><p>Process data: filter analysis data, perform data manipulation (e.g. convert character variable to factor), and define column variable.</p></li>
-<li><p>Generate results: create analysis rows of summary statistics (for tables) or plots (for graphs).</p></li>
-<li><p>Output results: output analysis results in designated format such as rtf or html.</p></li>
+<li><p>Prep environment: set up the R environment for the I/O
+paths.</p></li>
+<li><p>Process data: filter analysis data, perform data manipulation
+(e.g. convert character variable to factor), and define column
+variable.</p></li>
+<li><p>Generate results: create analysis rows of summary statistics (for
+tables) or plots (for graphs).</p></li>
+<li><p>Output results: output analysis results in designated format such
+as rtf or html.</p></li>
 </ul>
-<p>We will illustrate the above steps by creating a demographic table first, and then follow by examples of creating listing and graph.</p>
+<p>We will illustrate the above steps by creating a demographic table
+first, and then follow by examples of creating listing and graph.</p>
 </div>
 <div class="section level2">
 <h2 id="prep-environment">Prep environment<a class="anchor" aria-label="anchor" href="#prep-environment"></a>
 </h2>
-<p>To set up the R environment, you can set the path objects of the input folder and output folder consistently for all TLG programs. The analysis datasets and other required inputs such as the titles file and column metadata file are placed in the input folder, while the output folder will be used to store the output files. The <a href="https://pharmaverse.github.io/envsetup/main/" class="external-link">envsetup</a> package can be used to set up the R environment for TLG programming.</p>
+<p>To set up the R environment, you can set the path objects of the
+input folder and output folder consistently for all TLG programs. The
+analysis datasets and other required inputs such as the titles file and
+column metadata file are placed in the input folder, while the output
+folder will be used to store the output files. The <a href="https://pharmaverse.github.io/envsetup/main/" class="external-link">envsetup</a> package
+can be used to set up the R environment for TLG programming.</p>
 <div class="section level3">
 <h3 id="titles-and-footnotes">titles and footnotes<a class="anchor" aria-label="anchor" href="#titles-and-footnotes"></a>
 </h3>
-<p>The information for titles and footnotes for each TLG can be stored in an excel file called titles.xls (see below snapshot), which will be used later to create the outputs.</p>
+<p>The information for titles and footnotes for each TLG can be stored
+in an excel file called titles.xls (see below snapshot), which will be
+used later to create the outputs.</p>
 <p><img src="titles.PNG" width="600px"></p>
 </div>
 <div class="section level3">
 <h3 id="column-metadata">column metadata<a class="anchor" aria-label="anchor" href="#column-metadata"></a>
 </h3>
-<p>Column metadata provides the column structure of the table layout and includes the following variables:</p>
+<p>Column metadata provides the column structure of the table layout and
+includes the following variables:</p>
 <ul>
 <li><p>tbltype: identifier used to group a table column layout</p></li>
-<li><p>coldef: distinct variable values used, typically numeric and typically a treatment variable, think TRT01PN</p></li>
-<li><p>decode: decode of coldef that will display as a column header in the table</p></li>
-<li><p>span1: spanning header to display across multiple columns (the lowest level)</p></li>
-<li><p>span2: spanning header to display across multiple columns, second level</p></li>
-<li><p>span3: spanning header to display across multiple columns, third level</p></li>
+<li><p>coldef: distinct variable values used, typically numeric and
+typically a treatment variable, think TRT01PN</p></li>
+<li><p>decode: decode of coldef that will display as a column header in
+the table</p></li>
+<li><p>span1: spanning header to display across multiple columns (the
+lowest level)</p></li>
+<li><p>span2: spanning header to display across multiple columns, second
+level</p></li>
+<li><p>span3: spanning header to display across multiple columns, third
+level</p></li>
 </ul>
 <p>Please see below for a snapshot of column_metadata.xlsx.</p>
 <p><img src="column_metadata.PNG" width="500px"></p>
-<p>Different types of column layouts identified by different <code>tbltype</code> can be stored in an excel file called column_metadata.xlsx. Within each <code>tbltype</code>, the <code>coldef</code> variable defines the order of the column based on the column variable used for creating the output (typically the numeric treatment variable, TRT01PN, is used as the column variable). For example, there are 3 columns for <code>tbltype</code> = “type1” in the above snapshot and the column layout is defined as follows: the first column of summary statistics represents the treatment group of <code>TRT01PN = 0</code> with the column header of Placebo defined by <code>decode</code>, the second and third columns represent the Low Dose and High Dose groups respectively with the spanning header of Xanomeline defined by the <code>span1</code> variable.</p>
-<p>Users can also include the column that is derived from combination of individual columns. For example, the <code>tbltype</code> of type3 include the 4th column of combined Low Dose and High Dose as well as the 5th column of total group. Please see below for the snapshot of column headers defined by type3.</p>
+<p>Different types of column layouts identified by different
+<code>tbltype</code> can be stored in an excel file called
+column_metadata.xlsx. Within each <code>tbltype</code>, the
+<code>coldef</code> variable defines the order of the column based on
+the column variable used for creating the output (typically the numeric
+treatment variable, TRT01PN, is used as the column variable). For
+example, there are 3 columns for <code>tbltype</code> = “type1” in the
+above snapshot and the column layout is defined as follows: the first
+column of summary statistics represents the treatment group of
+<code>TRT01PN = 0</code> with the column header of Placebo defined by
+<code>decode</code>, the second and third columns represent the Low Dose
+and High Dose groups respectively with the spanning header of Xanomeline
+defined by the <code>span1</code> variable.</p>
+<p>Users can also include the column that is derived from combination of
+individual columns. For example, the <code>tbltype</code> of type3
+include the 4th column of combined Low Dose and High Dose as well as the
+5th column of total group. Please see below for the snapshot of column
+headers defined by type3.</p>
 <p><img src="column_header.PNG" width="600px" height="60px"></p>
-<p>We will use the adsl data from the <a href="https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM" class="external-link">PHUSE Test Data Factory</a> to illustrate the creation of a demographic table.</p>
+<p>We will use the adsl data from the <a href="https://github.com/phuse-org/TestDataFactory/tree/main/Updated/TDF_ADaM" class="external-link">PHUSE
+Test Data Factory</a> to illustrate the creation of a demographic
+table.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Prep Environment -------------------------------------------------------------------------------------</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># read adsl from PhUSE test data factory</span></span>
-<span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html" class="external-link">read_xpt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">url</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">testdata</span>,<span class="st">"adsl.xpt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="co"># Prep Environment -------------------------------------------------------------------------------------</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span>
+
+<span class="co"># read adsl from PhUSE test data factory</span>
+<span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html" class="external-link">read_xpt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">url</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">testdata</span>,<span class="st">"adsl.xpt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="process-data">Process data<a class="anchor" aria-label="anchor" href="#process-data"></a>
 </h2>
-<p>Before generating analysis summary, the analysis data need to be processed first as shown in the code below.</p>
+<p>Before generating analysis summary, the analysis data need to be
+processed first as shown in the code below.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Process Data -----------------------------------------------------------------------------------------</span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"U"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Unknown"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tlgsetup.html">tlgsetup</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">"TRT01PN"</span>,</span>
-<span>           column_metadata_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/column_metadata.xlsx"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>,</span>
-<span>           tbltype <span class="op">=</span> <span class="st">"type3"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="co"># Process Data -----------------------------------------------------------------------------------------</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"U"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Unknown"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="../reference/tlgsetup.html">tlgsetup</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">"TRT01PN"</span>,
+           column_metadata_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/column_metadata.xlsx"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>,
+           tbltype <span class="op">=</span> <span class="st">"type3"</span><span class="op">)</span></code></pre></div>
 <p>The above code perform the tasks below:</p>
 <ul>
 <li><p>filtering analysis population</p></li>
-<li><p>convert the <code>SEX</code> variable from character type to factor type. So all the factor levels of <code>SEX</code> will be displayed in the analysis summary even there are no records for the factor level of “Unknown”.</p></li>
-<li><p>create the column variable, <code>colnbr</code>, through the <code>tlgsetup</code> function call: <code>tlgsetup</code> is using the numeric treatment variable (e.g. <code>TRT01PN</code>) to match with <code>coldef</code> in column metadata defined by <code>column_metadata_file</code> and <code>tbltype</code> to create the column variable, <code>colnbr</code>, in <code>adsl</code> for reflecting the column layout. Please see the <code><a href="../articles/tlgsetup.html">vignette("tlgsetup")</a></code> for more details. The column variable, <code>colnbr</code>, will be used in the subsequent analysis function calls for creating analysis results.</p></li>
+<li><p>convert the <code>SEX</code> variable from character type to
+factor type. So all the factor levels of <code>SEX</code> will be
+displayed in the analysis summary even there are no records for the
+factor level of “Unknown”.</p></li>
+<li><p>create the column variable, <code>colnbr</code>, through the
+<code>tlgsetup</code> function call: <code>tlgsetup</code> is using the
+numeric treatment variable (e.g. <code>TRT01PN</code>) to match with
+<code>coldef</code> in column metadata defined by
+<code>column_metadata_file</code> and <code>tbltype</code> to create the
+column variable, <code>colnbr</code>, in <code>adsl</code> for
+reflecting the column layout. Please see the
+<code><a href="../articles/tlgsetup.html">vignette("tlgsetup")</a></code> for more details. The column variable,
+<code>colnbr</code>, will be used in the subsequent analysis function
+calls for creating analysis results.</p></li>
 </ul>
-<p>If you need multiple analysis datasets for creating TLG, <code>tlgsetup</code> will need to be applied to each dataset. Therefore, you will have a consistent column variable of <code>colnbr</code> for creating analysis summary.</p>
+<p>If you need multiple analysis datasets for creating TLG,
+<code>tlgsetup</code> will need to be applied to each dataset.
+Therefore, you will have a consistent column variable of
+<code>colnbr</code> for creating analysis summary.</p>
 </div>
 <div class="section level2">
 <h2 id="generate-results">Generate results<a class="anchor" aria-label="anchor" href="#generate-results"></a>
 </h2>
-<p><code>tidytlg</code> provides 3 functions, <code>univar</code>, <code>freq</code>, and <code>nested_freq</code>, to generate analysis summary of descriptive statistics (univariate statistics and count (percentages)). For more details, please see the frequency analysis <code><a href="../articles/freq.html">vignette("freq")</a></code> and the univariate statistical analysis <code><a href="../articles/univar.html">vignette("univar")</a></code>.</p>
+<p><code>tidytlg</code> provides 3 functions, <code>univar</code>,
+<code>freq</code>, and <code>nested_freq</code>, to generate analysis
+summary of descriptive statistics (univariate statistics and count
+(percentages)). For more details, please see the frequency analysis
+<code><a href="../articles/freq.html">vignette("freq")</a></code> and the univariate statistical analysis
+<code><a href="../articles/univar.html">vignette("univar")</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Generate Results -------------------------------------------------------------------------------------</span></span>
-<span></span>
-<span><span class="co">## Analysis set row</span></span>
-<span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"colnbr"</span>,</span>
-<span>       rowvar <span class="op">=</span> <span class="st">"ITTFL"</span>,</span>
-<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n"</span><span class="op">)</span>,</span>
-<span>       subset <span class="op">=</span> <span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span>,</span>
-<span>       rowtext <span class="op">=</span> <span class="st">"Analysis set: ITT"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="co">## Univariate summary for AGE</span></span>
-<span><span class="va">t2</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"colnbr"</span>,</span>
-<span>         rowvar <span class="op">=</span> <span class="st">"AGE"</span>,</span>
-<span>         statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"MEANSD"</span>, <span class="st">"MEDIAN"</span>, <span class="st">"RANGE"</span>, <span class="st">"IQRANGE"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>         decimal <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>         row_header <span class="op">=</span> <span class="st">"Age, years"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="co">## Count (percentages) for SEX</span></span>
-<span><span class="va">t3</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"colnbr"</span>,</span>
-<span>       rowvar <span class="op">=</span> <span class="st">"SEX"</span>,</span>
-<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>       row_header <span class="op">=</span> <span class="st">"Gender"</span><span class="op">)</span></span></code></pre></div>
-<p>The above function calls generate the requested analysis rows for the table output sequentially and store the results in individual objects (i.e. <code>t1</code>, <code>t2</code>, <code>t3</code>). The next step is to combine analysis results into a single <code>tbl</code> dataframe through the <code>bind_table</code> function call.</p>
+<code class="sourceCode R"><span class="co"># Generate Results -------------------------------------------------------------------------------------</span>
+
+<span class="co">## Analysis set row</span>
+<span class="va">t1</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"colnbr"</span>,
+       rowvar <span class="op">=</span> <span class="st">"ITTFL"</span>,
+       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n"</span><span class="op">)</span>,
+       subset <span class="op">=</span> <span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span>,
+       rowtext <span class="op">=</span> <span class="st">"Analysis set: ITT"</span><span class="op">)</span> 
+
+<span class="co">## Univariate summary for AGE</span>
+<span class="va">t2</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"colnbr"</span>,
+         rowvar <span class="op">=</span> <span class="st">"AGE"</span>,
+         statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"MEANSD"</span>, <span class="st">"MEDIAN"</span>, <span class="st">"RANGE"</span>, <span class="st">"IQRANGE"</span><span class="op">)</span><span class="op">)</span>,
+         decimal <span class="op">=</span> <span class="fl">0</span>,
+         row_header <span class="op">=</span> <span class="st">"Age, years"</span><span class="op">)</span> 
+
+<span class="co">## Count (percentages) for SEX</span>
+<span class="va">t3</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"colnbr"</span>,
+       rowvar <span class="op">=</span> <span class="st">"SEX"</span>,
+       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,
+       row_header <span class="op">=</span> <span class="st">"Gender"</span><span class="op">)</span></code></pre></div>
+<p>The above function calls generate the requested analysis rows for the
+table output sequentially and store the results in individual objects
+(i.e. <code>t1</code>, <code>t2</code>, <code>t3</code>). The next step
+is to combine analysis results into a single <code>tbl</code> dataframe
+through the <code>bind_table</code> function call.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Format Results ---------------------------------------------------------------------------------------</span></span>
-<span></span>
-<span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bind_table.html">bind_table</a></span><span class="op">(</span><span class="va">t1</span>, <span class="va">t2</span>, <span class="va">t3</span>,</span>
-<span>       column_metadata_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/column_metadata.xlsx"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>,</span>
-<span>       tbltype <span class="op">=</span> <span class="st">"type3"</span><span class="op">)</span></span></code></pre></div>
-<p>The above <code>bind_table</code> function call performs the following tasks:</p>
+<code class="sourceCode R"><span class="co"># Format Results ---------------------------------------------------------------------------------------</span>
+
+<span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bind_table.html">bind_table</a></span><span class="op">(</span><span class="va">t1</span>, <span class="va">t2</span>, <span class="va">t3</span>,
+       column_metadata_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/column_metadata.xlsx"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>,
+       tbltype <span class="op">=</span> <span class="st">"type3"</span><span class="op">)</span></code></pre></div>
+<p>The above <code>bind_table</code> function call performs the
+following tasks:</p>
 <ul>
-<li><p>bind the analysis rows from <code>t1</code>, <code>t2</code>, <code>t3</code> into <code>tbl</code></p></li>
-<li><p>add formatting variables (<code>indentme</code>, <code>newrows</code>, <code>newpage</code>), which will be used in the <code>gentlg</code> function call below for creating the output.</p></li>
-<li><p>attach the column metadata specified by <code>column_metadata_file</code> and <code>tbltype</code> as an attribute of the <code>tbl</code>. So the column header and the spanning headers (i.e. decode, span1, span2, span3) defined in the column metadata can be used automatically in the <code>gentlg</code> function call.</p></li>
+<li><p>bind the analysis rows from <code>t1</code>, <code>t2</code>,
+<code>t3</code> into <code>tbl</code></p></li>
+<li><p>add formatting variables (<code>indentme</code>,
+<code>newrows</code>, <code>newpage</code>), which will be used in the
+<code>gentlg</code> function call below for creating the
+output.</p></li>
+<li><p>attach the column metadata specified by
+<code>column_metadata_file</code> and <code>tbltype</code> as an
+attribute of the <code>tbl</code>. So the column header and the spanning
+headers (i.e. decode, span1, span2, span3) defined in the column
+metadata can be used automatically in the <code>gentlg</code> function
+call.</p></li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="output-results">Output results<a class="anchor" aria-label="anchor" href="#output-results"></a>
 </h2>
-<p>The <code>tbl</code> data frame is the main input to the gentlg function for creating the RTF/HTML outputs.</p>
-<p>The basic structure of tbl includes label, col1, col2, …, coln, where</p>
+<p>The <code>tbl</code> data frame is the main input to the gentlg
+function for creating the RTF/HTML outputs.</p>
+<p>The basic structure of tbl includes label, col1, col2, …, coln,
+where</p>
 <ul>
 <li><p>label: row text displayed on the 1st column of the table</p></li>
-<li><p>col1: statistic results displayed on the 2nd column of the table</p></li>
-<li><p>col2: statistic results displayed on the 3rd column of the table.</p></li>
+<li><p>col1: statistic results displayed on the 2nd column of the
+table</p></li>
+<li><p>col2: statistic results displayed on the 3rd column of the
+table.</p></li>
 </ul>
-<p>All other columns contain formatting instructions to create the RTF/HTML outputs. For tweaking the formatting variables to customize the table layout, please see the <code><a href="../articles/tbl_manipulation.html">vignette("tbl_manipulation")</a></code> for more details.</p>
+<p>All other columns contain formatting instructions to create the
+RTF/HTML outputs. For tweaking the formatting variables to customize the
+table layout, please see the <code><a href="../articles/tbl_manipulation.html">vignette("tbl_manipulation")</a></code>
+for more details.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="13%">
@@ -427,23 +518,29 @@
 </tr>
 </tbody>
 </table>
-<p>The <code>gentlg</code> function call below will create the rtf output using the <code>tblid</code> as the file name in the folder defined by the <code>opath</code> argument. Please ensure that the <code>titles.xls</code> file contains the records of titles and footnotes for the specified <code>tblid</code>.</p>
+<p>The <code>gentlg</code> function call below will create the rtf
+output using the <code>tblid</code> as the file name in the folder
+defined by the <code>opath</code> argument. Please ensure that the
+<code>titles.xls</code> file contains the records of titles and
+footnotes for the specified <code>tblid</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"Table01"</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,</span>
-<span>       opath       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>, </span>
-<span>       file        <span class="op">=</span> <span class="va">tblid</span>,</span>
-<span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>To create the html output, users need to specify the <code>format</code> argument as “HTML” and <code>print.hux</code> argument as FALSE in the <code>gentlg</code> call.</p>
+<code class="sourceCode R"><span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"Table01"</span>
+
+<span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,
+       opath       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">working_dir</span><span class="op">)</span>, 
+       file        <span class="op">=</span> <span class="va">tblid</span>,
+       orientation <span class="op">=</span> <span class="st">"landscape"</span>,
+       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>To create the html output, users need to specify the
+<code>format</code> argument as “HTML” and <code>print.hux</code>
+argument as FALSE in the <code>gentlg</code> call.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,</span>
-<span>       format      <span class="op">=</span> <span class="st">"HTML"</span>,</span>
-<span>       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>       file        <span class="op">=</span> <span class="va">tblid</span>,</span>
-<span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,
+       format      <span class="op">=</span> <span class="st">"HTML"</span>,
+       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,
+       file        <span class="op">=</span> <span class="va">tblid</span>,
+       orientation <span class="op">=</span> <span class="st">"landscape"</span>,
+       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 100%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-11">
 <col style="width: 45%">
 <col style="width: 11%">
@@ -579,64 +676,88 @@
 </tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
-<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 09JAN2023, 23:54</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 12JUN2023, 16:25</div></td></tr>
 </table>
-<p>Users can also include superscripts, subscripts, or line breaks via unicode. Please see the <code><a href="../articles/symbols.html">vignette("symbols")</a></code> for more details. Besides using <code>univar</code>, <code>freq</code>, and <code>nested_freq</code> functions to create the <code>tbl</code> dataframe, users can use other R packages to create analysis results and perform data wrangling to fit the <code>tbl</code> structure, which can be passed into the <code>gentlg</code> function call for generating the desired outputs.</p>
+<p>Users can also include superscripts, subscripts, or line breaks via
+unicode. Please see the <code><a href="../articles/symbols.html">vignette("symbols")</a></code> for more
+details. Besides using <code>univar</code>, <code>freq</code>, and
+<code>nested_freq</code> functions to create the <code>tbl</code>
+dataframe, users can use other R packages to create analysis results and
+perform data wrangling to fit the <code>tbl</code> structure, which can
+be passed into the <code>gentlg</code> function call for generating the
+desired outputs.</p>
 </div>
 <div class="section level2">
 <h2 id="listing-programming">Listing programming<a class="anchor" aria-label="anchor" href="#listing-programming"></a>
 </h2>
-<p>The above workflow can also be used to create listings. Users need to prepare the data and assign it to <code>tbl</code>. In the <code>gentlg</code> function, users need to pay attention to:</p>
+<p>The above workflow can also be used to create listings. Users need to
+prepare the data and assign it to <code>tbl</code>. In the
+<code>gentlg</code> function, users need to pay attention to:</p>
 <ul>
-<li><p>specify the <code>tlf</code> argument to <code>Listing</code> (i.e. <code>tlf = "Listing"</code>)</p></li>
-<li><p>specify the <code>idvars</code> argument for identifying variables (such as treatment variable and USUBJID) where repeated values will be removed</p></li>
-<li><p>specify the <code>colheader</code> (column header) argument; if not specified, the column labels will be used as the column headers. For the below example, if <code>colheader</code> argument is not specified, some column headers will use variable names since these columns are newly created without labels.</p></li>
-<li><p>user has the option to control the column width by passing a vector of column width to the <code>wcol</code> argument. Please ensure that the length of the column width vector is the same as the number of columns in your data. For the example below, there are 8 columns in the data and users can specify customized column width such as <code>c(0.15, 0.10, 0.05, 0.15, 0.20, 0.15, 0.05, 0.05)</code> for the <code>wcol</code> argument to create the rtf output. However, for the html output shown here, the <code>wcol</code> argument can only take a single number as the column width and apply to every column.</p></li>
+<li><p>specify the <code>tlf</code> argument to <code>Listing</code>
+(i.e. <code>tlf = "Listing"</code>)</p></li>
+<li><p>specify the <code>idvars</code> argument for identifying
+variables (such as treatment variable and USUBJID) where repeated values
+will be removed</p></li>
+<li><p>specify the <code>colheader</code> (column header) argument; if
+not specified, the column labels will be used as the column headers. For
+the below example, if <code>colheader</code> argument is not specified,
+some column headers will use variable names since these columns are
+newly created without labels.</p></li>
+<li><p>user has the option to control the column width by passing a
+vector of column width to the <code>wcol</code> argument. Please ensure
+that the length of the column width vector is the same as the number of
+columns in your data. For the example below, there are 8 columns in the
+data and users can specify customized column width such as
+<code>c(0.15, 0.10, 0.05, 0.15, 0.20, 0.15, 0.05, 0.05)</code> for the
+<code>wcol</code> argument to create the rtf output. However, for the
+html output shown here, the <code>wcol</code> argument can only take a
+single number as the column width and apply to every column.</p></li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Prep Environment ---------------------------------------------------------------------------------------</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span></span>
-<span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span></span>
-<span></span>
-<span><span class="co"># Process Data --------------------------------------------------------------------------------------------</span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">SAFFL</span>, <span class="va">TRT01AN</span>, <span class="va">TRT01A</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span> <span class="op">&amp;</span> <span class="va">TRTEMFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>BSPT  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">AEBODSYS</span>, <span class="st">"["</span>, <span class="va">AEDECOD</span>, <span class="st">"]"</span><span class="op">)</span>,</span>
-<span>         SAEFL <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="va">AESER</span> <span class="op">==</span> <span class="st">"Y"</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span>,</span>
-<span>         DTHFL <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="va">AEOUT</span> <span class="op">==</span> <span class="st">"FATAL"</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">ASTDY</span>, <span class="va">TRTA</span>, <span class="va">BSPT</span>, <span class="va">AETERM</span>, <span class="va">SAEFL</span>, <span class="va">DTHFL</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">inner_join</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">adae</span>, by <span class="op">=</span> <span class="st">"USUBJID"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>   </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">TRT01AN</span>, <span class="va">USUBJID</span>, <span class="va">ASTDY</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>   </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">TRT01A</span>, <span class="va">USUBJID</span>, <span class="va">ASTDY</span>, <span class="va">TRTA</span>, <span class="va">BSPT</span>, <span class="va">AETERM</span>, <span class="va">SAEFL</span>, <span class="va">DTHFL</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">USUBJID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01-701-1015"</span>, <span class="st">"01-701-1023"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Output Results ------------------------------------------------------------------------------------------</span></span>
-<span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,</span>
-<span>       tlf         <span class="op">=</span> <span class="st">"l"</span>,</span>
-<span>       format      <span class="op">=</span> <span class="st">"HTML"</span>,</span>
-<span>       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       file        <span class="op">=</span> <span class="st">"Listing01"</span>,</span>
-<span>       title       <span class="op">=</span> <span class="st">"Listing of Adverse Events"</span>,</span>
-<span>       idvars      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"TRT01A"</span>, <span class="st">"USUBJID"</span><span class="op">)</span>,</span>
-<span>       wcol        <span class="op">=</span> <span class="fl">0.15</span>,</span>
-<span>       colheader   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Treatment Group"</span>,</span>
-<span>                       <span class="st">"Subject ID"</span>,</span>
-<span>                       <span class="st">"Study Day of AE"</span>,</span>
-<span>                       <span class="st">"Treatment Period"</span>,</span>
-<span>                       <span class="st">"Body System [Preferred Term]"</span>,</span>
-<span>                       <span class="st">"Verbatim Term"</span>,</span>
-<span>                       <span class="st">"Serious"</span>,</span>
-<span>                       <span class="st">"Fatal"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="co"># Prep Environment ---------------------------------------------------------------------------------------</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span>
+
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span>
+<span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span>
+
+<span class="co"># Process Data --------------------------------------------------------------------------------------------</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">SAFFL</span>, <span class="va">TRT01AN</span>, <span class="va">TRT01A</span><span class="op">)</span> 
+
+<span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span> <span class="op">&amp;</span> <span class="va">TRTEMFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>BSPT  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">AEBODSYS</span>, <span class="st">"["</span>, <span class="va">AEDECOD</span>, <span class="st">"]"</span><span class="op">)</span>,
+         SAEFL <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="va">AESER</span> <span class="op">==</span> <span class="st">"Y"</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span>,
+         DTHFL <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="va">AEOUT</span> <span class="op">==</span> <span class="st">"FATAL"</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">ASTDY</span>, <span class="va">TRTA</span>, <span class="va">BSPT</span>, <span class="va">AETERM</span>, <span class="va">SAEFL</span>, <span class="va">DTHFL</span><span class="op">)</span> 
+
+<span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">inner_join</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">adae</span>, by <span class="op">=</span> <span class="st">"USUBJID"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>   
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">TRT01AN</span>, <span class="va">USUBJID</span>, <span class="va">ASTDY</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>   
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">TRT01A</span>, <span class="va">USUBJID</span>, <span class="va">ASTDY</span>, <span class="va">TRTA</span>, <span class="va">BSPT</span>, <span class="va">AETERM</span>, <span class="va">SAEFL</span>, <span class="va">DTHFL</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">USUBJID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"01-701-1015"</span>, <span class="st">"01-701-1023"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Output Results ------------------------------------------------------------------------------------------</span>
+<span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,
+       tlf         <span class="op">=</span> <span class="st">"l"</span>,
+       format      <span class="op">=</span> <span class="st">"HTML"</span>,
+       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,
+       orientation <span class="op">=</span> <span class="st">"landscape"</span>,
+       file        <span class="op">=</span> <span class="st">"Listing01"</span>,
+       title       <span class="op">=</span> <span class="st">"Listing of Adverse Events"</span>,
+       idvars      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"TRT01A"</span>, <span class="st">"USUBJID"</span><span class="op">)</span>,
+       wcol        <span class="op">=</span> <span class="fl">0.15</span>,
+       colheader   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Treatment Group"</span>,
+                       <span class="st">"Subject ID"</span>,
+                       <span class="st">"Study Day of AE"</span>,
+                       <span class="st">"Treatment Period"</span>,
+                       <span class="st">"Body System [Preferred Term]"</span>,
+                       <span class="st">"Verbatim Term"</span>,
+                       <span class="st">"Serious"</span>,
+                       <span class="st">"Fatal"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 100%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-12">
 <col style="width: 15%">
 <col style="width: 12.1428571428571%">
@@ -727,111 +848,134 @@
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
 <td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
 </tr>
-<tr><td colspan="8" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [listing01.html][] 09JAN2023, 23:54</div></td></tr>
+<tr><td colspan="8" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [listing01.html][] 12JUN2023, 16:25</div></td></tr>
 </table>
 </div>
 <div class="section level2">
 <h2 id="graph-programming">Graph programming<a class="anchor" aria-label="anchor" href="#graph-programming"></a>
 </h2>
-<p>To create the graph output, <code>tidytlg</code> provides a framework of integrating the png file with titles and footnotes for producing the rtf or html output.</p>
+<p>To create the graph output, <code>tidytlg</code> provides a framework
+of integrating the png file with titles and footnotes for producing the
+rtf or html output.</p>
 <p>In the <code>gentlg</code> function, users need to:</p>
 <ul>
-<li><p>specify the <code>tlf</code> argument to <code>g</code> for graph</p></li>
-<li><p>specify the <code>plotnames</code> argument with the full path of the png file</p></li>
-<li><p>define the <code>plotwidth</code> and <code>plotheight</code>: it’s advised here that users keep the aspect ratio of plot width and height approximately the same as the png image.</p></li>
+<li><p>specify the <code>tlf</code> argument to <code>g</code> for
+graph</p></li>
+<li><p>specify the <code>plotnames</code> argument with the full path of
+the png file</p></li>
+<li><p>define the <code>plotwidth</code> and <code>plotheight</code>:
+it’s advised here that users keep the aspect ratio of plot width and
+height approximately the same as the png image.</p></li>
 </ul>
 <p>The code below will create the rtf output of the plot.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Prep Environment ---------------------------------------------------------------------------------------</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># read adsl from PhUSE test data factory</span></span>
-<span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html" class="external-link">read_xpt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">url</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">testdata</span>,<span class="st">"adsl.xpt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"Graph01"</span></span>
-<span></span>
-<span><span class="co"># Process Data --------------------------------------------------------------------------------------------</span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adsl</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">ITTFL</span>, <span class="va">TRT01PN</span>, <span class="va">TRT01P</span>, <span class="va">AGE</span>, <span class="va">SEX</span>, <span class="va">HEIGHTBL</span>, <span class="va">WEIGHTBL</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Generate Results ----------------------------------------------------------------------------------------</span></span>
-<span> </span>
-<span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adsl</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">HEIGHTBL</span>, y <span class="op">=</span> <span class="va">WEIGHTBL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Baseline Height (cm)"</span>,</span>
-<span>       y <span class="op">=</span> <span class="st">"Baseline Weight (kg)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">SEX</span>, nrow<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># create png file</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">tblid</span>,<span class="st">".png"</span><span class="op">)</span><span class="op">)</span>, width<span class="op">=</span><span class="fl">2800</span>, height<span class="op">=</span><span class="fl">1300</span>, res<span class="op">=</span><span class="fl">300</span>, type <span class="op">=</span> <span class="st">"cairo"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">plot</span></span>
-<span><span class="co">#&gt; Warning: Removed 1 rows containing missing values (`geom_point()`).</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; agg_png </span></span>
-<span><span class="co">#&gt;       2</span></span>
-<span></span>
-<span><span class="co"># Output Results ------------------------------------------------------------------------------------------</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>tlf <span class="op">=</span> <span class="st">"g"</span>,</span>
-<span>       plotnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">tblid</span>,<span class="st">".png"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>       plotwidth <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>       plotheight <span class="op">=</span> <span class="fl">5</span>,</span>
-<span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       opath       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>, </span>
-<span>       file <span class="op">=</span> <span class="va">tblid</span>,</span>
-<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="co"># Prep Environment ---------------------------------------------------------------------------------------</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span>
+
+<span class="co"># read adsl from PhUSE test data factory</span>
+<span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html" class="external-link">read_xpt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">url</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">testdata</span>,<span class="st">"adsl.xpt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"Graph01"</span>
+
+<span class="co"># Process Data --------------------------------------------------------------------------------------------</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adsl</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">ITTFL</span>, <span class="va">TRT01PN</span>, <span class="va">TRT01P</span>, <span class="va">AGE</span>, <span class="va">SEX</span>, <span class="va">HEIGHTBL</span>, <span class="va">WEIGHTBL</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Generate Results ----------------------------------------------------------------------------------------</span>
+ 
+<span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">adsl</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">HEIGHTBL</span>, y <span class="op">=</span> <span class="va">WEIGHTBL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Baseline Height (cm)"</span>,
+       y <span class="op">=</span> <span class="st">"Baseline Weight (kg)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">SEX</span>, nrow<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+
+<span class="co"># create png file</span>
+<span class="fu"><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">working_dir</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">tblid</span>,<span class="st">".png"</span><span class="op">)</span><span class="op">)</span>, width<span class="op">=</span><span class="fl">2800</span>, height<span class="op">=</span><span class="fl">1300</span>, res<span class="op">=</span><span class="fl">300</span>, type <span class="op">=</span> <span class="st">"cairo"</span><span class="op">)</span>
+
+<span class="va">plot</span>
+<span class="co">#&gt; Warning: Removed 1 rows containing missing values (`geom_point()`).</span>
+
+<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.off</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; agg_png </span>
+<span class="co">#&gt;       2</span>
+
+<span class="co"># Output Results ------------------------------------------------------------------------------------------</span>
+
+<span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>tlf <span class="op">=</span> <span class="st">"g"</span>,
+       plotnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">tblid</span>,<span class="st">".png"</span><span class="op">)</span><span class="op">)</span>,
+       plotwidth <span class="op">=</span> <span class="fl">10</span>,
+       plotheight <span class="op">=</span> <span class="fl">5</span>,
+       orientation <span class="op">=</span> <span class="st">"landscape"</span>,
+       opath       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">working_dir</span><span class="op">)</span>,, 
+       file <span class="op">=</span> <span class="va">tblid</span>,
+       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="graph01.PNG" width="750px"></p>
 </div>
 <div class="section level2">
 <h2 id="metadata-method">Metadata method<a class="anchor" aria-label="anchor" href="#metadata-method"></a>
 </h2>
-<p>Besides building the table section-by-section as shown above, we can use the table metadata approach as an efficient alternative for generating outputs. Table metadata is a data frame describing the data, functions and arguments needed to produce your table results. The table metadata shown below can be used to create the same table output as above. Each row in the table metadata describes how a <code>tbl</code> chunk will be created by the function defined in the <code>func</code> column. The rest of the columns defines the arguments (i.e. <code>df</code>, <code>colvar</code>, <code>rowvar</code>, <code>statlist</code>, <code>rowtext</code>, <code>row_header</code>) that will be passed into the function.</p>
-<p>Once table metadata is defined, users just need to call the <code>generate_results</code> function with the column metadata define in the <code>column_metadata_file</code> and <code>tbltype</code> arguments to create the <code>tbl</code> dataframe. In the processing data step, users don’t need to call <code>tlgsetp</code>, since <code>tlgsetup</code> is embedded within the <code>generate_results</code> function. That’s why we need to specify the column metadata in the <code>generate_results</code> call.</p>
+<p>Besides building the table section-by-section as shown above, we can
+use the table metadata approach as an efficient alternative for
+generating outputs. Table metadata is a data frame describing the data,
+functions and arguments needed to produce your table results. The table
+metadata shown below can be used to create the same table output as
+above. Each row in the table metadata describes how a <code>tbl</code>
+chunk will be created by the function defined in the <code>func</code>
+column. The rest of the columns defines the arguments
+(i.e. <code>df</code>, <code>colvar</code>, <code>rowvar</code>,
+<code>statlist</code>, <code>rowtext</code>, <code>row_header</code>)
+that will be passed into the function.</p>
+<p>Once table metadata is defined, users just need to call the
+<code>generate_results</code> function with the column metadata define
+in the <code>column_metadata_file</code> and <code>tbltype</code>
+arguments to create the <code>tbl</code> dataframe. In the processing
+data step, users don’t need to call <code>tlgsetp</code>, since
+<code>tlgsetup</code> is embedded within the
+<code>generate_results</code> function. That’s why we need to specify
+the column metadata in the <code>generate_results</code> call.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># read adsl from PhUSE test data factory</span></span>
-<span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html" class="external-link">read_xpt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">url</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">testdata</span>,<span class="st">"adsl.xpt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Process data</span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"U"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Unknown"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># define table metadata</span></span>
-<span><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">func</span>,     <span class="op">~</span><span class="va">df</span>,   <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">decimal</span>, <span class="op">~</span><span class="va">rowtext</span>,     <span class="op">~</span><span class="va">row_header</span>, <span class="op">~</span><span class="va">statlist</span>,         <span class="op">~</span><span class="va">subset</span>,</span>
-<span>  <span class="st">"freq"</span>,  <span class="st">"adsl"</span>,  <span class="st">"ITTFL"</span>,     <span class="cn">NA</span>, <span class="st">"Analysis set: ITT"</span>,     <span class="cn">NA</span>, <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n"</span><span class="op">)</span>,  <span class="st">"ITTFL == 'Y'"</span>,</span>
-<span>  <span class="st">"univar"</span>, <span class="st">"adsl"</span>,   <span class="st">"AGE"</span>,      <span class="fl">0</span>,         <span class="cn">NA</span>, <span class="st">"Age (Years)"</span>,           <span class="cn">NA</span>,              <span class="cn">NA</span>,</span>
-<span>  <span class="st">"freq"</span>,  <span class="st">"adsl"</span>,    <span class="st">"SEX"</span>,     <span class="cn">NA</span>,         <span class="cn">NA</span>, <span class="st">"Gender"</span>, <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,   <span class="cn">NA</span></span>
-<span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>colvar  <span class="op">=</span> <span class="st">"TRT01PN"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Generate results</span></span>
-<span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_results.html">generate_results</a></span><span class="op">(</span><span class="va">table_metadata</span>, </span>
-<span>                        column_metadata_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/column_metadata.xlsx"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>,</span>
-<span>                        tbltype <span class="op">=</span> <span class="st">"type3"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="co"># Output results</span></span>
-<span><span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"Table01"</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,</span>
-<span>       format      <span class="op">=</span> <span class="st">"HTML"</span>,</span>
-<span>       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>       file        <span class="op">=</span> <span class="va">tblid</span>,</span>
-<span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span>
+
+<span class="co"># read adsl from PhUSE test data factory</span>
+<span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html" class="external-link">read_xpt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">url</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">testdata</span>,<span class="st">"adsl.xpt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Process data</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"U"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Unknown"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># define table metadata</span>
+<span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
+  <span class="op">~</span><span class="va">func</span>,     <span class="op">~</span><span class="va">df</span>,   <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">decimal</span>, <span class="op">~</span><span class="va">rowtext</span>,     <span class="op">~</span><span class="va">row_header</span>, <span class="op">~</span><span class="va">statlist</span>,         <span class="op">~</span><span class="va">subset</span>,
+  <span class="st">"freq"</span>,  <span class="st">"adsl"</span>,  <span class="st">"ITTFL"</span>,     <span class="cn">NA</span>, <span class="st">"Analysis set: ITT"</span>,     <span class="cn">NA</span>, <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n"</span><span class="op">)</span>,  <span class="st">"ITTFL == 'Y'"</span>,
+  <span class="st">"univar"</span>, <span class="st">"adsl"</span>,   <span class="st">"AGE"</span>,      <span class="fl">0</span>,         <span class="cn">NA</span>, <span class="st">"Age (Years)"</span>,           <span class="cn">NA</span>,              <span class="cn">NA</span>,
+  <span class="st">"freq"</span>,  <span class="st">"adsl"</span>,    <span class="st">"SEX"</span>,     <span class="cn">NA</span>,         <span class="cn">NA</span>, <span class="st">"Gender"</span>, <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,   <span class="cn">NA</span>
+<span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>colvar  <span class="op">=</span> <span class="st">"TRT01PN"</span><span class="op">)</span>
+
+<span class="co"># Generate results</span>
+<span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_results.html">generate_results</a></span><span class="op">(</span><span class="va">table_metadata</span>, 
+                        column_metadata_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/column_metadata.xlsx"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>,
+                        tbltype <span class="op">=</span> <span class="st">"type3"</span><span class="op">)</span> 
+
+<span class="co"># Output results</span>
+<span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"Table01"</span>
+
+<span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,
+       format      <span class="op">=</span> <span class="st">"HTML"</span>,
+       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,
+       file        <span class="op">=</span> <span class="va">tblid</span>,
+       orientation <span class="op">=</span> <span class="st">"landscape"</span>,
+       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 100%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-15">
 <col style="width: 45%">
 <col style="width: 11%">
@@ -967,54 +1111,76 @@
 </tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
-<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 09JAN2023, 23:54</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 12JUN2023, 16:25</div></td></tr>
 </table>
 </div>
 <div class="section level2">
 <h2 id="by-processing">By processing<a class="anchor" aria-label="anchor" href="#by-processing"></a>
 </h2>
-<p>There are two types of by-processing that <code>tidytlg</code> functions can provide:</p>
+<p>There are two types of by-processing that <code>tidytlg</code>
+functions can provide:</p>
 <ul>
-<li><p><code>rowbyvar</code>: split the summary statistics of <code>rowvar</code> by other variable(s) specified in <code>rowbyvar</code>. Please see the by processing section of frequency analysis <code><a href="../articles/freq.html">vignette("freq")</a></code> for further details. The <code>rowbyvar</code> argument can also be used in the <code>univar</code> function. A typical use case is to summarize the lab values by parameter and analysis visit, where we can call the <code>univar</code> function with <code>rowvar = AVAL</code> and <code>rowbyvar = c("PARAM","AVISIT")</code>. It is advised in this use case to turn on the <code>.ord</code> argument (i.e. <code>.ord = TRUE</code>) in the <code>univar</code> function call. So the numeric sorting columns associated with the by variables (<code>PARAM_ord</code> and <code>AVISIT_ord</code>) can be created and used for sorting the interleaved summary results of <code>AVAL</code> and <code>CHG</code>.</p></li>
-<li><p><code>tablebyvar</code>: the argument of <code>tablebyvar</code> is designed to facilitate the sub-group analysis, which repeats a table summary by the sub-group variable. A typical use case is the summary of demographics table by country. For creating the sub-group analysis version of the same table, we just need to add the argument of <code>tablebyvar</code> with the sub-group variable in each function call.</p></li>
+<li><p><code>rowbyvar</code>: split the summary statistics of
+<code>rowvar</code> by other variable(s) specified in
+<code>rowbyvar</code>. Please see the by processing section of frequency
+analysis <code><a href="../articles/freq.html">vignette("freq")</a></code> for further details. The
+<code>rowbyvar</code> argument can also be used in the
+<code>univar</code> function. A typical use case is to summarize the lab
+values by parameter and analysis visit, where we can call the
+<code>univar</code> function with <code>rowvar = AVAL</code> and
+<code>rowbyvar = c("PARAM","AVISIT")</code>. It is advised in this use
+case to turn on the <code>.ord</code> argument
+(i.e. <code>.ord = TRUE</code>) in the <code>univar</code> function
+call. So the numeric sorting columns associated with the by variables
+(<code>PARAM_ord</code> and <code>AVISIT_ord</code>) can be created and
+used for sorting the interleaved summary results of <code>AVAL</code>
+and <code>CHG</code>.</p></li>
+<li><p><code>tablebyvar</code>: the argument of <code>tablebyvar</code>
+is designed to facilitate the sub-group analysis, which repeats a table
+summary by the sub-group variable. A typical use case is the summary of
+demographics table by country. For creating the sub-group analysis
+version of the same table, we just need to add the argument of
+<code>tablebyvar</code> with the sub-group variable in each function
+call.</p></li>
 </ul>
-<p>The code below provides an example of summarizing age and race by gender using <code>tablebyvar</code>.</p>
+<p>The code below provides an example of summarizing age and race by
+gender using <code>tablebyvar</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">tidytlg</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># read adsl from PhUSE test data factory</span></span>
-<span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html" class="external-link">read_xpt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">url</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">testdata</span>,<span class="st">"adsl.xpt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Process data</span></span>
-<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># define table metadata</span></span>
-<span><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">func</span>,     <span class="op">~</span><span class="va">df</span>,   <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">decimal</span>, <span class="op">~</span><span class="va">rowtext</span>,     <span class="op">~</span><span class="va">row_header</span>, <span class="op">~</span><span class="va">statlist</span>,         <span class="op">~</span><span class="va">subset</span>, <span class="op">~</span><span class="va">tablebyvar</span>,</span>
-<span>  <span class="st">"univar"</span>, <span class="st">"adsl"</span>,   <span class="st">"AGE"</span>,      <span class="fl">0</span>,         <span class="cn">NA</span>, <span class="st">"Age (Years)"</span>,           <span class="cn">NA</span>,              <span class="cn">NA</span>, <span class="st">"SEX"</span>,</span>
-<span>  <span class="st">"freq"</span>,  <span class="st">"adsl"</span>,    <span class="st">"RACE"</span>,     <span class="cn">NA</span>,         <span class="cn">NA</span>, <span class="st">"Race"</span>, <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,   <span class="cn">NA</span>, <span class="st">"SEX"</span></span>
-<span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>colvar  <span class="op">=</span> <span class="st">"TRT01PN"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Generate results</span></span>
-<span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_results.html">generate_results</a></span><span class="op">(</span><span class="va">table_metadata</span>, </span>
-<span>                        column_metadata_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/column_metadata.xlsx"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>,</span>
-<span>                        tbltype <span class="op">=</span> <span class="st">"type3"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="co"># Output results</span></span>
-<span><span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"Table01"</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,</span>
-<span>       format      <span class="op">=</span> <span class="st">"HTML"</span>,</span>
-<span>       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>       file        <span class="op">=</span> <span class="va">tblid</span>,</span>
-<span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/tidytlg" class="external-link">tidytlg</a></span><span class="op">)</span>
+
+<span class="co"># read adsl from PhUSE test data factory</span>
+<span class="va">testdata</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://haven.tidyverse.org/reference/read_xpt.html" class="external-link">read_xpt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html" class="external-link">url</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">testdata</span>,<span class="st">"adsl.xpt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Process data</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># define table metadata</span>
+<span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
+  <span class="op">~</span><span class="va">func</span>,     <span class="op">~</span><span class="va">df</span>,   <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">decimal</span>, <span class="op">~</span><span class="va">rowtext</span>,     <span class="op">~</span><span class="va">row_header</span>, <span class="op">~</span><span class="va">statlist</span>,         <span class="op">~</span><span class="va">subset</span>, <span class="op">~</span><span class="va">tablebyvar</span>,
+  <span class="st">"univar"</span>, <span class="st">"adsl"</span>,   <span class="st">"AGE"</span>,      <span class="fl">0</span>,         <span class="cn">NA</span>, <span class="st">"Age (Years)"</span>,           <span class="cn">NA</span>,              <span class="cn">NA</span>, <span class="st">"SEX"</span>,
+  <span class="st">"freq"</span>,  <span class="st">"adsl"</span>,    <span class="st">"RACE"</span>,     <span class="cn">NA</span>,         <span class="cn">NA</span>, <span class="st">"Race"</span>, <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,   <span class="cn">NA</span>, <span class="st">"SEX"</span>
+<span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>colvar  <span class="op">=</span> <span class="st">"TRT01PN"</span><span class="op">)</span>
+
+<span class="co"># Generate results</span>
+<span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_results.html">generate_results</a></span><span class="op">(</span><span class="va">table_metadata</span>, 
+                        column_metadata_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/column_metadata.xlsx"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span>,
+                        tbltype <span class="op">=</span> <span class="st">"type3"</span><span class="op">)</span> 
+
+<span class="co"># Output results</span>
+<span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"Table01"</span>
+
+<span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span>huxme       <span class="op">=</span> <span class="va">tbl</span>,
+       format      <span class="op">=</span> <span class="st">"HTML"</span>,
+       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,
+       file        <span class="op">=</span> <span class="va">tblid</span>,
+       orientation <span class="op">=</span> <span class="st">"landscape"</span>,
+       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table huxtable" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 100%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-16">
 <col style="width: 45%">
 <col style="width: 11%">
@@ -1270,9 +1436,13 @@
 </tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
 <tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
-<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 09JAN2023, 23:54</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 12JUN2023, 16:25</div></td></tr>
 </table>
-<p>In summary, <code>rowbyvar</code> is used to create the by-variable summary for one <code>rowvar</code> in a single function call. To perform sub-group analysis, users need to specify <code>tablebyvar</code> in every function calls except the analysis population row.</p>
+<p>In summary, <code>rowbyvar</code> is used to create the by-variable
+summary for one <code>rowvar</code> in a single function call. To
+perform sub-group analysis, users need to specify
+<code>tablebyvar</code> in every function calls except the analysis
+population row.</p>
 </div>
   </div>
 
