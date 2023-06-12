@@ -706,7 +706,7 @@ check_plotnames <- function(plotnames) {
   if (is.null(plotnames)) {
     return()
   }
-  if (file.exists(plotnames)) {
+  if (all(file.exists(plotnames))) {
     return()
   }
   stop(paste0("plotnames '", plotnames,
