@@ -42,3 +42,46 @@ test_that("format variables are added", {
   expect_true(all(c("anbr", "indentme", "roworder", "newrows", "newpage") %in% names(tbl2)))
 })
 
+test_that("bind_table works with rowbyvars as expected", {
+  # Example from #12
+  adae <- cdisc_adae %>%
+    filter(SAFFL == "Y", TRTEMFL == "Y") %>%
+    rename(TRT01AN = TRTAN)
+
+  adsl <- cdisc_adsl %>%
+    filter(SAFFL == "Y")
+
+  t1 <- adsl %>%
+    freq(colvar = 'TRT01AN',
+         rowvar = 'SAFFL',
+         rowtext = 'Analysis set: Safety',
+         statlist = statlist("n"))
+
+  t2 <- adae %>%
+    freq(denom_df = adsl,
+         colvar = 'TRT01AN',
+         rowvar = 'TRTEMFL',
+         rowtext = 'Subjects with 1 or more AEs',
+         statlist = statlist("n (x.x%)"),
+         subset = TRTEMFL == "Y")
+
+ # t3.1 <- data.frame(label = c("System organ class", "Preferred term"),
+       #              rowbyvar = "System organ class",
+     #                row_type = "HEADER")
+
+  t3 <- adae %>%
+    nested_freq(denom_df = adsl,
+                colvar = 'TRT01AN',
+                rowvar = 'AEBODSYS*AEDECOD',
+                subset = TRTEMFL == "Y",
+                statlist = statlist("n (x.x%)"),
+                row_header = c("System organ class/Preferred Term"))
+
+  expect_silent({
+    tbl <- bind_table(t1, t2, t3,
+                      colvar = "TRT01AN")
+                      #rowbyvar = "AEBODSYS")
+  })
+
+
+})
