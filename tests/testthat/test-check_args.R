@@ -488,3 +488,13 @@ test_that("Test add_format", {
 
   expect_error(basefreq %>% dplyr::select(-row_type) %>% add_format(),"Reqiured fields anbr,  for function add_format")
 })
+
+test_that("Sparse dfs pass check_wcol works as expected with sparse dfs", {
+
+  a_freq <- freq(cdisc_adsl,
+                 rowvar = "ITTFL",
+                 colvar = "TRT01PN") %>%
+    select(-c("row_type", "group_level"))
+
+  expect_equal(check_wcol(a_freq, c(1,1,1,1)), NULL)
+})
