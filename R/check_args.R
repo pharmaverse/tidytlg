@@ -685,8 +685,7 @@ check_wcol <- function(huxme, wcol) {
     "anbr", "roworder", "boldme", "indentme", "newrows", "newpage",
     "rowvar", "row_type", "nested_level", "group_level"
   )
-  huxme_output <- huxme[- (which(names(huxme) %in% lst_to_remove))]
-  huxme_output <- huxme_output %>% dplyr::select(!c(any_of("func"),
+  huxme_output <- huxme %>% dplyr::select(!c(any_of(c("func", lst_to_remove)),
                                                     ends_with("_ord")))
 
   if (length(wcol) == 1 || length(wcol) == length(huxme_output)) {
