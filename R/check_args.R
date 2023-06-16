@@ -1177,8 +1177,6 @@ check_bind_table <- function(dfs, arglist) {
 
   var_type_check <- var_type_check[names(var_type_check) %in% names(arglist)]
   check_var_types("bind_table", arglist, var_type_check)
-  check_in_df_bind_table("bind_table", dfs, arglist)
   check_var_duplicates("bind_table", arglist)
-  check_dfs_formats(dfs)
   check_file_exists("bind_table", arglist, "column_metadata_file")
 }
