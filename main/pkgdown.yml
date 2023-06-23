@@ -1,4 +1,4 @@
-pandoc: 2.19.2
+pandoc: 2.17.1.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
@@ -8,5 +8,5 @@ articles:
   tidytlg: tidytlg.html
   tlgsetup: tlgsetup.html
   univar: univar.html
-last_built: 2023-05-09T15:24Z
+last_built: 2023-06-23T17:11Z
 

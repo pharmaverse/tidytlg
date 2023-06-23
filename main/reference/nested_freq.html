@@ -18,7 +18,7 @@ is useful for adverse event and concomitant mediations."><meta property="og:imag
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidytlg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
@@ -54,13 +54,6 @@ is useful for adverse event and concomitant mediations."><meta property="og:imag
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -87,26 +80,26 @@ is useful for adverse event and concomitant mediations.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">nested_freq</span><span class="op">(</span></span>
-<span>  <span class="va">df</span>,</span>
-<span>  denom_df <span class="op">=</span> <span class="va">df</span>,</span>
-<span>  colvar <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  tablebyvar <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  rowvar <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  rowbyvar <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  statlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"tidytlg.nested_freq.statlist.default"</span><span class="op">)</span>,</span>
-<span>  decimal <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  cutoff <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  cutoff_stat <span class="op">=</span> <span class="st">"pct"</span>,</span>
-<span>  subset <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  descending_by <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  display_missing <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  rowtext <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  row_header <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  .keep <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  .ord <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">nested_freq</span><span class="op">(</span>
+  <span class="va">df</span>,
+  denom_df <span class="op">=</span> <span class="va">df</span>,
+  colvar <span class="op">=</span> <span class="cn">NULL</span>,
+  tablebyvar <span class="op">=</span> <span class="cn">NULL</span>,
+  rowvar <span class="op">=</span> <span class="cn">NULL</span>,
+  rowbyvar <span class="op">=</span> <span class="cn">NULL</span>,
+  statlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"tidytlg.nested_freq.statlist.default"</span><span class="op">)</span>,
+  decimal <span class="op">=</span> <span class="fl">1</span>,
+  cutoff <span class="op">=</span> <span class="cn">NULL</span>,
+  cutoff_stat <span class="op">=</span> <span class="st">"pct"</span>,
+  subset <span class="op">=</span> <span class="cn">TRUE</span>,
+  descending_by <span class="op">=</span> <span class="cn">NULL</span>,
+  display_missing <span class="op">=</span> <span class="cn">FALSE</span>,
+  rowtext <span class="op">=</span> <span class="cn">NULL</span>,
+  row_header <span class="op">=</span> <span class="cn">NULL</span>,
+  .keep <span class="op">=</span> <span class="cn">TRUE</span>,
+  .ord <span class="op">=</span> <span class="cn">FALSE</span>,
+  <span class="va">...</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -228,30 +221,30 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      SITEID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span>, <span class="st">"100"</span>, <span class="st">"100"</span>,<span class="st">"200"</span>, <span class="st">"200"</span>, <span class="st">"200"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      USUBJID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Demo1-101"</span>, <span class="st">"Demo1-102"</span>, <span class="st">"Demo1-103"</span>,</span></span>
-<span class="r-in"><span>                  <span class="st">"Demo1-104"</span>, <span class="st">"Demo1-105"</span>, <span class="st">"Demo1-106"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      AEBODSYS <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cardiac disorders"</span>, <span class="st">"Cardiac disorders"</span>,</span></span>
-<span class="r-in"><span>                   <span class="st">"Respiratory, thoracic and mediastinal disorders"</span>,</span></span>
-<span class="r-in"><span>                   <span class="st">"Infections and infestations"</span>,</span></span>
-<span class="r-in"><span>                   <span class="st">"Skin and subcutaneous tissue disorders"</span>,</span></span>
-<span class="r-in"><span>                   <span class="st">"Infections and infestations"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      AEDECOD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Arrhythmia supraventricular"</span>, <span class="st">"Cardiac failure"</span>,</span></span>
-<span class="r-in"><span>                  <span class="st">"Chronic obstructive pulmonary disease"</span>, <span class="st">"Pneumonia"</span>,</span></span>
-<span class="r-in"><span>                  <span class="st">"Pustular psoriasis"</span>, <span class="st">"Upper respiratory tract infection"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      colnbr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/structure.html" class="external-link">structure</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">3L</span>, <span class="fl">1L</span>,  <span class="fl">2L</span>, <span class="fl">3L</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>        .Label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Active"</span>, <span class="st">"Placebo"</span>, <span class="st">"Comparator"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>        class <span class="op">=</span> <span class="st">"factor"</span></span></span>
-<span class="r-in"><span>      <span class="op">)</span></span></span>
-<span class="r-in"><span>    <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Frequency and percent for two levels of nesting</span></span></span>
-<span class="r-in"><span><span class="fu">nested_freq</span><span class="op">(</span><span class="va">adae</span></span></span>
-<span class="r-in"><span>           ,colvar <span class="op">=</span> <span class="st">"colnbr"</span></span></span>
-<span class="r-in"><span>           ,rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span></span></span>
-<span class="r-in"><span>           ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">adae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span class="r-in">      SITEID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span>, <span class="st">"100"</span>, <span class="st">"100"</span>,<span class="st">"200"</span>, <span class="st">"200"</span>, <span class="st">"200"</span><span class="op">)</span>,</span>
+<span class="r-in">      USUBJID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Demo1-101"</span>, <span class="st">"Demo1-102"</span>, <span class="st">"Demo1-103"</span>,</span>
+<span class="r-in">                  <span class="st">"Demo1-104"</span>, <span class="st">"Demo1-105"</span>, <span class="st">"Demo1-106"</span><span class="op">)</span>,</span>
+<span class="r-in">      AEBODSYS <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cardiac disorders"</span>, <span class="st">"Cardiac disorders"</span>,</span>
+<span class="r-in">                   <span class="st">"Respiratory, thoracic and mediastinal disorders"</span>,</span>
+<span class="r-in">                   <span class="st">"Infections and infestations"</span>,</span>
+<span class="r-in">                   <span class="st">"Skin and subcutaneous tissue disorders"</span>,</span>
+<span class="r-in">                   <span class="st">"Infections and infestations"</span><span class="op">)</span>,</span>
+<span class="r-in">      AEDECOD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Arrhythmia supraventricular"</span>, <span class="st">"Cardiac failure"</span>,</span>
+<span class="r-in">                  <span class="st">"Chronic obstructive pulmonary disease"</span>, <span class="st">"Pneumonia"</span>,</span>
+<span class="r-in">                  <span class="st">"Pustular psoriasis"</span>, <span class="st">"Upper respiratory tract infection"</span><span class="op">)</span>,</span>
+<span class="r-in">      colnbr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/structure.html" class="external-link">structure</a></span><span class="op">(</span></span>
+<span class="r-in">        <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">3L</span>, <span class="fl">1L</span>,  <span class="fl">2L</span>, <span class="fl">3L</span><span class="op">)</span>,</span>
+<span class="r-in">        .Label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Active"</span>, <span class="st">"Placebo"</span>, <span class="st">"Comparator"</span><span class="op">)</span>,</span>
+<span class="r-in">        class <span class="op">=</span> <span class="st">"factor"</span></span>
+<span class="r-in">      <span class="op">)</span></span>
+<span class="r-in">    <span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Frequency and percent for two levels of nesting</span></span>
+<span class="r-in"><span class="fu">nested_freq</span><span class="op">(</span><span class="va">adae</span></span>
+<span class="r-in">           ,colvar <span class="op">=</span> <span class="st">"colnbr"</span></span>
+<span class="r-in">           ,rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span></span>
+<span class="r-in">           ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Column Variables:  colnbr </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Row Variable:  AEBODSYS*AEDECOD </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Statistic Formatting:  n (x.x%) </span>
@@ -271,13 +264,13 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Chronic… 0      0       1 (50.0%)  NESTED              1           0 Respira…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Skin an… 0      1 (50.… 0          NESTED              0           0 Skin an…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Pustula… 0      1 (50.… 0          NESTED              1           0 Skin an…</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Frequency and percent for three levels of nesting (for illustrative</span></span></span>
-<span class="r-in"><span><span class="co"># purpose)</span></span></span>
-<span class="r-in"><span><span class="fu">nested_freq</span><span class="op">(</span><span class="va">adae</span></span></span>
-<span class="r-in"><span>           ,colvar <span class="op">=</span> <span class="st">"colnbr"</span></span></span>
-<span class="r-in"><span>          ,rowvar <span class="op">=</span> <span class="st">"SITEID*AEBODSYS*AEDECOD"</span></span></span>
-<span class="r-in"><span>           ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Frequency and percent for three levels of nesting (for illustrative</span></span>
+<span class="r-in"><span class="co"># purpose)</span></span>
+<span class="r-in"><span class="fu">nested_freq</span><span class="op">(</span><span class="va">adae</span></span>
+<span class="r-in">           ,colvar <span class="op">=</span> <span class="st">"colnbr"</span></span>
+<span class="r-in">          ,rowvar <span class="op">=</span> <span class="st">"SITEID*AEBODSYS*AEDECOD"</span></span>
+<span class="r-in">           ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Column Variables:  colnbr </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Row Variable:  SITEID*AEBODSYS*AEDECOD </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Statistic Formatting:  n (x.x%) </span>
@@ -300,14 +293,14 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> Skin and … 0      1 (50.… 0          NESTED              1           1 200   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> Pustular … 0      1 (50.… 0          NESTED              2           1 200   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: AEBODSYS &lt;fct&gt;</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Cut records where pct meets threshold for a any column</span></span></span>
-<span class="r-in"><span><span class="fu">nested_freq</span><span class="op">(</span><span class="va">cdisc_adae</span></span></span>
-<span class="r-in"><span>            ,colvar <span class="op">=</span> <span class="st">"TRTA"</span></span></span>
-<span class="r-in"><span>            ,rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span></span></span>
-<span class="r-in"><span>            ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span>, distinct <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span>            ,cutoff <span class="op">=</span> <span class="fl">2</span></span></span>
-<span class="r-in"><span>            ,cutoff_stat <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Cut records where pct meets threshold for a any column</span></span>
+<span class="r-in"><span class="fu">nested_freq</span><span class="op">(</span><span class="va">cdisc_adae</span></span>
+<span class="r-in">            ,colvar <span class="op">=</span> <span class="st">"TRTA"</span></span>
+<span class="r-in">            ,rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span></span>
+<span class="r-in">            ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span>, distinct <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in">            ,cutoff <span class="op">=</span> <span class="fl">2</span></span>
+<span class="r-in">            ,cutoff_stat <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Column Variables:  TRTA </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Row Variable:  AEBODSYS*AEDECOD </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Statistic Formatting:  n (x.x%) TRUE </span>
@@ -325,14 +318,14 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ERYTHEMA         1 (20.… 0                      3 (75.0%)             NESTED  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> PRURITUS         1 (20.… 0                      2 (50.0%)             NESTED  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: nested_level &lt;dbl&gt;, group_level &lt;dbl&gt;, AEBODSYS &lt;fct&gt;</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Cut records where pct meets threshold for a specific column</span></span></span>
-<span class="r-in"><span><span class="fu">nested_freq</span><span class="op">(</span><span class="va">cdisc_adae</span></span></span>
-<span class="r-in"><span>            ,rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span></span></span>
-<span class="r-in"><span>            ,colvar <span class="op">=</span> <span class="st">"TRTAN"</span></span></span>
-<span class="r-in"><span>            ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span>, distinct <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span>            ,cutoff <span class="op">=</span> <span class="st">"54 &gt;= 2"</span></span></span>
-<span class="r-in"><span>            ,cutoff_stat <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Cut records where pct meets threshold for a specific column</span></span>
+<span class="r-in"><span class="fu">nested_freq</span><span class="op">(</span><span class="va">cdisc_adae</span></span>
+<span class="r-in">            ,rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span></span>
+<span class="r-in">            ,colvar <span class="op">=</span> <span class="st">"TRTAN"</span></span>
+<span class="r-in">            ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span>, distinct <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in">            ,cutoff <span class="op">=</span> <span class="st">"54 &gt;= 2"</span></span>
+<span class="r-in">            ,cutoff_stat <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Column Variables:  TRTAN </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Row Variable:  AEBODSYS*AEDECOD </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Statistic Formatting:  n (x.x%) TRUE </span>
@@ -347,14 +340,14 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> SKIN AND SUBCUTA… 2 (4… 3 (7… 2 (4… NESTED              0           0 SKIN AN…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ERYTHEMA          1 (2… 3 (7… 0     NESTED              1           0 SKIN AN…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> PRURITUS          1 (2… 2 (5… 0     NESTED              1           0 SKIN AN…</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Frequency and percent for two levels of nesting and sort by descending</span></span></span>
-<span class="r-in"><span><span class="co"># active</span></span></span>
-<span class="r-in"><span><span class="fu">nested_freq</span><span class="op">(</span><span class="va">adae</span></span></span>
-<span class="r-in"><span>            ,colvar <span class="op">=</span> <span class="st">"colnbr"</span></span></span>
-<span class="r-in"><span>            ,rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span></span></span>
-<span class="r-in"><span>            ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>            ,descending <span class="op">=</span> <span class="st">"Active"</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Frequency and percent for two levels of nesting and sort by descending</span></span>
+<span class="r-in"><span class="co"># active</span></span>
+<span class="r-in"><span class="fu">nested_freq</span><span class="op">(</span><span class="va">adae</span></span>
+<span class="r-in">            ,colvar <span class="op">=</span> <span class="st">"colnbr"</span></span>
+<span class="r-in">            ,rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span></span>
+<span class="r-in">            ,statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span></span>
+<span class="r-in">            ,descending <span class="op">=</span> <span class="st">"Active"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Column Variables:  colnbr </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Row Variable:  AEBODSYS*AEDECOD </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Statistic Formatting:  n (x.x%) </span>
@@ -374,71 +367,71 @@ each <code>colvar</code>.  This can be used to sort and filter records.<br></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Chronic… 0      0       1 (50.0%)  NESTED              1           0 Respira…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Skin an… 0      1 (50.… 0          NESTED              0           0 Skin an…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Pustula… 0      1 (50.… 0          NESTED              1           0 Skin an…</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Below illustrates how make the same calls to nested_freq() as above, using</span></span></span>
-<span class="r-in"><span><span class="co"># table and # column metadata along with generate_results().</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">column_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span> <span class="op">~</span><span class="va">tbltype</span>, <span class="op">~</span><span class="va">coldef</span>,   <span class="op">~</span><span class="va">decode</span>,</span></span>
-<span class="r-in"><span> <span class="st">"type1"</span>,     <span class="st">"1"</span>, <span class="st">"Placebo"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"type1"</span>,     <span class="st">"2"</span>,     <span class="st">"Low"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"type1"</span>,     <span class="st">"3"</span>,    <span class="st">"High"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Frequency and percent for two levels of nesting</span></span></span>
-<span class="r-in"><span><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span> <span class="op">~</span><span class="va">anbr</span>,         <span class="op">~</span><span class="va">func</span>,    <span class="op">~</span><span class="va">df</span>,       <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">tbltype</span>,  <span class="op">~</span><span class="va">colvar</span>, <span class="op">~</span><span class="va">statlist</span>,</span></span>
-<span class="r-in"><span> <span class="st">"1"</span>, <span class="st">"nested_freq"</span>, <span class="st">"cdisc_adae"</span>, <span class="st">"AEBODSYS*AEDECOD"</span>,  <span class="st">"type1"</span>,  <span class="st">"TRTP"</span>,</span></span>
-<span class="r-in"><span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co">#generate_results(table_metadata,</span></span></span>
-<span class="r-in"><span><span class="co">#column_metadata_file = tidytlg_metadata(path)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Frequency and percent for three levels of nesting (for illustrative purpose)</span></span></span>
-<span class="r-in"><span><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span> <span class="op">~</span><span class="va">anbr</span>,         <span class="op">~</span><span class="va">func</span>,    <span class="op">~</span><span class="va">df</span>,                 <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">tbltype</span>,  <span class="op">~</span><span class="va">colvar</span>,</span></span>
-<span class="r-in"><span> <span class="op">~</span><span class="va">statlist</span>,</span></span>
-<span class="r-in"><span> <span class="st">"1"</span>, <span class="st">"nested_freq"</span>, <span class="st">"cdisc_adae"</span>, <span class="st">"SITEID*AEBODSYS*AEDECOD"</span>,<span class="st">"type1"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"TRTP"</span>, <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># Commented out because it takes too long</span></span></span>
-<span class="r-in"><span><span class="co"># generate_results(table_metadata, column_metadata)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#Cut records where pct meets threshold for a any column</span></span></span>
-<span class="r-in"><span><span class="va">column_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span> <span class="op">~</span><span class="va">tbltype</span>, <span class="op">~</span><span class="va">coldef</span>,   <span class="op">~</span><span class="va">decode</span>,</span></span>
-<span class="r-in"><span> <span class="st">"type2"</span>,     <span class="st">"1"</span>, <span class="st">"Placebo"</span>,</span></span>
-<span class="r-in"><span> <span class="st">"type2"</span>,     <span class="st">"2"</span>,  <span class="st">"Active"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span> anbr <span class="op">=</span> <span class="st">"1"</span>, func <span class="op">=</span> <span class="st">"nested_freq"</span>, df<span class="op">=</span> <span class="st">"cdisc_adae"</span>,</span></span>
-<span class="r-in"><span> rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span></span>
-<span class="r-in"><span> tbltype <span class="op">=</span> <span class="st">"type2"</span>, colvar <span class="op">=</span> <span class="st">"TRTP"</span>, statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span> dotdotdot <span class="op">=</span> <span class="st">"cutoff = 5"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co">#generate_results(table_metadata,</span></span></span>
-<span class="r-in"><span><span class="co"># column_metadata_file = tidytlg_metadata(path)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Cut records where pct meets threshold for a specific column</span></span></span>
-<span class="r-in"><span><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span> anbr <span class="op">=</span> <span class="st">"1"</span>, func <span class="op">=</span> <span class="st">"nested_freq"</span>, df<span class="op">=</span> <span class="st">"cdisc_adae"</span>,</span></span>
-<span class="r-in"><span> rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span></span>
-<span class="r-in"><span> tbltype <span class="op">=</span> <span class="st">"type2"</span>, colvar <span class="op">=</span> <span class="st">"TRTP"</span>, statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span> dotdotdot <span class="op">=</span> <span class="st">"cutoff = 'col1 &gt;= 5'"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co">#generate_results(table_metadata,</span></span></span>
-<span class="r-in"><span><span class="co">#column_metadata_file = tidytlg_metadata(path)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Frequency and percent for two levels of nesting and sort by descending col1</span></span></span>
-<span class="r-in"><span><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span> anbr <span class="op">=</span> <span class="st">"1"</span>, func <span class="op">=</span> <span class="st">"nested_freq"</span>, df<span class="op">=</span> <span class="st">"cdisc_adae"</span>,</span></span>
-<span class="r-in"><span> rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span></span>
-<span class="r-in"><span> tbltype <span class="op">=</span> <span class="st">"type2"</span>, colvar <span class="op">=</span> <span class="st">"TRTP"</span>, statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span> dotdotdot <span class="op">=</span> <span class="st">"descending = 'col1'"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co">#generate_results(table_metadata,</span></span></span>
-<span class="r-in"><span><span class="co">#column_metadata_file = tidytlg_metadata(path)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Below illustrates how make the same calls to nested_freq() as above, using</span></span>
+<span class="r-in"><span class="co"># table and # column metadata along with generate_results().</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">column_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span class="r-in"> <span class="op">~</span><span class="va">tbltype</span>, <span class="op">~</span><span class="va">coldef</span>,   <span class="op">~</span><span class="va">decode</span>,</span>
+<span class="r-in"> <span class="st">"type1"</span>,     <span class="st">"1"</span>, <span class="st">"Placebo"</span>,</span>
+<span class="r-in"> <span class="st">"type1"</span>,     <span class="st">"2"</span>,     <span class="st">"Low"</span>,</span>
+<span class="r-in"> <span class="st">"type1"</span>,     <span class="st">"3"</span>,    <span class="st">"High"</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Frequency and percent for two levels of nesting</span></span>
+<span class="r-in"><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span class="r-in"> <span class="op">~</span><span class="va">anbr</span>,         <span class="op">~</span><span class="va">func</span>,    <span class="op">~</span><span class="va">df</span>,       <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">tbltype</span>,  <span class="op">~</span><span class="va">colvar</span>, <span class="op">~</span><span class="va">statlist</span>,</span>
+<span class="r-in"> <span class="st">"1"</span>, <span class="st">"nested_freq"</span>, <span class="st">"cdisc_adae"</span>, <span class="st">"AEBODSYS*AEDECOD"</span>,  <span class="st">"type1"</span>,  <span class="st">"TRTP"</span>,</span>
+<span class="r-in"> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span class="co">#generate_results(table_metadata,</span></span>
+<span class="r-in"><span class="co">#column_metadata_file = tidytlg_metadata(path)</span></span>
+<span class="r-in"></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Frequency and percent for three levels of nesting (for illustrative purpose)</span></span>
+<span class="r-in"><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span class="r-in"> <span class="op">~</span><span class="va">anbr</span>,         <span class="op">~</span><span class="va">func</span>,    <span class="op">~</span><span class="va">df</span>,                 <span class="op">~</span><span class="va">rowvar</span>, <span class="op">~</span><span class="va">tbltype</span>,  <span class="op">~</span><span class="va">colvar</span>,</span>
+<span class="r-in"> <span class="op">~</span><span class="va">statlist</span>,</span>
+<span class="r-in"> <span class="st">"1"</span>, <span class="st">"nested_freq"</span>, <span class="st">"cdisc_adae"</span>, <span class="st">"SITEID*AEBODSYS*AEDECOD"</span>,<span class="st">"type1"</span>,</span>
+<span class="r-in"> <span class="st">"TRTP"</span>, <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span class="co"># Commented out because it takes too long</span></span>
+<span class="r-in"><span class="co"># generate_results(table_metadata, column_metadata)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">#Cut records where pct meets threshold for a any column</span></span>
+<span class="r-in"><span class="va">column_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span class="r-in"> <span class="op">~</span><span class="va">tbltype</span>, <span class="op">~</span><span class="va">coldef</span>,   <span class="op">~</span><span class="va">decode</span>,</span>
+<span class="r-in"> <span class="st">"type2"</span>,     <span class="st">"1"</span>, <span class="st">"Placebo"</span>,</span>
+<span class="r-in"> <span class="st">"type2"</span>,     <span class="st">"2"</span>,  <span class="st">"Active"</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
+<span class="r-in"> anbr <span class="op">=</span> <span class="st">"1"</span>, func <span class="op">=</span> <span class="st">"nested_freq"</span>, df<span class="op">=</span> <span class="st">"cdisc_adae"</span>,</span>
+<span class="r-in"> rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span>
+<span class="r-in"> tbltype <span class="op">=</span> <span class="st">"type2"</span>, colvar <span class="op">=</span> <span class="st">"TRTP"</span>, statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span>
+<span class="r-in"> dotdotdot <span class="op">=</span> <span class="st">"cutoff = 5"</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span class="co">#generate_results(table_metadata,</span></span>
+<span class="r-in"><span class="co"># column_metadata_file = tidytlg_metadata(path)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Cut records where pct meets threshold for a specific column</span></span>
+<span class="r-in"><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
+<span class="r-in"> anbr <span class="op">=</span> <span class="st">"1"</span>, func <span class="op">=</span> <span class="st">"nested_freq"</span>, df<span class="op">=</span> <span class="st">"cdisc_adae"</span>,</span>
+<span class="r-in"> rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span>
+<span class="r-in"> tbltype <span class="op">=</span> <span class="st">"type2"</span>, colvar <span class="op">=</span> <span class="st">"TRTP"</span>, statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span>
+<span class="r-in"> dotdotdot <span class="op">=</span> <span class="st">"cutoff = 'col1 &gt;= 5'"</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span class="co">#generate_results(table_metadata,</span></span>
+<span class="r-in"><span class="co">#column_metadata_file = tidytlg_metadata(path)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Frequency and percent for two levels of nesting and sort by descending col1</span></span>
+<span class="r-in"><span class="va">table_metadata</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
+<span class="r-in"> anbr <span class="op">=</span> <span class="st">"1"</span>, func <span class="op">=</span> <span class="st">"nested_freq"</span>, df<span class="op">=</span> <span class="st">"cdisc_adae"</span>,</span>
+<span class="r-in"> rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span>
+<span class="r-in"> tbltype <span class="op">=</span> <span class="st">"type2"</span>, colvar <span class="op">=</span> <span class="st">"TRTP"</span>, statlist <span class="op">=</span> <span class="fu"><a href="statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span>
+<span class="r-in"> dotdotdot <span class="op">=</span> <span class="st">"descending = 'col1'"</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span class="co">#generate_results(table_metadata,</span></span>
+<span class="r-in"><span class="co">#column_metadata_file = tidytlg_metadata(path)</span></span>
 </code></pre></div>
     </div>
   </div>

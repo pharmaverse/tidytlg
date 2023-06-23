@@ -20,7 +20,7 @@ counterpart."><meta property="og:image" content="/logo.png"><!-- mathjax --><scr
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidytlg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
@@ -56,13 +56,6 @@ counterpart."><meta property="og:image" content="/logo.png"><!-- mathjax --><scr
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -90,7 +83,7 @@ counterpart.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">char2factor</span><span class="op">(</span><span class="va">df</span>, <span class="va">c_var</span>, <span class="va">n_var</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">char2factor</span><span class="op">(</span><span class="va">df</span>, <span class="va">c_var</span>, <span class="va">n_var</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -117,27 +110,27 @@ the levels.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="op">~</span><span class="va">TRT01P</span>, <span class="op">~</span><span class="va">TRT01PN</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"Placebo"</span>,   <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"Low Dose"</span>,  <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"High Dose"</span>, <span class="fl">3</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># alphabetical order</span></span></span>
-<span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">TRT01P</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
+<span class="r-in">  <span class="op">~</span><span class="va">TRT01P</span>, <span class="op">~</span><span class="va">TRT01PN</span>,</span>
+<span class="r-in">  <span class="st">"Placebo"</span>,   <span class="fl">1</span>,</span>
+<span class="r-in">  <span class="st">"Low Dose"</span>,  <span class="fl">2</span>,</span>
+<span class="r-in">  <span class="st">"High Dose"</span>, <span class="fl">3</span></span>
+<span class="r-in">  <span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># alphabetical order</span></span>
+<span class="r-in"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">TRT01P</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   TRT01P    TRT01PN</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> High Dose       3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Low Dose        2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Placebo         1</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># change to factor with char2factor</span></span></span>
-<span class="r-in"><span><span class="va">df</span><span class="op">$</span><span class="va">TRT01P</span> <span class="op">&lt;-</span> <span class="fu">char2factor</span><span class="op">(</span><span class="va">df</span>, <span class="st">"TRT01P"</span>, <span class="st">"TRT01PN"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># factor order</span></span></span>
-<span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">TRT01P</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># change to factor with char2factor</span></span>
+<span class="r-in"><span class="va">df</span><span class="op">$</span><span class="va">TRT01P</span> <span class="op">&lt;-</span> <span class="fu">char2factor</span><span class="op">(</span><span class="va">df</span>, <span class="st">"TRT01P"</span>, <span class="st">"TRT01PN"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># factor order</span></span>
+<span class="r-in"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">TRT01P</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   TRT01P    TRT01PN</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>

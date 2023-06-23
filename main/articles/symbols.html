@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tidytlg</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
@@ -79,13 +79,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -186,14 +179,14 @@ reference to commonly used symbols.</p>
 <p>Here is an example call to tidytlg::gentlg() that will add the
 symbols to the label column.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"\u2264"</span>, <span class="st">"\u2265"</span><span class="op">)</span>,</span>
-<span>  col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span>, <span class="st">"200"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,</span>
-<span>                file <span class="op">=</span> <span class="st">"demo"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R">
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>
+  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"\u2264"</span>, <span class="st">"\u2265"</span><span class="op">)</span>,
+  col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span>, <span class="st">"200"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,
+                file <span class="op">=</span> <span class="st">"demo"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="superscripts-and-subscripts">Superscripts and Subscripts<a class="anchor" aria-label="anchor" href="#superscripts-and-subscripts"></a>
@@ -201,28 +194,28 @@ symbols to the label column.</p>
 <p>Superscripts and Subscripts can be added to the label column via
 unicode.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"This is a superscript a{\\super a}"</span>, </span>
-<span>            <span class="st">"This is a subscript b{\\sub b}"</span><span class="op">)</span>,</span>
-<span>  col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span>, <span class="st">"200"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,</span>
-<span>                file <span class="op">=</span> <span class="st">"demo"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R">
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>
+  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"This is a superscript a{\\super a}"</span>, 
+            <span class="st">"This is a subscript b{\\sub b}"</span><span class="op">)</span>,
+  col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span>, <span class="st">"200"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,
+                file <span class="op">=</span> <span class="st">"demo"</span><span class="op">)</span></code></pre></div>
 <p>Superscripts and Subscripts can be added to the footnotes via unicode
 as well.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"This is a superscript a{\\super a}"</span>, </span>
-<span>            <span class="st">"This is a subscript b{\\sub b}"</span><span class="op">)</span>,</span>
-<span>  col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span>, <span class="st">"200"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,</span>
-<span>                file <span class="op">=</span> <span class="st">"demo"</span>,</span>
-<span>                footers <span class="op">=</span> <span class="st">"This is a footnote superscript{\\super a}"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R">
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>
+  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"This is a superscript a{\\super a}"</span>, 
+            <span class="st">"This is a subscript b{\\sub b}"</span><span class="op">)</span>,
+  col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span>, <span class="st">"200"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,
+                file <span class="op">=</span> <span class="st">"demo"</span>,
+                footers <span class="op">=</span> <span class="st">"This is a footnote superscript{\\super a}"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="inline-rtf-line-breaks">Inline RTF Line Breaks<a class="anchor" aria-label="anchor" href="#inline-rtf-line-breaks"></a>
@@ -230,25 +223,25 @@ as well.</p>
 <p>Sometimes you need add a line break into your RTF. Inserting ‘\\\n’
 into your string will add your line break for you.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bodysystem \\\n Preferred Term"</span><span class="op">)</span>,</span>
-<span>  col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,</span>
-<span>                file <span class="op">=</span> <span class="st">"demo"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R">
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>
+  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bodysystem \\\n Preferred Term"</span><span class="op">)</span>,
+  col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,
+                file <span class="op">=</span> <span class="st">"demo"</span><span class="op">)</span></code></pre></div>
 <p>If you need a line break followed by a tab, just add in
 ‘\\li180’.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bodysystem\\\n\\li180Preferred Term"</span><span class="op">)</span>,</span>
-<span>  col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,</span>
-<span>                file <span class="op">=</span> <span class="st">"demo"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R">
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>
+  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bodysystem\\\n\\li180Preferred Term"</span><span class="op">)</span>,
+  col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"100"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu">tidytlg</span><span class="fu">::</span><span class="fu"><a href="../reference/gentlg.html">gentlg</a></span><span class="op">(</span><span class="va">df</span>,
+                file <span class="op">=</span> <span class="st">"demo"</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 
