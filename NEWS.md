@@ -1,3 +1,7 @@
+# tidytlg 0.1.2
+
+* Updated tidytlg-package overall documentation to resolve a CRAN issue. (#21)
+
 # tidytlg 0.1.1
 
 * Updated tidytlg.Rmd vignette to write to temp directory instead of user home directory

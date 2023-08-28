@@ -108,6 +108,8 @@
 #'
 #' @docType package
 #' @name tidytlg
+#' @keywords internal
+"_PACKAGE"
 
 globalVariables(c("anbr", "label", "rowvar", "rowcondition", "row_type",
                   "rowtext", "tableby", "by", "func", "colvar", "header_order",
