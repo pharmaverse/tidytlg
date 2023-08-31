@@ -1,19 +1,10 @@
-## tidytlg 0.1.0 Resubmission
-
-### Resubmission Actions:
-
-Per a Review by Victoria Wimmer dated May 3, 2023:
-
-- Package DESCRIPTION was updated
+## tidytlg 0.1.2
 
 ### Testing
 
 Tested on Ubuntu Jammy, GitHub Action, and RHub.
 
-Two notes found:
-
-Possibly misspelled words in DESCRIPTION: TLG (43:52) TLGs (2:15)
-Tidyverse (2:30, 43:63)
+One notes found:
 
 Found the following (possibly) invalid URLs: URL:
 <https://support.posit.co/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf>

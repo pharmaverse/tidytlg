@@ -685,8 +685,7 @@ check_wcol <- function(huxme, wcol) {
     "anbr", "roworder", "boldme", "indentme", "newrows", "newpage",
     "rowvar", "row_type", "nested_level", "group_level"
   )
-  huxme_output <- huxme[- (which(names(huxme) %in% lst_to_remove))]
-  huxme_output <- huxme_output %>% dplyr::select(!c(any_of("func"),
+  huxme_output <- huxme %>% dplyr::select(!c(any_of(c("func", lst_to_remove)),
                                                     ends_with("_ord")))
 
   if (length(wcol) == 1 || length(wcol) == length(huxme_output)) {
@@ -706,7 +705,7 @@ check_plotnames <- function(plotnames) {
   if (is.null(plotnames)) {
     return()
   }
-  if (file.exists(plotnames)) {
+  if (all(file.exists(plotnames))) {
     return()
   }
   stop(paste0("plotnames '", plotnames,
@@ -1178,8 +1177,6 @@ check_bind_table <- function(dfs, arglist) {
 
   var_type_check <- var_type_check[names(var_type_check) %in% names(arglist)]
   check_var_types("bind_table", arglist, var_type_check)
-  check_in_df_bind_table("bind_table", dfs, arglist)
   check_var_duplicates("bind_table", arglist)
-  check_dfs_formats(dfs)
   check_file_exists("bind_table", arglist, "column_metadata_file")
 }

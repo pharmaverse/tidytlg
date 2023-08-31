@@ -6,14 +6,16 @@
 <!-- badges: start -->
 
 <!-- <img src="man/figures/logo.png" align="right" height = "13"/> -->
+[![CRAN
+status](https://www.r-pkg.org/badges/version/tidytlg)](https://CRAN.R-project.org/package=tidytlg)
 <!-- badges: end -->
 
 The goal of tidytlg is to generate table, listings, and graphs (TLG)
 using Tidyverse. This can be achieved multiple ways with this package.
 
--   Functional method: build a custom script for each TLG
--   Metadata method: build a generic script that utilizes column and
-    table metadata to produce each TLG result
+- Functional method: build a custom script for each TLG
+- Metadata method: build a generic script that utilizes column and table
+  metadata to produce each TLG result
 
 ## Installation
 
