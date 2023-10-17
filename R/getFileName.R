@@ -38,7 +38,8 @@ getFileName <-  function() {
 getFileNameBatch <- function(cmdArgs) {
   res <- NULL
 
-  timber_needle <- "timber::axecute"
+  # Update to use logrx over timber
+  timber_needle <- "logrx::axecute"
   timber_match <- base::grep(timber_needle, cmdArgs)
   file_needle <- "--file="
   file_match <- base::grep(file_needle, cmdArgs)
