@@ -1,6 +1,6 @@
 #' Create a statlist interface for a table
 #'
-#' The {statlist} is the interface for the presentation of data in a tidytlg
+#' The statlist is the interface for the presentation of data in a tidytlg
 #' table.
 #'
 #' @param stats (required) A character vector of statistics to display in the

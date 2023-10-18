@@ -213,7 +213,7 @@ file.remove("TSFAEX.html", "tsfaex.rtf")
 \url{https://github.com/hughjonesd/huxtable}
 }
 \author{
-Steven Haesendonckx {shaesen2@its.jnj.com}
+Steven Haesendonckx \href{mailto:shaesen2@its.jnj.com}{shaesen2@its.jnj.com}
 
-Pelagia Alexandra Papadopoulou {ppapadop@its.jnj.com}
+Pelagia Alexandra Papadopoulou \href{mailto:ppapadop@its.jnj.com}{ppapadop@its.jnj.com}
 }

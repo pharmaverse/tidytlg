@@ -18,7 +18,7 @@ A statlist object that can be passed in the 'statlist' argument of
 \code{freq}, \code{nested_freq}, or \code{univar}.
 }
 \description{
-The {statlist} is the interface for the presentation of data in a tidytlg
+The statlist is the interface for the presentation of data in a tidytlg
 table.
 }
 \section{Statlists for \code{freq()} and \code{nested_freq()}}{

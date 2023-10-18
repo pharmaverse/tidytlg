@@ -4,8 +4,8 @@
 #' During this function call, the huxtable can be written to an RTF or
 #' displayed in HTML.
 #'
-#' @author Steven Haesendonckx {shaesen2@@its.jnj.com}
-#' @author Pelagia Alexandra Papadopoulou {ppapadop@@its.jnj.com}
+#' @author Steven Haesendonckx <shaesen2@@its.jnj.com>
+#' @author Pelagia Alexandra Papadopoulou <ppapadop@@its.jnj.com>
 #'
 #' @param huxme (optional) For tables and listings, An input dataframe
 #' containing all columns of interest. For graphs, either NULL or a ggplot
