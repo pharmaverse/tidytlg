@@ -1,3 +1,7 @@
+# tidytlg 0.1.4
+
+* Update getFileName.R to use the logrx package over the timber package
+
 # tidytlg 0.1.3
 
 * Updated tidytlg-package overall documentation to resolve a CRAN issue. (#21)
