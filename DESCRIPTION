@@ -46,7 +46,7 @@ Description: Generate tables, listings, and graphs (TLG) using 'tidyverse.'
   The 'envsetup' package can also be leveraged to create environments for table
   creation.
 License: Apache License 2.0
-URL: https://github.com/pharmaverse/tidytlg
+URL: https://pharmaverse.github.io/tidytlg/main/, https://github.com/pharmaverse/tidytlg
 BugReports: https://github.com/pharmaverse/tidytlg/issues
 Encoding: UTF-8
 LazyData: true
