@@ -73,7 +73,6 @@ Imports:
     forcats (>= 0.5.1),
     purrr (>= 0.3.4),
     huxtable (>= 5.1.0),
-    assertthat (>= 0.2.1),
     glue (>= 1.4.2),
     crayon (>= 1.4.1),
     methods,
