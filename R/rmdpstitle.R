@@ -37,10 +37,8 @@ rmdpstitle <-
            text = "text") {
 
   # function argument checks
-    if (rlang::is_missing(df))
-      usethis::ui_stop("in rmdpstitle, df is not specified")
-    if (rlang::is_missing(tblid))
-      usethis::ui_stop("in rmdpstitle, tblid is not specified")
+    rlang::check_required(df)
+    rlang::check_required(tblid)
     if (!(identifier %in% names(df)))
       cli::cli_abort("{identifier} is not in {substitute(df)}")
     if (!(text %in% names(df)))
