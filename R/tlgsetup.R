@@ -106,8 +106,8 @@ tlgsetup <-
     attr(split$coldef, "label") <- attr(df[[var]], "label")
 
     split %>%
-      inner_join(df, by = c("coldef" = var), keep = TRUE) %>%
       select(- coldef, - decode, -dplyr::starts_with("span")) %>%
+      inner_join(df, by = c("coldef" = var), keep = TRUE, relationship = "many-to-many") %>%
       mutate(
         colnbr = fct_expand(colnbr, unique(as.character(split$colnbr)))
       )
