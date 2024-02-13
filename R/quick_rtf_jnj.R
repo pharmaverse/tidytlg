@@ -212,19 +212,23 @@ numeral_formatter <- function(x) {
   UseMethod("numeral_formatter")
 }
 
+#' @export
 numeral_formatter.default <- function(x) {
   stop("Unrecognized number_format. Please use a number, string or function.")
 }
 
 # If we are a function then return output from the function
+#' @export
 numeral_formatter.function <- function(x) {
   return(x)
 }
 
+#' @export
 numeral_formatter.character <- function(x) {
   return(function(numeral) sprintf(x, numeral))
 }
 
+#' @export
 numeral_formatter.numeric <- function(x) {
   return(function(numeral) formatC(round(numeral, x), format = "f", digits = x))
 }
