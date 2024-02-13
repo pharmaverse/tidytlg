@@ -11,7 +11,7 @@
 #' @importFrom dplyr group_by_at slice mutate_if
 #' @importFrom stringr str_detect str_remove str_replace str_split regex
 #'   str_to_lower
-#' @importFrom tidyselect all_of any_of everything starts_with ends_with
+#' @importFrom dplyr all_of any_of everything starts_with ends_with
 #' @importFrom forcats fct_expand fct_recode fct_relevel
 #' @importFrom magrittr extract2
 #' @importFrom purrr map walk map_dfr pmap discard compact map_lgl imap map_chr
