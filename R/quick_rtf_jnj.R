@@ -334,7 +334,7 @@ display_cells <- function(ht, all = TRUE,
     da_rows <- seq(rr, end_r)
     da_cols <- seq(cc, end_c)
     if (any(touched[da_rows, da_cols])) {
-      stop(glue::glue(
+      cli::cli_abort(c(
         "Overlapping multirow/multicolumn cells in",
         " [{da_rows}, {da_cols}] of huxtable"
       ))
