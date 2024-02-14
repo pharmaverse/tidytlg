@@ -473,7 +473,7 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
                             nheader, tlf, ...) {
   if(!inherits(fc_tables, "rtfFCTables")) {
     cli::cli_abort(
-      "{.arg fc_tables} must be a {.cls rtfFCTables}, not a {.obj_type_friendly {fc_tables}}."
+      "{.arg fc_tables} must be a {.cls rtfFCTables}, not {.obj_type_friendly {fc_tables}}."
     )
   }
   color_index <- function(color) {
