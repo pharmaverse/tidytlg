@@ -32,11 +32,19 @@ pad_header <- function(result, nheader) {
   result_sectioned <- result %>%
     stringr::str_split("\\\\row") %>%
     base::unlist() # breakes apart by section
+  colspan <-  nheader - 1
 
   result_sectioned[nheader + 1] <- result_sectioned[nheader + 1] %>%
     stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx")
   result_sectioned[nheader + 1] <- result_sectioned[nheader + 1] %>%
     stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx", "\\\\cellx")
+
+  if(colspan >= 1){
+    result_sectioned[2:(colspan + 1)] <- result_sectioned[2:(colspan + 1)] %>%
+      stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx")
+    result_sectioned[2:(colspan + 1)] <- result_sectioned[2:(colspan + 1)] %>%
+      stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx", "\\\\cellx")
+  }
 
   ret <- base::paste0(result_sectioned, collapse = "\\row")
 
