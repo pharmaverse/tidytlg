@@ -32,19 +32,13 @@ pad_header <- function(result, nheader) {
   result_sectioned <- result %>%
     stringr::str_split("\\\\row") %>%
     base::unlist() # breakes apart by section
-  colspan <-  nheader - 1
 
-  result_sectioned[nheader + 1] <- result_sectioned[nheader + 1] %>%
-    stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx")
-  result_sectioned[nheader + 1] <- result_sectioned[nheader + 1] %>%
-    stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx", "\\\\cellx")
 
-  if(colspan >= 1){
-    result_sectioned[2:(colspan + 1)] <- result_sectioned[2:(colspan + 1)] %>%
-      stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx")
-    result_sectioned[2:(colspan + 1)] <- result_sectioned[2:(colspan + 1)] %>%
-      stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx", "\\\\cellx")
-  }
+    result_sectioned[2:(nheader + 1)] <- result_sectioned[2:(nheader + 1)] %>%
+      stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx") %>%
+      stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx","\\\\clpadr67\\\\clpadfr3\\\\cellx")
+
+
 
   ret <- base::paste0(result_sectioned, collapse = "\\row")
 
@@ -471,7 +465,7 @@ rtf_fc_tables <- function(..., extra_fonts = "Times",
 to_rtf_01 <- function(ht, ...) UseMethod("to_rtf")
 
 to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
-                            nheader, tlf, ...) {
+                            nheader, header_pad, tlf, ...) {
   assertthat::assert_that(inherits(fc_tables, "rtfFCTables"))
   color_index <- function(color) {
     res <- match(color, fc_tables$colors)
@@ -709,16 +703,17 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
     )
   }
   attr(result, "fc_tables") <- fc_tables
+
   result <- merger_header(result)
-  if (tolower(substr(tlf, 1, 1)) == "t") {
+  if (tolower(substr(tlf, 1, 1)) == "t" & header_pad) {
     result <- pad_header(result, nheader)
   }
   return(result)
 }
 
 print_rtf_01 <- function(ht, fc_tables = rtf_fc_tables(ht),
-                         watermark, nheader, tlf, ...) {
-  cat(to_rtf_01(ht, fc_tables, watermark, nheader, tlf, ...))
+                         watermark, nheader, header_pad, tlf, ...) {
+  cat(to_rtf_01(ht, fc_tables, watermark, nheader, header_pad, tlf, ...))
 }
 
 
@@ -785,7 +780,8 @@ quick_rtf_jnj <- function(...,
                           mode = "0770",
                           debug = FALSE,
                           nheader = 1,
-                          tlf = "Table") {
+                          tlf = "Table",
+                          header_pad = TRUE) {
   if (debug == TRUE) browser()
 
   assertthat::assert_that(assertthat::is.number(borders))
@@ -803,7 +799,7 @@ quick_rtf_jnj <- function(...,
   tryCatch( {
       cat(ifelse(portrait, portrait_t, portrait_f))
       cat("\n\n\n")
-      lapply(hts, print_rtf_01, watermark = watermark, nheader = nheader,
+      lapply(hts, print_rtf_01, watermark = watermark, nheader = nheader, header_pad = header_pad,
              tlf = tlf)
       cat(ifelse(pagenum, pagenum_t, "\n\n\n}"))
     },
