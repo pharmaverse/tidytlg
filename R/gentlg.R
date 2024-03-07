@@ -74,7 +74,8 @@
 #' right side of the footer section in the format page x/y. (Default = FALSE)
 #' @param firstcolumnborder (optional) Logical. When true page adds a bottom
 #' border to the first column of header rows (Default = FALSE)
-#' @param header_pad (optional) Logical. When true page adds a pad to header rows to break apart border (Default = TRUE)
+#' @param header_pad (optional) Logical. When true page adds a pad to header
+#' rows to break apart border (Default = TRUE)
 #'
 #' @section Huxme Details:
 #' For tables and listings, formatting of the output can be dictated through the
