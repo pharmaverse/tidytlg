@@ -74,8 +74,8 @@
 #' right side of the footer section in the format page x/y. (Default = FALSE)
 #' @param firstcolumnborder (optional) Logical. When true page adds a bottom
 #' border to the first column of header rows (Default = FALSE)
-#' @param header_pad (optional) Logical. When true page adds a pad to header
-#' rows to break apart border (Default = TRUE)
+#' @param header_pad (optional) List. Adds header pad to header rows in list
+#' based on index, when NULL no pad is added  (Default = NULL)
 #'
 #' @section Huxme Details:
 #' For tables and listings, formatting of the output can be dictated through the
@@ -189,7 +189,7 @@ gentlg <- function(huxme = NULL,
                    colheader = NULL,
                    pagenum = FALSE,
                    firstcolumnborder = FALSE,
-                   header_pad = TRUE) {
+                   header_pad = NULL) {
   # check all the arguments being passed in except ...
   arglist <- list()
   args_to_chk <- names(formals())[names(formals()) != "..."]

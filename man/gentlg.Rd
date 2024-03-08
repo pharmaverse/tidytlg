@@ -25,7 +25,7 @@ gentlg(
   colheader = NULL,
   pagenum = FALSE,
   firstcolumnborder = FALSE,
-  header_pad = TRUE
+  header_pad = NULL
 )
 }
 \arguments{
@@ -116,8 +116,8 @@ right side of the footer section in the format page x/y. (Default = FALSE)}
 \item{firstcolumnborder}{(optional) Logical. When true page adds a bottom
 border to the first column of header rows (Default = FALSE)}
 
-\item{header_pad}{(optional) Logical. When true page adds a pad to header
-rows to break apart border (Default = TRUE)}
+\item{header_pad}{(optional) List. Adds header pad to header rows in list
+based on index, when NULL no pad is added  (Default = NULL)}
 }
 \value{
 Formatted huxtable with desired properties for output to an RTF/HTML

@@ -25,16 +25,18 @@ merger_header <- function(result) {
 #'
 #' @param result The current RTF output
 #' @param nheader Number of headers which is equal to `colspan` + 1
+#' @param header_pad a list of row numbers to add pading to columns
 #'
 #' @return Returns the RTF output but with padding added to colvar column
 #' @noRd
-pad_header <- function(result, nheader) {
+pad_header <- function(result, nheader,header_pad) {
   result_sectioned <- result %>%
     stringr::str_split("\\\\row") %>%
     base::unlist() # breakes apart by section
 
+    section_selection <- header_pad[header_pad %in% 2:(nheader + 1)]
 
-    result_sectioned[2:(nheader + 1)] <- result_sectioned[2:(nheader + 1)] %>%
+    result_sectioned[section_selection] <- result_sectioned[section_selection] %>%
       stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx") %>%
       stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx","\\\\clpadr67\\\\clpadfr3\\\\cellx")
 
@@ -705,8 +707,8 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   attr(result, "fc_tables") <- fc_tables
 
   result <- merger_header(result)
-  if (tolower(substr(tlf, 1, 1)) == "t" & header_pad) {
-    result <- pad_header(result, nheader)
+  if (tolower(substr(tlf, 1, 1)) == "t" & !is.null(header_pad)) {
+    result <- pad_header(result, nheader,header_pad)
   }
   return(result)
 }
