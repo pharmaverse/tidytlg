@@ -707,6 +707,11 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   attr(result, "fc_tables") <- fc_tables
 
   result <- merger_header(result)
+  if(is.null(header_pad)){
+    header_pad <- 2:(nheader + 1)
+  }else{
+  header_pad <- header_pad + 1
+  }
   if (tolower(substr(tlf, 1, 1)) == "t" & !is.null(header_pad)) {
     result <- pad_header(result, nheader,header_pad)
   }

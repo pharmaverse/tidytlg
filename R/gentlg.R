@@ -75,7 +75,11 @@
 #' @param firstcolumnborder (optional) Logical. When true page adds a bottom
 #' border to the first column of header rows (Default = FALSE)
 #' @param header_pad (optional) List. Adds header pad to header rows in list
-#' based on index, when NULL no pad is added  (Default = NULL)
+#' based on index (not including title), when NULL pad is added to all header
+#' rows  (Default = NULL)
+#' @param colspan_line (optional) List. Adds bottom border to header rows in list
+#' based on index (not including title), when NULL border is added to all header
+#' rows  (Default = NULL)
 #'
 #' @section Huxme Details:
 #' For tables and listings, formatting of the output can be dictated through the
@@ -189,7 +193,8 @@ gentlg <- function(huxme = NULL,
                    colheader = NULL,
                    pagenum = FALSE,
                    firstcolumnborder = FALSE,
-                   header_pad = NULL) {
+                   header_pad = NULL,
+                   colspan_line = NULL) {
   # check all the arguments being passed in except ...
   arglist <- list()
   args_to_chk <- names(formals())[names(formals()) != "..."]
@@ -1028,8 +1033,14 @@ gentlg <- function(huxme = NULL,
     start_index = ifelse(firstcolumnborder,1,2)
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
-
-      for (z in start_index:(1 + formatindex)) {
+      brows <- start_index:(1 + formatindex)
+      if(is.null(colspan_line)){
+        colspan_line <- brows
+      }else{
+      colspan_line <- colspan_line + 1
+      }
+      brows <- brows[brows %in% colspan_line]
+      for (z in brows) {
         borderlineme <- start_index:ncol(ht)
         noborderline <- which(ht[z, start_index:ncol(ht)] == "\\keepn\\trhdr ")
 
