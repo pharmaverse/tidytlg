@@ -1033,7 +1033,7 @@ gentlg <- function(huxme = NULL,
     start_index = ifelse(firstcolumnborder,1,2)
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
-      brows <- start_index:(1 + formatindex)
+      brows <- 2:(1 + formatindex)
       if(is.null(colspan_line)){
         colspan_line <- brows
       }else{
