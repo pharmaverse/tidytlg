@@ -23,7 +23,10 @@ gentlg(
   print.hux = TRUE,
   watermark = NULL,
   colheader = NULL,
-  pagenum = FALSE
+  pagenum = FALSE,
+  firstcolumnborder = FALSE,
+  header_pad = NULL,
+  colspan_line = NULL
 )
 }
 \arguments{
@@ -110,6 +113,17 @@ for a table or listing. Default uses the column labels of huxme.}
 
 \item{pagenum}{(optional) Logical. When true page numbers are added on the
 right side of the footer section in the format page x/y. (Default = FALSE)}
+
+\item{firstcolumnborder}{(optional) Logical. When true page adds a bottom
+border to the first column of header rows (Default = FALSE)}
+
+\item{header_pad}{(optional) List. Adds header pad to header rows in list
+based on index (not including title), when NULL pad is added to all header
+rows  (Default = NULL)}
+
+\item{colspan_line}{(optional) List. Adds bottom border to header rows in list
+based on index (not including title), when NULL border is added to all header
+rows  (Default = NULL)}
 }
 \value{
 Formatted huxtable with desired properties for output to an RTF/HTML
