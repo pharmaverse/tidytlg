@@ -56,7 +56,7 @@ jobs:
     uses: pharmaverse/admiralci/.github/workflows/pkgdown.yml@main
     if: github.event_name == 'push'
     with:
-      r-version: ${{ env.R_VERSION }}
+      r-version: "$R_VERSION"
       # Whether to skip multiversion docs
       # Note that if you have multiple versions of docs,
       # your URL links are likely to break due to path changes
