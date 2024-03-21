@@ -53,13 +53,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/pharmaverse/tidytlg/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -85,13 +78,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rmdpstitle</span><span class="op">(</span>
-  <span class="va">df</span>,
-  <span class="va">tblid</span>,
-  idvar <span class="op">=</span> <span class="st">"tblid"</span>,
-  identifier <span class="op">=</span> <span class="st">"identifier"</span>,
-  text <span class="op">=</span> <span class="st">"text"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rmdpstitle</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>,</span>
+<span>  <span class="va">tblid</span>,</span>
+<span>  idvar <span class="op">=</span> <span class="st">"tblid"</span>,</span>
+<span>  identifier <span class="op">=</span> <span class="st">"identifier"</span>,</span>
+<span>  text <span class="op">=</span> <span class="st">"text"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -131,22 +124,22 @@ and the second contains the footnotes as a list</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"TSIDEM01"</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">titles</span> <span class="op">&lt;-</span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="op">~</span><span class="va">tblid</span>, <span class="op">~</span><span class="va">identifier</span>,                  <span class="op">~</span><span class="va">text</span>,</span>
-<span class="r-in">  <span class="st">"TSIDEM01"</span>,     <span class="st">"TITLE"</span>, <span class="st">"Demographics Example"</span>,</span>
-<span class="r-in">  <span class="st">"TSIDEM01"</span>, <span class="st">"FOOTNOTE1"</span>,    <span class="st">"Example footnote."</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">title_foot</span> <span class="op">&lt;-</span> <span class="fu">rmdpstitle</span><span class="op">(</span><span class="va">titles</span>, <span class="va">tblid</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">title_foot</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"TSIDEM01"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">titles</span> <span class="op">&lt;-</span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="op">~</span><span class="va">tblid</span>, <span class="op">~</span><span class="va">identifier</span>,                  <span class="op">~</span><span class="va">text</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"TSIDEM01"</span>,     <span class="st">"TITLE"</span>, <span class="st">"Demographics Example"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"TSIDEM01"</span>, <span class="st">"FOOTNOTE1"</span>,    <span class="st">"Example footnote."</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">title_foot</span> <span class="op">&lt;-</span> <span class="fu">rmdpstitle</span><span class="op">(</span><span class="va">titles</span>, <span class="va">tblid</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">title_foot</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 1</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   text                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Demographics Example</span>
-<span class="r-in"><span class="va">title_foot</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<span class="r-in"><span><span class="va">title_foot</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`1`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Example footnote."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

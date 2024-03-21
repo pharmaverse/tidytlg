@@ -79,13 +79,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -126,14 +119,14 @@ summary statistics for numeric variables. A typical example of using the
 shown below for summarizing N, MEAN (SD), MEDIAN, RANGE, IQ Range for
 the <code>Age</code> variable in adsl.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
-         rowvar <span class="op">=</span> <span class="st">"AGE"</span>, 
-         statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"MEANSD"</span>, <span class="st">"MEDIAN"</span>, <span class="st">"RANGE"</span>, <span class="st">"IQRANGE"</span><span class="op">)</span><span class="op">)</span>,
-         decimal <span class="op">=</span> <span class="fl">0</span>,
-         row_header <span class="op">=</span> <span class="st">"Age (Years)"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
+<span>         rowvar <span class="op">=</span> <span class="st">"AGE"</span>, </span>
+<span>         statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"MEANSD"</span>, <span class="st">"MEDIAN"</span>, <span class="st">"RANGE"</span>, <span class="st">"IQRANGE"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         decimal <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>         row_header <span class="op">=</span> <span class="st">"Age (Years)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="16%">
@@ -310,14 +303,14 @@ for passing to the <code>statlist</code> argument.</p>
 C.I.), and Geometric Mean (95% C.I.) for the <code>Age</code> variable
 in adsl.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
-         rowvar <span class="op">=</span> <span class="st">"AGE"</span>, 
-         statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"MEAN_CI"</span>, <span class="st">"GeoMEAN_CI"</span><span class="op">)</span><span class="op">)</span>,
-         decimal <span class="op">=</span> <span class="fl">0</span>,
-         row_header <span class="op">=</span> <span class="st">"Age (Years)"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
+<span>         rowvar <span class="op">=</span> <span class="st">"AGE"</span>, </span>
+<span>         statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>, <span class="st">"MEAN_CI"</span>, <span class="st">"GeoMEAN_CI"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         decimal <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>         row_header <span class="op">=</span> <span class="st">"Age (Years)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="24%">
@@ -390,13 +383,13 @@ extra defaults, please type
 example function call of <code>univar</code> is shown below for
 presenting the data using a base decimal value of 2.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
-         rowvar <span class="op">=</span> <span class="st">"BMIBL"</span>, 
-         decimal <span class="op">=</span> <span class="fl">2</span>,
-         row_header <span class="op">=</span> <span class="st">"Age (Years)"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
+<span>         rowvar <span class="op">=</span> <span class="st">"BMIBL"</span>, </span>
+<span>         decimal <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>         row_header <span class="op">=</span> <span class="st">"Age (Years)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="14%">
@@ -487,14 +480,14 @@ addition, we would like the precision to be data driven and varied by
 parameter, which can be achieved by setting
 <code>precisionby = "PARAMCD"</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_advs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRTAN"</span>, 
-         rowvar <span class="op">=</span> <span class="st">"AVAL"</span>, 
-         rowbyvar <span class="op">=</span> <span class="st">"PARAMCD"</span>,
-         precisionby <span class="op">=</span> <span class="st">"PARAMCD"</span>,
-         decimal <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_advs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRTAN"</span>, </span>
+<span>         rowvar <span class="op">=</span> <span class="st">"AVAL"</span>, </span>
+<span>         rowbyvar <span class="op">=</span> <span class="st">"PARAMCD"</span>,</span>
+<span>         precisionby <span class="op">=</span> <span class="st">"PARAMCD"</span>,</span>
+<span>         decimal <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="8%">
@@ -850,14 +843,14 @@ different data driven precision. The following example uses the variable
 CHG to calculate precision, similar to the above example we still use
 <code>decimal = 4</code> to cap our decimal spaces at 4.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_advs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"SYSBP"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRTAN"</span>, 
-         rowvar <span class="op">=</span> <span class="st">"CHG"</span>, 
-         precisionon <span class="op">=</span> <span class="st">"CHG"</span>,
-         decimal <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_advs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"SYSBP"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRTAN"</span>, </span>
+<span>         rowvar <span class="op">=</span> <span class="st">"CHG"</span>, </span>
+<span>         precisionon <span class="op">=</span> <span class="st">"CHG"</span>,</span>
+<span>         decimal <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="14%">
@@ -929,16 +922,16 @@ throughout the table even though the two variables may have different
 precision. We also calculate precision by PARAMCD since the output table
 will be presented using that as a by variable.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_advs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"SYSBP"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRTAN"</span>, 
-         rowvar <span class="op">=</span> <span class="st">"AVAL"</span>, 
-         rowbyvar <span class="op">=</span> <span class="st">"PARAMCD"</span>,
-         precisionby <span class="op">=</span> <span class="st">"PARAMCD"</span>,
-         precisionon <span class="op">=</span> <span class="st">"CHG"</span>,
-         decimal <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_advs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"SYSBP"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/univar.html">univar</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRTAN"</span>, </span>
+<span>         rowvar <span class="op">=</span> <span class="st">"AVAL"</span>, </span>
+<span>         rowbyvar <span class="op">=</span> <span class="st">"PARAMCD"</span>,</span>
+<span>         precisionby <span class="op">=</span> <span class="st">"PARAMCD"</span>,</span>
+<span>         precisionon <span class="op">=</span> <span class="st">"CHG"</span>,</span>
+<span>         decimal <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="9%">

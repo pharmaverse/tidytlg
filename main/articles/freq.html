@@ -79,13 +79,6 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -133,14 +126,14 @@ in the output. In the following table the <code>subset</code> argument
 is used to create the one row summary with the row heading specified in
 the <code>rowtext</code> argument.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
-       rowvar <span class="op">=</span> <span class="st">"ITTFL"</span>, 
-       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n"</span><span class="op">)</span>,
-       subset <span class="op">=</span> <span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span>,
-       rowtext <span class="op">=</span> <span class="st">"Analysis set: ITT"</span><span class="op">)</span>
-  
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
+<span>       rowvar <span class="op">=</span> <span class="st">"ITTFL"</span>, </span>
+<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n"</span><span class="op">)</span>,</span>
+<span>       subset <span class="op">=</span> <span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span>,</span>
+<span>       rowtext <span class="op">=</span> <span class="st">"Analysis set: ITT"</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -174,13 +167,13 @@ character variable such as age groups, gender, race, ethnicity,
 etc.</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
-       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, 
-       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,
-       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
+<span>       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, </span>
+<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -235,14 +228,14 @@ variable and alphabetical sorting is applied to the summarized results.
 We can convert <code>SEX</code> to a factor variable with the customized
 order and labels for enabling the user-defined sorting.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
-       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, 
-       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,
-       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
+<span>       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, </span>
+<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -296,14 +289,14 @@ order and labels for enabling the user-defined sorting.</p>
 denominator, which can be done by specifying
 <code>statlist = statlist("n/N (x.x%)")</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, 
-       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, 
-       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n/N (x.x%)"</span><span class="op">)</span>,
-       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>, </span>
+<span>       rowvar <span class="op">=</span> <span class="st">"SEX"</span>, </span>
+<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n/N (x.x%)"</span><span class="op">)</span>,</span>
+<span>       row_header <span class="op">=</span> <span class="st">"Sex"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">label</th>
@@ -352,15 +345,15 @@ scenario, the denominator should also be split by <code>SEX</code> in
 addition to <code>TRT01PN</code>, which can be done by
 <code>statlist(c("N","n (x.x%)"), denoms_by = c("SEX", "TRT01PN"))</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,
-       rowbyvar <span class="op">=</span> <span class="st">"SEX"</span>,
-       rowvar <span class="op">=</span> <span class="st">"AGEGR1"</span>, 
-       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span>, denoms_by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"TRT01PN"</span><span class="op">)</span><span class="op">)</span>,
-       row_header <span class="op">=</span> <span class="st">"Age group"</span><span class="op">)</span> 
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>SEX <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">SEX</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,</span>
+<span>       rowbyvar <span class="op">=</span> <span class="st">"SEX"</span>,</span>
+<span>       rowvar <span class="op">=</span> <span class="st">"AGEGR1"</span>, </span>
+<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span>, denoms_by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"TRT01PN"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>       row_header <span class="op">=</span> <span class="st">"Age group"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="14%">
@@ -504,14 +497,14 @@ the <code>statlist</code> function.</p>
 some levels of the <code>rowvar</code> may have zero records as shown in
 the example below.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,
-       rowbyvar <span class="op">=</span> <span class="st">"ETHNIC"</span>,
-       rowvar <span class="op">=</span> <span class="st">"RACE"</span>,
-       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,
-       row_header <span class="op">=</span> <span class="st">"Race"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,</span>
+<span>       rowbyvar <span class="op">=</span> <span class="st">"ETHNIC"</span>,</span>
+<span>       rowvar <span class="op">=</span> <span class="st">"RACE"</span>,</span>
+<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>       row_header <span class="op">=</span> <span class="st">"Race"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="22%">
@@ -610,15 +603,15 @@ the example below.</p>
 users can specify the <code>pad = FALSE</code> in the <code>freq</code>
 function.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,
-       rowbyvar <span class="op">=</span> <span class="st">"ETHNIC"</span>,
-       rowvar <span class="op">=</span> <span class="st">"RACE"</span>,
-       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,
-       row_header <span class="op">=</span> <span class="st">"Race"</span>,
-       pad <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>colvar <span class="op">=</span> <span class="st">"TRT01PN"</span>,</span>
+<span>       rowbyvar <span class="op">=</span> <span class="st">"ETHNIC"</span>,</span>
+<span>       rowvar <span class="op">=</span> <span class="st">"RACE"</span>,</span>
+<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N"</span>,<span class="st">"n (x.x%)"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>       row_header <span class="op">=</span> <span class="st">"Race"</span>,</span>
+<span>       pad <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="22%">
@@ -723,16 +716,16 @@ table may use ADSL as the denominator dataframe instead of ADAE even
 though the counts are coming from ADAE. The example below shows a table
 counting AEDECOD but using ADSL to calculate the denominators.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TRT01AN <span class="op">=</span> <span class="va">TRTAN</span><span class="op">)</span>
-
-<span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>denom_df <span class="op">=</span> <span class="va">cdisc_adsl</span>,
-       colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,
-       rowvar <span class="op">=</span> <span class="st">"AEDECOD"</span>,
-       descending_by <span class="op">=</span> <span class="st">"81"</span><span class="op">)</span> 
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TRT01AN <span class="op">=</span> <span class="va">TRTAN</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>denom_df <span class="op">=</span> <span class="va">cdisc_adsl</span>,</span>
+<span>       colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,</span>
+<span>       rowvar <span class="op">=</span> <span class="st">"AEDECOD"</span>,</span>
+<span>       descending_by <span class="op">=</span> <span class="st">"81"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="36%">
@@ -853,14 +846,14 @@ by we use the <code>denoms_by</code> argument to the
 <code>statlist</code> function. Below you can see that we are using only
 our <code>colvar</code> of TRT01PN as our <code>denoms_by</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>denom_df <span class="op">=</span> <span class="va">cdisc_adsl</span>,
-       colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,
-       rowvar <span class="op">=</span> <span class="st">"AEDECOD"</span>,
-       rowbyvar <span class="op">=</span> <span class="st">"AESEV"</span>,
-       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n (x.x)"</span><span class="op">)</span>, denoms_by <span class="op">=</span> <span class="st">"TRT01AN"</span><span class="op">)</span><span class="op">)</span> 
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/freq.html">freq</a></span><span class="op">(</span>denom_df <span class="op">=</span> <span class="va">cdisc_adsl</span>,</span>
+<span>       colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,</span>
+<span>       rowvar <span class="op">=</span> <span class="st">"AEDECOD"</span>,</span>
+<span>       rowbyvar <span class="op">=</span> <span class="st">"AESEV"</span>,</span>
+<span>       statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n (x.x)"</span><span class="op">)</span>, denoms_by <span class="op">=</span> <span class="st">"TRT01AN"</span><span class="op">)</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="32%">
@@ -1047,13 +1040,13 @@ term rows with percentages &gt;= 1% when cutoff_stat = ‘pct’.</p></li>
 the <code>nested_freq</code> function call for creating the AE summary
 table by AEBODSYS and AEDECOD.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span>, <span class="va">TRTEMFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">AEBODSYS</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS"</span>,<span class="st">"SKIN AND SUBCUTANEOUS TISSUE DISORDERS"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TRT01AN <span class="op">=</span> <span class="va">TRTAN</span><span class="op">)</span>
-
-<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="va">cdisc_adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span>, <span class="va">TRTEMFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">AEBODSYS</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS"</span>,<span class="st">"SKIN AND SUBCUTANEOUS TISSUE DISORDERS"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TRT01AN <span class="op">=</span> <span class="va">TRTAN</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">cdisc_adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span></span></code></pre></div>
 <p>For illustration purpose, we subset the adae data to only contain
 records in the 2 categories of system organ class: GENERAL DISORDERS AND
 ADMINISTRATION SITE CONDITIONS, SKIN AND SUBCUTANEOUS TISSUE DISORDERS.
@@ -1062,15 +1055,15 @@ addition, we would like to sort the output by the active drug group
 (TRT01AN = 81) with descending frequency. Therefore, we specify
 <code>descending_by = "81"</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,
-                   denom_df <span class="op">=</span> <span class="va">adsl</span>,
-                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,
-                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,
-                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,
-                   descending_by <span class="op">=</span> <span class="st">"81"</span>,
-                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,</span>
+<span>                   denom_df <span class="op">=</span> <span class="va">adsl</span>,</span>
+<span>                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,</span>
+<span>                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span>
+<span>                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span>
+<span>                   descending_by <span class="op">=</span> <span class="st">"81"</span>,</span>
+<span>                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="30%">
@@ -1290,17 +1283,17 @@ the rows of preferred terms with only 1 count in any treatment columns,
 we can specify <code>cutoff = 2</code> and
 <code>cutoff_stat = "n"</code> in the nested_freq call below.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,
-                   denom_df <span class="op">=</span> <span class="va">adsl</span>,
-                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,
-                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,
-                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,
-                   descending_by <span class="op">=</span> <span class="st">"81"</span>,
-                   cutoff <span class="op">=</span> <span class="fl">2</span>,
-                   cutoff_stat <span class="op">=</span> <span class="st">"n"</span>,
-                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,</span>
+<span>                   denom_df <span class="op">=</span> <span class="va">adsl</span>,</span>
+<span>                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,</span>
+<span>                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span>
+<span>                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span>
+<span>                   descending_by <span class="op">=</span> <span class="st">"81"</span>,</span>
+<span>                   cutoff <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>                   cutoff_stat <span class="op">=</span> <span class="st">"n"</span>,</span>
+<span>                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="30%">
@@ -1412,17 +1405,17 @@ active arm of <code>TRT01AN = 81</code> (i.e. not considering the other
 arms), we can specify <code>cutoff = "81 &gt;= 2" and</code>cutoff_stat
 = “n”`.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,
-                   denom_df <span class="op">=</span> <span class="va">adsl</span>,
-                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,
-                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,
-                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,
-                   descending_by <span class="op">=</span> <span class="st">"81"</span>,
-                   cutoff <span class="op">=</span> <span class="st">"81 &gt;= 2"</span>,
-                   cutoff_stat <span class="op">=</span> <span class="st">"n"</span>,
-                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span>
-
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nested_freq.html">nested_freq</a></span><span class="op">(</span><span class="va">adae</span>,</span>
+<span>                   denom_df <span class="op">=</span> <span class="va">adsl</span>,</span>
+<span>                   colvar <span class="op">=</span> <span class="st">"TRT01AN"</span>,</span>
+<span>                   rowvar <span class="op">=</span> <span class="st">"AEBODSYS*AEDECOD"</span>,</span>
+<span>                   statlist <span class="op">=</span> <span class="fu"><a href="../reference/statlist.html">statlist</a></span><span class="op">(</span><span class="st">"n (x.x%)"</span><span class="op">)</span>,</span>
+<span>                   descending_by <span class="op">=</span> <span class="st">"81"</span>,</span>
+<span>                   cutoff <span class="op">=</span> <span class="st">"81 &gt;= 2"</span>,</span>
+<span>                   cutoff_stat <span class="op">=</span> <span class="st">"n"</span>,</span>
+<span>                   row_header <span class="op">=</span> <span class="st">"System organ class \\\n Preferred term"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="30%">
