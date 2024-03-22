@@ -62,8 +62,9 @@ str_rep <- function(x, times) {
 # pinched from HMS. Registers the method or sets a hook to
 # register it on load of other package
 register_s3_method <- function(pkg, generic, class = "huxtable") {
-  assertthat::assert_that(assertthat::is.string(pkg),
-                          assertthat::is.string(generic))
+  if (!rlang::is_string(pkg) || !rlang::is_string(generic)) {
+    cli::cli_abort("{.arg pkg} and {.arg generic} must be strings.")
+  }
   fun <- get(paste0(generic, ".", class), envir = parent.frame())
 
   if (pkg %in% loadedNamespaces()) {
@@ -216,19 +217,23 @@ numeral_formatter <- function(x) {
   UseMethod("numeral_formatter")
 }
 
+#' @export
 numeral_formatter.default <- function(x) {
   stop("Unrecognized number_format. Please use a number, string or function.")
 }
 
 # If we are a function then return output from the function
+#' @export
 numeral_formatter.function <- function(x) {
   return(x)
 }
 
+#' @export
 numeral_formatter.character <- function(x) {
   return(function(numeral) sprintf(x, numeral))
 }
 
+#' @export
 numeral_formatter.numeric <- function(x) {
   return(function(numeral) formatC(round(numeral, x), format = "f", digits = x))
 }
@@ -334,7 +339,7 @@ display_cells <- function(ht, all = TRUE,
     da_rows <- seq(rr, end_r)
     da_cols <- seq(cc, end_c)
     if (any(touched[da_rows, da_cols])) {
-      stop(glue::glue(
+      cli::cli_abort(c(
         "Overlapping multirow/multicolumn cells in",
         " [{da_rows}, {da_cols}] of huxtable"
       ))
@@ -443,7 +448,9 @@ get_all_padding <- function(ht, row, col, drop = TRUE) {
 rtf_fc_tables <- function(..., extra_fonts = "Times",
                           extra_colors = character(0)) {
   hts <- list(...)
-  assertthat::assert_that(all(sapply(hts, huxtable::is_huxtable)))
+ if (!all(sapply(hts, huxtable::is_huxtable))) {
+   cli::cli_abort("All `hts` must be huxtable objects.")
+ }
 
   fonts <- unlist(lapply(hts, function(ht) huxtable::font(ht)))
   fonts <- unique(c(extra_fonts, fonts))
@@ -468,7 +475,11 @@ to_rtf_01 <- function(ht, ...) UseMethod("to_rtf")
 
 to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
                             nheader, header_pad, tlf, ...) {
-  assertthat::assert_that(inherits(fc_tables, "rtfFCTables"))
+  if (!inherits(fc_tables, "rtfFCTables")) {
+    cli::cli_abort(
+      "{.arg fc_tables} must be a {.cls rtfFCTables}, not {.obj_type_friendly {fc_tables}}."
+    )
+  }
   color_index <- function(color) {
     res <- match(color, fc_tables$colors)
     if (any(is.na(res) & !is.na(color))) {
@@ -791,8 +802,12 @@ quick_rtf_jnj <- function(...,
                           header_pad = TRUE) {
   if (debug == TRUE) browser()
 
-  assertthat::assert_that(assertthat::is.number(borders))
-  assertthat::assert_that(assertthat::is.flag(open))
+  if (length(borders) != 1 || !is.numeric(borders)) {
+    cli::cli_abort("{.arg borders} must be a single number.")
+  }
+  if (!rlang::is_bool(open)) {
+    cli::cli_abort("{.arg open} must be a single `TRUE` or `FALSE`.")
+  }
   force(file)
   hts <- huxtableize(list(...), borders)
 

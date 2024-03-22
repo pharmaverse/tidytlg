@@ -82,12 +82,9 @@ tlgsetup <-
       filter(tbltype == !!tbltype)
   }
 
-  if (rlang::is_missing(df))
-    usethis::ui_stop("df is not specified for tlgsetup")
-  if (rlang::is_missing(var))
-    usethis::ui_stop("var is not specified for tlgsetup")
-  if (rlang::is_missing(column_metadata))
-    usethis::ui_stop("column_metadata is not specified for tlgsetup")
+  rlang::check_required(df)
+  rlang::check_required(var)
+  rlang::check_required(column_metadata)
 
   if (inherits(df, "survfit")) {
     return(df)
@@ -106,8 +103,8 @@ tlgsetup <-
     attr(split$coldef, "label") <- attr(df[[var]], "label")
 
     split %>%
-      inner_join(df, by = c("coldef" = var), keep = TRUE) %>%
-      select(- coldef, - decode, -dplyr::starts_with("span")) %>%
+      inner_join(df, by = c("coldef" = var), keep = TRUE, relationship = "many-to-many") %>%
+      select(-coldef, -decode, -dplyr::starts_with("span")) %>%
       mutate(
         colnbr = fct_expand(colnbr, unique(as.character(split$colnbr)))
       )

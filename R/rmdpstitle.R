@@ -37,14 +37,12 @@ rmdpstitle <-
            text = "text") {
 
   # function argument checks
-    if (rlang::is_missing(df))
-      usethis::ui_stop("in rmdpstitle, df is not specified")
-    if (rlang::is_missing(tblid))
-      usethis::ui_stop("in rmdpstitle, tblid is not specified")
+    rlang::check_required(df)
+    rlang::check_required(tblid)
     if (!(identifier %in% names(df)))
-      usethis::ui_stop("in rmdpstitle, {identifier} is not in {substitute(df)}")
+      cli::cli_abort("{identifier} is not in {substitute(df)}")
     if (!(text %in% names(df)))
-      usethis::ui_stop("in rmdpstitle, {text} is not in {substitute(df)}")
+      cli::cli_abort("{text} is not in {substitute(df)}")
 
   # split titles and footnotes into separate objects
   ttl <- df %>%
@@ -54,7 +52,7 @@ rmdpstitle <-
     dplyr::filter(.data[[identifier]] != "TITLE")
 
   if (!(tblid %in% unique(df[[idvar]])))
-    usethis::ui_stop("in rmdpstitle, {tblid} is not in
+    cli::cli_abort("{tblid} is not in
                      {substitute(df)}${substitute(idvar)}")
 
   ttl <- ttl %>%
