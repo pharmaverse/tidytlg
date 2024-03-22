@@ -72,6 +72,14 @@
 #' for a table or listing. Default uses the column labels of huxme.
 #' @param pagenum (optional) Logical. When true page numbers are added on the
 #' right side of the footer section in the format page x/y. (Default = FALSE)
+#' @param firstcolumnborder (optional) Logical. When true page adds a bottom
+#' border to the first column of header rows (Default = FALSE)
+#' @param header_pad (optional) List. Adds header pad to header rows in list
+#' based on index (not including title), when NULL pad is added to all header
+#' rows  (Default = NULL)
+#' @param colspan_line (optional) List. Adds bottom border to header rows in list
+#' based on index (not including title), when NULL border is added to all header
+#' rows  (Default = NULL)
 #'
 #' @section Huxme Details:
 #' For tables and listings, formatting of the output can be dictated through the
@@ -183,7 +191,10 @@ gentlg <- function(huxme = NULL,
                    print.hux = TRUE,
                    watermark = NULL,
                    colheader = NULL,
-                   pagenum = FALSE) {
+                   pagenum = FALSE,
+                   firstcolumnborder = FALSE,
+                   header_pad = NULL,
+                   colspan_line = NULL) {
   # check all the arguments being passed in except ...
   arglist <- list()
   args_to_chk <- names(formals())[names(formals()) != "..."]
@@ -1019,12 +1030,19 @@ gentlg <- function(huxme = NULL,
   }
 
   if (tolower(format) == "rtf") {
+    start_index = ifelse(firstcolumnborder,1,2)
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
-
-      for (z in 2:(1 + formatindex)) {
-        borderlineme <- 2:ncol(ht)
-        noborderline <- which(ht[z, 2:ncol(ht)] == "\\keepn\\trhdr ")
+      brows <- 2:(1 + formatindex)
+      if(is.null(colspan_line)){
+        colspan_line <- brows
+      }else{
+      colspan_line <- colspan_line + 1
+      }
+      brows <- brows[brows %in% colspan_line]
+      for (z in brows) {
+        borderlineme <- start_index:ncol(ht)
+        noborderline <- which(ht[z, start_index:ncol(ht)] == "\\keepn\\trhdr ")
 
         if (length(noborderline) > 0) {
           borderlineme <- borderlineme[- noborderline]
@@ -1105,7 +1123,8 @@ gentlg <- function(huxme = NULL,
       portrait = tolower(orientation) == "portrait",
       watermark = watermark,
       nheader = 1 + length(colspan),
-      tlf = tlf
+      tlf = tlf,
+      header_pad = header_pad
     )
   } else if (print.hux == TRUE && toupper(format) == "HTML") {
     huxtable::print_html(ht)
