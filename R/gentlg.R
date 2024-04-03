@@ -7,9 +7,9 @@
 #' @author Steven Haesendonckx <shaesen2@@its.jnj.com>
 #' @author Pelagia Alexandra Papadopoulou <ppapadop@@its.jnj.com>
 #'
-#' @param huxme (optional) For tables and listings, An input dataframe
-#' containing all columns of interest. For graphs, either NULL or a ggplot
-#' object.
+#' @param huxme (optional) For tables and listings, A list of input dataframes
+#' containing all columns of interest. For graphs, either NULL or a  list of ggplot
+#' objects.
 #' @param tlf (optional) String, representing the output choice. Choices are
 #' "Table" "Listing" "Figure". Abbreviations are allowed eg "T" for Table.
 #' Strings can be either upper- or lowercase. (Default = "Table")
@@ -200,13 +200,14 @@ gentlg <- function(huxme = NULL,
   args_to_chk <- names(formals())[names(formals()) != "..."]
   purrr::walk(args_to_chk, .f = {
     function(x) arglist[[x]] <<- eval(rlang::sym(x))
-    })
+  })
   check_gentlg(arglist)
 
   if (!is.null(title_file)) {
     title_df <- readxl::read_excel(title_file,
-                                   sheet = 1,
-                                   range = readxl::cell_cols("A:C"))
+      sheet = 1,
+      range = readxl::cell_cols("A:C")
+    )
     if (!all(c("TABLE ID", "IDENTIFIER", "TEXT") %in% names(title_df))) {
       stop("'title_file' file must have columns: 'TABLE ID',
            'IDENTIFIER', and 'TEXT'")
@@ -224,8 +225,10 @@ gentlg <- function(huxme = NULL,
     }
     if (is.null(footers) && nrow(title_df) > 0) {
       footers <- title_df %>%
-        filter(str_detect(IDENTIFIER,
-                          regex("^footnote", ignore_case = TRUE))) %>%
+        filter(str_detect(
+          IDENTIFIER,
+          regex("^footnote", ignore_case = TRUE)
+        )) %>%
         extract2("TEXT")
       if (length(footers) == 0) {
         footers <- NULL
@@ -265,11 +268,9 @@ gentlg <- function(huxme = NULL,
       colheader[!null_labels] <-
         unname(map_chr(huxme[!null_labels], ~ attr(., "label")))
     } else {
-      colheader <- c("", names(huxme)[- 1])
+      colheader <- c("", names(huxme)[-1])
     }
   }
-
-
 
   wrote_png <- FALSE
   if (substr(tolower(tlf), 1, 1) %in% c("g", "f") &&
@@ -293,7 +294,8 @@ gentlg <- function(huxme = NULL,
     is.null(plotwidth) &&
     is.null(plotheight)) {
     png_d <- dim(readPNG(ifelse(wrote_png,
-                                paste0(tmpdir, "/__tempggplot__"), plotnames)))
+      paste0(tmpdir, "/__tempggplot__"), plotnames
+    )))
     plotheight <- png_d[1]
     plotwidth <- png_d[2]
   }
@@ -349,9 +351,9 @@ gentlg <- function(huxme = NULL,
   if (!is.null(wcol) && !substr(tolower(tlf), 1, 1) %in% c("g", "f")) {
     if ((length(wcol) == 1 && (!is.numeric(wcol) || wcol > 1)) ||
       (length(wcol) > 1 && tolower(format) == "rtf" &&
-       (!is.numeric(wcol) ||
-        sum(!(colnames(huxme) %in% c(formatcolumns))) != length(wcol) ||
-        sum(wcol) > 1))) {
+        (!is.numeric(wcol) ||
+          sum(!(colnames(huxme) %in% c(formatcolumns))) != length(wcol) ||
+          sum(wcol) > 1))) {
       stop("wcol not defined properly. Consult the documentation via ?gentlg.")
     }
     if (tolower(format) == "html" && length(wcol) > 1) {
@@ -364,7 +366,7 @@ gentlg <- function(huxme = NULL,
   }
 
   if (substr(tolower(tlf), 1, 1) %in% "l" && !is.na(idvars[1]) &&
-      sum(!idvars %in% colnames(huxme)) > 0) {
+    sum(!idvars %in% colnames(huxme)) > 0) {
     stop("One of the idvars is not part of the column headers. Consult the documentation via ?gentlg.")
   }
 
@@ -382,55 +384,55 @@ gentlg <- function(huxme = NULL,
     boldme <- NULL
   }
   if ("indentme" %in% colnames(huxme) &&
-      length(which(huxme$indentme == 0)) > 0) {
+    length(which(huxme$indentme == 0)) > 0) {
     indentme0 <- which(huxme$indentme == 0)
   } else {
     indentme0 <- NULL
   }
   if ("indentme" %in% colnames(huxme) &&
-      length(which(huxme$indentme == 1)) > 0) {
+    length(which(huxme$indentme == 1)) > 0) {
     indentme1 <- which(huxme$indentme == 1)
   } else {
     indentme1 <- NULL
   }
   if ("indentme" %in% colnames(huxme) &&
-      length(which(huxme$indentme == 2)) > 0) {
+    length(which(huxme$indentme == 2)) > 0) {
     indentme2 <- which(huxme$indentme == 2)
   } else {
     indentme2 <- NULL
   }
   if ("indentme" %in% colnames(huxme) &&
-      length(which(huxme$indentme == 3)) > 0) {
+    length(which(huxme$indentme == 3)) > 0) {
     indentme3 <- which(huxme$indentme == 3)
   } else {
     indentme3 <- NULL
   }
   if ("indentme" %in% colnames(huxme) &&
-      length(which(huxme$indentme == 4)) > 0) {
+    length(which(huxme$indentme == 4)) > 0) {
     indentme4 <- which(huxme$indentme == 4)
   } else {
     indentme4 <- NULL
   }
   if ("indentme" %in% colnames(huxme) &&
-      length(which(huxme$indentme == 5)) > 0) {
+    length(which(huxme$indentme == 5)) > 0) {
     indentme5 <- which(huxme$indentme == 5)
   } else {
     indentme5 <- NULL
   }
   if ("indentme" %in% colnames(huxme) &&
-      length(which(huxme$indentme == 6)) > 0) {
+    length(which(huxme$indentme == 6)) > 0) {
     indentme6 <- which(huxme$indentme == 6)
   } else {
     indentme6 <- NULL
   }
   if ("newpage" %in% colnames(huxme) &&
-      length(which(huxme$newpage == 1)) > 0) {
+    length(which(huxme$newpage == 1)) > 0) {
     newpage <- which(huxme$newpage == 1)
   } else {
     newpage <- NULL
   }
   if ("newrows" %in% colnames(huxme) &&
-      length(which(huxme$newrows == 1)) > 0) {
+    length(which(huxme$newrows == 1)) > 0) {
     newrows <- which(huxme$newrows == 1)
   } else {
     newrows <- NULL
@@ -442,8 +444,10 @@ gentlg <- function(huxme = NULL,
   }
 
   if (substr(tolower(tlf), 1, 1) == "t") {
-    huxme <- huxme[, c(which(colnames(huxme) == "label"),
-                       which(!(colnames(huxme) %in% "label")))]
+    huxme <- huxme[, c(
+      which(colnames(huxme) == "label"),
+      which(!(colnames(huxme) %in% "label"))
+    )]
   }
 
   #############################
@@ -453,10 +457,14 @@ gentlg <- function(huxme = NULL,
   .to_html <- function(df) {
     list_df <- df %>%
       as.list() %>%
-      lapply(gsub, pattern = "(\\{\\\\super)(.*?)(\\})",
-             replacement = "<sup>\\2</sup>") %>%
-      lapply(gsub, pattern = "(\\{\\\\sub)(.*?)(\\})",
-             replacement = "<sub>\\2</sub>") %>%
+      lapply(gsub,
+        pattern = "(\\{\\\\super)(.*?)(\\})",
+        replacement = "<sup>\\2</sup>"
+      ) %>%
+      lapply(gsub,
+        pattern = "(\\{\\\\sub)(.*?)(\\})",
+        replacement = "<sub>\\2</sub>"
+      ) %>%
       lapply(gsub, pattern = "\\\\n", replacement = "<br/>") %>%
       lapply(gsub, pattern = "\\\\line", replacement = "<br/>")
 
@@ -489,11 +497,15 @@ gentlg <- function(huxme = NULL,
     pngrtfcode <- function(file = NULL, width = width, height = height) {
       # return a hexadecimal version of a file
       max_bytes <- 100000000 # maximum file size in bytes (~100MB)
-      hexcode <- readBin(file, what = "raw", size = 1, signed = TRUE,
-                         endian = "little", n = max_bytes)
-      paste0("\\qc{\\pict\\pngblip\\picwgoal", round(width * 1440, 1),
-             "\\pichgoal", round(height * 1440, 1), " ",
-             paste0(hexcode, collapse = ""), "}")
+      hexcode <- readBin(file,
+        what = "raw", size = 1, signed = TRUE,
+        endian = "little", n = max_bytes
+      )
+      paste0(
+        "\\qc{\\pict\\pngblip\\picwgoal", round(width * 1440, 1),
+        "\\pichgoal", round(height * 1440, 1), " ",
+        paste0(hexcode, collapse = ""), "}"
+      )
     }
 
     huxme <- data.frame(cbind(col1 = seq_along(plotnames)))
@@ -593,7 +605,7 @@ gentlg <- function(huxme = NULL,
     }
   } else if (tolower(format) == "html") {
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
-      ht <- huxtable::as_hux(huxme, add_colnames =  TRUE) %>%
+      ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
         huxtable::set_width(value = huxwidth)
       if (ncol(ht) == length(colheader)) {
         ht[1, ] <- colheader
@@ -603,7 +615,7 @@ gentlg <- function(huxme = NULL,
 
       formatindex <- 1
     } else if (tolower(substr(tlf, 1, 1)) %in% c("l")) {
-      ht <- huxtable::as_hux(huxme, add_colnames =  TRUE) %>%
+      ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
         huxtable::set_width(value = huxwidth)
       ht[1, ] <- colheader
       formatindex <- 1
@@ -625,15 +637,19 @@ gentlg <- function(huxme = NULL,
 
   if (tolower(format) == "rtf") {
     if (length(wcol) == 1) {
-      huxtable::col_width(ht) <- c(wcol, rep((1 - wcol) / (ncol(ht) - 1),
-                                             ncol(ht) - 1))
+      huxtable::col_width(ht) <- c(wcol, rep(
+        (1 - wcol) / (ncol(ht) - 1),
+        ncol(ht) - 1
+      ))
     } else if (length(wcol) > 1) {
       huxtable::col_width(ht) <- wcol
     }
   } else if (tolower(format) == "html") {
     if (!(tolower(substr(tlf, 1, 1)) %in% c("f", "g"))) {
-      huxtable::col_width(ht) <- c(wcol[1], rep((1 - wcol[1]) / (ncol(ht) - 1),
-                                                ncol(ht) - 1))
+      huxtable::col_width(ht) <- c(wcol[1], rep(
+        (1 - wcol[1]) / (ncol(ht) - 1),
+        ncol(ht) - 1
+      ))
     }
   }
 
@@ -648,7 +664,8 @@ gentlg <- function(huxme = NULL,
     if (tolower(format) == "rtf") {
       for (i in rev(seq_len(length(colspan)))) {
         ht <- huxtable::insert_row(ht, paste0("\\keepn\\trhdr ", colspan[[i]]),
-                                   after = 0, fill = "") %>%
+          after = 0, fill = ""
+        ) %>%
           huxtable::set_number_format(row = 1, col = seq_len(ncol(ht)), value = NA)
       }
     } else if (tolower(format) == "html") {
@@ -661,12 +678,18 @@ gentlg <- function(huxme = NULL,
     rle_colspan <- lapply(colspan, rle)
 
     for (j in seq_along(colspan)) {
-      new <- data.frame(colspan = rep(rle_colspan[[j]]$values,
-                                      rle_colspan[[j]]$lengths),
-                        rle = rep(rle_colspan[[j]]$lengths,
-                                  rle_colspan[[j]]$lengths))
+      new <- data.frame(
+        colspan = rep(
+          rle_colspan[[j]]$values,
+          rle_colspan[[j]]$lengths
+        ),
+        rle = rep(
+          rle_colspan[[j]]$lengths,
+          rle_colspan[[j]]$lengths
+        )
+      )
       ### remove only adjacent duplicates in cases such as A A _ A A
-      new <- new[with(new, c(colspan[- 1] != colspan[- nrow(new)], TRUE)), ]
+      new <- new[with(new, c(colspan[-1] != colspan[-nrow(new)], TRUE)), ]
       ### merge only for those with occurence > 1
       new <- new[which(new$rle > 1), ]
 
@@ -701,7 +724,8 @@ gentlg <- function(huxme = NULL,
       ### bolding
       if (!is.null(boldme) && tolower(substr(tlf, 1, 1)) %in% c("t")) {
         ht <- huxtable::set_bold(ht, boldme + formatindex, "label",
-                                 value = TRUE)
+          value = TRUE
+        )
       }
 
       ### newpage
@@ -866,7 +890,8 @@ gentlg <- function(huxme = NULL,
   add_header <- function(dsnin, header) {
     if (tolower(format) == "rtf") {
       tmp <- t(huxtable::as_hux(c(header, rep("", ncol(dsnin) - 1)),
-                                add_colnames = FALSE))
+        add_colnames = FALSE
+      ))
       huxtable::col_width(tmp) <- huxtable::col_width(dsnin)
       huxtable::width(tmp) <- huxtable::width(dsnin)
       huxtable::font_size(tmp) <- getOption("tidytlg.fontsize.title")
@@ -881,7 +906,7 @@ gentlg <- function(huxme = NULL,
       dsnin <- huxtable::add_footnote(dsnin,
         bquote(.(header)),
         number_format = NA,
-        bold =  TRUE,
+        bold = TRUE,
         border = 0,
         font_size = getOption("tidytlg.fontsize.title")
       )
@@ -922,8 +947,10 @@ gentlg <- function(huxme = NULL,
 
 
     # Make repeated header on each page
-    ht <- add_header(ht, paste0("\\pnhang\\trhdr\\fi-1152", "\\li1152\\keepn",
-                                "\\s15 ", file, ":\\tab", " ", title))
+    ht <- add_header(ht, paste0(
+      "\\pnhang\\trhdr\\fi-1152", "\\li1152\\keepn",
+      "\\s15 ", file, ":\\tab", " ", title
+    ))
   } else if (tolower(format) == "html") {
     # Make repeated header on each page
     ht <- add_header(ht, paste0('<div style = "text-indent: -36px; padding-left: 36px;"> ', file, ": &emsp; ", title, "</div> "))
@@ -935,7 +962,8 @@ gentlg <- function(huxme = NULL,
   #############################
   if (tolower(format) == "rtf") {
     bordervalue <- ifelse(tlf %in% "l", getOption("tidytlg.fontsize.listing"),
-                          getOption("tidytlg.fontsize.table")) / 10
+      getOption("tidytlg.fontsize.table")
+    ) / 10
 
     ht <- huxtable::set_top_border(ht, 1, value = bordervalue) %>%
       huxtable::set_bottom_border(1, value = bordervalue) %>%
@@ -956,33 +984,38 @@ gentlg <- function(huxme = NULL,
   if (tolower(format) == "rtf") {
     add_footer <- function(dsnin, footer, first = FALSE, size = fontsize) {
       if (first) {
-      # In case hanging indent is required + hard enter: \\par\\pard\\pnhang\\fi-180\\li180
-          dsnin <- huxtable::add_footnote(dsnin, paste0("\\line ", footer),
-                                          number_format = NA, font_size = size,
-                                          border = 0)
-        } else {
-        dsnin <- huxtable::add_footnote(dsnin, footer, number_format = NA,
-                                        font_size = size, border = 0)
+        # In case hanging indent is required + hard enter: \\par\\pard\\pnhang\\fi-180\\li180
+        dsnin <- huxtable::add_footnote(dsnin, paste0("\\line ", footer),
+          number_format = NA, font_size = size,
+          border = 0
+        )
+      } else {
+        dsnin <- huxtable::add_footnote(dsnin, footer,
+          number_format = NA,
+          font_size = size, border = 0
+        )
       }
       return(dsnin)
     }
   } else if (tolower(format) == "html") {
     add_footer <- function(dsnin, footer, first = FALSE, size = fontsize) {
       if (first) {
-      # In case hanging indent is required + hard enter:
-        #\\par\\pard\\pnhang\\fi-180\\li180
+        # In case hanging indent is required + hard enter:
+        # \\par\\pard\\pnhang\\fi-180\\li180
 
-          dsnin <- huxtable::add_footnote(dsnin, paste0("<div style='border-top:1pt solid;'> ", "<br />", footer), number_format = NA, font_size = size, border = 0)
-        } else {
-        dsnin <- huxtable::add_footnote(dsnin, footer, number_format = NA,
-                                        font_size = size, border = 0)
+        dsnin <- huxtable::add_footnote(dsnin, paste0("<div style='border-top:1pt solid;'> ", "<br />", footer), number_format = NA, font_size = size, border = 0)
+      } else {
+        dsnin <- huxtable::add_footnote(dsnin, footer,
+          number_format = NA,
+          font_size = size, border = 0
+        )
       }
       return(dsnin)
     }
   }
 
   if (!is.null(footers)) {
-    ht <- add_footer(ht, footers[1], first =  TRUE)
+    ht <- add_footer(ht, footers[1], first = TRUE)
 
     if (length(footers) > 1) {
       for (i in 2:length(footers)) {
@@ -991,17 +1024,23 @@ gentlg <- function(huxme = NULL,
     }
   }
 
-  adjfilename <- stringr::str_replace_all(stringr::str_to_lower(file),
-                                          "(-|_)", "")
+  adjfilename <- stringr::str_replace_all(
+    stringr::str_to_lower(file),
+    "(-|_)", ""
+  )
 
 
   ifelse(is.null(ht), ht <- ht,
     ifelse(getOption("tidytlg.add_datetime"),
-      ht <- add_footer(ht, paste0("[", adjfilename, ".", tolower(format), "]",
-                                  paste0("[", getFileName(), "] "),
-                                  toupper(format(Sys.time(),
-                                                 format = "%d%b%Y, %H:%M"))),
-                       size = 8),
+      ht <- add_footer(ht, paste0(
+        "[", adjfilename, ".", tolower(format), "]",
+        paste0("[", getFileName(), "] "),
+        toupper(format(Sys.time(),
+          format = "%d%b%Y, %H:%M"
+        ))
+      ),
+      size = 8
+      ),
       ht <- ht
     )
   )
@@ -1009,14 +1048,20 @@ gentlg <- function(huxme = NULL,
 
   if (tolower(format) == "rtf") {
     ht <- huxtable::set_top_border(ht, nrow(ht) - length(footers),
-                                   value = huxtable::brdr(bordervalue,
-                                                          color = "black"))
+      value = huxtable::brdr(bordervalue,
+        color = "black"
+      )
+    )
     ht <- huxtable::set_top_border(ht, nrow(ht),
-                                   value = huxtable::brdr(bordervalue,
-                                                          color = "black"))
+      value = huxtable::brdr(bordervalue,
+        color = "black"
+      )
+    )
   } else if (tolower(format) == "html") {
-    ht[nrow(ht), ] <- paste0("<div style='border-bottom:1pt solid'> ",
-                             ht[nrow(ht), ])
+    ht[nrow(ht), ] <- paste0(
+      "<div style='border-bottom:1pt solid'> ",
+      ht[nrow(ht), ]
+    )
   }
 
   #############################
@@ -1024,20 +1069,20 @@ gentlg <- function(huxme = NULL,
   #############################
 
   if (tolower(substr(tlf, 1, 1)) %in% c("t", "l")) {
-    ht <- huxtable::set_valign(ht,seq_len(nrow(ht)), seq_len(ncol(ht)),
-                               value = "bottom")
-
+    ht <- huxtable::set_valign(ht, seq_len(nrow(ht)), seq_len(ncol(ht)),
+      value = "bottom"
+    )
   }
 
   if (tolower(format) == "rtf") {
-    start_index = ifelse(firstcolumnborder,1,2)
+    start_index <- ifelse(firstcolumnborder, 1, 2)
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
       brows <- 2:(1 + formatindex)
-      if(is.null(colspan_line)){
+      if (is.null(colspan_line)) {
         colspan_line <- brows
-      }else{
-      colspan_line <- colspan_line + 1
+      } else {
+        colspan_line <- colspan_line + 1
       }
       brows <- brows[brows %in% colspan_line]
       for (z in brows) {
@@ -1045,7 +1090,7 @@ gentlg <- function(huxme = NULL,
         noborderline <- which(ht[z, start_index:ncol(ht)] == "\\keepn\\trhdr ")
 
         if (length(noborderline) > 0) {
-          borderlineme <- borderlineme[- noborderline]
+          borderlineme <- borderlineme[-noborderline]
         }
 
         ht[z, borderlineme] <- paste0("\\brdrb\\brdrs ", ht[z, borderlineme])
@@ -1054,19 +1099,23 @@ gentlg <- function(huxme = NULL,
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
       # Top center per JCEV-12. Only top align the first two rows, the title and
       # the column header, plus whatever colspans there are.
-      ht <- huxtable::set_valign(ht, (2 + length(colspan)):nrow(ht),
-                                 seq_len(ncol(ht)),
-                                 "top")
-      ht <- huxtable::set_valign(ht, 1:(2 + length(colspan)),
-                                 seq_len(ncol(ht)),
-                                 "bottom")
+      ht <- huxtable::set_valign(
+        ht, (2 + length(colspan)):nrow(ht),
+        seq_len(ncol(ht)),
+        "top"
+      )
+      ht <- huxtable::set_valign(
+        ht, 1:(2 + length(colspan)),
+        seq_len(ncol(ht)),
+        "bottom"
+      )
 
       for (z in 2:(1 + formatindex)) {
         borderlineme <- seq_len(ncol(ht))
         noborderline <- which(ht[z, ] == "\\keepn\\trhdr ")
 
         if (length(noborderline) > 0) {
-          borderlineme <- borderlineme[- noborderline]
+          borderlineme <- borderlineme[-noborderline]
         }
 
         ht[z, borderlineme] <- paste0("\\brdrb\\brdrs ", ht[z, borderlineme])
@@ -1080,16 +1129,20 @@ gentlg <- function(huxme = NULL,
 
       for (z in 2:(1 + formatindex)) {
         borderlineme <- 2:ncol(ht)
-        ht[z, borderlineme] <- paste0("<div style='border-bottom:1pt solid'> ",
-                                      ht[z, borderlineme])
+        ht[z, borderlineme] <- paste0(
+          "<div style='border-bottom:1pt solid'> ",
+          ht[z, borderlineme]
+        )
       }
     } else if (tolower(substr(tlf, 1, 1)) %in% c("l")) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
 
       for (z in 2:(1 + formatindex)) {
         borderlineme <- seq_len(ncol(ht))
-        ht[z, borderlineme] <- paste0("<div style='border-bottom:1pt solid'> ",
-                                      ht[z, borderlineme])
+        ht[z, borderlineme] <- paste0(
+          "<div style='border-bottom:1pt solid'> ",
+          ht[z, borderlineme]
+        )
       }
     }
   }
