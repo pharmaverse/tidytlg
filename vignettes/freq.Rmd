@@ -2,7 +2,7 @@
 title: "Frequency Analysis"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{freq}
+  %\VignetteIndexEntry{Frequency Analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -25,13 +25,13 @@ The `freq` and `nested_freq` functions are called to produce categorical-type su
 There are many uses for `freq`, the first one we'll show is to create the first row of analysis set summary of population counts in the output.  In the following table the `subset` argument is used to create the one row summary with the row heading specified in the `rowtext` argument.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
-  freq(colvar = "TRT01PN", 
-       rowvar = "ITTFL", 
+tbl <- cdisc_adsl %>%
+  freq(colvar = "TRT01PN",
+       rowvar = "ITTFL",
        statlist = statlist("n"),
        subset = ITTFL == "Y",
        rowtext = "Analysis set: ITT")
-  
+
 knitr::kable(tbl)
 ```
 
@@ -45,9 +45,9 @@ A typical call of using the `freq` function is to create the `tbl` chunk with:
 -   summary of counts and percentages for each category in the character variable such as age groups, gender, race, ethnicity, etc.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
-  freq(colvar = "TRT01PN", 
-       rowvar = "SEX", 
+tbl <- cdisc_adsl %>%
+  freq(colvar = "TRT01PN",
+       rowvar = "SEX",
        statlist = statlist(c("N","n (x.x%)")),
        row_header = "Sex")
 
@@ -60,10 +60,10 @@ knitr::kable(tbl)
 In the above table, `F` appears first and then `M` is shown. This is because `SEX` is a character variable and alphabetical sorting is applied to the summarized results. We can convert `SEX` to a factor variable with the customized order and labels for enabling the user-defined sorting.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
-  mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female"))) %>% 
-  freq(colvar = "TRT01PN", 
-       rowvar = "SEX", 
+tbl <- cdisc_adsl %>%
+  mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female"))) %>%
+  freq(colvar = "TRT01PN",
+       rowvar = "SEX",
        statlist = statlist(c("N","n (x.x%)")),
        row_header = "Sex")
 
@@ -76,10 +76,10 @@ knitr::kable(tbl)
 In some outputs, the table mock-up may require showing the percentage denominator, which can be done by specifying `statlist = statlist("n/N (x.x%)")`.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
-  mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female"))) %>% 
-  freq(colvar = "TRT01PN", 
-       rowvar = "SEX", 
+tbl <- cdisc_adsl %>%
+  mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female"))) %>%
+  freq(colvar = "TRT01PN",
+       rowvar = "SEX",
        statlist = statlist("n/N (x.x%)"),
        row_header = "Sex")
 
@@ -92,25 +92,25 @@ knitr::kable(tbl)
 By-processing splits the summary statistics by another character variable that can be specified in the argument of `rowbyvar` or `tablebyvar`. For the example shown below, age group categories are summarized by the `SEX` variable. In this scenario, the denominator should also be split by `SEX` in addition to `TRT01PN`, which can be done by `statlist(c("N","n (x.x%)"), denoms_by = c("SEX", "TRT01PN"))`.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
-  mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female"))) %>% 
+tbl <- cdisc_adsl %>%
+  mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female"))) %>%
   freq(colvar = "TRT01PN",
        rowbyvar = "SEX",
-       rowvar = "AGEGR1", 
+       rowvar = "AGEGR1",
        statlist = statlist(c("N","n (x.x%)"), denoms_by = c("SEX", "TRT01PN")),
-       row_header = "Age group") 
+       row_header = "Age group")
 
 knitr::kable(tbl)
 ```
 
-By default, the denominators are calculated by using `colvar`, `tablebyvar`, and `rowbyvar`. The above `freq` function call will also produce the same results without specifying the `denoms_by` argument inside the `statlist` function. 
+By default, the denominators are calculated by using `colvar`, `tablebyvar`, and `rowbyvar`. The above `freq` function call will also produce the same results without specifying the `denoms_by` argument inside the `statlist` function.
 
 ### Padding factor levels on and off
 
 When using `rowbyvar` to create by-processing summaries, some levels of the `rowvar` may have zero records as shown in the example below.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
+tbl <- cdisc_adsl %>%
   freq(colvar = "TRT01PN",
        rowbyvar = "ETHNIC",
        rowvar = "RACE",
@@ -123,7 +123,7 @@ knitr::kable(tbl)
 To remove the zero record rows and create the data driven summary, users can specify the `pad = FALSE` in the `freq` function.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
+tbl <- cdisc_adsl %>%
   freq(colvar = "TRT01PN",
        rowbyvar = "ETHNIC",
        rowvar = "RACE",
@@ -146,7 +146,7 @@ tbl <- adae %>%
   freq(denom_df = cdisc_adsl,
        colvar = "TRT01AN",
        rowvar = "AEDECOD",
-       descending_by = "81") 
+       descending_by = "81")
 
 knitr::kable(head(tbl, 10))
 ```
@@ -161,7 +161,7 @@ tbl <- adae %>%
        colvar = "TRT01AN",
        rowvar = "AEDECOD",
        rowbyvar = "AESEV",
-       statlist = statlist(c("n (x.x)"), denoms_by = "TRT01AN")) 
+       statlist = statlist(c("n (x.x)"), denoms_by = "TRT01AN"))
 
 knitr::kable(head(tbl, 10))
 ```
@@ -204,15 +204,15 @@ In the example below, we will show you how to use these arguments in the `nested
 
 ```{r, message=FALSE}
 adae <- cdisc_adae %>%
-  filter(SAFFL == "Y", TRTEMFL == "Y") %>% 
+  filter(SAFFL == "Y", TRTEMFL == "Y") %>%
   filter(AEBODSYS %in% c("GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS")) %>%
   rename(TRT01AN = TRTAN)
 
-adsl <- cdisc_adsl %>% 
+adsl <- cdisc_adsl %>%
   filter(SAFFL == "Y")
 ```
 
-For illustration purpose, we subset the adae data to only contain records in the 2 categories of system organ class: GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS, SKIN AND SUBCUTANEOUS TISSUE DISORDERS. So the table output is not too long and will be easier to visualize. In addition, we would like to sort the output by the active drug group (TRT01AN = 81) with descending frequency. Therefore, we specify `descending_by = "81"`. 
+For illustration purpose, we subset the adae data to only contain records in the 2 categories of system organ class: GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS, SKIN AND SUBCUTANEOUS TISSUE DISORDERS. So the table output is not too long and will be easier to visualize. In addition, we would like to sort the output by the active drug group (TRT01AN = 81) with descending frequency. Therefore, we specify `descending_by = "81"`.
 
 ```{r}
 tbl <- nested_freq(adae,
@@ -262,4 +262,3 @@ tbl <- nested_freq(adae,
 
 knitr::kable(tbl)
 ```
-

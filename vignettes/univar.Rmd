@@ -2,7 +2,7 @@
 title: "Univariate Statistics Analysis"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{univar}
+  %\VignetteIndexEntry{Univariate Statistics Analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,12 +18,12 @@ library(tidytlg)
 
 ## Introduction
 
-The `univar` function is called to produce univariate-type summary statistics for numeric variables. A typical example of using the `univar` function is to create a `tbl` chunk as shown below for summarizing N, MEAN (SD), MEDIAN, RANGE, IQ Range for the `Age` variable in adsl. 
+The `univar` function is called to produce univariate-type summary statistics for numeric variables. A typical example of using the `univar` function is to create a `tbl` chunk as shown below for summarizing N, MEAN (SD), MEDIAN, RANGE, IQ Range for the `Age` variable in adsl.
 
 ```{r, message=FALSE}
-tbl <- cdisc_adsl %>% 
-  univar(colvar = "TRT01PN", 
-         rowvar = "AGE", 
+tbl <- cdisc_adsl %>%
+  univar(colvar = "TRT01PN",
+         rowvar = "AGE",
          statlist = statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE")),
          decimal = 0,
          row_header = "Age (Years)")
@@ -64,9 +64,9 @@ Besides the 5 standard univariate statistics shown above that are often required
 A customized example is shown below for displaying N, Mean (95% C.I.), and Geometric Mean (95% C.I.) for the `Age` variable in adsl.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
-  univar(colvar = "TRT01PN", 
-         rowvar = "AGE", 
+tbl <- cdisc_adsl %>%
+  univar(colvar = "TRT01PN",
+         rowvar = "AGE",
          statlist = statlist(c("N", "MEAN_CI", "GeoMEAN_CI")),
          decimal = 0,
          row_header = "Age (Years)")
@@ -79,9 +79,9 @@ knitr::kable(tbl)
 The decimal precision to be used in display of univariate statistics is comprised of two pieces.  The base decimal precision is what controls the base number of decimals to be used, this can be set using the `decimal` argument.  The precision extra is what controls the difference between the precision used for different statistics, this is controlled using the option `tidytlg.precision.extra`.  The precision extra is the amount precision will need to be adjusted from the base precision for each different statistic. The default of the precision extra is set by following our table and listing conventions: Range has a precision extra of 0, Mean and Median have a precision extra of 1, SD has a precision extra of 2. To see a full list of precision extra defaults, please type `options("tidytlg.precision.extra")` in your console. An example function call of `univar` is shown below for presenting the data using a base decimal value of 2.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
-  univar(colvar = "TRT01PN", 
-         rowvar = "BMIBL", 
+tbl <- cdisc_adsl %>%
+  univar(colvar = "TRT01PN",
+         rowvar = "BMIBL",
          decimal = 2,
          row_header = "Age (Years)")
 
@@ -90,15 +90,15 @@ knitr::kable(tbl)
 
 ## Data Driven Precision
 
-While static precision is useful in some cases, data driven precision is also available.  This is controlled using the `precisionby`, `precisionon`, and `decimal` arguments.  `precisionby` tells the function the variable(s) the user would like to compute the precision using.  This could be variables such as PARAMCD if the precision is to be varied between parameter. `precisionon` is the variable that should be used when calculating how many base decimal places are present in the data.  The last piece to data drive precision is the `decimal` argument which gives us a cap for base precision values.  This can be used to help avoid unnecessarily long decimals in your final output.  
+While static precision is useful in some cases, data driven precision is also available.  This is controlled using the `precisionby`, `precisionon`, and `decimal` arguments.  `precisionby` tells the function the variable(s) the user would like to compute the precision using.  This could be variables such as PARAMCD if the precision is to be varied between parameter. `precisionon` is the variable that should be used when calculating how many base decimal places are present in the data.  The last piece to data drive precision is the `decimal` argument which gives us a cap for base precision values.  This can be used to help avoid unnecessarily long decimals in your final output.
 
 A customized example is shown below for presenting the univariate summary of vital signs data using PARAMCD as the by variable. In addition, we would like the precision to be data driven and varied by parameter, which can be achieved by setting `precisionby = "PARAMCD"`.
 
 
 ```{r}
-tbl <- cdisc_advs %>% 
-  univar(colvar = "TRTAN", 
-         rowvar = "AVAL", 
+tbl <- cdisc_advs %>%
+  univar(colvar = "TRTAN",
+         rowvar = "AVAL",
          rowbyvar = "PARAMCD",
          precisionby = "PARAMCD",
          decimal = 4)
@@ -109,10 +109,10 @@ knitr::kable(tbl)
 While data driven precision is usually done with a by variable it doesn't always have to.  The `precisionon` argument can be used to calculate data driven precision on a single variable.  This might be useful if a table template is going to be used multiple times or if multiple parts of the table are using a similar call but need to have different data driven precision.  The following example uses the variable CHG to calculate precision, similar to the above example we still use `decimal = 4` to cap our decimal spaces at 4.
 
 ```{r}
-tbl <- cdisc_advs %>% 
-  filter(PARAMCD == "SYSBP") %>% 
-  univar(colvar = "TRTAN", 
-         rowvar = "CHG", 
+tbl <- cdisc_advs %>%
+  filter(PARAMCD == "SYSBP") %>%
+  univar(colvar = "TRTAN",
+         rowvar = "CHG",
          precisionon = "CHG",
          decimal = 4)
 
@@ -122,10 +122,10 @@ knitr::kable(tbl)
 Another use case for the `precisionon` argument could be if you need to calculate the summary on one variable but use another for precision for table output formatting.  The following example uses both `precisionby` and `precisionon` to show how they can be used together to make special tables.  For this table, we are creating an element of the table that summarizes AVAL but uses CHG to calculate precision.  This allows us to have consistent formatting throughout the table even though the two variables may have different precision.  We also calculate precision by PARAMCD since the output table will be presented using that as a by variable.
 
 ```{r}
-tbl <- cdisc_advs %>% 
-  filter(PARAMCD == "SYSBP") %>% 
-  univar(colvar = "TRTAN", 
-         rowvar = "AVAL", 
+tbl <- cdisc_advs %>%
+  filter(PARAMCD == "SYSBP") %>%
+  univar(colvar = "TRTAN",
+         rowvar = "AVAL",
          rowbyvar = "PARAMCD",
          precisionby = "PARAMCD",
          precisionon = "CHG",
@@ -133,4 +133,3 @@ tbl <- cdisc_advs %>%
 
 knitr::kable(tbl)
 ```
-

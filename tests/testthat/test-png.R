@@ -2,13 +2,12 @@ library(ggplot2)
 
 test_that("gentlg will preserve aspect ratio of pngs", {
 
-
   png(filename = test_path("test_outputs/png1.png"), height = 325, width = 200, type="cairo-png")
   plot(mtcars$cyl)
-  dev.off()
+  if (dev.cur() != 1) dev.off()
   png(filename = test_path("test_outputs/png2.png"), height = 193, width = 538, type="cairo-png")
   plot(mtcars$cyl)
-  dev.off()
+  if (dev.cur() != 1) dev.off()
 
   withr::with_options(
     list(tidytlg.add_datetime = FALSE),
@@ -76,7 +75,7 @@ test_that("gentlg can take multiple plotnames arguments", {
 
   plot1
 
-  dev.off()
+  if (dev.cur() != 1) dev.off()
 
   plot2 <- ggplot(data = adsl, aes(x = WEIGHTBL, y = HEIGHTBL)) +
     geom_point() +
@@ -87,7 +86,7 @@ test_that("gentlg can take multiple plotnames arguments", {
 
   plot2
 
-  dev.off()
+  if (dev.cur() != 1) dev.off()
 
   gentlg(tlf = "g",
          plotnames = paste0(a_tempdir, "/", c("plot1.png","plot2.png")),

@@ -2,7 +2,7 @@
 title: "Get Started"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{tidytlg}
+  %\VignetteIndexEntry{Get Started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -23,7 +23,7 @@ working_dir <- tempdir()
 
 * Prep environment: set up the R environment for the I/O paths.
 
-* Process data: filter analysis data, perform data manipulation (e.g. convert character variable to factor), and define column variable. 
+* Process data: filter analysis data, perform data manipulation (e.g. convert character variable to factor), and define column variable.
 
 * Generate results: create analysis rows of summary statistics (for tables) or plots (for graphs).
 
@@ -94,14 +94,14 @@ Before generating analysis summary, the analysis data need to be processed first
 # Process Data -----------------------------------------------------------------------------------------
 adsl <- adsl %>%
   filter(ITTFL == "Y") %>%
-  mutate(SEX = factor(SEX, levels = c("M", "F", "U"), labels = c("Male", "Female", "Unknown"))) %>% 
+  mutate(SEX = factor(SEX, levels = c("M", "F", "U"), labels = c("Male", "Female", "Unknown"))) %>%
   tlgsetup(var = "TRT01PN",
            column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
            tbltype = "type3")
 
 ```
 
-The above code perform the tasks below: 
+The above code perform the tasks below:
 
 * filtering analysis population
 
@@ -124,7 +124,7 @@ t1 <- adsl %>%
        rowvar = "ITTFL",
        statlist = statlist("n"),
        subset = ITTFL == "Y",
-       rowtext = "Analysis set: ITT") 
+       rowtext = "Analysis set: ITT")
 
 ## Univariate summary for AGE
 t2 <- adsl %>%
@@ -132,7 +132,7 @@ t2 <- adsl %>%
          rowvar = "AGE",
          statlist = statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE")),
          decimal = 0,
-         row_header = "Age, years") 
+         row_header = "Age, years")
 
 ## Count (percentages) for SEX
 t3 <- adsl %>%
@@ -157,13 +157,13 @@ The above `bind_table` function call performs the following tasks:
 
 * bind the analysis rows from `t1`, `t2`, `t3` into `tbl`
 
-* add formatting variables (`indentme`, `newrows`, `newpage`), which will be used in the `gentlg` function call below for creating the output. 
+* add formatting variables (`indentme`, `newrows`, `newpage`), which will be used in the `gentlg` function call below for creating the output.
 
 * attach the column metadata specified by `column_metadata_file` and `tbltype` as an attribute of the `tbl`. So the column header and the spanning headers (i.e. decode, span1, span2, span3) defined in the column metadata can be used automatically in the `gentlg` function call.
 
 ## Output results
 
-The `tbl` data frame is the main input to the gentlg function for creating the RTF/HTML outputs. 
+The `tbl` data frame is the main input to the gentlg function for creating the RTF/HTML outputs.
 
 The basic structure of tbl includes label, col1, col2, ..., coln, where
 
@@ -185,7 +185,7 @@ The `gentlg` function call below will create the rtf output using the `tblid` as
 tblid <- "Table01"
 
 gentlg(huxme       = tbl,
-       opath       = file.path(working_dir), 
+       opath       = file.path(working_dir),
        file        = tblid,
        orientation = "landscape",
        title_file = system.file("extdata/titles.xls", package = "tidytlg"))
@@ -228,18 +228,18 @@ adae <- cdisc_adae
 # Process Data --------------------------------------------------------------------------------------------
 adsl <- adsl %>%
   filter(SAFFL == "Y") %>%
-  select(USUBJID, SAFFL, TRT01AN, TRT01A) 
+  select(USUBJID, SAFFL, TRT01AN, TRT01A)
 
 adae <- adae %>%
   filter(SAFFL == "Y" & TRTEMFL == "Y") %>%
   mutate(BSPT  = paste(AEBODSYS, "[", AEDECOD, "]"),
          SAEFL = if_else(AESER == "Y", "Yes", "No"),
          DTHFL = if_else(AEOUT == "FATAL", "Yes", "No")) %>%
-   select(USUBJID, ASTDY, TRTA, BSPT, AETERM, SAEFL, DTHFL) 
+   select(USUBJID, ASTDY, TRTA, BSPT, AETERM, SAEFL, DTHFL)
 
-tbl <- inner_join(adsl, adae, by = "USUBJID") %>%   
-  arrange(TRT01AN, USUBJID, ASTDY) %>%   
-  select(TRT01A, USUBJID, ASTDY, TRTA, BSPT, AETERM, SAEFL, DTHFL) %>% 
+tbl <- inner_join(adsl, adae, by = "USUBJID") %>%
+  arrange(TRT01AN, USUBJID, ASTDY) %>%
+  select(TRT01A, USUBJID, ASTDY, TRTA, BSPT, AETERM, SAEFL, DTHFL) %>%
   filter(USUBJID %in% c("01-701-1015", "01-701-1023"))
 
 # Output Results ------------------------------------------------------------------------------------------
@@ -296,7 +296,7 @@ adsl <- adsl  %>%
   mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female")))
 
 # Generate Results ----------------------------------------------------------------------------------------
- 
+
 plot <- ggplot(data = adsl, aes(x = HEIGHTBL, y = WEIGHTBL)) +
   geom_point() +
   labs(x = "Baseline Height (cm)",
@@ -317,7 +317,7 @@ gentlg(tlf = "g",
        plotwidth = 10,
        plotheight = 5,
        orientation = "landscape",
-       opath       = file.path(working_dir),, 
+       opath       = file.path(working_dir),,
        file = tblid,
        title_file = system.file("extdata/titles.xls", package = "tidytlg"))
 ```
@@ -330,7 +330,7 @@ knitr::include_graphics("graph01.PNG")
 
 Besides building the table section-by-section as shown above, we can use the table metadata approach as an efficient alternative for generating outputs. Table metadata is a data frame describing the data, functions and arguments needed to produce your table results. The table metadata shown below can be used to create the same table output as above. Each row in the table metadata describes how a `tbl` chunk will be created by the function defined in the `func` column. The rest of the columns defines the arguments (i.e. `df`, `colvar`, `rowvar`, `statlist`, `rowtext`, `row_header`) that will be passed into the function.
 
-Once table metadata is defined, users just need to call the `generate_results` function with the column metadata define in the `column_metadata_file` and `tbltype` arguments to create the `tbl` dataframe. In the processing data step, users don't need to call `tlgsetp`, since `tlgsetup` is embedded within the `generate_results` function. That's why we need to specify the column metadata in the `generate_results` call. 
+Once table metadata is defined, users just need to call the `generate_results` function with the column metadata define in the `column_metadata_file` and `tbltype` arguments to create the `tbl` dataframe. In the processing data step, users don't need to call `tlgsetp`, since `tlgsetup` is embedded within the `generate_results` function. That's why we need to specify the column metadata in the `generate_results` call.
 
 ```{r}
 library(dplyr)
@@ -356,9 +356,9 @@ table_metadata <- tibble::tribble(
   mutate(colvar  = "TRT01PN")
 
 # Generate results
-tbl <- generate_results(table_metadata, 
+tbl <- generate_results(table_metadata,
                         column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
-                        tbltype = "type3") 
+                        tbltype = "type3")
 
 # Output results
 tblid <- "Table01"
@@ -404,9 +404,9 @@ table_metadata <- tibble::tribble(
   mutate(colvar  = "TRT01PN")
 
 # Generate results
-tbl <- generate_results(table_metadata, 
+tbl <- generate_results(table_metadata,
                         column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
-                        tbltype = "type3") 
+                        tbltype = "type3")
 
 # Output results
 tblid <- "Table01"
@@ -419,6 +419,4 @@ gentlg(huxme       = tbl,
        title_file = system.file("extdata/titles.xls", package = "tidytlg"))
 ```
 
-In summary, `rowbyvar` is used to create the by-variable summary for one `rowvar` in a single function call. To perform sub-group analysis, users need to specify `tablebyvar` in every function calls except the analysis population row. 
-
-
+In summary, `rowbyvar` is used to create the by-variable summary for one `rowvar` in a single function call. To perform sub-group analysis, users need to specify `tablebyvar` in every function calls except the analysis population row.

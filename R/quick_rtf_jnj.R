@@ -224,19 +224,23 @@ numeral_formatter <- function(x) {
   UseMethod("numeral_formatter")
 }
 
+#' @export
 numeral_formatter.default <- function(x) {
   stop("Unrecognized number_format. Please use a number, string or function.")
 }
 
 # If we are a function then return output from the function
+#' @export
 numeral_formatter.function <- function(x) {
   return(x)
 }
 
+#' @export
 numeral_formatter.character <- function(x) {
   return(function(numeral) sprintf(x, numeral))
 }
 
+#' @export
 numeral_formatter.numeric <- function(x) {
   return(function(numeral) formatC(round(numeral, x), format = "f", digits = x))
 }
@@ -479,7 +483,7 @@ rtf_fc_tables <- function(..., extra_fonts = "Times",
   result
 }
 
-custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark, # nolint: object_name_linter.
+custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
                           nheader, header_pad, tlf, ...) {
   assertthat::assert_that(inherits(fc_tables, "rtfFCTables"))
   color_index <- function(color) {
@@ -723,7 +727,6 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark, # nolint
     sprintf("{\\pard %s {%s} \\par}", cap_align, caption)
   }
 
-
   ## PASTE EVERYTHING TOGETHER ----
   result <- paste(rows, collapse = "\n")
   result <- if (grepl("top", huxtable::caption_pos(ht))) {
@@ -742,7 +745,8 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark, # nolint
   } else {
     header_pad <- header_pad + 1
   }
-  if (tolower(substr(tlf, 1, 1)) == "t" & !is.null(header_pad)) {
+  if (tolower(substr(tlf, 1, 1)) == "t" && !is.null(header_pad)) {
+    browser()
     result <- pad_header(result, nheader, header_pad)
   }
   return(result)
@@ -847,7 +851,7 @@ quick_rtf_jnj <- function(hts,
   tables <- paste0(rtf_hts, collapse = "\\pard\\par\\page\n")
 
   file_contents <- sprintf(
-    "%s\n%s}\n",
+    "%s\n%s\n}",
     header,
     tables
   )

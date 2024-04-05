@@ -194,7 +194,33 @@ gentlg <- function(huxme = NULL,
                    firstcolumnborder = FALSE,
                    header_pad = NULL,
                    colspan_line = NULL) {
-  if (!is.list(huxme)) {
+  if (is.null(huxme)) {
+    return(gentlg_single(
+      huxme = NULL,
+      tlf = tlf,
+      format = format,
+      colspan = colspan,
+      idvars = idvars,
+      plotnames = plotnames,
+      plotwidth = plotwidth,
+      plotheight = plotheight,
+      wcol = wcol,
+      orientation = orientation,
+      opath = opath,
+      title_file = title_file,
+      file = file,
+      title = title,
+      footers = footers,
+      print.hux = print.hux,
+      watermark = watermark,
+      colheader = colheader,
+      pagenum = pagenum,
+      firstcolumnborder = firstcolumnborder,
+      header_pad = header_pad,
+      colspan_line = colspan_line
+    ))
+  }
+  if (inherits(huxme, "data.frame") || inherits(huxme, "ggplot")) {
     huxme <- list(huxme)
   }
 

@@ -2,7 +2,6 @@
 library(tibble)
 
 test_that("colheader works as expected for listings", {
-
   withr::with_options(
     list(tidytlg.add_datetime = FALSE),
     {
@@ -40,10 +39,8 @@ test_that("colheader works as expected for listings", {
           )
         }
       )
-
     })
 
   expect_snapshot_file(test_path("test_outputs/colheader1.rtf"))
   expect_snapshot_file(test_path("test_outputs/colheader2.rtf"))
-
 })

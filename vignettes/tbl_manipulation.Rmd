@@ -2,7 +2,7 @@
 title: "Manipulating tbl data frame"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{tbl_manipulation}
+  %\VignetteIndexEntry{Manipulating tbl data frame}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -53,7 +53,6 @@ gentlg(huxme       = tbl,
           colheader   = c("", "Placebo", "Active 1", "Active 2"),
           print.hux = FALSE,
           wcol        = .30)
-
 ```
 
 ## Formatting table
@@ -65,7 +64,7 @@ The above example does not have any formatting in actions on the table. To enabl
 For inserting a blank line prior to the 2nd row (i.e. Age (Years)), we will need to add the `newrows` variable with value = `1`.
 
 ```{r}
-tbl <- tbl %>% 
+tbl <- tbl %>%
   mutate(newrows = case_when(label == "Age (Years)" ~ 1,
                              TRUE ~ 0))
 
@@ -88,7 +87,7 @@ gentlg(huxme       = tbl,
 For adding 1 indentation to the `N` row, we will need to add the `indentme` variable with value = 1, which indicates 1 indentation (2 will result in 2 indentation, and so on).
 
 ```{r}
-tbl <- tbl %>% 
+tbl <- tbl %>%
   mutate(indentme = case_when(label == "N" ~ 1,
                              TRUE ~ 0))
 
@@ -111,7 +110,7 @@ gentlg(huxme       = tbl,
 To enable bolding on the row of `Age (Years)`, the `boldme` variable with value = 1 will need to be added.
 
 ```{r}
-tbl <- tbl %>% 
+tbl <- tbl %>%
   mutate(boldme = case_when(label == "Age (Years)" ~ 1,
                              TRUE ~ 0))
 
@@ -144,13 +143,13 @@ Besides manually adding the formatting variables to `tbl`, we have developed sev
 The `row_type` variable is created in the tbl by calling the `freq`, `nested_freq`, and `univar` functions, which is used by the above functions for setting up the formatting variables. The `tbl` example below is obtained by calling the `univar` function for summarizing the age statistics in the CDISC ADSL dataset. After calling the `univar` function, we create the `anbr` (analysis number) variable as the identifier of this `tbl` chunk.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
-  univar(colvar = "TRT01PN", 
-         rowvar = "AGE", 
+tbl <- cdisc_adsl %>%
+  univar(colvar = "TRT01PN",
+         rowvar = "AGE",
          statlist = statlist(c("N", "MEANSD")),
          decimal = 0,
-         row_header = "Age (Years)") %>% 
-  mutate(anbr = "01") 
+         row_header = "Age (Years)") %>%
+  mutate(anbr = "01")
 
 knitr::kable(tbl)
 ```
@@ -158,12 +157,12 @@ knitr::kable(tbl)
 The `add_format` function, which incorporates all 3 formatting functions above (`add_indent`, `add_newrows`, `add_newpage`), can then be applied to the `tbl` for creating the formatting variables.
 
 ```{r}
-tbl <- cdisc_adsl %>% 
-  univar(colvar = "TRT01PN", 
-         rowvar = "AGE", 
+tbl <- cdisc_adsl %>%
+  univar(colvar = "TRT01PN",
+         rowvar = "AGE",
          statlist = statlist(c("N", "MEANSD")),
          decimal = 0,
-         row_header = "Age (Years)") %>% 
+         row_header = "Age (Years)") %>%
   mutate(anbr = "01") %>%
   add_format()
 
@@ -182,7 +181,7 @@ gentlg(huxme       = tbl,
           wcol        = .30)
 ```
 
-The default indentation for each row_type is shown below. 
+The default indentation for each row_type is shown below.
 
 | row_type          | default indentation |
 | ----------------- |:-------------------:|
@@ -192,4 +191,3 @@ The default indentation for each row_type is shown below.
 | N                 | 1                   |
 | VALUE             | 2                   |
 | NESTED            | 0                   |
-
