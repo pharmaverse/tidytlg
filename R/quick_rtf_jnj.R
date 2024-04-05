@@ -746,7 +746,6 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
     header_pad <- header_pad + 1
   }
   if (tolower(substr(tlf, 1, 1)) == "t" && !is.null(header_pad)) {
-    browser()
     result <- pad_header(result, nheader, header_pad)
   }
   return(result)
