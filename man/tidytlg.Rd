@@ -2,8 +2,8 @@
 % Please edit documentation in R/tidytlg-package.R
 \docType{package}
 \name{tidytlg}
-\alias{tidytlg}
 \alias{tidytlg-package}
+\alias{tidytlg}
 \title{tidytlg: A package for producing tables, listings, and graphs (TLGs) using
 tidyverse packages.}
 \description{

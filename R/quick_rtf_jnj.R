@@ -479,10 +479,8 @@ rtf_fc_tables <- function(..., extra_fonts = "Times",
   result
 }
 
-to_rtf_01 <- function(ht, ...) UseMethod("to_rtf")
-
-to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
-                            nheader, header_pad, tlf, ...) {
+custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark, # nolint: object_name_linter.
+                          nheader, header_pad, tlf, ...) {
   assertthat::assert_that(inherits(fc_tables, "rtfFCTables"))
   color_index <- function(color) {
     res <- match(color, fc_tables$colors)
@@ -752,7 +750,7 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
 
 print_rtf_01 <- function(ht, fc_tables = rtf_fc_tables(ht),
                          watermark, nheader, header_pad, tlf, ...) {
-  cat(to_rtf_01(ht, fc_tables, watermark, nheader, header_pad, tlf, ...))
+  cat(custom_to_rtf(ht, fc_tables, watermark, nheader, header_pad, tlf, ...))
 }
 
 
@@ -821,8 +819,6 @@ quick_rtf_jnj <- function(hts,
                           nheader = 1,
                           tlf = "Table",
                           header_pad = TRUE) {
-  if (debug == TRUE) browser()
-
   assertthat::assert_that(inherits(hts, "list"))
   assertthat::assert_that(assertthat::not_empty(hts))
   for (ht in hts) {
@@ -837,28 +833,28 @@ quick_rtf_jnj <- function(hts,
   portrait_f <- "{\\rtf1\\ansi\\deff0\\portrait\\paperw15840\\paperh12240\\margl1440\\margr1440\\margt1440\\margb1440\\headery1440\\footery1440{\\stylesheet{\\ql \\li0\\ri0\\widctlpar\\wrapdefault\\faauto\\adjustright\\rin0\\lin0\\itap0 \\rtlch\\fcs1 \\af0\\afs20\\alang1025 \\ltrch\\fcs0 \\fs20\\lang9\\langfe3081\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp9\\langfenp3081 \\snext0 \\sqformat \\spriority0 Normal;}{\\s15\\ql \\fi-1152\\li1152\\ri0\\keepn\\widctlpar\\tx1152\\wrapdefault\\faauto\\rin0\\lin1152\\itap0 \\rtlch\\fcs1 \\af0\\afs18\\alang1025 \\ltrch\\fcs0 \\b\\fs20\\lang1033\\langfe1033\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp1033\\langfenp1033 \\sbasedon0 \\snext0 \\sqformat caption;}}\n"
   pagenum_t <- "\\par {\\footer\\pard\\sb240\\qr\\fs16{\\insrsid2691151 Listing Page }{\\field{\\*\\fldinst {\\insrsid2691151 PAGE }}{\\fldrslt {\\insrsid26911511}}}{\\insrsid2691151  of }{\\field{\\*\\fldinst {\\insrsid2691151  NUMPAGES }} {\\fldrslt {\\insrsid112265262}}}{\\insrsid2691151 \\par }}\n\n\n}"
 
-  sink(file)
-  tryCatch(
-    {
-      cat(ifelse(portrait, portrait_t, portrait_f))
-      cat("\n\n\n")
-      for (ht in hts) {
-        print_rtf_01(
-          ht,
-          watermark = watermark,
-          nheader = nheader,
-          header_pad = header_pad,
-          tlf = tlf
-        )
-        cat("\\pard\\par\n")
-      }
-      cat(ifelse(pagenum, pagenum_t, "\n\n\n}"))
-    },
-    error = identity,
-    finally = {
-      sink()
-    }
+  header <- ifelse(portrait, portrait_t, portrait_f)
+  rtf_hts <- lapply(hts, function(ht) {
+    rtf <- custom_to_rtf(
+      ht,
+      watermark = watermark,
+      nheader = nheader,
+      header_pad = header_pad,
+      tlf = tlf
+    )
+    sprintf("%s%s", rtf, ifelse(pagenum, pagenum_t, ""))
+  })
+  tables <- paste0(rtf_hts, collapse = "\\pard\\par\\page\n")
+
+  file_contents <- sprintf(
+    "%s\n%s}\n",
+    header,
+    tables
   )
+
+  sink(file)
+  cat(file_contents)
+  sink()
 
   # update permissions
   Sys.chmod(file, mode, use_umask = FALSE)
@@ -866,8 +862,3 @@ quick_rtf_jnj <- function(hts,
   if (open) auto_open(file)
   invisible(NULL)
 }
-
-jams
-list(jams, jams)
-hts <- list(jams, jams)
-quick_rtf_jnj(list(jams, jams))
