@@ -702,7 +702,7 @@ gentlg_single <- function(huxme = NULL,
     newrows <- newrows + formatindex - 1
     ht2 <- ht[formatindex, ]
     ht2[1, ] <- ""
-    for (i in 1:length(newrows)) {
+    for (i in seq_along(newrows)) {
       line <- length(newrows[newrows < newrows[i]]) + newrows[i]
       ht <- huxtable::add_rows(ht, ht2, after = line)
     }
@@ -778,7 +778,16 @@ gentlg_single <- function(huxme = NULL,
     ))
   } else if (tolower(format) == "html") {
     # Make repeated header on each page
-    ht <- add_header(ht, paste0('<div style = "text-indent: -36px; padding-left: 36px;"> ', file, ": &emsp; ", title, "</div> "))
+    ht <- add_header(
+      ht,
+      paste0(
+        '<div style = "text-indent: -36px; padding-left: 36px;"> ',
+        file,
+        ": &emsp; ",
+        title,
+        "</div> "
+      )
+    )
   }
 
 
@@ -828,7 +837,13 @@ gentlg_single <- function(huxme = NULL,
         # In case hanging indent is required + hard enter:
         # \\par\\pard\\pnhang\\fi-180\\li180
 
-        dsnin <- huxtable::add_footnote(dsnin, paste0("<div style='border-top:1pt solid;'> ", "<br />", footer), number_format = NA, font_size = size, border = 0)
+        dsnin <- huxtable::add_footnote(
+          dsnin,
+          paste0("<div style='border-top:1pt solid;'> ", "<br />", footer),
+          number_format = NA,
+          font_size = size,
+          border = 0
+        )
       } else {
         dsnin <- huxtable::add_footnote(dsnin, footer,
           number_format = NA,
@@ -987,5 +1002,5 @@ gentlg_single <- function(huxme = NULL,
   # shiny needs to be able to save to object so return(ht) for both HTML and RTF
   # static rtf, just needs to run quick_rtf_jnj
   if (exists("a_file") && file.exists(a_file)) file.remove(a_file)
-  ht
+  list(ht = ht, colspan = colspan)
 }

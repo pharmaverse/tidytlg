@@ -806,7 +806,7 @@ auto_open <- function(path) {
 #' @param portrait String: "portrait" or "landscape". Default is portrait.
 #' @param mode Permissions to apply to file (default to 770)
 #' @param debug logical to turn on browser(), defaults to FALSE
-#' @param nheader number of header rows
+#' @param nheader ('numeric' vector) number of header rows
 #' @noRd
 #'
 #' @references \url{https://github.com/hughjonesd/huxtable}
@@ -819,7 +819,7 @@ quick_rtf_jnj <- function(hts,
                           watermark = NULL,
                           mode = "0770",
                           debug = FALSE,
-                          nheader = 1,
+                          nheader = c(1),
                           tlf = "Table",
                           header_pad = TRUE) {
   assertthat::assert_that(inherits(hts, "list"))
@@ -837,7 +837,7 @@ quick_rtf_jnj <- function(hts,
   pagenum_t <- "\\par {\\footer\\pard\\sb240\\qr\\fs16{\\insrsid2691151 Listing Page }{\\field{\\*\\fldinst {\\insrsid2691151 PAGE }}{\\fldrslt {\\insrsid26911511}}}{\\insrsid2691151  of }{\\field{\\*\\fldinst {\\insrsid2691151  NUMPAGES }} {\\fldrslt {\\insrsid112265262}}}{\\insrsid2691151 \\par }}\n\n\n}"
 
   header <- ifelse(portrait, portrait_t, portrait_f)
-  rtf_hts <- lapply(hts, function(ht) {
+  rtf_hts <- mapply(function(ht, nheader) {
     rtf <- custom_to_rtf(
       ht,
       watermark = watermark,
@@ -845,10 +845,10 @@ quick_rtf_jnj <- function(hts,
       header_pad = header_pad,
       tlf = tlf
     )
-    sprintf("%s%s", rtf, ifelse(pagenum, pagenum_t, ""))
-  })
-  tables <- paste0(rtf_hts, collapse = "\\pard\\par\\page\n")
+    rtf <- sprintf("%s%s", rtf, ifelse(pagenum, pagenum_t, ""))
+  }, hts, nheader)
 
+  tables <- paste0(rtf_hts, collapse = "\\pard\\par\\page\n")
   file_contents <- sprintf(
     "%s\n%s\n}",
     header,

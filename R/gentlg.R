@@ -256,14 +256,14 @@ gentlg <- function(huxme = NULL,
   )
 
   if (print.hux == FALSE) {
-    return(hts)
+    return(lapply(hts, function(ht) ht$ht))
   } else if (print.hux == TRUE && toupper(format) == "RTF") {
-    quick_rtf_jnj(hts,
+    quick_rtf_jnj(lapply(hts, function(ht) ht$ht),
       file = paste(file.path(opath, adjfilename), ".rtf", sep = ""),
       pagenum = pagenum,
       portrait = tolower(orientation) == "portrait",
       watermark = watermark,
-      nheader = 1 + length(colspan),
+      nheader = 1 + as.numeric(lapply(hts, function(ht) length(ht$colspan))),
       tlf = tlf,
       header_pad = header_pad
     )
