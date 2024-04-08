@@ -62,9 +62,8 @@ str_rep <- function(x, times) {
 # pinched from HMS. Registers the method or sets a hook to
 # register it on load of other package
 register_s3_method <- function(pkg, generic, class = "huxtable") {
-  if (!rlang::is_string(pkg) || !rlang::is_string(generic)) {
-    cli::cli_abort("{.arg pkg} and {.arg generic} must be strings.")
-  }
+  assertthat::assert_that(assertthat::is.string(pkg),
+                          assertthat::is.string(generic))
   fun <- get(paste0(generic, ".", class), envir = parent.frame())
 
   if (pkg %in% loadedNamespaces()) {
@@ -448,9 +447,7 @@ get_all_padding <- function(ht, row, col, drop = TRUE) {
 rtf_fc_tables <- function(..., extra_fonts = "Times",
                           extra_colors = character(0)) {
   hts <- list(...)
- if (!all(sapply(hts, huxtable::is_huxtable))) {
-   cli::cli_abort("All `hts` must be huxtable objects.")
- }
+  assertthat::assert_that(all(sapply(hts, huxtable::is_huxtable)))
 
   fonts <- unlist(lapply(hts, function(ht) huxtable::font(ht)))
   fonts <- unique(c(extra_fonts, fonts))
@@ -475,11 +472,7 @@ to_rtf_01 <- function(ht, ...) UseMethod("to_rtf")
 
 to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
                             nheader, header_pad, tlf, ...) {
-  if (!inherits(fc_tables, "rtfFCTables")) {
-    cli::cli_abort(
-      "{.arg fc_tables} must be a {.cls rtfFCTables}, not {.obj_type_friendly {fc_tables}}."
-    )
-  }
+  assertthat::assert_that(inherits(fc_tables, "rtfFCTables"))
   color_index <- function(color) {
     res <- match(color, fc_tables$colors)
     if (any(is.na(res) & !is.na(color))) {
@@ -802,12 +795,8 @@ quick_rtf_jnj <- function(...,
                           header_pad = TRUE) {
   if (debug == TRUE) browser()
 
-  if (length(borders) != 1 || !is.numeric(borders)) {
-    cli::cli_abort("{.arg borders} must be a single number.")
-  }
-  if (!rlang::is_bool(open)) {
-    cli::cli_abort("{.arg open} must be a single `TRUE` or `FALSE`.")
-  }
+  assertthat::assert_that(assertthat::is.number(borders))
+  assertthat::assert_that(assertthat::is.flag(open))
   force(file)
   hts <- huxtableize(list(...), borders)
 
