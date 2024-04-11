@@ -1002,5 +1002,6 @@ gentlg_single <- function(huxme = NULL,
   # shiny needs to be able to save to object so return(ht) for both HTML and RTF
   # static rtf, just needs to run quick_rtf_jnj
   if (exists("a_file") && file.exists(a_file)) file.remove(a_file)
+  browser()
   list(ht = ht, colspan = colspan)
 }

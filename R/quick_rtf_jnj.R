@@ -837,16 +837,22 @@ quick_rtf_jnj <- function(hts,
   pagenum_t <- "\\par {\\footer\\pard\\sb240\\qr\\fs16{\\insrsid2691151 Listing Page }{\\field{\\*\\fldinst {\\insrsid2691151 PAGE }}{\\fldrslt {\\insrsid26911511}}}{\\insrsid2691151  of }{\\field{\\*\\fldinst {\\insrsid2691151  NUMPAGES }} {\\fldrslt {\\insrsid112265262}}}{\\insrsid2691151 \\par }}\n\n\n}"
 
   header <- ifelse(portrait, portrait_t, portrait_f)
-  rtf_hts <- mapply(function(ht, nheader) {
-    rtf <- custom_to_rtf(
-      ht,
-      watermark = watermark,
-      nheader = nheader,
-      header_pad = header_pad,
-      tlf = tlf
-    )
-    rtf <- sprintf("%s%s", rtf, ifelse(pagenum, pagenum_t, ""))
-  }, hts, nheader)
+  rtf_hts <- mapply(
+    function(ht, nheader, watermark, pagenum) {
+      rtf <- custom_to_rtf(
+        ht,
+        watermark = watermark,
+        nheader = nheader,
+        header_pad = header_pad,
+        tlf = tlf
+      )
+      rtf <- sprintf("%s%s", rtf, ifelse(pagenum, pagenum_t, ""))
+    },
+    hts,
+    nheader,
+    watermark,
+    pagenum
+  )
 
   tables <- paste0(rtf_hts, collapse = "\\pard\\par\\page\n")
   file_contents <- sprintf(

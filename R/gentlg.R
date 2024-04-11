@@ -224,30 +224,72 @@ gentlg <- function(huxme = NULL,
     huxme <- list(huxme)
   }
 
-  hts <- lapply(
+  # If we leave NULLs in the arguments
+  # then the mapply won't run, so we
+  # wrap the NULLs in a list
+  if (!is.list(title)) {
+    title <- list(title)
+  }
+  if (!is.list(footers)) {
+    footers <- list(footers)
+  }
+  if (!is.list(watermark)) {
+    watermark <- list(watermark)
+  }
+  if (!is.list(colheader)) {
+    colheader <- list(colheader)
+  }
+  if (!is.list(firstcolumnborder)) {
+    firstcolumnborder <- list(firstcolumnborder)
+  }
+  header_pad <- list(header_pad)
+  colspan_line <- list(colspan_line)
+
+  hts <- mapply(
+    function(ht,
+             title,
+             footers,
+             watermark,
+             colheader,
+             pagenum,
+             firstcolumnborder,
+             header_pad,
+             colspan_line) {
+      gentlg_single(
+        huxme = ht,
+        tlf = tlf,
+        format = format,
+        colspan = colspan,
+        idvars = idvars,
+        plotnames = plotnames,
+        plotwidth = plotwidth,
+        plotheight = plotheight,
+        wcol = wcol,
+        orientation = orientation,
+        opath = opath,
+        title_file = title_file,
+        file = file,
+        title = title,
+        footers = footers,
+        print.hux = FALSE,
+        watermark = watermark,
+        colheader = colheader,
+        pagenum = pagenum,
+        firstcolumnborder = firstcolumnborder,
+        header_pad = header_pad,
+        colspan_line = colspan_line
+      )
+    },
     huxme,
-    gentlg_single,
-    tlf = tlf,
-    format = format,
-    colspan = colspan,
-    idvars = idvars,
-    plotnames = plotnames,
-    plotwidth = plotwidth,
-    plotheight = plotheight,
-    wcol = wcol,
-    orientation = orientation,
-    opath = opath,
-    title_file = title_file,
-    file = file,
-    title = title,
-    footers = footers,
-    print.hux = FALSE,
-    watermark = watermark,
-    colheader = colheader,
-    pagenum = pagenum,
-    firstcolumnborder = firstcolumnborder,
-    header_pad = header_pad,
-    colspan_line = colspan_line
+    title,
+    footers,
+    watermark,
+    colheader,
+    pagenum,
+    firstcolumnborder,
+    header_pad,
+    colspan_line,
+    SIMPLIFY = FALSE
   )
 
   adjfilename <- stringr::str_replace_all(
