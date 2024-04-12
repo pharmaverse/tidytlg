@@ -30,7 +30,6 @@ test_that("colspan works as expected", {
         }
       )
 
-
       tab <- freq(
         mtcars2 %>%
           tlgsetup(

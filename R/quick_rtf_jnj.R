@@ -838,7 +838,7 @@ quick_rtf_jnj <- function(hts,
 
   header <- ifelse(portrait, portrait_t, portrait_f)
   rtf_hts <- mapply(
-    function(ht, nheader, watermark, pagenum) {
+    function(ht, nheader, watermark, pagenum, header_pad) {
       rtf <- custom_to_rtf(
         ht,
         watermark = watermark,
@@ -851,10 +851,11 @@ quick_rtf_jnj <- function(hts,
     hts,
     nheader,
     watermark,
-    pagenum
+    pagenum,
+    header_pad
   )
 
-  tables <- paste0(rtf_hts, collapse = "\\pard\\par\\page\n")
+  tables <- paste0(rtf_hts, collapse = "\\page\n")
   file_contents <- sprintf(
     "%s\n%s\n}",
     header,
