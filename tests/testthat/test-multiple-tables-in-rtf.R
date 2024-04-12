@@ -40,17 +40,11 @@ test_that("multiple tables are printed to one rtf file", {
       withr::with_dir(
         new = testthat::test_path(output_directory),
         code = {
-          # gentlg(
-          #   list(tab, tab2),
-          #   file = "multipletabs",
-          #   title = list("Title 1", "Title 2"),
-          #   footers = list("Footer 1", "Footer 2")
-          # )
           gentlg(
-            tab,
-            file = "multipletabs-single",
-            title = "Title1",
-            footers = "Footer 1"
+            list(tab, tab2),
+            file = "multipletabs",
+            title = list("Title 1", "Title 2"),
+            footers = list("Footer 1", "Footer 2")
           )
         }
       )
@@ -61,5 +55,9 @@ test_that("multiple tables are printed to one rtf file", {
 
   # Verify only one file was created
   files <- list.files(path = testthat::test_path(output_directory), pattern = "*.rtf")
-  print(files)
+  testthat::expect_identical(
+    length(files),
+    1L,
+    label = sprintf("Expected to find only one file. Found: %s", paste0(files, collapse = " "))
+  )
 })
