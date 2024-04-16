@@ -855,7 +855,7 @@ quick_rtf_jnj <- function(hts,
     header_pad
   )
 
-  tables <- paste0(rtf_hts, collapse = "\\page\n")
+  tables <- paste0(rtf_hts, collapse = "\\page\n\\v\\par\\v0")
   file_contents <- sprintf(
     "%s\n%s\n}",
     header,
