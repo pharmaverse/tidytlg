@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.0.7
+pkgdown: 2.0.8
 pkgdown_sha: ~
 articles:
   freq: freq.html
@@ -8,5 +8,5 @@ articles:
   tidytlg: tidytlg.html
   tlgsetup: tlgsetup.html
   univar: univar.html
-last_built: 2024-03-21T14:10Z
+last_built: 2024-04-19T06:27Z
 
