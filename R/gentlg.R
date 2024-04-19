@@ -575,7 +575,7 @@ gentlg <- function(huxme = NULL,
       if (ncol(ht) == length(colheader)) {
         ht[1, ] <- colheader
       } else {
-        usethis::ui_warn("Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns")
+        cli::cli_warn("Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns")
       }
       ht[1, ] <- paste0("\\keepn\\trhdr ", ht[1, ]) # Make repeated treatments on each page
       formatindex <- 1
@@ -598,7 +598,7 @@ gentlg <- function(huxme = NULL,
       if (ncol(ht) == length(colheader)) {
         ht[1, ] <- colheader
       } else {
-        usethis::ui_warn("Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns")
+        cli::cli_warn("Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns")
       }
 
       formatindex <- 1

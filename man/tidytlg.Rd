@@ -2,8 +2,8 @@
 % Please edit documentation in R/tidytlg-package.R
 \docType{package}
 \name{tidytlg}
-\alias{tidytlg}
 \alias{tidytlg-package}
+\alias{tidytlg}
 \title{tidytlg: A package for producing tables, listings, and graphs (TLGs) using
 tidyverse packages.}
 \description{
@@ -114,6 +114,7 @@ options update in the \code{.Rprofile.site} file in the R home directory.}
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://pharmaverse.github.io/tidytlg/main/}
   \item \url{https://github.com/pharmaverse/tidytlg}
   \item Report bugs at \url{https://github.com/pharmaverse/tidytlg/issues}
 }
