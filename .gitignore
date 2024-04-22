@@ -18,3 +18,4 @@ benchmark/*
 \.DS_Store
 \.lintr
 huxtable-output\.rtf
+docs
