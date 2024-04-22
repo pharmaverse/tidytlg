@@ -30,9 +30,9 @@ gentlg(
 )
 }
 \arguments{
-\item{huxme}{(optional) For tables and listings, An input dataframe
-containing all columns of interest. For graphs, either NULL or a ggplot
-object.}
+\item{huxme}{(optional) For tables and listings, A list of input dataframes
+containing all columns of interest. For graphs, either NULL or a  list of ggplot
+objects.}
 
 \item{tlf}{(optional) String, representing the output choice. Choices are
 "Table" "Listing" "Figure". Abbreviations are allowed eg "T" for Table.
@@ -126,7 +126,7 @@ based on index (not including title), when NULL border is added to all header
 rows  (Default = NULL)}
 }
 \value{
-Formatted huxtable with desired properties for output to an RTF/HTML
+A list of formatted huxtables with desired properties for output to an RTF/HTML
 }
 \description{
 Generate and output a huxtable with desired properties

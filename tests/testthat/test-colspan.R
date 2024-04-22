@@ -6,9 +6,11 @@ test_that("colspan works as expected", {
     {
       mtcars2 <- mtcars %>%
         rownames_to_column(var = "USUBJID") %>%
-        mutate(am = factor(am),
-               cyl = factor(cyl),
-               gear = factor(gear))
+        mutate(
+          am = factor(am),
+          cyl = factor(cyl),
+          gear = factor(gear)
+        )
 
       tab <- freq(
         mtcars2,
@@ -25,13 +27,11 @@ test_that("colspan works as expected", {
             file = "colspan1",
             colspan = list(c("", "All", "All", "All"), c("", "Low", "High", "High"))
           )
-
         }
       )
 
-
       tab <- freq(
-        mtcars2%>%
+        mtcars2 %>%
           tlgsetup(
             var = "cyl",
             column_metadata_file = test_path("test_data/column_metadata_mtcars.xlsx"),
@@ -53,7 +53,6 @@ test_that("colspan works as expected", {
             tab,
             file = "colspan2"
           )
-
         }
       )
 
@@ -72,10 +71,10 @@ test_that("colspan works as expected", {
             file = "colspan3",
             colspan = list(c("", "Low", "High", "High"), c("", "All", "All", "All"))
           )
-
         }
       )
-    })
+    }
+  )
   expect_snapshot_file(test_path("test_outputs/colspan1.rtf"))
   expect_snapshot_file(test_path("test_outputs/colspan2.rtf"))
   expect_snapshot_file(test_path("test_outputs/colspan3.rtf"))

@@ -2,7 +2,7 @@
 title: "Column Metadata & How tidytlg Sets Up Your Data Using tlgsetup"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{tlgsetup}
+  %\VignetteIndexEntry{Column Metadata & How tidytlg Sets Up Your Data Using tlgsetup}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -26,8 +26,8 @@ Here we see an example of the column metadata which defines our columns, how to 
 ```{r}
 column_metadata <-
   tibble::tribble(
-    ~tbltype, ~coldef, ~decode,                ~span1,      
-    "type1",  "0",     "Placebo",              "",       
+    ~tbltype, ~coldef, ~decode,                ~span1,
+    "type1",  "0",     "Placebo",              "",
     "type1",  "54",    "Low Dose",             "Xanomeline",
     "type1",  "81",    "High Dose",            "Xanomeline",
     "type1",  "54+81", "Total Xanomeline",     ""
@@ -74,4 +74,3 @@ setup_table %>%
   group_by(colnbr) %>%
   count()
 ```
-

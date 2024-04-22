@@ -2,7 +2,7 @@
 title: "Tips & Tricks:  Including Symbols, Superscripts, Subscripts & Line Breaks"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{symbols}
+  %\VignetteIndexEntry{Tips & Tricks:  Including Symbols, Superscripts, Subscripts & Line Breaks}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -25,24 +25,24 @@ library(huxtable)
 opath <- "."
 
 df <- tibble::tribble(
-  ~Symbol, ~`Textual Description`,  ~Unicode,  
-  "\u2190", "Left arrow", "\\u2190", 
-  "\u2192", "Right arrow", "\\u2192", 
-  "\u2264", "Less-than or equal to", "\\u2264", 
-  "\u2265", "Greater-than or equal to", "\\u2265", 
-  "\u2260", "Not equal to", "\\u2260", 
-  "\u00b1", "Plus-minus sign", "\\u00b1", 
-  "\u03b1", "Alpha", "\\u03b1", 
-  "\u03b2", "Beta", "\\u03b2", 
-  "\u03bc", "Mu", "\\u03bc", 
+  ~Symbol, ~`Textual Description`,  ~Unicode,
+  "\u2190", "Left arrow", "\\u2190",
+  "\u2192", "Right arrow", "\\u2192",
+  "\u2264", "Less-than or equal to", "\\u2264",
+  "\u2265", "Greater-than or equal to", "\\u2265",
+  "\u2260", "Not equal to", "\\u2260",
+  "\u00b1", "Plus-minus sign", "\\u00b1",
+  "\u03b1", "Alpha", "\\u03b1",
+  "\u03b2", "Beta", "\\u03b2",
+  "\u03bc", "Mu", "\\u03bc",
   "\u00ab", "Non-breaking space", "\\u00ab"
 )
 df
 
 # quick_rtf(hux(df),
 #           file = "./test.rtf")
-# 
-# 
+#
+#
 ```
 
 
@@ -69,7 +69,7 @@ Superscripts and Subscripts can be added to the label column via unicode.
 ```{r eval = FALSE}
 
 df <- tibble::tibble(
-  label = c("This is a superscript a{\\super a}", 
+  label = c("This is a superscript a{\\super a}",
             "This is a subscript b{\\sub b}"),
   col1 = c("100", "200")
 )
@@ -85,7 +85,7 @@ Superscripts and Subscripts can be added to the footnotes via unicode as well.
 ```{r eval = FALSE}
 
 df <- tibble::tibble(
-  label = c("This is a superscript a{\\super a}", 
+  label = c("This is a superscript a{\\super a}",
             "This is a subscript b{\\sub b}"),
   col1 = c("100", "200")
 )
@@ -128,4 +128,3 @@ tidytlg::gentlg(df,
 
 
 ```
-

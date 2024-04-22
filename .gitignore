@@ -15,4 +15,7 @@ benchmark/*
 .Rprofile
 /doc/
 /Meta/
+\.DS_Store
+\.lintr
+huxtable-output\.rtf
 docs

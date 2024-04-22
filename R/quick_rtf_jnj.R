@@ -29,16 +29,16 @@ merger_header <- function(result) {
 #'
 #' @return Returns the RTF output but with padding added to colvar column
 #' @noRd
-pad_header <- function(result, nheader,header_pad) {
+pad_header <- function(result, nheader, header_pad) {
   result_sectioned <- result %>%
     stringr::str_split("\\\\row") %>%
     base::unlist() # breakes apart by section
 
-    section_selection <- header_pad[header_pad %in% 2:(nheader + 1)]
+  section_selection <- header_pad[header_pad %in% 2:(nheader + 1)]
 
-    result_sectioned[section_selection] <- result_sectioned[section_selection] %>%
-      stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx") %>%
-      stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx","\\\\clpadr67\\\\clpadfr3\\\\cellx")
+  result_sectioned[section_selection] <- result_sectioned[section_selection] %>%
+    stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx") %>%
+    stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx", "\\\\clpadr67\\\\clpadfr3\\\\cellx")
 
 
 
@@ -62,8 +62,10 @@ str_rep <- function(x, times) {
 # pinched from HMS. Registers the method or sets a hook to
 # register it on load of other package
 register_s3_method <- function(pkg, generic, class = "huxtable") {
-  assertthat::assert_that(assertthat::is.string(pkg),
-                          assertthat::is.string(generic))
+  assertthat::assert_that(
+    assertthat::is.string(pkg),
+    assertthat::is.string(generic)
+  )
   fun <- get(paste0(generic, ".", class), envir = parent.frame())
 
   if (pkg %in% loadedNamespaces()) {
@@ -101,8 +103,10 @@ utf8_to_rtf <- function(mx) {
 
 # return character matrix of formatted contents, suitably escaped
 clean_contents <- function(ht,
-                           type = c("latex", "html", "screen", "markdown",
-                                    "word", "excel", "rtf"),
+                           type = c(
+                             "latex", "html", "screen", "markdown",
+                             "word", "excel", "rtf"
+                           ),
                            ...) {
   type <- match.arg(type)
   contents <- as.matrix(as.data.frame(ht))
@@ -181,12 +185,16 @@ collapsed_border_styles <- function(ht) {
 
 do_collapse <- function(ht, prop_fun, default) {
   res <- list()
-  res$top <- res$left <- res$right <- res$bottom <- matrix(default, nrow(ht),
-                                                           ncol(ht))
+  res$top <- res$left <- res$right <- res$bottom <- matrix(
+    default, nrow(ht),
+    ncol(ht)
+  )
   dc <- display_cells(ht, all = TRUE)
   # provides large speedup:
-  dc <- as.matrix(dc[, c("row", "col", "display_row", "display_col", "end_row",
-                         "end_col")])
+  dc <- as.matrix(dc[, c(
+    "row", "col", "display_row", "display_col", "end_row",
+    "end_col"
+  )])
   dc_idx <- dc[, c("display_row", "display_col"), drop = FALSE]
   dc_map <- matrix(seq_len(nrow(ht) * ncol(ht)), nrow(ht), ncol(ht))
   dc_map <- dc_map[dc_idx]
@@ -258,8 +266,10 @@ format_numbers <- function(string, num_fmt) {
   # ([eE]-?[0-9]+)?       optionally including e or E as in scientific notation
   #                       along with (optionally) a sign preceding the digits
   #                       specifying the level of the exponent.
-  stringr::str_replace_all(string, "-?[0-9]*\\.?[0-9]+([eE][+-]?[0-9]+)?",
-                           function(x) format_numeral(as.numeric(x)))
+  stringr::str_replace_all(
+    string, "-?[0-9]*\\.?[0-9]+([eE][+-]?[0-9]+)?",
+    function(x) format_numeral(as.numeric(x))
+  )
 }
 
 
@@ -280,7 +290,7 @@ decimal_pad <- function(col, pad_chars, type) {
   pos <- mapply(find_pos, col, pad_chars)
   nchars <- nchar(col, type = "width")
   # take the biggest distance from the decimal point
-  pos[pos == - 1L] <- nchars[pos == - 1L] + 1
+  pos[pos == -1L] <- nchars[pos == -1L] + 1
   chars_after__ <- nchars - pos
 
   pad_n_spaces <- max(chars_after__) - chars_after__
@@ -395,12 +405,15 @@ real_align <- function(ht) {
 }
 
 smart_hux_from_df <- function(dfr) {
-  col_nchars <- sapply(dfr, function(col) max(nchar(as.character(col),
-                                                    type = "width")))
+  col_nchars <- sapply(dfr, function(col) {
+    max(nchar(as.character(col),
+      type = "width"
+    ))
+  })
 
   ht <- huxtable::as_hux(dfr, add_colnames = TRUE, autoformat = TRUE)
 
-  huxtable::wrap(ht)[- 1, col_nchars > 15] <- TRUE
+  huxtable::wrap(ht)[-1, col_nchars > 15] <- TRUE
   width <- sum(col_nchars) / 90
   huxtable::width(ht) <- min(1, max(0.2, width))
 
@@ -454,8 +467,10 @@ rtf_fc_tables <- function(..., extra_fonts = "Times",
   fonts <- stats::na.omit(fonts)
 
   colors <- unlist(lapply(hts, function(ht) {
-    c(huxtable::text_color(ht), huxtable::background_color(ht),
-      unlist(collapsed_border_colors(ht)))
+    c(
+      huxtable::text_color(ht), huxtable::background_color(ht),
+      unlist(collapsed_border_colors(ht))
+    )
   }))
   colors <- unique(c(extra_colors, colors))
   colors <- stats::na.omit(colors)
@@ -468,10 +483,8 @@ rtf_fc_tables <- function(..., extra_fonts = "Times",
   result
 }
 
-to_rtf_01 <- function(ht, ...) UseMethod("to_rtf")
-
-to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
-                            nheader, header_pad, tlf, ...) {
+custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
+                          nheader, header_pad, tlf, ...) {
   assertthat::assert_that(inherits(fc_tables, "rtfFCTables"))
   color_index <- function(color) {
     res <- match(color, fc_tables$colors)
@@ -522,18 +535,21 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   dim(bdr_def_vert) <- dim(cb$vert)
   dim(bdr_def_horiz) <- dim(cb$horiz)
 
-  bdr_def_left <- bdr_def_vert[, - ncol(bdr_def_vert), drop = FALSE]
-  bdr_def_right <- bdr_def_vert[, - 1, drop = FALSE]
-  bdr_def_top <- bdr_def_horiz[- nrow(bdr_def_horiz), , drop = FALSE]
-  bdr_def_bottom <- bdr_def_horiz[- 1, , drop = FALSE]
+  bdr_def_left <- bdr_def_vert[, -ncol(bdr_def_vert), drop = FALSE]
+  bdr_def_right <- bdr_def_vert[, -1, drop = FALSE]
+  bdr_def_top <- bdr_def_horiz[-nrow(bdr_def_horiz), , drop = FALSE]
+  bdr_def_bottom <- bdr_def_horiz[-1, , drop = FALSE]
 
-  bdr_def_left <- blank_where(bdr_def_left, cb$vert[, - ncol(cb$vert),
-                                                    drop = FALSE] == 0)
-  bdr_def_right <- blank_where(bdr_def_right, cb$vert[, - 1, drop = FALSE] == 0)
-  bdr_def_top <- blank_where(bdr_def_top, cb$horiz[- nrow(cb$horiz), ,
-                                                   drop = FALSE] == 0)
-  bdr_def_bottom <- blank_where(bdr_def_bottom, cb$horiz[- 1, ,
-                                                         drop = FALSE] == 0)
+  bdr_def_left <- blank_where(bdr_def_left, cb$vert[, -ncol(cb$vert),
+    drop = FALSE
+  ] == 0)
+  bdr_def_right <- blank_where(bdr_def_right, cb$vert[, -1, drop = FALSE] == 0)
+  bdr_def_top <- blank_where(bdr_def_top, cb$horiz[-nrow(cb$horiz), ,
+    drop = FALSE
+  ] == 0)
+  bdr_def_bottom <- blank_where(bdr_def_bottom, cb$horiz[-1, ,
+    drop = FALSE
+  ] == 0)
 
   bdr_def_left <- paste0("\\clbrdrl", bdr_def_left)
   bdr_def_right <- paste0("\\clbrdrr", bdr_def_right)
@@ -545,8 +561,10 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   bg_def <- sprintf("\\clcbpat%d", color_index(bgc))
   bg_def <- blank_where(bg_def, is.na(bgc))
 
-  valign_map <- c(top = "\\clvertalt", middle = "\\clvertalc",
-                  bottom = "\\clvertalb")
+  valign_map <- c(
+    top = "\\clvertalt", middle = "\\clvertalc",
+    bottom = "\\clvertalb"
+  )
   valign_def <- valign_map[huxtable::valign(ht)]
   # also handles rotation:
   valign_def[huxtable::rotation(ht) == 90] <- "\\cltxbtlr"
@@ -593,14 +611,20 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   cc <- clean_contents(ht, type = "rtf")
   ## removed brackets "{}"
   cells <- paste0("", cc, "")
-  cells[huxtable::bold(ht)] <- paste0("\\b ", cells[huxtable::bold(ht)],
-                                      "\\b0")
-  cells[huxtable::italic(ht)] <- paste0("\\i ", cells[huxtable::italic(ht)],
-                                        "\\i0")
+  cells[huxtable::bold(ht)] <- paste0(
+    "\\b ", cells[huxtable::bold(ht)],
+    "\\b0"
+  )
+  cells[huxtable::italic(ht)] <- paste0(
+    "\\i ", cells[huxtable::italic(ht)],
+    "\\i0"
+  )
   fs <- ceiling(huxtable::font_size(ht) * 2) # "half-points", must be integer
   ## removed "{}", put space at the end (so that indentation works)
-  cells[!is.na(fs)] <- paste0("\\fs", fs[!is.na(fs)], " ", cells[!is.na(fs)],
-                              " ")
+  cells[!is.na(fs)] <- paste0(
+    "\\fs", fs[!is.na(fs)], " ", cells[!is.na(fs)],
+    " "
+  )
   cells[!is.na(tc)] <- paste0(
     "{\\cf", match(tc[!is.na(tc)], fc_tables$colors), " ",
     cells[!is.na(tc)], "}"
@@ -647,10 +671,14 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
     }}}"
     # paste the rtf string for watermark behind the "\cell" on the first row of
     # last column
-    cells[1, ncol(cells)] <- paste0(cells[1, ncol(cells)],
-                                    paste0(watermark_bf,
-                                           watermark,
-                                           watermark_af))
+    cells[1, ncol(cells)] <- paste0(
+      cells[1, ncol(cells)],
+      paste0(
+        watermark_bf,
+        watermark,
+        watermark_af
+      )
+    )
   }
   ## CREATE ROWS ----
   cellx_rows <- apply(cellx, 1, paste0, collapse = "\n")
@@ -684,8 +712,10 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
     row_heights <- sprintf("\\trrh%d ", rh)
   }
 
-  rows <- paste0("{\n\\trowd\n", row_align, row_heights, cellx_rows,
-                 cell_content_rows, "\n\\row\n}\n")
+  rows <- paste0(
+    "{\n\\trowd\n", row_align, row_heights, cellx_rows,
+    cell_content_rows, "\n\\row\n}\n"
+  )
 
   ## CAPTION ----
 
@@ -694,9 +724,8 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   caption_par <- if (is.na(caption)) {
     ""
   } else {
-      sprintf("{\\pard %s {%s} \\par}", cap_align, caption)
-    }
-
+    sprintf("{\\pard %s {%s} \\par}", cap_align, caption)
+  }
 
   ## PASTE EVERYTHING TOGETHER ----
   result <- paste(rows, collapse = "\n")
@@ -711,20 +740,20 @@ to_rtf.huxtable <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   attr(result, "fc_tables") <- fc_tables
 
   result <- merger_header(result)
-  if(is.null(header_pad)){
+  if (is.null(header_pad)) {
     header_pad <- 2:(nheader + 1)
-  }else{
-  header_pad <- header_pad + 1
+  } else {
+    header_pad <- header_pad + 1
   }
-  if (tolower(substr(tlf, 1, 1)) == "t" & !is.null(header_pad)) {
-    result <- pad_header(result, nheader,header_pad)
+  if (tolower(substr(tlf, 1, 1)) == "t" && !is.null(header_pad)) {
+    result <- pad_header(result, nheader, header_pad)
   }
   return(result)
 }
 
 print_rtf_01 <- function(ht, fc_tables = rtf_fc_tables(ht),
                          watermark, nheader, header_pad, tlf, ...) {
-  cat(to_rtf_01(ht, fc_tables, watermark, nheader, header_pad, tlf, ...))
+  cat(custom_to_rtf(ht, fc_tables, watermark, nheader, header_pad, tlf, ...))
 }
 
 
@@ -773,15 +802,15 @@ auto_open <- function(path) {
 #'
 #' @inheritParams huxtable::quick_rtf
 #' @inheritParams gentlg
+#' @param hts list of huxtables to print
 #' @param portrait String: "portrait" or "landscape". Default is portrait.
 #' @param mode Permissions to apply to file (default to 770)
 #' @param debug logical to turn on browser(), defaults to FALSE
-#' @param nheader number of header rows
+#' @param nheader ('numeric' vector) number of header rows
 #' @noRd
 #'
 #' @references \url{https://github.com/hughjonesd/huxtable}
-
-quick_rtf_jnj <- function(...,
+quick_rtf_jnj <- function(hts,
                           file = confirm("huxtable-output.rtf"),
                           borders = 0.4,
                           open = FALSE,
@@ -790,35 +819,52 @@ quick_rtf_jnj <- function(...,
                           watermark = NULL,
                           mode = "0770",
                           debug = FALSE,
-                          nheader = 1,
+                          nheader = c(1),
                           tlf = "Table",
                           header_pad = TRUE) {
-  if (debug == TRUE) browser()
-
+  assertthat::assert_that(inherits(hts, "list"))
+  assertthat::assert_that(assertthat::not_empty(hts))
+  for (ht in hts) {
+    assertthat::assert_that(inherits(ht, "huxtable"))
+  }
   assertthat::assert_that(assertthat::is.number(borders))
   assertthat::assert_that(assertthat::is.flag(open))
   force(file)
-  hts <- huxtableize(list(...), borders)
-
-  fc_tbls <- do.call(huxtable::rtf_fc_tables, hts)
+  hts <- huxtableize(hts, borders)
 
   portrait_t <- "{\\rtf1\\ansi\\deff0\\portrait\\paperw12240\\paperh15840\\margl1440\\margr1440\\margt1440\\margb1440\\headery1440\\footery1440{\\stylesheet{\\ql \\li0\\ri0\\widctlpar\\wrapdefault\\faauto\\adjustright\\rin0\\lin0\\itap0 \\rtlch\\fcs1 \\af0\\afs20\\alang1025 \\ltrch\\fcs0 \\fs20\\lang9\\langfe3081\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp9\\langfenp3081 \\snext0 \\sqformat \\spriority0 Normal;}{\\s15\\ql \\fi-1152\\li1152\\ri0\\keepn\\widctlpar\\tx1152\\wrapdefault\\faauto\\rin0\\lin1152\\itap0 \\rtlch\\fcs1 \\af0\\afs18\\alang1025 \\ltrch\\fcs0 \\b\\fs20\\lang1033\\langfe1033\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp1033\\langfenp1033 \\sbasedon0 \\snext0 \\sqformat caption;}}\n"
   portrait_f <- "{\\rtf1\\ansi\\deff0\\portrait\\paperw15840\\paperh12240\\margl1440\\margr1440\\margt1440\\margb1440\\headery1440\\footery1440{\\stylesheet{\\ql \\li0\\ri0\\widctlpar\\wrapdefault\\faauto\\adjustright\\rin0\\lin0\\itap0 \\rtlch\\fcs1 \\af0\\afs20\\alang1025 \\ltrch\\fcs0 \\fs20\\lang9\\langfe3081\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp9\\langfenp3081 \\snext0 \\sqformat \\spriority0 Normal;}{\\s15\\ql \\fi-1152\\li1152\\ri0\\keepn\\widctlpar\\tx1152\\wrapdefault\\faauto\\rin0\\lin1152\\itap0 \\rtlch\\fcs1 \\af0\\afs18\\alang1025 \\ltrch\\fcs0 \\b\\fs20\\lang1033\\langfe1033\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp1033\\langfenp1033 \\sbasedon0 \\snext0 \\sqformat caption;}}\n"
   pagenum_t <- "\\par {\\footer\\pard\\sb240\\qr\\fs16{\\insrsid2691151 Listing Page }{\\field{\\*\\fldinst {\\insrsid2691151 PAGE }}{\\fldrslt {\\insrsid26911511}}}{\\insrsid2691151  of }{\\field{\\*\\fldinst {\\insrsid2691151  NUMPAGES }} {\\fldrslt {\\insrsid112265262}}}{\\insrsid2691151 \\par }}\n\n\n}"
 
-  sink(file)
-  tryCatch( {
-      cat(ifelse(portrait, portrait_t, portrait_f))
-      cat("\n\n\n")
-      lapply(hts, print_rtf_01, watermark = watermark, nheader = nheader, header_pad = header_pad,
-             tlf = tlf)
-      cat(ifelse(pagenum, pagenum_t, "\n\n\n}"))
+  header <- ifelse(portrait, portrait_t, portrait_f)
+  rtf_hts <- mapply(
+    function(ht, nheader, watermark, pagenum, header_pad) {
+      rtf <- custom_to_rtf(
+        ht,
+        watermark = watermark,
+        nheader = nheader,
+        header_pad = header_pad,
+        tlf = tlf
+      )
+      rtf <- sprintf("%s%s", rtf, ifelse(pagenum, pagenum_t, ""))
     },
-    error = identity,
-    finally = {
-      sink()
-    }
+    hts,
+    nheader,
+    watermark,
+    pagenum,
+    header_pad
   )
+
+  tables <- paste0(rtf_hts, collapse = "\\page\n\\v\\par\\v0")
+  file_contents <- sprintf(
+    "%s\n%s\n}",
+    header,
+    tables
+  )
+
+  sink(file)
+  cat(file_contents)
+  sink()
 
   # update permissions
   Sys.chmod(file, mode, use_umask = FALSE)
