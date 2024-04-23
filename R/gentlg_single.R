@@ -27,6 +27,9 @@ gentlg_single <- function(huxme = NULL,
     function(x) arglist[[x]] <<- eval(rlang::sym(x))
   })
   check_gentlg(arglist)
+  if (is.na(footers) || length(footers) == 0) {
+    footers <- NULL
+  }
 
   if (!is.null(title_file)) {
     title_df <- readxl::read_excel(title_file,
