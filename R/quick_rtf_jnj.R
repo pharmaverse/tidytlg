@@ -504,7 +504,6 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   tc <- huxtable::text_color(ht)
 
   ## MAKE CELLX DEFINITIONS ----
-
   left_merge <- ifelse(huxtable::colspan(ht) > 1, "\\clmgf", "")
   top_merge <- ifelse(huxtable::rowspan(ht) > 1, "\\clvmgf", "")
   dc <- display_cells(ht, all = TRUE)

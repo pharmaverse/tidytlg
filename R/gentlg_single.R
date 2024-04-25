@@ -27,6 +27,9 @@ gentlg_single <- function(huxme = NULL,
     function(x) arglist[[x]] <<- eval(rlang::sym(x))
   })
   check_gentlg(arglist)
+  if (identical(footers, NA) || length(footers) == 0) {
+    footers <- NULL
+  }
 
   if (!is.null(title_file)) {
     title_df <- readxl::read_excel(title_file,
@@ -746,7 +749,7 @@ gentlg_single <- function(huxme = NULL,
     if (dev.cur() == 1) {
       # If there is no graphics dev available. Create a NULL PDF device
       pdf(NULL)
-      filin <- round(
+      round(
         1440 / graphics::strwidth(
           expression(huxtable::bold(paste0(file, ":"))),
           family = "serif",
@@ -758,7 +761,7 @@ gentlg_single <- function(huxme = NULL,
       # Close the device
       dev.off()
     } else {
-      filin <- round(
+      round(
         1440 / graphics::strwidth(
           expression(huxtable::bold(paste0(file, ":"))),
           family = "serif",
@@ -768,8 +771,6 @@ gentlg_single <- function(huxme = NULL,
         0
       )
     }
-
-
 
     # Make repeated header on each page
     ht <- add_header(ht, paste0(
