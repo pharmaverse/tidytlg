@@ -27,7 +27,7 @@ gentlg_single <- function(huxme = NULL,
     function(x) arglist[[x]] <<- eval(rlang::sym(x))
   })
   check_gentlg(arglist)
-  if (is.na(footers) || length(footers) == 0) {
+  if (identical(footers, NA) || length(footers) == 0) {
     footers <- NULL
   }
 
