@@ -3,13 +3,15 @@
 #'
 
 # merge header updates rtf output to add merging tags to the title row
-#' merger_header
+#' merge_header
+#'
+#' Merge the columns in the header row
 #'
 #' @param result The current RTF output
 #'
 #' @return Returns the RTF output but with the Title rows merged
 #' @noRd
-merger_header <- function(result) {
+merge_header <- function(result) {
   result_sectioned <- result %>%
     stringr::str_split("\\\\row") %>%
     base::unlist() # breakes apart by section
@@ -20,8 +22,9 @@ merger_header <- function(result) {
   return(ret)
 }
 
-# Adds padding to `colvar` row to add line break between `colvar` headers
 #' pad_header
+#'
+#' Adds padding to `colvar` row to add line break between `colvar` headers
 #'
 #' @param result The current RTF output
 #' @param nheader Number of headers which is equal to `colspan` + 1
@@ -718,7 +721,6 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   )
 
   ## CAPTION ----
-
   caption <- huxtable::caption(ht)
   cap_align <- align_map[get_caption_hpos(ht)]
   caption_par <- if (is.na(caption)) {
@@ -739,7 +741,7 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   }
   attr(result, "fc_tables") <- fc_tables
 
-  result <- merger_header(result)
+  result <- merge_header(result)
   if (is.null(header_pad)) {
     header_pad <- 2:(nheader + 1)
   } else {

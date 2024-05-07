@@ -137,6 +137,7 @@
 #'     "{\\super a} Subjects are counted once for any given event."
 #'   )
 #' )
+#'
 #' # Use a watermark
 #' gentlg(
 #'   huxme = final,
@@ -193,7 +194,8 @@ gentlg <- function(huxme = NULL,
                    pagenum = FALSE,
                    firstcolumnborder = FALSE,
                    header_pad = NULL,
-                   colspan_line = NULL) {
+                   colspan_line = NULL,
+                   bottom_borders = list(NULL)) {
   if (is.null(huxme)) {
     return(gentlg_single(
       huxme = NULL,
@@ -217,7 +219,8 @@ gentlg <- function(huxme = NULL,
       pagenum = pagenum,
       firstcolumnborder = firstcolumnborder,
       header_pad = header_pad,
-      colspan_line = colspan_line
+      colspan_line = colspan_line,
+      bottom_borders = bottom_borders
     ))
   }
   if (inherits(huxme, "data.frame") || inherits(huxme, "ggplot")) {
@@ -254,7 +257,8 @@ gentlg <- function(huxme = NULL,
              pagenum,
              firstcolumnborder,
              header_pad,
-             colspan_line) {
+             colspan_line,
+             bottom_borders) {
       gentlg_single(
         huxme = ht,
         tlf = tlf,
@@ -277,7 +281,8 @@ gentlg <- function(huxme = NULL,
         pagenum = pagenum,
         firstcolumnborder = firstcolumnborder,
         header_pad = header_pad,
-        colspan_line = colspan_line
+        colspan_line = colspan_line,
+        bottom_borders = bottom_borders
       )
     },
     huxme,
@@ -289,6 +294,7 @@ gentlg <- function(huxme = NULL,
     firstcolumnborder,
     header_pad,
     colspan_line,
+    bottom_borders,
     SIMPLIFY = FALSE
   )
 
