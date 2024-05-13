@@ -17,11 +17,14 @@ gentlg_single <- function(huxme = NULL,
                           watermark = NULL,
                           colheader = NULL,
                           pagenum = FALSE,
-                          firstcolumnborder = FALSE,
                           header_pad = NULL,
-                          colspan_line = NULL,
-                          bottom_borders = NULL) {
+                          bottom_borders = NULL,
+                          border_fns = NULL) {
   # check all the arguments being passed in except ...
+  assertthat::assert_that(
+    is.list(border_fns),
+    all(vapply(border_fns, is.function, FUN.VALUE = logical(1)))
+  )
   arglist <- list()
   args_to_chk <- names(formals())[names(formals()) != "..."]
   purrr::walk(args_to_chk, .f = {
@@ -337,7 +340,10 @@ gentlg_single <- function(huxme = NULL,
 
     for (i in seq_along(plotnames)) {
       if (toupper(format) == "RTF") {
-        huxme[i, ] <- paste0("", pngrtfcode(ifelse(wrote_png, paste0(tmpdir, "/", plotnames[i]), plotnames[i]), width = plotwidth, height = plotheight), "\\line")
+        huxme[i, ] <- paste0(
+          "",
+          pngrtfcode(ifelse(wrote_png, paste0(tmpdir, "/", plotnames[i]), plotnames[i]), width = plotwidth, height = plotheight), "\\line"
+        )
       } else {
         huxme[i, ] <- paste0("<center>", "<img src=\"", ifelse(wrote_png, paste0(tmpdir, "/", plotnames[i]), plotnames[i]), "\"", " alt=\"", file, "\" style=\"width:", round(plotwidth * 96 / 2.54, 0), "px; height:", round(plotheight * 96 / 2.54, 0), "px; \"> <br/>", "</center>")
       }
@@ -435,7 +441,9 @@ gentlg_single <- function(huxme = NULL,
       if (ncol(ht) == length(colheader)) {
         ht[1, ] <- colheader
       } else {
-        usethis::ui_warn("Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns")
+        usethis::ui_warn(
+          "Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns"
+        )
       }
 
       formatindex <- 1
@@ -746,7 +754,7 @@ gentlg_single <- function(huxme = NULL,
     if (dev.cur() == 1) {
       # If there is no graphics dev available. Create a NULL PDF device
       pdf(NULL)
-      filin <- round(
+      round(
         1440 / graphics::strwidth(
           expression(huxtable::bold(paste0(file, ":"))),
           family = "serif",
@@ -758,7 +766,7 @@ gentlg_single <- function(huxme = NULL,
       # Close the device
       dev.off()
     } else {
-      filin <- round(
+      round(
         1440 / graphics::strwidth(
           expression(huxtable::bold(paste0(file, ":"))),
           family = "serif",
@@ -787,7 +795,6 @@ gentlg_single <- function(huxme = NULL,
       )
     )
   }
-
 
   #############################
   ###      Table borders    ###
@@ -911,28 +918,12 @@ gentlg_single <- function(huxme = NULL,
   }
 
   if (is_format_rtf(format)) {
-    ht <- add_bottom_borders(ht, bottom_borders)
-    start_index <- ifelse(firstcolumnborder, 1, 2)
-    if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
+    if (is_table(tlf) || is_listing(tlf)) {
+      ht <- add_bottom_borders(ht, bottom_borders, border_fns)
+    }
+    if (is_table(tlf)) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
-      # brows <- 2:(1 + formatindex)
-      # if (is.null(colspan_line)) {
-      #   colspan_line <- brows
-      # } else {
-      #   colspan_line <- colspan_line + 1
-      # }
-      # brows <- brows[brows %in% colspan_line]
-      # for (z in brows) {
-      #   borderlineme <- start_index:ncol(ht)
-      #   noborderline <- which(ht[z, start_index:ncol(ht)] == "\\keepn\\trhdr ")
-
-      #   if (length(noborderline) > 0) {
-      #     borderlineme <- borderlineme[-noborderline]
-      #   }
-
-      #   ht[z, borderlineme] <- paste0("\\brdrb\\brdrs ", ht[z, borderlineme])
-      # }
-    } else if (tolower(substr(tlf, 1, 1)) %in% c("l")) {
+    } else if (is_listing(tlf)) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
       # Top center per JCEV-12. Only top align the first two rows, the title and
       # the column header, plus whatever colspans there are.
@@ -946,22 +937,11 @@ gentlg_single <- function(huxme = NULL,
         seq_len(ncol(ht)),
         "bottom"
       )
-
-      # for (z in 2:(1 + formatindex)) {
-      #   borderlineme <- seq_len(ncol(ht))
-      #   noborderline <- which(ht[z, ] == "\\keepn\\trhdr ")
-
-      #   if (length(noborderline) > 0) {
-      #     borderlineme <- borderlineme[-noborderline]
-      #   }
-
-      #   ht[z, borderlineme] <- paste0("\\brdrb\\brdrs ", ht[z, borderlineme])
-      # }
-    } else if (tolower(substr(tlf, 1, 1)) %in% c("f", "g")) {
+    } else if (is_graph(tlf)) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), seq_len(ncol(ht)), "center")
     }
   } else if (is_format_html(format)) {
-    if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
+    if (is_table(tlf)) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
 
       for (z in 2:(1 + formatindex)) {
@@ -971,7 +951,7 @@ gentlg_single <- function(huxme = NULL,
           ht[z, borderlineme]
         )
       }
-    } else if (tolower(substr(tlf, 1, 1)) %in% c("l")) {
+    } else if (is_listing(tlf)) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
 
       for (z in 2:(1 + formatindex)) {

@@ -150,13 +150,23 @@ format_color <- function(r_color, default = "white") {
   apply(grDevices::col2rgb(r_color), 2, paste0, collapse = ", ")
 }
 
-# returns two rows(+1),cols(+1) arrays of border widths
-collapsed_borders <- function(ht) {
-  result <- do_collapse(ht, get_all_borders, default = 0)
-  result$vert <- pmax(result$left, result$right)
-  result$horiz <- pmax(result$top, result$bottom)
+get_visible_borders <- function (ht) {
+  dc <- display_cells(ht)
 
-  result[c("vert", "horiz")]
+  # a vertical border is hidden, if it is shadowed by a cell to its left
+  vert_borders <- attr(ht, "lr_borders")$thickness
+  left_shadowed <- dc[dc$display_col < dc$col, ]
+  left_shadowed <- as.matrix(left_shadowed[c("row", "col")])
+  vert_borders[left_shadowed] <- 0
+
+  # a horizontal border is hidden, if it is shadowed by a cell above it
+  horiz_borders <- attr(ht, "tb_borders")$thickness
+  top_shadowed <- dc[dc$display_row < dc$row, ]
+  top_shadowed <- as.matrix(top_shadowed[c("row", "col")])
+  horiz_borders[top_shadowed] <- 0
+
+  res <- list(vert = vert_borders, horiz = horiz_borders)
+  return(res)
 }
 
 # returns two rows(+1),cols(+1) arrays of border colors.
@@ -500,7 +510,7 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
     res
   }
 
-  cb <- collapsed_borders(ht)
+  cb <- get_visible_borders(ht)
   cbc <- collapsed_border_colors(ht)
   cbs <- collapsed_border_styles(ht)
   bgc <- huxtable::background_color(ht)
@@ -558,7 +568,6 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   bdr_def_right <- paste0("\\clbrdrr", bdr_def_right)
   bdr_def_top <- paste0("\\clbrdrt", bdr_def_top)
   bdr_def_bottom <- paste0("\\clbrdrb", bdr_def_bottom)
-
   bdr_def <- paste0(bdr_def_top, bdr_def_left, bdr_def_bottom, bdr_def_right)
 
   bg_def <- sprintf("\\clcbpat%d", color_index(bgc))
