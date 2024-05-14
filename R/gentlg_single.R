@@ -19,7 +19,9 @@ gentlg_single <- function(huxme = NULL,
                           pagenum = FALSE,
                           firstcolumnborder = FALSE,
                           header_pad = NULL,
-                          colspan_line = NULL) {
+                          colspan_line = NULL,
+                          index_in_result = 1) {
+  assertthat::is.count(index_in_result)
   # check all the arguments being passed in except ...
   arglist <- list()
   args_to_chk <- names(formals())[names(formals()) != "..."]
@@ -775,7 +777,8 @@ gentlg_single <- function(huxme = NULL,
     # Make repeated header on each page
     ht <- add_header(ht, paste0(
       "\\pnhang\\trhdr\\fi-1152", "\\li1152\\keepn",
-      "\\s15 ", file, ":\\tab", " ", title
+      if (index_in_result == 1) "\\s15 " else "\\s16 ",
+      file, ":\\tab", " ", title
     ))
   } else if (tolower(format) == "html") {
     # Make repeated header on each page
