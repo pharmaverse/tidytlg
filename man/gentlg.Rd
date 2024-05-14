@@ -202,7 +202,7 @@ gentlg(
     "Note: For demonstrative purposes only",
     "{\\\\super a} Subjects are counted once for any given event."
   ),
-  border_fns = spanning_borders(2)
+  border_fns = list(spanning_borders(2))
 )
 
 # Use a watermark
