@@ -70,8 +70,10 @@
 #'
 #' @export
 add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns = list()) {
-  if (is.null(border_matrix)) {
+  if (is.null(border_matrix) && is.null(transform_fns)) {
     return(ht)
+  } else if (is.null(border_matrix)) {
+    border_matrix <- no_borders(ht)
   }
   for (transform_fn in transform_fns) {
     border_matrix <- transform_fn(ht, border_matrix)
