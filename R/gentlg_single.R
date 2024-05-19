@@ -261,12 +261,6 @@ gentlg_single <- function(huxme = NULL,
   } else {
     newpage <- NULL
   }
-  if ("newrows" %in% colnames(huxme) &&
-    length(which(huxme$newrows == 1)) > 0) {
-    newrows <- which(huxme$newrows == 1)
-  } else {
-    newrows <- NULL
-  }
 
   # display columns columns only
   if (sum(colnames(huxme) %in% formatcolumns) != 0) {
@@ -411,6 +405,7 @@ gentlg_single <- function(huxme = NULL,
   ###       Huxit!          ###
   #############################
   if (tolower(format) == "rtf") {
+    huxme <- insert_empty_rows(huxme)
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
       ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
         huxtable::set_width(value = huxwidth)
@@ -698,18 +693,6 @@ gentlg_single <- function(huxme = NULL,
       for (i in seq_along(indentme6)) {
         ht[indentme6[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*7}px'> {ht[indentme6[i], 1]}")
       }
-    }
-  }
-
-  ### New rows
-  if (!is.null(newrows)) {
-    newrows <- newrows[order(newrows)]
-    newrows <- newrows + formatindex - 1
-    ht2 <- ht[formatindex, ]
-    ht2[1, ] <- ""
-    for (i in seq_along(newrows)) {
-      line <- length(newrows[newrows < newrows[i]]) + newrows[i]
-      ht <- huxtable::add_rows(ht, ht2, after = line)
     }
   }
 
