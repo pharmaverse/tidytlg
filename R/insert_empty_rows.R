@@ -2,7 +2,7 @@
 #'
 #' @details
 #' `gentlg` allows for formatting the input table based on formatting columns
-#' (see [gentlg()]). One the allowed formatting is empty row insertion. This
+#' (see [gentlg()]). One of the formatting mechanisms is empty row insertion. This
 #' function inserts the empty rows based on the `newrows` column in the data
 #' frame. The new rows are inserted after the rows with value `1` in the
 #' `newrows` column.
