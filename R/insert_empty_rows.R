@@ -9,7 +9,7 @@
 #'
 #' @param huxme `data.frame` The input data frame.
 #'
-#' @value A data frame with added new empty rows.
+#' @return A data frame with added new empty rows.
 insert_empty_rows <- function(huxme) {
   if (!"newrows" %in% names(huxme)) {
     return(huxme)
@@ -20,7 +20,7 @@ insert_empty_rows <- function(huxme) {
 
   emptyrow <- huxme[NA, ][1, ]
   emptyrow[, data_columns] <- ""
-  emptyrow[, newrows] <- 0
+  emptyrow$newrows <- 0
 
   has_roworder <- "roworder" %in% names(huxme)
   if (has_roworder) {
