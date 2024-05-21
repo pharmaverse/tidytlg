@@ -19,7 +19,9 @@ gentlg_single <- function(huxme = NULL,
                           pagenum = FALSE,
                           header_pad = NULL,
                           bottom_borders = NULL,
-                          border_fns = NULL) {
+                          border_fns = NULL,
+                          index_in_result = 1) {
+  assertthat::is.count(index_in_result)
   # check all the arguments being passed in except ...
   assertthat::assert_that(
     is.list(border_fns),
@@ -31,6 +33,9 @@ gentlg_single <- function(huxme = NULL,
     function(x) arglist[[x]] <<- eval(rlang::sym(x))
   })
   check_gentlg(arglist)
+  if (identical(footers, NA) || length(footers) == 0) {
+    footers <- NULL
+  }
 
   if (!is.null(title_file)) {
     title_df <- readxl::read_excel(title_file,
@@ -780,7 +785,8 @@ gentlg_single <- function(huxme = NULL,
     # Make repeated header on each page
     ht <- add_header(ht, paste0(
       "\\pnhang\\trhdr\\fi-1152", "\\li1152\\keepn",
-      "\\s15 ", file, ":\\tab", " ", title
+      if (index_in_result == 1) "\\s15 " else "\\s16 ",
+      file, ":\\tab", " ", title
     ))
   } else if (is_format_html(format)) {
     # Make repeated header on each page

@@ -71,7 +71,7 @@ rmdpstitle <-
     if (nrow(foot) == 0) {
       foot <- NULL
     } else {
-      foot <- split(foot$text, seq(nrow(foot)))
+      foot <- split(foot$text, seq_len(nrow(foot)))
     }
 
     return(list(ttl, foot))
