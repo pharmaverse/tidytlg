@@ -15,8 +15,12 @@
 #'
 #' @details `border_matrix` details
 #' You mark where the bottom borders should go in the table by passing a matrix.
-#' The matrix has to have the same dimensions as the passed `huxtable`. Each cell
-#' in `border_matrix` corresponds to a cell in `huxtable`
+#' The matrix has to have the same number of columns as the passed `huxtable`
+#' and the number of rows lower by one than the passed `huxtable`. Each cell
+#' in `border_matrix` corresponds to a cell in `huxtable` (starting from the first row).
+#'
+#' Internally, the function adds the first row of 0s to `border_matrix` before the execution.
+#' At that point, `border_matrix`'s dimensions match `ht`'s dimensions.
 #'
 #' Table:
 #' | foo | bar |
@@ -46,7 +50,7 @@
 #' @param transform_fns (optional) `list` of `function` A list of functions applied to the
 #' `border_matrix`. The functions have to accept two arguments:
 #' 1. The `huxtable`.
-#' 1. The `border_matrix`.
+#' 1. The `border_matrix` with dimentions matching `huxtable`.
 #'
 #' The function have to return a matrix with the same dimensions as `huxtable`
 #' indicating where to put the borders. The functions in the list are applied
@@ -74,6 +78,7 @@ add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns
   } else if (is.null(border_matrix)) {
     border_matrix <- no_borders(ht)
   }
+  border_matrix <- rbind(rep(0, ncol(border_matrix)), border_matrix)
   for (transform_fn in transform_fns) {
     border_matrix <- transform_fn(ht, border_matrix)
   }
@@ -118,7 +123,7 @@ no_borders <- function(ht) {
     return(NULL)
   }
   ht_dims <- dim(ht)
-  matrix(rep(0, ht_dims[1] * ht_dims[2]), nrow = ht_dims[1], ncol = ht_dims[2])
+  matrix(rep(0, (ht_dims[1] - 1) * ht_dims[2]), nrow = ht_dims[1] - 1, ncol = ht_dims[2])
 }
 
 #' Adds borders under cells in a row
