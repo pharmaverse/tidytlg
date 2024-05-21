@@ -23,9 +23,7 @@
 #' spanning_headers(column_metadata)
 spanning_headers <- function(column_metadata) {
   span_element <- function(x) {
-    (
-      c("", stringr::str_replace_na(x, ""))
-    )
+    c("", stringr::str_replace_na(x, ""))
   }
 
   not_empty <- function(x) {

@@ -19,7 +19,7 @@ gentlg_single <- function(huxme = NULL,
                           pagenum = FALSE,
                           header_pad = NULL,
                           bottom_borders = NULL,
-                          border_fns = NULL,
+                          border_fns = list(),
                           index_in_result = 1) {
   assertthat::is.count(index_in_result)
   # check all the arguments being passed in except ...

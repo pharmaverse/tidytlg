@@ -61,7 +61,6 @@
 #' )
 #' # By default adds no borders
 #' add_bottom_borders(ht, border_matrix)
-#' #'
 #' # Adds spanning borders under cells with text in the second row
 #' add_bottom_borders(ht, transform_fns = list(spanning_borders(2)))
 #' # Adds spanning borders under cells with text in the second row and a border
@@ -79,31 +78,26 @@ add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns
     border_matrix <- transform_fn(ht, border_matrix)
   }
 
-  internal_bottom_border <- r"{\brdrb\brdrs}"
-  solid_border <- huxtable::brdr(thickness = 0.9, style = "solid")
   for (row in seq_len(nrow(border_matrix))) {
     # The below enforces an "all or nothing" behaviour on using
     # one of the border styles, because mixing them in the
     # scope of a row gives bad results - the borders
     # are misaligned and of slightly different width
-    should_use_internal_borders <- should_use_internal_borders(border_matrix[row, ])
-
-    for (col in seq_len(ncol(border_matrix))) {
-      if (border_matrix[row, col] != 0) {
-        if (should_use_internal_borders) {
-          ht <- huxtable::set_contents(
-            ht,
-            row,
-            col,
-            sprintf("%s %s", internal_bottom_border, ht[row, col])
-          )
-          if (col == ncol(border_matrix)) {
-            ht <- huxtable::set_right_padding(ht, row, col, 0)
-          }
-        } else {
-          ht <- huxtable::set_bottom_border(ht, row, col, solid_border)
+    if (should_use_internal_borders(border_matrix[row, ])) {
+      ht <- huxtable::map_contents(
+        ht = ht,
+        row = row,
+        fn = function(ht, rows, cols, current) {
+          res <- current
+          res[border_matrix[rows, ] != 0] <- sprintf("%s %s", r"{\brdrb\brdrs}", res[border_matrix[rows, ] != 0])
+          res
         }
+      )
+      if (border_matrix[row, ncol(border_matrix)]) {
+        ht <- huxtable::set_right_padding(ht, row, ncol(border_matrix), 0)
       }
+    } else {
+      huxtable::bottom_border(ht)[row, border_matrix[row, ] != 0] <- huxtable::brdr(thickness = 0.9, style = "solid")
     }
   }
   ht
