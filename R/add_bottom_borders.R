@@ -83,6 +83,7 @@ add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns
     border_matrix <- transform_fn(ht, border_matrix)
   }
 
+  browser()
   for (row in seq_len(nrow(border_matrix))) {
     # The below enforces an "all or nothing" behaviour on using
     # one of the border styles, because mixing them in the
@@ -118,7 +119,10 @@ should_use_internal_borders <- function(row) {
   FALSE
 }
 
-no_borders <- function(ht) {
+#' Removes all borders from the table
+#'
+#' @export
+no_borders <- function(ht, matrix = NULL) {
   if (is.null(ht)) {
     return(NULL)
   }
@@ -134,11 +138,13 @@ no_borders <- function(ht) {
 #' @param row `numeric` the row of the table
 #' @export
 spanning_borders <- function(row) {
+  # Adjust the row because we count rows from the second row of ht, not the first
   function(ht, matrix) {
     last_num <- matrix[row][1]
-    for (col in seq_len(ncol(ht))[-1]) {
-      if (ht[row, col] != "") {
-        if (ht[row, col - 1] != ht[row, col]) {
+    r <- as.matrix(ht[row, ])
+    for (col in seq_len(length(r))[-1]) {
+      if (trimws(gsub("\\\\keepn\\\\trhdr", "", as.matrix(ht[row + 1, col]))) != "") {
+        if (r[col - 1] != r[col]) {
           last_num <- last_num + 1
         }
         matrix[row, col] <- last_num
@@ -156,6 +162,7 @@ spanning_borders <- function(row) {
 #' @param rows `numeric` the range of rows to include
 #' @export
 col_borders <- function(col, rows) {
+  rows <- rows + 1
   function(ht, matrix) {
     for (row in rows) {
       matrix[row, col] <- 1
@@ -192,4 +199,30 @@ row_border <- function(row) {
     matrix[row, ] <- 1
     matrix
   }
+}
+
+#' Adds bottom borders according to the old formatting
+#'
+#' This function is vectorized over its arguments.
+#'
+#' @param ht the hux object passed to [gentlg()]
+#' @param colspan `colspan` argument to [gentlg()]
+#' @param colheader `colheader` argument to [gentlg()]
+#' @return a bottom border matrix for use with [add_bottom_borders()] or `NULL`
+#' if `ht` is `NULL`
+#'
+old_format <- function(ht, colspan, colheader) {
+  if (is.null(ht)) {
+    return(NULL)
+  }
+
+  border_matrix <- no_borders(ht)
+
+  # Attach borders to colspan and colheader rows
+  colspan_length <- length(colspan)
+  for (row in 1:(1 + colspan_length)) {
+    border_matrix <- spanning_borders(row)(ht, border_matrix)
+  }
+
+  border_matrix
 }

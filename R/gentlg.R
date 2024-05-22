@@ -77,9 +77,10 @@
 #' Vectorized. (Default = FALSE)
 #' @param header_pad (optional) List. Adds header pad to header rows in list
 #' based on index (not including title), when NULL pad is added to all header
-#' rows. Vectorzied. (Default = NULL)
+#' rows. Vectorized. (Default = NULL)
 #' @param bottom_borders (optional) Matrix. A matrix indicating where to add the bottom
-#' borders. Vectorized. See [add_bottom_borders()] for more information.
+#' borders. Vectorized. See [add_bottom_borders()] for more information. If `NULL`,
+#' then borders are added to the `colspan` and `colheader` rows.
 #' @param border_fns (optional) List. A list of functions that transform the matrix
 #' passed to `bottom_borders`. Vectorized. See [add_bottom_borders()] for more information.
 #'
@@ -209,7 +210,7 @@ gentlg <- function(huxme = NULL,
                    colheader = NULL,
                    pagenum = FALSE,
                    header_pad = NULL,
-                   bottom_borders = list(NULL),
+                   bottom_borders = NULL,
                    border_fns = list()) {
   if (is.null(huxme)) {
     return(gentlg_single(
@@ -243,7 +244,9 @@ gentlg <- function(huxme = NULL,
 
   # If we leave NULLs in the arguments
   # then the mapply won't run, so we
-  # wrap the NULLs in a list
+  # wrap the NULLs in a list.
+  # The same goes for scalar arguments that
+  # can be arrays.
   if (!is.list(title)) {
     title <- list(title)
   }
@@ -256,15 +259,27 @@ gentlg <- function(huxme = NULL,
   if (!is.list(colheader)) {
     colheader <- list(colheader)
   }
-  header_pad <- list(header_pad)
+  if (!is.list(bottom_borders)) {
+    bottom_borders <- list(bottom_borders)
+  }
+  if (!is.list(header_pad)) {
+    header_pad <- list(header_pad)
+  }
   assertthat::assert_that(is.list(border_fns))
   if (length(border_fns) == 0 ||
     (length(border_fns) > 0 && !is.list(border_fns[[1]]))) {
     border_fns <- list(border_fns)
   }
+  if (
+    (is.list(colspan) && length(colspan) > 0 && !is.list(colspan[[1]])) ||
+      is.null(colspan)
+  ) {
+    colspan <- list(colspan)
+  }
 
   hts <- mapply(
     function(ht,
+             colspan,
              title,
              footers,
              watermark,
@@ -301,6 +316,7 @@ gentlg <- function(huxme = NULL,
       )
     },
     huxme,
+    colspan,
     title,
     footers,
     watermark,

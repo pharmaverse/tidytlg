@@ -924,6 +924,11 @@ gentlg_single <- function(huxme = NULL,
   }
 
   if (is_format_rtf(format)) {
+    # Get the old format of bottom borders for backwards
+    # compatibility.
+    if (is.null(bottom_borders)) {
+      bottom_borders <- old_format(ht, colspan, colheader)
+    }
     if (is_table(tlf) || is_listing(tlf)) {
       ht <- add_bottom_borders(ht, bottom_borders, border_fns)
     }

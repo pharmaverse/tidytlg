@@ -1,7 +1,7 @@
 library(tibble)
 
 output_directory <- "test_outputs/borders"
-testthat::test_that("default does not add any borders", {
+testthat::test_that("default uses old format", {
   withr::with_options(
     list(tidytlg.add_datetime = FALSE),
     {
@@ -13,8 +13,9 @@ testthat::test_that("default does not add any borders", {
         code = {
           gentlg(
             tab,
-            file = "noborders",
+            file = "oldformat",
             title = "Title1",
+            colspan = list(c("", rep("Measures", 4), "")),
             footers = "Footer1"
           )
         }
@@ -22,7 +23,7 @@ testthat::test_that("default does not add any borders", {
     }
   )
 
-  expect_snapshot_file(test_path(sprintf("%s/noborders.rtf", output_directory)))
+  expect_snapshot_file(test_path(sprintf("%s/oldformat.rtf", output_directory)))
 })
 
-testthat::test_that("")
+testthat::test_that("", {})
