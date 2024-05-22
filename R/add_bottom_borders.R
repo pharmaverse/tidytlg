@@ -71,6 +71,79 @@
 #' # under a cell in row 3 and column 3
 #' add_bottom_borders(ht, transform_fns = list(spanning_borders(2), single_border(3, 3)))
 #'
+#' final <- data.frame(
+#'   label = c(
+#'     "Overall", "Safety Analysis Set",
+#'     "Any Adverse event{\\super a}", "- Serious Adverse Event"
+#'   ),
+#'   Drug_A = c("", "40", "10 (25%)", "0"),
+#'   Drug_B = c("", "40", "10 (25%)", "0"),
+#'   anbr = c(1, 2, 3, 4),
+#'   roworder = c(1, 1, 1, 1),
+#'   boldme = c(1, 0, 0, 0),
+#'   newrows = c(0, 0, 1, 0),
+#'   indentme = c(0, 0, 0, 1),
+#'   newpage = c(0, 0, 0, 0)
+#' )
+#' # Add spanning bottom borders under the cells in the second row
+#' gentlg(
+#'   huxme = final,
+#'   wcol = c(0.70, 0.15, 0.15),
+#'   file = "TSFAEX",
+#'   colheader = c("", "Drug A", "Drug B"),
+#'   title = "This is Amazing Demonstration 1",
+#'   footers = c(
+#'     "Note: For demonstrative purposes only",
+#'     "{\\super a} Subjects are counted once for any given event."
+#'   ),
+#'   border_fns = list(no_borders, spanning_borders(2))
+#' )
+#'
+#' # Tables with no bottom borders
+#' gentlg(
+#'   huxme = final,
+#'   wcol = c(0.70, 0.15, 0.15),
+#'   file = "TSFAEX",
+#'   colheader = c("", "Drug A", "Drug B"),
+#'   title = "This is Amazing Demonstration 1",
+#'   footers = c(
+#'     "Note: For demonstrative purposes only",
+#'     "{\\super a} Subjects are counted once for any given event."
+#'   ),
+#'   border_fns = list(no_borders)
+#' )
+#'
+#' # Tables with a border under cell in the 3 row and 4 column
+#' gentlg(
+#'   huxme = final,
+#'   wcol = c(0.70, 0.15, 0.15),
+#'   file = "TSFAEX",
+#'   colheader = c("", "Drug A", "Drug B"),
+#'   title = "This is Amazing Demonstration 1",
+#'   footers = c(
+#'     "Note: For demonstrative purposes only",
+#'     "{\\super a} Subjects are counted once for any given event."
+#'   ),
+#'   border_fns = list(no_borders, single_border(3, 4))
+#' )
+#'
+#' # We discourage, but you can pass the border matrix directly
+#' mat <- no_borders(final)
+#' mat[3, 4] <- 1
+#' gentlg(
+#'   huxme = final,
+#'   wcol = c(0.70, 0.15, 0.15),
+#'   file = "TSFAEX",
+#'   colheader = c("", "Drug A", "Drug B"),
+#'   title = "This is Amazing Demonstration 1",
+#'   footers = c(
+#'     "Note: For demonstrative purposes only",
+#'     "{\\super a} Subjects are counted once for any given event."
+#'   ),
+#'   bottom_borders = mat, # The same as a single border under 3rd row and 4th column
+#'   border_fns = list()
+#' )
+#'
 #' @export
 add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns = list()) {
   if (is.null(border_matrix) && is.null(transform_fns)) {
@@ -78,12 +151,11 @@ add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns
   } else if (is.null(border_matrix)) {
     border_matrix <- no_borders(ht)
   }
-  border_matrix <- rbind(rep(0, ncol(border_matrix)), border_matrix)
   for (transform_fn in transform_fns) {
     border_matrix <- transform_fn(ht, border_matrix)
   }
+  border_matrix <- rbind(rep(0, ncol(border_matrix)), border_matrix)
 
-  browser()
   for (row in seq_len(nrow(border_matrix))) {
     # The below enforces an "all or nothing" behaviour on using
     # one of the border styles, because mixing them in the
@@ -122,6 +194,7 @@ should_use_internal_borders <- function(row) {
 #' Removes all borders from the table
 #'
 #' @export
+#' @rdname border_functions
 no_borders <- function(ht, matrix = NULL) {
   if (is.null(ht)) {
     return(NULL)
@@ -137,8 +210,8 @@ no_borders <- function(ht, matrix = NULL) {
 #'
 #' @param row `numeric` the row of the table
 #' @export
+#' @rdname border_functions
 spanning_borders <- function(row) {
-  # Adjust the row because we count rows from the second row of ht, not the first
   function(ht, matrix) {
     last_num <- matrix[row][1]
     r <- as.matrix(ht[row, ])
@@ -156,11 +229,10 @@ spanning_borders <- function(row) {
 
 #' Adds borders under cells in a column
 #'
-#' Adds borders under cells that are not empty in a column
-#'
 #' @param col `numeric` the column of the table
 #' @param rows `numeric` the range of rows to include
 #' @export
+#' @rdname border_functions
 col_borders <- function(col, rows) {
   rows <- rows + 1
   function(ht, matrix) {
@@ -176,6 +248,7 @@ col_borders <- function(col, rows) {
 #' @param row `numeric` the row of the cell
 #' @param col `numeric` the column of the cell
 #' @export
+#' @rdname border_functions
 single_border <- function(row, col) {
   function(ht, matrix) {
     border <- 1
@@ -194,6 +267,7 @@ single_border <- function(row, col) {
 #'
 #' @param row `numeric` the row of the table
 #' @export
+#' @rdname border_functions
 row_border <- function(row) {
   function(ht, matrix) {
     matrix[row, ] <- 1
@@ -211,6 +285,7 @@ row_border <- function(row) {
 #' @return a bottom border matrix for use with [add_bottom_borders()] or `NULL`
 #' if `ht` is `NULL`
 #'
+#' @keywords internal
 old_format <- function(ht, colspan, colheader) {
   if (is.null(ht)) {
     return(NULL)

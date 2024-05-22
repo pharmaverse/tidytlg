@@ -16,7 +16,7 @@ borders.}
 \code{border_matrix}. The functions have to accept two arguments:
 \enumerate{
 \item The \code{huxtable}.
-\item The \code{border_matrix}.
+\item The \code{border_matrix} with dimentions matching \code{huxtable}.
 }
 
 The function have to return a matrix with the same dimensions as \code{huxtable}
@@ -43,8 +43,12 @@ RTF look misaligned.
 
 \code{border_matrix} details
 You mark where the bottom borders should go in the table by passing a matrix.
-The matrix has to have the same dimensions as the passed \code{huxtable}. Each cell
-in \code{border_matrix} corresponds to a cell in \code{huxtable}
+The matrix has to have the same number of columns as the passed \code{huxtable}
+and the number of rows lower by one than the passed \code{huxtable}. Each cell
+in \code{border_matrix} corresponds to a cell in \code{huxtable} (starting from the first row).
+
+Internally, the function adds the first row of 0s to \code{border_matrix} before the execution.
+At that point, \code{border_matrix}'s dimensions match \code{ht}'s dimensions.
 
 Table:\tabular{ll}{
    foo \tab bar \cr
@@ -78,11 +82,83 @@ ht <- huxtable::as_huxtable(
 )
 # By default adds no borders
 add_bottom_borders(ht, border_matrix)
-#'
 # Adds spanning borders under cells with text in the second row
 add_bottom_borders(ht, transform_fns = list(spanning_borders(2)))
 # Adds spanning borders under cells with text in the second row and a border
 # under a cell in row 3 and column 3
 add_bottom_borders(ht, transform_fns = list(spanning_borders(2), single_border(3, 3)))
+
+final <- data.frame(
+  label = c(
+    "Overall", "Safety Analysis Set",
+    "Any Adverse event{\\\\super a}", "- Serious Adverse Event"
+  ),
+  Drug_A = c("", "40", "10 (25\%)", "0"),
+  Drug_B = c("", "40", "10 (25\%)", "0"),
+  anbr = c(1, 2, 3, 4),
+  roworder = c(1, 1, 1, 1),
+  boldme = c(1, 0, 0, 0),
+  newrows = c(0, 0, 1, 0),
+  indentme = c(0, 0, 0, 1),
+  newpage = c(0, 0, 0, 0)
+)
+# Add spanning bottom borders under the cells in the second row
+gentlg(
+  huxme = final,
+  wcol = c(0.70, 0.15, 0.15),
+  file = "TSFAEX",
+  colheader = c("", "Drug A", "Drug B"),
+  title = "This is Amazing Demonstration 1",
+  footers = c(
+    "Note: For demonstrative purposes only",
+    "{\\\\super a} Subjects are counted once for any given event."
+  ),
+  border_fns = list(no_borders, spanning_borders(2))
+)
+
+# Tables with no bottom borders
+gentlg(
+  huxme = final,
+  wcol = c(0.70, 0.15, 0.15),
+  file = "TSFAEX",
+  colheader = c("", "Drug A", "Drug B"),
+  title = "This is Amazing Demonstration 1",
+  footers = c(
+    "Note: For demonstrative purposes only",
+    "{\\\\super a} Subjects are counted once for any given event."
+  ),
+  border_fns = list(no_borders)
+)
+
+# Tables with a border under cell in the 3 row and 4 column
+gentlg(
+  huxme = final,
+  wcol = c(0.70, 0.15, 0.15),
+  file = "TSFAEX",
+  colheader = c("", "Drug A", "Drug B"),
+  title = "This is Amazing Demonstration 1",
+  footers = c(
+    "Note: For demonstrative purposes only",
+    "{\\\\super a} Subjects are counted once for any given event."
+  ),
+  border_fns = list(no_borders, single_border(3, 4))
+)
+
+# We discourage, but you can pass the border matrix directly
+mat <- no_borders(final)
+mat[3, 4] <- 1
+gentlg(
+  huxme = final,
+  wcol = c(0.70, 0.15, 0.15),
+  file = "TSFAEX",
+  colheader = c("", "Drug A", "Drug B"),
+  title = "This is Amazing Demonstration 1",
+  footers = c(
+    "Note: For demonstrative purposes only",
+    "{\\\\super a} Subjects are counted once for any given event."
+  ),
+  bottom_borders = mat, # The same as a single border under 3rd row and 4th column
+  border_fns = list()
+)
 
 }
