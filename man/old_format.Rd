@@ -20,3 +20,4 @@ if \code{ht} is \code{NULL}
 \description{
 This function is vectorized over its arguments.
 }
+\keyword{internal}

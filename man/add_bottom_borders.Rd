@@ -10,7 +10,7 @@ add_bottom_borders(ht, border_matrix = no_borders(ht), transform_fns = list())
 \item{ht}{\code{huxtable} A huxtable object}
 
 \item{border_matrix}{(optional) \code{matrix} A matrix indicating where to add the bottom
-borders.}
+borders. If \code{NULL}, then no borders are added.}
 
 \item{transform_fns}{(optional) \code{list} of \code{function} A list of functions applied to the
 \code{border_matrix}. The functions have to accept two arguments:

@@ -25,7 +25,7 @@ gentlg(
   colheader = NULL,
   pagenum = FALSE,
   header_pad = NULL,
-  bottom_borders = NULL,
+  bottom_borders = "old_format",
   border_fns = list()
 )
 }
@@ -120,9 +120,9 @@ Vectorized. (Default = FALSE)}
 based on index (not including title), when NULL pad is added to all header
 rows. Vectorized. (Default = NULL)}
 
-\item{bottom_borders}{(optional) Matrix. A matrix indicating where to add the bottom
-borders. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information. If \code{NULL},
-then borders are added to the \code{colspan} and \code{colheader} rows.}
+\item{bottom_borders}{(optional) Matrix or \code{"old_format"}. A matrix indicating where to add the bottom
+borders. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information. If \code{"old_format"},
+then borders are added to the \code{colspan} and \code{colheader} rows. (Default = "old_format").}
 
 \item{border_fns}{(optional) List. A list of functions that transform the matrix
 passed to \code{bottom_borders}. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information.}

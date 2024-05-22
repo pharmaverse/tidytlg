@@ -78,9 +78,9 @@
 #' @param header_pad (optional) List. Adds header pad to header rows in list
 #' based on index (not including title), when NULL pad is added to all header
 #' rows. Vectorized. (Default = NULL)
-#' @param bottom_borders (optional) Matrix. A matrix indicating where to add the bottom
-#' borders. Vectorized. See [add_bottom_borders()] for more information. If `NULL`,
-#' then borders are added to the `colspan` and `colheader` rows.
+#' @param bottom_borders (optional) Matrix or `"old_format"`. A matrix indicating where to add the bottom
+#' borders. Vectorized. See [add_bottom_borders()] for more information. If `"old_format"`,
+#' then borders are added to the `colspan` and `colheader` rows. (Default = "old_format").
 #' @param border_fns (optional) List. A list of functions that transform the matrix
 #' passed to `bottom_borders`. Vectorized. See [add_bottom_borders()] for more information.
 #'
@@ -210,7 +210,7 @@ gentlg <- function(huxme = NULL,
                    colheader = NULL,
                    pagenum = FALSE,
                    header_pad = NULL,
-                   bottom_borders = NULL,
+                   bottom_borders = "old_format",
                    border_fns = list()) {
   if (is.null(huxme)) {
     return(gentlg_single(

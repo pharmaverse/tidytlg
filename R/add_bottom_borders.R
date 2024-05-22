@@ -46,7 +46,7 @@
 #'
 #' @param ht `huxtable` A huxtable object
 #' @param border_matrix (optional) `matrix` A matrix indicating where to add the bottom
-#' borders.
+#' borders. If `NULL`, then no borders are added.
 #' @param transform_fns (optional) `list` of `function` A list of functions applied to the
 #' `border_matrix`. The functions have to accept two arguments:
 #' 1. The `huxtable`.
