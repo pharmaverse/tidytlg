@@ -130,7 +130,7 @@ gentlg(
   border_fns = list(no_borders)
 )
 
-# Tables with a border under cell in the 3 row and 4 column
+# Tables with a border under cell in the 3nd row and 3rd column
 gentlg(
   huxme = final,
   wcol = c(0.70, 0.15, 0.15),
@@ -141,12 +141,12 @@ gentlg(
     "Note: For demonstrative purposes only",
     "{\\\\super a} Subjects are counted once for any given event."
   ),
-  border_fns = list(no_borders, single_border(3, 4))
+  border_fns = list(no_borders, single_border(3, 3))
 )
 
 # We discourage, but you can pass the border matrix directly
-mat <- no_borders(final)
-mat[3, 4] <- 1
+mat <- matrix(rep(0, 8 * 3), ncol = 3, nrow = 8)
+mat[3, 3] <- 1
 gentlg(
   huxme = final,
   wcol = c(0.70, 0.15, 0.15),
@@ -157,8 +157,11 @@ gentlg(
     "Note: For demonstrative purposes only",
     "{\\\\super a} Subjects are counted once for any given event."
   ),
-  bottom_borders = mat, # The same as a single border under 3rd row and 4th column
+  bottom_borders = mat, # The same as a single border under 3nd row and 3rd column
   border_fns = list()
 )
+
+# clean up.
+file.remove("tsfaex.rtf")
 
 }

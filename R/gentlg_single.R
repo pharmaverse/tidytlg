@@ -27,7 +27,7 @@ gentlg_single <- function(huxme = NULL,
     is.list(border_fns),
     all(vapply(border_fns, is.function, FUN.VALUE = logical(1)))
   )
-  assertthat::assert_that(is.matrix(bottom_borders) || bottom_borders == "old_format")
+  assertthat::assert_that(is.matrix(bottom_borders) ||  bottom_borders == "old_format")
   arglist <- list()
   args_to_chk <- names(formals())[names(formals()) != "..."]
   purrr::walk(args_to_chk, .f = {
@@ -927,7 +927,7 @@ gentlg_single <- function(huxme = NULL,
   if (is_format_rtf(format)) {
     # Get the old format of bottom borders for backwards
     # compatibility.
-    if (bottom_borders == "old_format") {
+    if (!is.matrix(bottom_borders)) {
       bottom_borders <- old_format(ht, colspan, colheader)
     }
     if (is_table(tlf) || is_listing(tlf)) {

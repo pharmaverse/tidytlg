@@ -19,6 +19,11 @@ single_border(row, col)
 row_border(row)
 }
 \arguments{
+\item{ht}{\code{huxtable} object.}
+
+\item{matrix}{\code{matrix} of bottom borders. Ignored. Included for the sake
+of compatibility with the interface of all border mutating functions.}
+
 \item{row}{\code{numeric} the row of the table}
 
 \item{col}{\code{numeric} the column of the cell}
