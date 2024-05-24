@@ -24,7 +24,6 @@ gentlg(
   watermark = NULL,
   colheader = NULL,
   pagenum = FALSE,
-  header_pad = NULL,
   bottom_borders = "old_format",
   border_fns = list()
 )
@@ -115,10 +114,6 @@ for a table or listing. Default uses the column labels of huxme. Vectorized.}
 \item{pagenum}{(optional) Logical. When true page numbers are added on the
 right side of the footer section in the format page x/y.
 Vectorized. (Default = FALSE)}
-
-\item{header_pad}{(optional) List. Adds header pad to header rows in list
-based on index (not including title), when NULL pad is added to all header
-rows. Vectorized. (Default = NULL)}
 
 \item{bottom_borders}{(optional) Matrix or \code{"old_format"}. A matrix indicating where to add the bottom
 borders. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information. If \code{"old_format"},

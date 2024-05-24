@@ -13,7 +13,7 @@
 #' (continuous and separate) on the same line. In such a case, the borders in the resulting
 #' RTF look misaligned.
 #'
-#' @details `border_matrix` details
+#' @section `border_matrix` details:
 #' You mark where the bottom borders should go in the table by passing a matrix.
 #' The matrix has to have the same number of columns as the passed `huxtable`
 #' and the number of rows lower by one than the passed `huxtable`. Each cell
@@ -44,6 +44,29 @@
 #' and another border (separate from the first one) under the second cell
 #' in the first row. The second row stays without any borders.
 #'
+#' @section
+#' Functions transforming the border matrix:
+#'
+#' The below functions can be passed to [gentlg()]'s
+#' `border_fns` argument to modify how `gentlg` renders
+#' the borders under the cells.
+#'
+#' Border functions:
+#' * [no_borders()]
+#' * [spanning_borders()]
+#' * [col_borders()]
+#' * [single_border()]
+#' * [row_border()]
+#'
+#' `border_fns` will accept your own, custom functions as long as
+#' they adhere to the format.
+#' All the functions passed to `border_fns` need to accept two arguments:
+#' * the first - the printed huxtable object,
+#' * the second - a border matrix.
+#'
+#' They also must return a matrix interpreted the same way as `border_matrix`
+#' passed to `add_bottom_borders` or [gentlg()].
+#'
 #' @param ht `huxtable` A huxtable object
 #' @param border_matrix (optional) `matrix` A matrix indicating where to add the bottom
 #' borders. If `NULL`, then no borders are added.
@@ -52,9 +75,7 @@
 #' 1. The `huxtable`.
 #' 1. The `border_matrix` with dimentions matching `huxtable`.
 #'
-#' The function have to return a matrix with the same dimensions as `huxtable`
-#' indicating where to put the borders. The functions in the list are applied
-#' sequentially to `border_matrix`.
+#' The functions in the list are applied sequentially to `border_matrix`.
 #'
 #' @return A huxtable with added borders.
 #'
@@ -85,7 +106,7 @@
 #'   indentme = c(0, 0, 0, 1),
 #'   newpage = c(0, 0, 0, 0)
 #' )
-#' # Add spanning bottom borders under the cells in the second row
+#' # Add spanning bottom borders under the cells in the first row
 #' gentlg(
 #'   huxme = final,
 #'   wcol = c(0.70, 0.15, 0.15),
@@ -96,7 +117,7 @@
 #'     "Note: For demonstrative purposes only",
 #'     "{\\super a} Subjects are counted once for any given event."
 #'   ),
-#'   border_fns = list(no_borders, spanning_borders(2))
+#'   border_fns = list(no_borders, spanning_borders(1))
 #' )
 #'
 #' # Tables with no bottom borders
@@ -113,7 +134,8 @@
 #'   border_fns = list(no_borders)
 #' )
 #'
-#' # Tables with a border under cell in the 3nd row and 3rd column
+#' # Tables with a border under cell in the 3nd row and 3rd column,
+#' # and borders under cells in the first row
 #' gentlg(
 #'   huxme = final,
 #'   wcol = c(0.70, 0.15, 0.15),
@@ -124,7 +146,7 @@
 #'     "Note: For demonstrative purposes only",
 #'     "{\\super a} Subjects are counted once for any given event."
 #'   ),
-#'   border_fns = list(no_borders, single_border(3, 3))
+#'   border_fns = list(no_borders, spanning_border(1), single_border(3, 3))
 #' )
 #'
 #' # We discourage, but you can pass the border matrix directly
@@ -200,7 +222,7 @@ should_use_internal_borders <- function(row) {
 #' @param matrix `matrix` of bottom borders. Ignored. Included for the sake
 #' of compatibility with the interface of all border mutating functions.
 #' @export
-#' @rdname border_functions
+#' @family {border functions}
 no_borders <- function(ht, matrix = NULL) {
   if (is.null(ht)) {
     return(NULL)
@@ -209,18 +231,20 @@ no_borders <- function(ht, matrix = NULL) {
   matrix(rep(0, (ht_dims[1] - 1) * ht_dims[2]), nrow = ht_dims[1] - 1, ncol = ht_dims[2])
 }
 
-#' Adds borders under cells in a row
+#' Adds borders under cells in a row, excluding the first column.
 #'
-#' Adds borders under cells that are not empty.
+#' Adds borders under cells that are not empty in a given row,
+#' omitting the first column of the row.
 #' The borders do not touch each other - they are separate.
 #'
 #' @param row `numeric` the row of the table
 #' @export
-#' @rdname border_functions
+#' @family {border functions}
 spanning_borders <- function(row) {
   function(ht, matrix) {
     last_num <- matrix[row][1]
-    r <- as.matrix(ht[row, ])
+    r <- as.matrix(ht[row + 1, ])
+    browser()
     for (col in seq_len(length(r))[-1]) {
       if (trimws(gsub("\\\\keepn\\\\trhdr", "", as.matrix(ht[row + 1, col]))) != "") {
         if (r[col - 1] != r[col]) {
@@ -238,7 +262,7 @@ spanning_borders <- function(row) {
 #' @param col `numeric` the column of the table
 #' @param rows `numeric` the range of rows to include
 #' @export
-#' @rdname border_functions
+#' @family {border functions}
 col_borders <- function(col, rows) {
   rows <- rows + 1
   function(ht, matrix) {
@@ -254,7 +278,7 @@ col_borders <- function(col, rows) {
 #' @param row `numeric` the row of the cell
 #' @param col `numeric` the column of the cell
 #' @export
-#' @rdname border_functions
+#' @family {border functions}
 single_border <- function(row, col) {
   function(ht, matrix) {
     border <- 1
@@ -271,9 +295,13 @@ single_border <- function(row, col) {
 
 #' Adds a continuous bottom border under a row
 #'
+#' @details
+#' See [border_functions] for more details.
+#'
 #' @param row `numeric` the row of the table
 #' @export
-#' @rdname border_functions
+#'
+#' @family {border functions}
 row_border <- function(row) {
   function(ht, matrix) {
     matrix[row, ] <- 1

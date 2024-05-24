@@ -150,7 +150,7 @@ format_color <- function(r_color, default = "white") {
   apply(grDevices::col2rgb(r_color), 2, paste0, collapse = ", ")
 }
 
-get_visible_borders <- function (ht) {
+get_visible_borders <- function(ht) {
   dc <- display_cells(ht)
 
   # a vertical border is hidden, if it is shadowed by a cell to its left
@@ -497,7 +497,7 @@ rtf_fc_tables <- function(..., extra_fonts = "Times",
 }
 
 custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
-                          nheader, header_pad, tlf, ...) {
+                          nheader, tlf, header_pad = NULL, ...) {
   assertthat::assert_that(inherits(fc_tables, "rtfFCTables"))
   color_index <- function(color) {
     res <- match(color, fc_tables$colors)

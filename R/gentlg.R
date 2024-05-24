@@ -75,9 +75,6 @@
 #' @param pagenum (optional) Logical. When true page numbers are added on the
 #' right side of the footer section in the format page x/y.
 #' Vectorized. (Default = FALSE)
-#' @param header_pad (optional) List. Adds header pad to header rows in list
-#' based on index (not including title), when NULL pad is added to all header
-#' rows. Vectorized. (Default = NULL)
 #' @param bottom_borders (optional) Matrix or `"old_format"`. A matrix indicating where to add the bottom
 #' borders. Vectorized. See [add_bottom_borders()] for more information. If `"old_format"`,
 #' then borders are added to the `colspan` and `colheader` rows. (Default = "old_format").
@@ -209,7 +206,6 @@ gentlg <- function(huxme = NULL,
                    watermark = NULL,
                    colheader = NULL,
                    pagenum = FALSE,
-                   header_pad = NULL,
                    bottom_borders = "old_format",
                    border_fns = list()) {
   if (is.null(huxme)) {
@@ -233,7 +229,6 @@ gentlg <- function(huxme = NULL,
       watermark = watermark,
       colheader = colheader,
       pagenum = pagenum,
-      header_pad = header_pad,
       bottom_borders = bottom_borders,
       border_fns = border_fns
     ))
@@ -262,9 +257,6 @@ gentlg <- function(huxme = NULL,
   if (!is.list(bottom_borders)) {
     bottom_borders <- list(bottom_borders)
   }
-  if (!is.list(header_pad)) {
-    header_pad <- list(header_pad)
-  }
   assertthat::assert_that(is.list(border_fns))
   if (length(border_fns) == 0 ||
     (length(border_fns) > 0 && !is.list(border_fns[[1]]))) {
@@ -285,7 +277,6 @@ gentlg <- function(huxme = NULL,
              watermark,
              colheader,
              pagenum,
-             header_pad,
              bottom_borders,
              border_fns,
              index) {
@@ -309,7 +300,6 @@ gentlg <- function(huxme = NULL,
         watermark = watermark,
         colheader = colheader,
         pagenum = pagenum,
-        header_pad = header_pad,
         bottom_borders = bottom_borders,
         border_fns = border_fns,
         index_in_result = index
@@ -322,7 +312,6 @@ gentlg <- function(huxme = NULL,
     watermark,
     colheader,
     pagenum,
-    header_pad,
     bottom_borders,
     border_fns,
     seq_len(length(huxme)),
@@ -344,7 +333,6 @@ gentlg <- function(huxme = NULL,
       watermark = watermark,
       nheader = 1 + as.numeric(lapply(hts, function(ht) length(ht$colspan))),
       tlf = tlf,
-      header_pad = header_pad
     )
   } else if (print.hux == TRUE && toupper(format) == "HTML") {
     lapply(hts, huxtable::print_html)

@@ -17,7 +17,6 @@ gentlg_single <- function(huxme = NULL,
                           watermark = NULL,
                           colheader = NULL,
                           pagenum = FALSE,
-                          header_pad = NULL,
                           bottom_borders = NULL,
                           border_fns = list(),
                           index_in_result = 1) {

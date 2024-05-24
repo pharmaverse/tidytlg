@@ -19,9 +19,7 @@ borders. If \code{NULL}, then no borders are added.}
 \item The \code{border_matrix} with dimentions matching \code{huxtable}.
 }
 
-The function have to return a matrix with the same dimensions as \code{huxtable}
-indicating where to put the borders. The functions in the list are applied
-sequentially to \code{border_matrix}.}
+The functions in the list are applied sequentially to \code{border_matrix}.}
 }
 \value{
 A huxtable with added borders.
@@ -40,8 +38,9 @@ single cells (or merged cells), but separate (see examples).
 This feature has limitations. Mainly, it does not support both versions of the borders
 (continuous and separate) on the same line. In such a case, the borders in the resulting
 RTF look misaligned.
+}
+\section{\code{border_matrix} details}{
 
-\code{border_matrix} details
 You mark where the bottom borders should go in the table by passing a matrix.
 The matrix has to have the same number of columns as the passed \code{huxtable}
 and the number of rows lower by one than the passed \code{huxtable}. Each cell
@@ -75,6 +74,35 @@ The above border matrix puts one border under the first cell in the first row;
 and another border (separate from the first one) under the second cell
 in the first row. The second row stays without any borders.
 }
+
+\section{Functions transforming the border matrix}{
+
+
+The below functions can be passed to \code{\link[=gentlg]{gentlg()}}'s
+\code{border_fns} argument to modify how \code{gentlg} renders
+the borders under the cells.
+
+Border functions:
+\itemize{
+\item \code{\link[=no_borders]{no_borders()}}
+\item \code{\link[=spanning_borders]{spanning_borders()}}
+\item \code{\link[=col_borders]{col_borders()}}
+\item \code{\link[=single_border]{single_border()}}
+\item \code{\link[=row_border]{row_border()}}
+}
+
+\code{border_fns} will accept your own, custom functions as long as
+they adhere to the format.
+All the functions passed to \code{border_fns} need to accept two arguments:
+\itemize{
+\item the first - the printed huxtable object,
+\item the second - a border matrix.
+}
+
+They also must return a matrix interpreted the same way as \code{border_matrix}
+passed to \code{add_bottom_borders} or \code{\link[=gentlg]{gentlg()}}.
+}
+
 \examples{
 border_matrix <- matrix(c(1, 1, 2, 0, 1, 1, 0, 0, 0), nrow = 3, ncol = 3)
 ht <- huxtable::as_huxtable(
@@ -102,7 +130,7 @@ final <- data.frame(
   indentme = c(0, 0, 0, 1),
   newpage = c(0, 0, 0, 0)
 )
-# Add spanning bottom borders under the cells in the second row
+# Add spanning bottom borders under the cells in the first row
 gentlg(
   huxme = final,
   wcol = c(0.70, 0.15, 0.15),
@@ -113,7 +141,7 @@ gentlg(
     "Note: For demonstrative purposes only",
     "{\\\\super a} Subjects are counted once for any given event."
   ),
-  border_fns = list(no_borders, spanning_borders(2))
+  border_fns = list(no_borders, spanning_borders(1))
 )
 
 # Tables with no bottom borders
@@ -130,7 +158,8 @@ gentlg(
   border_fns = list(no_borders)
 )
 
-# Tables with a border under cell in the 3nd row and 3rd column
+# Tables with a border under cell in the 3nd row and 3rd column,
+# and borders under cells in the first row
 gentlg(
   huxme = final,
   wcol = c(0.70, 0.15, 0.15),
@@ -141,7 +170,7 @@ gentlg(
     "Note: For demonstrative purposes only",
     "{\\\\super a} Subjects are counted once for any given event."
   ),
-  border_fns = list(no_borders, single_border(3, 3))
+  border_fns = list(no_borders, spanning_border(1), single_border(3, 3))
 )
 
 # We discourage, but you can pass the border matrix directly
