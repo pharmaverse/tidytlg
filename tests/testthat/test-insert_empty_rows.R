@@ -132,7 +132,7 @@ testthat::test_that("Inserts empty rows when the input table has newrows", {
       # combine results together
       tbl <- bind_table(tbl1, tbl2, tbl3)
 
-      # conver to hux object -----------------------------------------------------------------
+      # conver to hux object
       withr::with_dir(
         new = testthat::test_path(output_directory),
         code = {

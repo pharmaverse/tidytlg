@@ -10,12 +10,8 @@
 #' @param huxme `data.frame` The input data frame.
 #'
 #' @return A data frame with added new empty rows.
-insert_empty_rows <- function(huxme) {
-  if (!"newrows" %in% names(huxme)) {
-    return(huxme)
-  }
+insert_empty_rows <- function(huxme, newrows = huxme$newrows) {
   browser()
-
   format_columns <- c("row_type", "anbr", "indentme", "roworder", "newrows")
   data_columns <- names(huxme)[!names(huxme) %in% format_columns]
 
@@ -58,9 +54,7 @@ insert_empty_rows <- function(huxme) {
   }
 
   browser()
-  if (is.numeric(attr(huxme, "row.names"))) {
-    attr(merged_df, "row.names") <- as.integer(attr(merged_df, "row.names"))
-  }
+  attr(merged_df, "row.names") <- as.integer(seq_len(nrow(merged_df)))
   merged_df$newrows <- 0
   merged_df
 }

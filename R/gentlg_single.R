@@ -263,6 +263,12 @@ gentlg_single <- function(huxme = NULL,
     newpage <- NULL
   }
 
+  if ("newrows" %in% colnames(huxme)) {
+    newrows <- huxme$newrows
+  } else {
+    newrows <- NULL
+  }
+
   # display columns columns only
   if (sum(colnames(huxme) %in% formatcolumns) != 0) {
     huxme[, colnames(huxme) %in% formatcolumns] <- NULL
@@ -696,6 +702,10 @@ gentlg_single <- function(huxme = NULL,
     }
   }
 
+  if (!is.null(newrows)) {
+    newrows <- c(rep(0, formatindex), newrows)
+    huxme <- insert_empty_rows(huxme, newrows)
+  }
   #############################
   ###       Header          ###
   #############################
