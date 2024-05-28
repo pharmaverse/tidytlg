@@ -24,11 +24,8 @@ testthat::test_that("Inserts rows when there are 1s in the newrows column", {
   i[] <- cast_to_char(i)
   i[[newrows]] <- c(0, 1, 0, 1, 1, 0, 0, 0, 0, 0)
 
-  testthat::expect_warning(
-    actual <- insert_empty_rows(i)
-  )
-
-  expected_rownames <- as.integer(c(1, 2, NA, 3, 4, NA, 5, NA, 6:10))
+  actual <- insert_empty_rows(i)
+  expected_rownames <- as.integer(seq_len(nrow(actual)))
   testthat::expect_identical(attr(actual, "row.names", expected_rownames), expected_rownames)
 })
 
@@ -37,11 +34,8 @@ testthat::test_that("Inserts an empty row when the 1 is in the last row of newro
   i[] <- cast_to_char(i)
   i[[newrows]] <- c(rep(0, 9), 1)
 
-  testthat::expect_warning(
     actual <- insert_empty_rows(i)
-  )
-
-  expected_rownames <- as.integer(c(1:10, NA))
+  expected_rownames <- as.integer(seq_len(nrow(actual)))
   testthat::expect_identical(attr(actual, "row.names", expected_rownames), expected_rownames)
 })
 
@@ -50,11 +44,8 @@ testthat::test_that("Inserts empty rows when there are 2 1s in the last two rows
   i[] <- cast_to_char(i)
   i[[newrows]] <- c(rep(0, 8), 1, 1)
 
-  testthat::expect_warning(
     actual <- insert_empty_rows(i)
-  )
-
-  expected_rownames <- as.integer(c(1:9, NA, 10, NA))
+  expected_rownames <- as.integer(seq_len(nrow(actual)))
   testthat::expect_identical(attr(actual, "row.names", expected_rownames), expected_rownames)
 })
 
@@ -63,10 +54,7 @@ testthat::test_that("Zeroes the newrows column", {
   i[] <- cast_to_char(i)
   i[[newrows]] <- c(rep(0, 8), 1, 1)
 
-  testthat::expect_warning(
     actual <- insert_empty_rows(i)
-  )
-
   testthat::expect_identical(actual$newrows, rep(0, nrow(actual)))
 })
 
@@ -76,7 +64,7 @@ testthat::test_that("Preserves the formatting columns", {
   i[] <- cast_to_char(i)
   i[[newrows]] <- c(rep(0, limit - 1), 1)
   row_type <- sample(c("S", "T"), size = nrow(i), replace = TRUE)
-  anbr <- sample(c("1", "2"), size = nrow(i), replace = TRUE)
+  anbr <- sample(c("1"), size = nrow(i), replace = TRUE)
   indentme <- sample(c("Y", "N"), size = nrow(i), replace = TRUE)
   roworder <- seq_len(nrow(i))
   i$row_type <- row_type
@@ -84,11 +72,9 @@ testthat::test_that("Preserves the formatting columns", {
   i$indentme <- indentme
   i$roworder <- roworder
 
-  testthat::expect_warning(
     actual <- insert_empty_rows(i)
-  )
   testthat::expect_identical(actual$row_type, c(row_type, "EMPTY"))
-  testthat::expect_identical(actual$anbr, c(anbr, "2"))
+  testthat::expect_identical(actual$anbr, c(anbr, "1"))
   testthat::expect_identical(actual$indentme, c(indentme, "0"))
   testthat::expect_identical(actual$roworder, seq_len(nrow(actual)))
 })

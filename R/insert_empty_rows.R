@@ -12,16 +12,23 @@
 #' @return A data frame with added new empty rows.
 insert_empty_rows <- function(huxme, newrows = huxme$newrows) {
   browser()
+  if (is.null(newrows)) {
+    return(huxme)
+  }
+  assertthat::assert_that(nrow(huxme) == length(newrows))
+
   format_columns <- c("row_type", "anbr", "indentme", "roworder", "newrows")
   data_columns <- names(huxme)[!names(huxme) %in% format_columns]
 
   emptyrow <- huxme[NA, ][1, ]
   emptyrow[, data_columns] <- ""
-  emptyrow$newrows <- 0
 
   has_roworder <- "roworder" %in% names(huxme)
   if (has_roworder) {
     emptyrow[, "roworder"] <- 0
+  }
+  if ("newrows" %in% names(huxme)) {
+    emptyrow$newrows <- 0
   }
   if ("row_type" %in% names(huxme)) {
     emptyrow$row_type <- "EMPTY"
@@ -29,8 +36,11 @@ insert_empty_rows <- function(huxme, newrows = huxme$newrows) {
   if ("indentme" %in% names(huxme)) {
     emptyrow[, "indentme"] <- 0
   }
+  if ("newpage" %in% names(huxme)) {
+    emptyrow[, "newpage"] <- 0
+  }
 
-  cum_sum <- cumsum(huxme$newrows)
+  cum_sum <- cumsum(newrows)
   shifted_cum_sum <- c(0, cum_sum)[-(length(cum_sum) + 1)]
   df_chunks <- split(huxme, shifted_cum_sum)
   if ("anbr" %in% names(huxme)) {
@@ -46,15 +56,17 @@ insert_empty_rows <- function(huxme, newrows = huxme$newrows) {
 
   names(df_chunks) <- NULL
   merged_df <- do.call(rbind, df_chunks)
-  if (merged_df$newrows[nrow(merged_df) - 1] == 0) {
+  if (newrows[length(newrows)] == 0) {
     merged_df <- merged_df[-nrow(merged_df), ]
   }
   if (has_roworder) {
     merged_df$roworder <- seq_len(nrow(merged_df))
   }
 
-  browser()
   attr(merged_df, "row.names") <- as.integer(seq_len(nrow(merged_df)))
-  merged_df$newrows <- 0
+  if ("newrows" %in% names(huxme)) {
+    merged_df$newrows <- 0
+  }
+  browser()
   merged_df
 }
