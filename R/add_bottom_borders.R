@@ -196,7 +196,7 @@ add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns
           res
         }
       )
-      huxtable::right_padding(ht)[border_matrix[row, ] != 0] <- 3
+      huxtable::right_padding(ht)[border_matrix[row, ] != 0] <- 4
       if (border_matrix[row, ncol(border_matrix)] != 0) {
         ht <- huxtable::set_right_padding(ht, row, ncol(border_matrix), 0)
       }
