@@ -4,7 +4,7 @@
 \alias{insert_empty_rows}
 \title{Inserts empty rows into a data frame}
 \usage{
-insert_empty_rows(huxme)
+insert_empty_rows(huxme, newrows = huxme$newrows)
 }
 \arguments{
 \item{huxme}{\code{data.frame} The input data frame.}
@@ -19,6 +19,7 @@ Inserts empty rows into a data frame
 \code{gentlg} allows for formatting the input table based on formatting columns
 (see \code{\link[=gentlg]{gentlg()}}). One of the formatting mechanisms is empty row insertion. This
 function inserts the empty rows based on the \code{newrows} column in the data
-frame. The new rows are inserted after the rows with value \code{1} in the
+frame. The new rows are inserted before the rows with value \code{1} in the
 \code{newrows} column.
 }
+\keyword{internal}

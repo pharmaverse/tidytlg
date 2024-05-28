@@ -4,14 +4,14 @@
 #' `gentlg` allows for formatting the input table based on formatting columns
 #' (see [gentlg()]). One of the formatting mechanisms is empty row insertion. This
 #' function inserts the empty rows based on the `newrows` column in the data
-#' frame. The new rows are inserted after the rows with value `1` in the
+#' frame. The new rows are inserted before the rows with value `1` in the
 #' `newrows` column.
 #'
 #' @param huxme `data.frame` The input data frame.
 #'
 #' @return A data frame with added new empty rows.
+#' @keywords internal
 insert_empty_rows <- function(huxme, newrows = huxme$newrows) {
-  browser()
   if (is.null(newrows)) {
     return(huxme)
   }
@@ -41,8 +41,7 @@ insert_empty_rows <- function(huxme, newrows = huxme$newrows) {
   }
 
   cum_sum <- cumsum(newrows)
-  shifted_cum_sum <- c(0, cum_sum)[-(length(cum_sum) + 1)]
-  df_chunks <- split(huxme, shifted_cum_sum)
+  df_chunks <- split(huxme, cum_sum)
   if ("anbr" %in% names(huxme)) {
     df_chunks <- lapply(df_chunks, function(chunk) {
       emptyrow$anbr <- chunk$anbr[1]
@@ -56,9 +55,7 @@ insert_empty_rows <- function(huxme, newrows = huxme$newrows) {
 
   names(df_chunks) <- NULL
   merged_df <- do.call(rbind, df_chunks)
-  if (newrows[length(newrows)] == 0) {
-    merged_df <- merged_df[-nrow(merged_df), ]
-  }
+  merged_df <- merged_df[-nrow(merged_df), ]
   if (has_roworder) {
     merged_df$roworder <- seq_len(nrow(merged_df))
   }
@@ -67,6 +64,5 @@ insert_empty_rows <- function(huxme, newrows = huxme$newrows) {
   if ("newrows" %in% names(huxme)) {
     merged_df$newrows <- 0
   }
-  browser()
   merged_df
 }
