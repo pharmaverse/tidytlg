@@ -295,9 +295,6 @@ single_border <- function(row, col) {
 
 #' Adds a continuous bottom border under a row
 #'
-#' @details
-#' See [border_functions] for more details.
-#'
 #' @param row `numeric` the row of the table
 #' @export
 #'

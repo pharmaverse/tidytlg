@@ -12,9 +12,6 @@ row_border(row)
 \description{
 Adds a continuous bottom border under a row
 }
-\details{
-See \link{border_functions} for more details.
-}
 \seealso{
 Other {border functions}: 
 \code{\link{col_borders}()},
