@@ -37,13 +37,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -119,10 +112,10 @@ and the second contains the footnotes as a list</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">tblid</span> <span class="op">&lt;-</span> <span class="st">"TSIDEM01"</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">titles</span> <span class="op">&lt;-</span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="op">~</span><span class="va">tblid</span>, <span class="op">~</span><span class="va">identifier</span>,                  <span class="op">~</span><span class="va">text</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"TSIDEM01"</span>,     <span class="st">"TITLE"</span>, <span class="st">"Demographics Example"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"TSIDEM01"</span>, <span class="st">"FOOTNOTE1"</span>,    <span class="st">"Example footnote."</span></span></span>
+<span class="r-in"><span><span class="va">titles</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="op">~</span><span class="va">tblid</span>, <span class="op">~</span><span class="va">identifier</span>, <span class="op">~</span><span class="va">text</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"TSIDEM01"</span>, <span class="st">"TITLE"</span>, <span class="st">"Demographics Example"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"TSIDEM01"</span>, <span class="st">"FOOTNOTE1"</span>, <span class="st">"Example footnote."</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">title_foot</span> <span class="op">&lt;-</span> <span class="fu">rmdpstitle</span><span class="op">(</span><span class="va">titles</span>, <span class="va">tblid</span><span class="op">)</span></span></span>
