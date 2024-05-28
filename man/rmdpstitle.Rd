@@ -38,10 +38,10 @@ Get Titles and Footnotes for all TLGs or one specific TLG
 \examples{
 tblid <- "TSIDEM01"
 
-titles <-tibble::tribble(
-  ~tblid, ~identifier,                  ~text,
-  "TSIDEM01",     "TITLE", "Demographics Example",
-  "TSIDEM01", "FOOTNOTE1",    "Example footnote."
+titles <- tibble::tribble(
+  ~tblid, ~identifier, ~text,
+  "TSIDEM01", "TITLE", "Demographics Example",
+  "TSIDEM01", "FOOTNOTE1", "Example footnote."
 )
 
 title_foot <- rmdpstitle(titles, tblid)
