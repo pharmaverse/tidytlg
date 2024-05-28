@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_bottom_borders.R
 \name{spanning_borders}
 \alias{spanning_borders}
-\title{Adds borders under cells in a row}
+\title{Adds borders under cells in a row, excluding the first column.}
 \usage{
 spanning_borders(row)
 }
@@ -10,7 +10,8 @@ spanning_borders(row)
 \item{row}{\code{numeric} the row of the table}
 }
 \description{
-Adds borders under cells that are not empty.
+Adds borders under cells that are not empty in a given row,
+omitting the first column of the row.
 The borders do not touch each other - they are separate.
 }
 \seealso{

@@ -196,7 +196,8 @@ add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns
           res
         }
       )
-      if (border_matrix[row, ncol(border_matrix)]) {
+      huxtable::right_padding(ht)[border_matrix[row, ] != 0] <- 3
+      if (border_matrix[row, ncol(border_matrix)] != 0) {
         ht <- huxtable::set_right_padding(ht, row, ncol(border_matrix), 0)
       }
     } else {
@@ -243,10 +244,9 @@ no_borders <- function(ht, matrix = NULL) {
 spanning_borders <- function(row) {
   function(ht, matrix) {
     last_num <- matrix[row][1]
-    r <- as.matrix(ht[row + 1, ])
-    browser()
+    r <- trimws(gsub("\\\\keepn\\\\trhdr", "", ht[row + 1, ]))
     for (col in seq_len(length(r))[-1]) {
-      if (trimws(gsub("\\\\keepn\\\\trhdr", "", as.matrix(ht[row + 1, col]))) != "") {
+      if (r[col] != "") {
         if (r[col - 1] != r[col]) {
           last_num <- last_num + 1
         }

@@ -43,8 +43,6 @@ pad_header <- function(result, nheader, header_pad) {
     stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx") %>%
     stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx", "\\\\clpadr67\\\\clpadfr3\\\\cellx")
 
-
-
   ret <- base::paste0(result_sectioned, collapse = "\\row")
 
   return(ret)
@@ -583,7 +581,13 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
 
   wrap_def <- ifelse(huxtable::wrap(ht), "", "\\clNoWrap")
 
-  pad_def <- NULL
+  pad_def <- sprintf(
+    "\\clpadfl3\\clpadl%d \\clpadft3\\clpadt%d \\clpadfb3\\clpadb%d \\clpadfr3\\clpadr%d ",
+    huxtable::left_padding(ht) * 20,
+    huxtable::top_padding(ht) * 20,
+    huxtable::bottom_padding(ht) * 20,
+    huxtable::right_padding(ht) * 20
+  )
 
   table_width <- huxtable::width(ht)
   col_width <- huxtable::col_width(ht)

@@ -930,6 +930,10 @@ gentlg_single <- function(huxme = NULL,
       bottom_borders <- old_format(ht, colspan, colheader)
     }
     if (is_table(tlf) || is_listing(tlf)) {
+      huxtable::left_padding(ht) <- 0
+      huxtable::right_padding(ht) <- 0
+      huxtable::bottom_padding(ht) <- 0
+      huxtable::top_padding(ht) <- 0
       ht <- add_bottom_borders(ht, bottom_borders, border_fns)
     }
     if (is_table(tlf)) {
