@@ -146,7 +146,7 @@
 #'     "Note: For demonstrative purposes only",
 #'     "{\\super a} Subjects are counted once for any given event."
 #'   ),
-#'   border_fns = list(no_borders, spanning_border(1), single_border(3, 3))
+#'   border_fns = list(no_borders, spanning_borders(1), single_border(3, 3))
 #' )
 #'
 #' # We discourage, but you can pass the border matrix directly
