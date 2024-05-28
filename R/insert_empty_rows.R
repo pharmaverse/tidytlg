@@ -14,6 +14,7 @@ insert_empty_rows <- function(huxme) {
   if (!"newrows" %in% names(huxme)) {
     return(huxme)
   }
+  browser()
 
   format_columns <- c("row_type", "anbr", "indentme", "roworder", "newrows")
   data_columns <- names(huxme)[!names(huxme) %in% format_columns]
@@ -56,6 +57,7 @@ insert_empty_rows <- function(huxme) {
     merged_df$roworder <- seq_len(nrow(merged_df))
   }
 
+  browser()
   if (is.numeric(attr(huxme, "row.names"))) {
     attr(merged_df, "row.names") <- as.integer(attr(merged_df, "row.names"))
   }

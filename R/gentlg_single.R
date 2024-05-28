@@ -207,6 +207,7 @@ gentlg_single <- function(huxme = NULL,
   ###########################
   ### Formatting values   ###
   ###########################
+  huxme <- insert_empty_rows(huxme)
 
   if ("boldme" %in% colnames(huxme) && length(which(huxme$boldme == 1)) > 0) {
     boldme <- which(huxme$boldme == 1)
@@ -405,7 +406,6 @@ gentlg_single <- function(huxme = NULL,
   ###       Huxit!          ###
   #############################
   if (tolower(format) == "rtf") {
-    huxme <- insert_empty_rows(huxme)
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
       ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
         huxtable::set_width(value = huxwidth)
