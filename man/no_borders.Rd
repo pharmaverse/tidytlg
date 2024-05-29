@@ -16,10 +16,10 @@ of compatibility with the interface of all border mutating functions.}
 Removes all borders from the table
 }
 \seealso{
-Other {border functions}: 
+Other border_functions: 
 \code{\link{col_borders}()},
 \code{\link{row_border}()},
 \code{\link{single_border}()},
 \code{\link{spanning_borders}()}
 }
-\concept{{border functions}}
+\concept{border_functions}

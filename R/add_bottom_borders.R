@@ -223,7 +223,7 @@ should_use_internal_borders <- function(row) {
 #' @param matrix `matrix` of bottom borders. Ignored. Included for the sake
 #' of compatibility with the interface of all border mutating functions.
 #' @export
-#' @family {border functions}
+#' @family border_functions
 no_borders <- function(ht, matrix = NULL) {
   if (is.null(ht)) {
     return(NULL)
@@ -240,7 +240,7 @@ no_borders <- function(ht, matrix = NULL) {
 #'
 #' @param row `numeric` the row of the table
 #' @export
-#' @family {border functions}
+#' @family border_functions
 spanning_borders <- function(row) {
   function(ht, matrix) {
     last_num <- matrix[row][1]
@@ -262,7 +262,7 @@ spanning_borders <- function(row) {
 #' @param col `numeric` the column of the table
 #' @param rows `numeric` the range of rows to include
 #' @export
-#' @family {border functions}
+#' @family border_functions
 col_borders <- function(col, rows) {
   rows <- rows + 1
   function(ht, matrix) {
@@ -278,7 +278,7 @@ col_borders <- function(col, rows) {
 #' @param row `numeric` the row of the cell
 #' @param col `numeric` the column of the cell
 #' @export
-#' @family {border functions}
+#' @family border_functions
 single_border <- function(row, col) {
   function(ht, matrix) {
     border <- 1
@@ -298,7 +298,7 @@ single_border <- function(row, col) {
 #' @param row `numeric` the row of the table
 #' @export
 #'
-#' @family {border functions}
+#' @family border_functions
 row_border <- function(row) {
   function(ht, matrix) {
     matrix[row, ] <- 1

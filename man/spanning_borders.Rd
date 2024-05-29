@@ -15,10 +15,10 @@ omitting the first column of the row.
 The borders do not touch each other - they are separate.
 }
 \seealso{
-Other {border functions}: 
+Other border_functions: 
 \code{\link{col_borders}()},
 \code{\link{no_borders}()},
 \code{\link{row_border}()},
 \code{\link{single_border}()}
 }
-\concept{{border functions}}
+\concept{border_functions}

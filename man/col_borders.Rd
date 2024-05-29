@@ -15,10 +15,10 @@ col_borders(col, rows)
 Adds borders under cells in a column
 }
 \seealso{
-Other {border functions}: 
+Other border_functions: 
 \code{\link{no_borders}()},
 \code{\link{row_border}()},
 \code{\link{single_border}()},
 \code{\link{spanning_borders}()}
 }
-\concept{{border functions}}
+\concept{border_functions}

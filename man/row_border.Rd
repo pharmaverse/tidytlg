@@ -13,10 +13,10 @@ row_border(row)
 Adds a continuous bottom border under a row
 }
 \seealso{
-Other {border functions}: 
+Other border_functions: 
 \code{\link{col_borders}()},
 \code{\link{no_borders}()},
 \code{\link{single_border}()},
 \code{\link{spanning_borders}()}
 }
-\concept{{border functions}}
+\concept{border_functions}
