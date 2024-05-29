@@ -3,13 +3,15 @@
 #'
 
 # merge header updates rtf output to add merging tags to the title row
-#' merger_header
+#' merge_header
+#'
+#' Merge the columns in the header row
 #'
 #' @param result The current RTF output
 #'
 #' @return Returns the RTF output but with the Title rows merged
 #' @noRd
-merger_header <- function(result) {
+merge_header <- function(result) {
   result_sectioned <- result %>%
     stringr::str_split("\\\\row") %>%
     base::unlist() # breakes apart by section
@@ -20,8 +22,9 @@ merger_header <- function(result) {
   return(ret)
 }
 
-# Adds padding to `colvar` row to add line break between `colvar` headers
 #' pad_header
+#'
+#' Adds padding to `colvar` row to add line break between `colvar` headers
 #'
 #' @param result The current RTF output
 #' @param nheader Number of headers which is equal to `colspan` + 1
@@ -39,8 +42,6 @@ pad_header <- function(result, nheader, header_pad) {
   result_sectioned[section_selection] <- result_sectioned[section_selection] %>%
     stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx") %>%
     stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx", "\\\\clpadr67\\\\clpadfr3\\\\cellx")
-
-
 
   ret <- base::paste0(result_sectioned, collapse = "\\row")
 
@@ -147,13 +148,23 @@ format_color <- function(r_color, default = "white") {
   apply(grDevices::col2rgb(r_color), 2, paste0, collapse = ", ")
 }
 
-# returns two rows(+1),cols(+1) arrays of border widths
-collapsed_borders <- function(ht) {
-  result <- do_collapse(ht, get_all_borders, default = 0)
-  result$vert <- pmax(result$left, result$right)
-  result$horiz <- pmax(result$top, result$bottom)
+get_visible_borders <- function(ht) {
+  dc <- display_cells(ht)
 
-  result[c("vert", "horiz")]
+  # a vertical border is hidden, if it is shadowed by a cell to its left
+  vert_borders <- attr(ht, "lr_borders")$thickness
+  left_shadowed <- dc[dc$display_col < dc$col, ]
+  left_shadowed <- as.matrix(left_shadowed[c("row", "col")])
+  vert_borders[left_shadowed] <- 0
+
+  # a horizontal border is hidden, if it is shadowed by a cell above it
+  horiz_borders <- attr(ht, "tb_borders")$thickness
+  top_shadowed <- dc[dc$display_row < dc$row, ]
+  top_shadowed <- as.matrix(top_shadowed[c("row", "col")])
+  horiz_borders[top_shadowed] <- 0
+
+  res <- list(vert = vert_borders, horiz = horiz_borders)
+  return(res)
 }
 
 # returns two rows(+1),cols(+1) arrays of border colors.
@@ -484,7 +495,7 @@ rtf_fc_tables <- function(..., extra_fonts = "Times",
 }
 
 custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
-                          nheader, header_pad, tlf, ...) {
+                          nheader, tlf, header_pad = NULL, ...) {
   assertthat::assert_that(inherits(fc_tables, "rtfFCTables"))
   color_index <- function(color) {
     res <- match(color, fc_tables$colors)
@@ -497,7 +508,7 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
     res
   }
 
-  cb <- collapsed_borders(ht)
+  cb <- get_visible_borders(ht)
   cbc <- collapsed_border_colors(ht)
   cbs <- collapsed_border_styles(ht)
   bgc <- huxtable::background_color(ht)
@@ -554,7 +565,6 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   bdr_def_right <- paste0("\\clbrdrr", bdr_def_right)
   bdr_def_top <- paste0("\\clbrdrt", bdr_def_top)
   bdr_def_bottom <- paste0("\\clbrdrb", bdr_def_bottom)
-
   bdr_def <- paste0(bdr_def_top, bdr_def_left, bdr_def_bottom, bdr_def_right)
 
   bg_def <- sprintf("\\clcbpat%d", color_index(bgc))
@@ -571,7 +581,13 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
 
   wrap_def <- ifelse(huxtable::wrap(ht), "", "\\clNoWrap")
 
-  pad_def <- NULL
+  pad_def <- sprintf(
+    "\\clpadfl3\\clpadl%d \\clpadft3\\clpadt%d \\clpadfb3\\clpadb%d \\clpadfr3\\clpadr%d ",
+    huxtable::left_padding(ht) * 20,
+    huxtable::top_padding(ht) * 20,
+    huxtable::bottom_padding(ht) * 20,
+    huxtable::right_padding(ht) * 20
+  )
 
   table_width <- huxtable::width(ht)
   col_width <- huxtable::col_width(ht)
@@ -717,7 +733,6 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   )
 
   ## CAPTION ----
-
   caption <- huxtable::caption(ht)
   cap_align <- align_map[get_caption_hpos(ht)]
   caption_par <- if (is.na(caption)) {
@@ -738,7 +753,7 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   }
   attr(result, "fc_tables") <- fc_tables
 
-  result <- merger_header(result)
+  result <- merge_header(result)
   if (is.null(header_pad)) {
     header_pad <- 2:(nheader + 1)
   } else {

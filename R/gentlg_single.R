@@ -17,12 +17,16 @@ gentlg_single <- function(huxme = NULL,
                           watermark = NULL,
                           colheader = NULL,
                           pagenum = FALSE,
-                          firstcolumnborder = FALSE,
-                          header_pad = NULL,
-                          colspan_line = NULL,
+                          bottom_borders = NULL,
+                          border_fns = list(),
                           index_in_result = 1) {
   assertthat::is.count(index_in_result)
   # check all the arguments being passed in except ...
+  assertthat::assert_that(
+    is.list(border_fns),
+    all(vapply(border_fns, is.function, FUN.VALUE = logical(1)))
+  )
+  assertthat::assert_that(is.matrix(bottom_borders) ||  bottom_borders == "old_format")
   arglist <- list()
   args_to_chk <- names(formals())[names(formals()) != "..."]
   purrr::walk(args_to_chk, .f = {
@@ -92,7 +96,7 @@ gentlg_single <- function(huxme = NULL,
   }
 
   if (is.null(colheader)) {
-    if (substr(tolower(tlf), 1, 1) == "l") {
+    if (is_listing(tlf)) {
       null_labels <- purrr::map_lgl(map(huxme, ~ attr(., "label")), is.null)
       colheader <- names(huxme)
       colheader[!null_labels] <-
@@ -103,7 +107,7 @@ gentlg_single <- function(huxme = NULL,
   }
 
   wrote_png <- FALSE
-  if (substr(tolower(tlf), 1, 1) %in% c("g", "f") &&
+  if (is_graph(tlf) &&
     is.null(plotnames) &&
     inherits(huxme, "ggplot")) {
     a_file <- "__tempggplot__"
@@ -120,7 +124,7 @@ gentlg_single <- function(huxme = NULL,
     wrote_png <- TRUE
   }
 
-  if (substr(tolower(tlf), 1, 1) %in% c("g", "f") &&
+  if (is_graph(tlf) &&
     is.null(plotwidth) &&
     is.null(plotheight)) {
     png_d <- dim(readPNG(ifelse(wrote_png,
@@ -158,15 +162,15 @@ gentlg_single <- function(huxme = NULL,
   #   You have to rename columns to label or col1-coln
 
 
-  if (is.null(huxme) && !substr(tolower(tlf), 1, 1) %in% c("g", "f")) {
+  if (is.null(huxme) && !is_graph(tlf)) {
     stop("huxme argument is required for tables and listings. Consult the documentation via ?gentlg.")
   }
 
-  if (!("label" %in% colnames(huxme)) && substr(tolower(tlf), 1, 1) %in% c("t")) {
+  if (!("label" %in% colnames(huxme)) && is_table(tlf)) {
     stop("No column present with the name 'label'. Consult the documentation via ?gentlg")
   }
 
-  if (sum(!(colnames(huxme) %in% c(formatcolumns, "label"))) < 1 && !substr(tolower(tlf), 1, 1) %in% c("g", "f")) {
+  if (sum(!(colnames(huxme) %in% c(formatcolumns, "label"))) < 1 && !is_graph(tlf)) {
     stop("A column with summary measures are missing. Consult the documentation via ?gentlg.")
   }
 
@@ -174,19 +178,19 @@ gentlg_single <- function(huxme = NULL,
     stop("tlf argument not correctly specified. Consult the documentation via ?gentlg.")
   }
 
-  if (substr(tolower(tlf), 1, 1) %in% c("g", "f") && is.null(plotnames)) {
+  if (is_graph(tlf) && is.null(plotnames)) {
     stop("plotnames argument not used. Consult the documentation via ?gentlg.")
   }
 
-  if (!is.null(wcol) && !substr(tolower(tlf), 1, 1) %in% c("g", "f")) {
+  if (!is.null(wcol) && !is_graph(tlf)) {
     if ((length(wcol) == 1 && (!is.numeric(wcol) || wcol > 1)) ||
-      (length(wcol) > 1 && tolower(format) == "rtf" &&
+      (length(wcol) > 1 && is_format_rtf(format) &&
         (!is.numeric(wcol) ||
           sum(!(colnames(huxme) %in% c(formatcolumns))) != length(wcol) ||
           sum(wcol) > 1))) {
       stop("wcol not defined properly. Consult the documentation via ?gentlg.")
     }
-    if (tolower(format) == "html" && length(wcol) > 1) {
+    if (is_format_html(format) && length(wcol) > 1) {
       warning("Format = 'HTML'. Only the first argument of wcol will be used. For more information, consult the documentation via ?gentlg.")
     }
   }
@@ -339,7 +343,10 @@ gentlg_single <- function(huxme = NULL,
 
     for (i in seq_along(plotnames)) {
       if (toupper(format) == "RTF") {
-        huxme[i, ] <- paste0("", pngrtfcode(ifelse(wrote_png, paste0(tmpdir, "/", plotnames[i]), plotnames[i]), width = plotwidth, height = plotheight), "\\line")
+        huxme[i, ] <- paste0(
+          "",
+          pngrtfcode(ifelse(wrote_png, paste0(tmpdir, "/", plotnames[i]), plotnames[i]), width = plotwidth, height = plotheight), "\\line"
+        )
       } else {
         huxme[i, ] <- paste0("<center>", "<img src=\"", ifelse(wrote_png, paste0(tmpdir, "/", plotnames[i]), plotnames[i]), "\"", " alt=\"", file, "\" style=\"width:", round(plotwidth * 96 / 2.54, 0), "px; height:", round(plotheight * 96 / 2.54, 0), "px; \"> <br/>", "</center>")
       }
@@ -386,7 +393,7 @@ gentlg_single <- function(huxme = NULL,
   #############################
   ### Orientation of output ###
   #############################
-  if (tolower(format) == "rtf") {
+  if (is_format_rtf(format)) {
     if (tolower(orientation) == "portrait") {
       huxwidth <- 1.06352
     } else if (tolower(orientation) == "landscape") {
@@ -394,7 +401,7 @@ gentlg_single <- function(huxme = NULL,
     } else {
       stop("orientation can be only portrait or landscape")
     }
-  } else if (tolower(format) == "html") {
+  } else if (is_format_html(format)) {
     if (tolower(orientation) == "portrait") {
       huxwidth <- 0.65 # 0.5
     } else if (tolower(orientation) == "landscape") {
@@ -407,7 +414,7 @@ gentlg_single <- function(huxme = NULL,
   #############################
   ###       Huxit!          ###
   #############################
-  if (tolower(format) == "rtf") {
+  if (is_format_rtf(format)) {
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
       ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
         huxtable::set_width(value = huxwidth)
@@ -430,14 +437,16 @@ gentlg_single <- function(huxme = NULL,
     } else {
       stop("tlf can have following character values: Table, Listing, Graph, Figure")
     }
-  } else if (tolower(format) == "html") {
+  } else if (is_format_html(format)) {
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
       ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
         huxtable::set_width(value = huxwidth)
       if (ncol(ht) == length(colheader)) {
         ht[1, ] <- colheader
       } else {
-        usethis::ui_warn("Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns")
+        usethis::ui_warn(
+          "Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns"
+        )
       }
 
       formatindex <- 1
@@ -462,7 +471,7 @@ gentlg_single <- function(huxme = NULL,
   ###       Column Width    ###
   #############################
 
-  if (tolower(format) == "rtf") {
+  if (is_format_rtf(format)) {
     if (length(wcol) == 1) {
       huxtable::col_width(ht) <- c(wcol, rep(
         (1 - wcol) / (ncol(ht) - 1),
@@ -471,7 +480,7 @@ gentlg_single <- function(huxme = NULL,
     } else if (length(wcol) > 1) {
       huxtable::col_width(ht) <- wcol
     }
-  } else if (tolower(format) == "html") {
+  } else if (is_format_html(format)) {
     if (!(tolower(substr(tlf, 1, 1)) %in% c("f", "g"))) {
       huxtable::col_width(ht) <- c(wcol[1], rep(
         (1 - wcol[1]) / (ncol(ht) - 1),
@@ -488,14 +497,14 @@ gentlg_single <- function(huxme = NULL,
     cnames <- colnames(ht)
 
     ### add row one by one to maintain huxtable structure
-    if (tolower(format) == "rtf") {
+    if (is_format_rtf(format)) {
       for (i in rev(seq_len(length(colspan)))) {
         ht <- huxtable::insert_row(ht, paste0("\\keepn\\trhdr ", colspan[[i]]),
           after = 0, fill = ""
         ) %>%
           huxtable::set_number_format(row = 1, col = seq_len(ncol(ht)), value = NA)
       }
-    } else if (tolower(format) == "html") {
+    } else if (is_format_html(format)) {
       ### add row one by one to maintain huxtable structure
       for (i in rev(seq_len(length(colspan)))) {
         ht <- huxtable::insert_row(ht, paste0(colspan[[i]]), after = 0)
@@ -546,8 +555,8 @@ gentlg_single <- function(huxme = NULL,
       huxtable::set_font_size(value = getOption("tidytlg.fontsize.table"))
   }
 
-  if (!substr(tolower(tlf), 1, 1) %in% c("g", "f")) {
-    if (tolower(format) == "rtf") {
+  if (!is_graph(tlf)) {
+    if (is_format_rtf(format)) {
       ### bolding
       if (!is.null(boldme) && tolower(substr(tlf, 1, 1)) %in% c("t")) {
         ht <- huxtable::set_bold(ht, boldme + formatindex, "label",
@@ -565,7 +574,7 @@ gentlg_single <- function(huxme = NULL,
           ht[newpage[i], 1] <- paste0("\\pagebb ", ht[newpage[i], 1])
         }
       }
-    } else if (tolower(format) == "html") {
+    } else if (is_format_html(format)) {
       ### bolding
       if (!is.null(boldme) && tolower(substr(tlf, 1, 1)) %in% c("t")) {
         huxtable::bold(ht[boldme + formatindex, "label"]) <- TRUE
@@ -591,11 +600,11 @@ gentlg_single <- function(huxme = NULL,
     if (tolower(substr(tlf, 1, 1)) %in% c("l", "t")) {
       indentme0 <- (indentme0 + formatindex)
     }
-    if (tolower(format) == "rtf") {
+    if (is_format_rtf(format)) {
       for (i in seq_along(indentme0)) {
         ht[indentme0[i], 1] <- glue::glue("\\intbl\\li{hang}\\fi-{hang} {ht[indentme0[i], 1]}")
       }
-    } else if (tolower(format) == "html") {
+    } else if (is_format_html(format)) {
       for (i in seq_along(indentme0)) {
         ht[indentme0[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px}px'> {ht[indentme0[i], 1]}")
       }
@@ -607,11 +616,11 @@ gentlg_single <- function(huxme = NULL,
     if (tolower(substr(tlf, 1, 1)) %in% c("l", "t")) {
       indentme1 <- (indentme1 + formatindex)
     }
-    if (tolower(format) == "rtf") {
+    if (is_format_rtf(format)) {
       for (i in seq_along(indentme1)) {
         ht[indentme1[i], 1] <- glue::glue("\\intbl\\li{space+hang}\\fi-{hang} {ht[indentme1[i], 1]}")
       }
-    } else if (tolower(format) == "html") {
+    } else if (is_format_html(format)) {
       for (i in seq_along(indentme1)) {
         ht[indentme1[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*2}px'> {ht[indentme1[i], 1]}")
       }
@@ -623,11 +632,11 @@ gentlg_single <- function(huxme = NULL,
     if (tolower(substr(tlf, 1, 1)) %in% c("l", "t")) {
       indentme2 <- (indentme2 + formatindex)
     }
-    if (tolower(format) == "rtf") {
+    if (is_format_rtf(format)) {
       for (i in seq_along(indentme2)) {
         ht[indentme2[i], 1] <- glue::glue("\\intbl\\li{space*2+hang}\\fi-{hang} {ht[indentme2[i], 1]}")
       }
-    } else if (tolower(format) == "html") {
+    } else if (is_format_html(format)) {
       for (i in seq_along(indentme2)) {
         ht[indentme2[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*3}px'> {ht[indentme2[i], 1]}")
       }
@@ -639,11 +648,11 @@ gentlg_single <- function(huxme = NULL,
     if (tolower(substr(tlf, 1, 1)) %in% c("l", "t")) {
       indentme3 <- (indentme3 + formatindex)
     }
-    if (tolower(format) == "rtf") {
+    if (is_format_rtf(format)) {
       for (i in seq_along(indentme3)) {
         ht[indentme3[i], 1] <- glue::glue("\\intbl\\li{space*3+hang}\\fi-{hang} {ht[indentme3[i], 1]}")
       }
-    } else if (tolower(format) == "html") {
+    } else if (is_format_html(format)) {
       for (i in seq_along(indentme3)) {
         ht[indentme3[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*4}px'> {ht[indentme3[i], 1]}")
       }
@@ -655,11 +664,11 @@ gentlg_single <- function(huxme = NULL,
     if (tolower(substr(tlf, 1, 1)) %in% c("l", "t")) {
       indentme4 <- (indentme4 + formatindex)
     }
-    if (tolower(format) == "rtf") {
+    if (is_format_rtf(format)) {
       for (i in seq_along(indentme4)) {
         ht[indentme4[i], 1] <- glue::glue("\\intbl\\li{space*4+hang}\\fi-{hang} {ht[indentme4[i], 1]}")
       }
-    } else if (tolower(format) == "html") {
+    } else if (is_format_html(format)) {
       for (i in seq_along(indentme4)) {
         ht[indentme4[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*5}px'> {ht[indentme4[i], 1]}")
       }
@@ -671,11 +680,11 @@ gentlg_single <- function(huxme = NULL,
     if (tolower(substr(tlf, 1, 1)) %in% c("l", "t")) {
       indentme5 <- (indentme5 + formatindex)
     }
-    if (tolower(format) == "rtf") {
+    if (is_format_rtf(format)) {
       for (i in seq_along(indentme5)) {
         ht[indentme5[i], 1] <- glue::glue("\\intbl\\li{space*5+hang}\\fi-{hang} {ht[indentme5[i], 1]}")
       }
-    } else if (tolower(format) == "html") {
+    } else if (is_format_html(format)) {
       for (i in seq_along(indentme5)) {
         ht[indentme5[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*6}px'> {ht[indentme5[i], 1]}")
       }
@@ -687,11 +696,11 @@ gentlg_single <- function(huxme = NULL,
     if (tolower(substr(tlf, 1, 1)) %in% c("l", "t")) {
       indentme6 <- (indentme6 + formatindex)
     }
-    if (tolower(format) == "rtf") {
+    if (is_format_rtf(format)) {
       for (i in seq_along(indentme6)) {
         ht[indentme6[i], 1] <- glue::glue("\\intbl\\li{space*6+hang}\\fi-{hang} {ht[indentme6[i], 1]}")
       }
-    } else if (tolower(format) == "html") {
+    } else if (is_format_html(format)) {
       for (i in seq_along(indentme6)) {
         ht[indentme6[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*7}px'> {ht[indentme6[i], 1]}")
       }
@@ -703,7 +712,7 @@ gentlg_single <- function(huxme = NULL,
   #############################
 
   add_header <- function(dsnin, header) {
-    if (tolower(format) == "rtf") {
+    if (is_format_rtf(format)) {
       tmp <- t(huxtable::as_hux(c(header, rep("", ncol(dsnin) - 1)),
         add_colnames = FALSE
       ))
@@ -731,7 +740,7 @@ gentlg_single <- function(huxme = NULL,
     }
   }
 
-  if (tolower(format) == "rtf") {
+  if (is_format_rtf(format)) {
     # Used to prevent the Rplot.pdf from outputting in batch.
     if (dev.cur() == 1) {
       # If there is no graphics dev available. Create a NULL PDF device
@@ -765,7 +774,7 @@ gentlg_single <- function(huxme = NULL,
       if (index_in_result == 1) "\\s15 " else "\\s16 ",
       file, ":\\tab", " ", title
     ))
-  } else if (tolower(format) == "html") {
+  } else if (is_format_html(format)) {
     # Make repeated header on each page
     ht <- add_header(
       ht,
@@ -779,11 +788,10 @@ gentlg_single <- function(huxme = NULL,
     )
   }
 
-
   #############################
   ###      Table borders    ###
   #############################
-  if (tolower(format) == "rtf") {
+  if (is_format_rtf(format)) {
     bordervalue <- ifelse(tlf %in% "l", getOption("tidytlg.fontsize.listing"),
       getOption("tidytlg.fontsize.table")
     ) / 10
@@ -791,7 +799,7 @@ gentlg_single <- function(huxme = NULL,
     ht <- huxtable::set_top_border(ht, 1, value = bordervalue) %>%
       huxtable::set_bottom_border(1, value = bordervalue) %>%
       huxtable::set_bottom_border(nrow(ht), value = bordervalue)
-  } else if (tolower(format) == "html") {
+  } else if (is_format_html(format)) {
     ht[1, ] <- paste0("<div style='border-top :1pt solid; border-bottom :1pt solid; '> ", ht[1, ])
   }
   #############################
@@ -804,7 +812,7 @@ gentlg_single <- function(huxme = NULL,
     "f" = getOption("tidytlg.fontsize.graph.footnote")
   )
 
-  if (tolower(format) == "rtf") {
+  if (is_format_rtf(format)) {
     add_footer <- function(dsnin, footer, first = FALSE, size = fontsize) {
       if (first) {
         # In case hanging indent is required + hard enter: \\par\\pard\\pnhang\\fi-180\\li180
@@ -820,7 +828,7 @@ gentlg_single <- function(huxme = NULL,
       }
       return(dsnin)
     }
-  } else if (tolower(format) == "html") {
+  } else if (is_format_html(format)) {
     add_footer <- function(dsnin, footer, first = FALSE, size = fontsize) {
       if (first) {
         # In case hanging indent is required + hard enter:
@@ -874,7 +882,7 @@ gentlg_single <- function(huxme = NULL,
     )
   )
 
-  if (tolower(format) == "rtf") {
+  if (is_format_rtf(format)) {
     ht <- huxtable::set_top_border(ht, nrow(ht) - length(footers),
       value = huxtable::brdr(bordervalue,
         color = "black"
@@ -885,7 +893,7 @@ gentlg_single <- function(huxme = NULL,
         color = "black"
       )
     )
-  } else if (tolower(format) == "html") {
+  } else if (is_format_html(format)) {
     ht[nrow(ht), ] <- paste0(
       "<div style='border-bottom:1pt solid'> ",
       ht[nrow(ht), ]
@@ -901,28 +909,22 @@ gentlg_single <- function(huxme = NULL,
     )
   }
 
-  if (tolower(format) == "rtf") {
-    start_index <- ifelse(firstcolumnborder, 1, 2)
-    if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
+  if (is_format_rtf(format)) {
+    # Get the old format of bottom borders for backwards
+    # compatibility.
+    if (!is.matrix(bottom_borders)) {
+      bottom_borders <- old_format(ht, colspan, colheader)
+    }
+    if (is_table(tlf) || is_listing(tlf)) {
+      huxtable::left_padding(ht) <- 0
+      huxtable::right_padding(ht) <- 0
+      huxtable::bottom_padding(ht) <- 0
+      huxtable::top_padding(ht) <- 0
+      ht <- add_bottom_borders(ht, bottom_borders, border_fns)
+    }
+    if (is_table(tlf)) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
-      brows <- 2:(1 + formatindex)
-      if (is.null(colspan_line)) {
-        colspan_line <- brows
-      } else {
-        colspan_line <- colspan_line + 1
-      }
-      brows <- brows[brows %in% colspan_line]
-      for (z in brows) {
-        borderlineme <- start_index:ncol(ht)
-        noborderline <- which(ht[z, start_index:ncol(ht)] == "\\keepn\\trhdr ")
-
-        if (length(noborderline) > 0) {
-          borderlineme <- borderlineme[-noborderline]
-        }
-
-        ht[z, borderlineme] <- paste0("\\brdrb\\brdrs ", ht[z, borderlineme])
-      }
-    } else if (tolower(substr(tlf, 1, 1)) %in% c("l")) {
+    } else if (is_listing(tlf)) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
       # Top center per JCEV-12. Only top align the first two rows, the title and
       # the column header, plus whatever colspans there are.
@@ -936,22 +938,11 @@ gentlg_single <- function(huxme = NULL,
         seq_len(ncol(ht)),
         "bottom"
       )
-
-      for (z in 2:(1 + formatindex)) {
-        borderlineme <- seq_len(ncol(ht))
-        noborderline <- which(ht[z, ] == "\\keepn\\trhdr ")
-
-        if (length(noborderline) > 0) {
-          borderlineme <- borderlineme[-noborderline]
-        }
-
-        ht[z, borderlineme] <- paste0("\\brdrb\\brdrs ", ht[z, borderlineme])
-      }
-    } else if (tolower(substr(tlf, 1, 1)) %in% c("f", "g")) {
+    } else if (is_graph(tlf)) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), seq_len(ncol(ht)), "center")
     }
-  } else if (tolower(format) == "html") {
-    if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
+  } else if (is_format_html(format)) {
+    if (is_table(tlf)) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
 
       for (z in 2:(1 + formatindex)) {
@@ -961,7 +952,7 @@ gentlg_single <- function(huxme = NULL,
           ht[z, borderlineme]
         )
       }
-    } else if (tolower(substr(tlf, 1, 1)) %in% c("l")) {
+    } else if (is_listing(tlf)) {
       ht <- huxtable::set_align(ht, 2:nrow(ht), 2:ncol(ht), "center")
 
       for (z in 2:(1 + formatindex)) {

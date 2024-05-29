@@ -61,12 +61,12 @@ test_that("The page number mentions the table", {
         code = {
           gentlg(
             list(tab, tab2),
-            file = "pagenumbersTable",
+            file = "pagenumberstable",
             pagenum = TRUE
           )
         }
       )
     }
   )
-  expect_snapshot_file(test_path("test_outputs/pagenumbersTable.rtf"))
+  expect_snapshot_file(test_path("test_outputs/pagenumberstable.rtf"))
 })

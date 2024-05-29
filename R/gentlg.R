@@ -2,17 +2,18 @@
 #'
 #' Generate and output a huxtable with desired properties
 #' During this function call, the huxtable can be written to an RTF or
-#' displayed in HTML.
+#' displayed in HTML. `gentlg` is vectorized, see parameter descriptions
+#' to learn for which arguments.
 #'
 #' @author Steven Haesendonckx <shaesen2@@its.jnj.com>
 #' @author Pelagia Alexandra Papadopoulou <ppapadop@@its.jnj.com>
 #'
 #' @param huxme (optional) For tables and listings, A list of input dataframes
 #' containing all columns of interest. For graphs, either NULL or a  list of ggplot
-#' objects.
+#' objects. Vectorized.
 #' @param tlf (optional) String, representing the output choice. Choices are
 #' "Table" "Listing" "Figure". Abbreviations are allowed eg "T" for Table.
-#' Strings can be either upper- or lowercase. (Default = "Table")
+#' Strings can be either upper- or lowercase. Vectorized. (Default = "Table")
 #' @param format (optional) String, representing the output format. Choices are
 #' "rtf" and "html". Strings can be either upper- or lowercase.(Default = "rtf")
 #' @param colspan (optional) A list of character vectors representing the
@@ -20,6 +21,7 @@
 #' represents the top spanning header, etc. Each vector should have a length
 #' equal to the number of columns in the output data frame. A spanning header
 #' is identified through the use of the same column name in adjacent elements.
+#' Vectorized.
 #' @param idvars (optional) Character vector defining the columns of a listing
 #' where repeated values should be removed recursively. If NULL then
 #' all column names are used in the algorithm. If NA, then the listing remains
@@ -58,28 +60,26 @@
 #' 'TABLE ID', 'IDENTIFIER', and TEXT'. The file will be read in, subset to
 #' where the tblid matches the tlf argument, and identifiers with 'title' or
 #' 'footnote' will be used to populate the table.
-#' @param title (required) String. Title of the output.
+#' @param title (required) String. Title of the output. Vectorized.
 #' @param footers (optional) Character vector, containing strings of footnotes
-#' to be included.
+#' to be included. Vectorized.
 #' @param print.hux (optional) Logical, indicating whether the output should be
 #' printed to RTF ('format' = "rtf") / displayed as HTML ('format' = "HTML").
 #' (Default = TRUE) Note that RTF is written using `quick_rtf_jnj()`
 #' function and that the HTML is displayed via the huxtable::print_html
 #' function.
 #' @param watermark (optional) String containing the desired watermark for
-#' RTF outputs.
+#' RTF outputs. Vectorized.
 #' @param colheader (optional) Character vector that contains the column labels
-#' for a table or listing. Default uses the column labels of huxme.
+#' for a table or listing. Default uses the column labels of huxme. Vectorized.
 #' @param pagenum (optional) Logical. When true page numbers are added on the
-#' right side of the footer section in the format page x/y. (Default = FALSE)
-#' @param firstcolumnborder (optional) Logical. When true page adds a bottom
-#' border to the first column of header rows (Default = FALSE)
-#' @param header_pad (optional) List. Adds header pad to header rows in list
-#' based on index (not including title), when NULL pad is added to all header
-#' rows  (Default = NULL)
-#' @param colspan_line (optional) List. Adds bottom border to header rows in list
-#' based on index (not including title), when NULL border is added to all header
-#' rows  (Default = NULL)
+#' right side of the footer section in the format page x/y.
+#' Vectorized. (Default = FALSE)
+#' @param bottom_borders (optional) Matrix or `"old_format"`. A matrix indicating where to add the bottom
+#' borders. Vectorized. See [add_bottom_borders()] for more information. If `"old_format"`,
+#' then borders are added to the `colspan` and `colheader` rows. (Default = "old_format").
+#' @param border_fns (optional) List. A list of functions that transform the matrix
+#' passed to `bottom_borders`. Vectorized. See [add_bottom_borders()] for more information.
 #'
 #' @section Huxme Details:
 #' For tables and listings, formatting of the output can be dictated through the
@@ -137,6 +137,21 @@
 #'     "{\\super a} Subjects are counted once for any given event."
 #'   )
 #' )
+#'
+#' # Add spanning bottom borders under the cells in the second row
+#' gentlg(
+#'   huxme = final,
+#'   wcol = c(0.70, 0.15, 0.15),
+#'   file = "TSFAEX",
+#'   colheader = c("", "Drug A", "Drug B"),
+#'   title = "This is Amazing Demonstration 1",
+#'   footers = c(
+#'     "Note: For demonstrative purposes only",
+#'     "{\\super a} Subjects are counted once for any given event."
+#'   ),
+#'   border_fns = list(spanning_borders(2))
+#' )
+#'
 #' # Use a watermark
 #' gentlg(
 #'   huxme = final,
@@ -191,9 +206,8 @@ gentlg <- function(huxme = NULL,
                    watermark = NULL,
                    colheader = NULL,
                    pagenum = FALSE,
-                   firstcolumnborder = FALSE,
-                   header_pad = NULL,
-                   colspan_line = NULL) {
+                   bottom_borders = "old_format",
+                   border_fns = list()) {
   if (is.null(huxme)) {
     return(gentlg_single(
       huxme = NULL,
@@ -215,9 +229,8 @@ gentlg <- function(huxme = NULL,
       watermark = watermark,
       colheader = colheader,
       pagenum = pagenum,
-      firstcolumnborder = firstcolumnborder,
-      header_pad = header_pad,
-      colspan_line = colspan_line
+      bottom_borders = bottom_borders,
+      border_fns = border_fns
     ))
   }
   if (inherits(huxme, "data.frame") || inherits(huxme, "ggplot")) {
@@ -226,7 +239,9 @@ gentlg <- function(huxme = NULL,
 
   # If we leave NULLs in the arguments
   # then the mapply won't run, so we
-  # wrap the NULLs in a list
+  # wrap the NULLs in a list.
+  # The same goes for scalar arguments that
+  # can be arrays.
   if (!is.list(title)) {
     title <- list(title)
   }
@@ -239,22 +254,31 @@ gentlg <- function(huxme = NULL,
   if (!is.list(colheader)) {
     colheader <- list(colheader)
   }
-  if (!is.list(firstcolumnborder)) {
-    firstcolumnborder <- list(firstcolumnborder)
+  if (!is.list(bottom_borders)) {
+    bottom_borders <- list(bottom_borders)
   }
-  header_pad <- list(header_pad)
-  colspan_line <- list(colspan_line)
+  assertthat::assert_that(is.list(border_fns))
+  if (length(border_fns) == 0 ||
+    (length(border_fns) > 0 && !is.list(border_fns[[1]]))) {
+    border_fns <- list(border_fns)
+  }
+  if (
+    (is.list(colspan) && length(colspan) > 0 && !is.list(colspan[[1]])) ||
+      is.null(colspan)
+  ) {
+    colspan <- list(colspan)
+  }
 
   hts <- mapply(
     function(ht,
+             colspan,
              title,
              footers,
              watermark,
              colheader,
              pagenum,
-             firstcolumnborder,
-             header_pad,
-             colspan_line,
+             bottom_borders,
+             border_fns,
              index) {
       gentlg_single(
         huxme = ht,
@@ -276,21 +300,20 @@ gentlg <- function(huxme = NULL,
         watermark = watermark,
         colheader = colheader,
         pagenum = pagenum,
-        firstcolumnborder = firstcolumnborder,
-        header_pad = header_pad,
-        colspan_line = colspan_line,
+        bottom_borders = bottom_borders,
+        border_fns = border_fns,
         index_in_result = index
       )
     },
     huxme,
+    colspan,
     title,
     footers,
     watermark,
     colheader,
     pagenum,
-    firstcolumnborder,
-    header_pad,
-    colspan_line,
+    bottom_borders,
+    border_fns,
     seq_len(length(huxme)),
     SIMPLIFY = FALSE
   )
@@ -310,7 +333,6 @@ gentlg <- function(huxme = NULL,
       watermark = watermark,
       nheader = 1 + as.numeric(lapply(hts, function(ht) length(ht$colspan))),
       tlf = tlf,
-      header_pad = header_pad
     )
   } else if (print.hux == TRUE && toupper(format) == "HTML") {
     lapply(hts, huxtable::print_html)

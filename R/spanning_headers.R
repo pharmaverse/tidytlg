@@ -21,16 +21,14 @@
 #'   )
 #'
 #' spanning_headers(column_metadata)
-
 spanning_headers <- function(column_metadata) {
-
-  span_element <- function(x) (
+  span_element <- function(x) {
     c("", stringr::str_replace_na(x, ""))
-  )
+  }
 
   not_empty <- function(x) {
     !all(is.na(x) | is.null(x) | x == "")
-    }
+  }
 
   span <- column_metadata %>%
     dplyr::select_if(not_empty) %>%

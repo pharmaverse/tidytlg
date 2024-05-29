@@ -24,19 +24,18 @@ gentlg(
   watermark = NULL,
   colheader = NULL,
   pagenum = FALSE,
-  firstcolumnborder = FALSE,
-  header_pad = NULL,
-  colspan_line = NULL
+  bottom_borders = "old_format",
+  border_fns = list()
 )
 }
 \arguments{
 \item{huxme}{(optional) For tables and listings, A list of input dataframes
 containing all columns of interest. For graphs, either NULL or a  list of ggplot
-objects.}
+objects. Vectorized.}
 
 \item{tlf}{(optional) String, representing the output choice. Choices are
 "Table" "Listing" "Figure". Abbreviations are allowed eg "T" for Table.
-Strings can be either upper- or lowercase. (Default = "Table")}
+Strings can be either upper- or lowercase. Vectorized. (Default = "Table")}
 
 \item{format}{(optional) String, representing the output format. Choices are
 "rtf" and "html". Strings can be either upper- or lowercase.(Default = "rtf")}
@@ -45,7 +44,8 @@ Strings can be either upper- or lowercase. (Default = "Table")}
 spanning headers to be used for the table or listing. The first vector
 represents the top spanning header, etc. Each vector should have a length
 equal to the number of columns in the output data frame. A spanning header
-is identified through the use of the same column name in adjacent elements.}
+is identified through the use of the same column name in adjacent elements.
+Vectorized.}
 
 \item{idvars}{(optional) Character vector defining the columns of a listing
 where repeated values should be removed recursively. If NULL then
@@ -94,10 +94,10 @@ where the tblid matches the tlf argument, and identifiers with 'title' or
 File name will be adjusted to be lowercase and have - and _ removed,
 this will not affect table title.}
 
-\item{title}{(required) String. Title of the output.}
+\item{title}{(required) String. Title of the output. Vectorized.}
 
 \item{footers}{(optional) Character vector, containing strings of footnotes
-to be included.}
+to be included. Vectorized.}
 
 \item{print.hux}{(optional) Logical, indicating whether the output should be
 printed to RTF ('format' = "rtf") / displayed as HTML ('format' = "HTML").
@@ -106,24 +106,21 @@ function and that the HTML is displayed via the huxtable::print_html
 function.}
 
 \item{watermark}{(optional) String containing the desired watermark for
-RTF outputs.}
+RTF outputs. Vectorized.}
 
 \item{colheader}{(optional) Character vector that contains the column labels
-for a table or listing. Default uses the column labels of huxme.}
+for a table or listing. Default uses the column labels of huxme. Vectorized.}
 
 \item{pagenum}{(optional) Logical. When true page numbers are added on the
-right side of the footer section in the format page x/y. (Default = FALSE)}
+right side of the footer section in the format page x/y.
+Vectorized. (Default = FALSE)}
 
-\item{firstcolumnborder}{(optional) Logical. When true page adds a bottom
-border to the first column of header rows (Default = FALSE)}
+\item{bottom_borders}{(optional) Matrix or \code{"old_format"}. A matrix indicating where to add the bottom
+borders. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information. If \code{"old_format"},
+then borders are added to the \code{colspan} and \code{colheader} rows. (Default = "old_format").}
 
-\item{header_pad}{(optional) List. Adds header pad to header rows in list
-based on index (not including title), when NULL pad is added to all header
-rows  (Default = NULL)}
-
-\item{colspan_line}{(optional) List. Adds bottom border to header rows in list
-based on index (not including title), when NULL border is added to all header
-rows  (Default = NULL)}
+\item{border_fns}{(optional) List. A list of functions that transform the matrix
+passed to \code{bottom_borders}. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information.}
 }
 \value{
 A list of formatted huxtables with desired properties for output to an RTF/HTML
@@ -131,7 +128,8 @@ A list of formatted huxtables with desired properties for output to an RTF/HTML
 \description{
 Generate and output a huxtable with desired properties
 During this function call, the huxtable can be written to an RTF or
-displayed in HTML.
+displayed in HTML. \code{gentlg} is vectorized, see parameter descriptions
+to learn for which arguments.
 }
 \section{Huxme Details}{
 
@@ -188,6 +186,21 @@ gentlg(
     "{\\\\super a} Subjects are counted once for any given event."
   )
 )
+
+# Add spanning bottom borders under the cells in the second row
+gentlg(
+  huxme = final,
+  wcol = c(0.70, 0.15, 0.15),
+  file = "TSFAEX",
+  colheader = c("", "Drug A", "Drug B"),
+  title = "This is Amazing Demonstration 1",
+  footers = c(
+    "Note: For demonstrative purposes only",
+    "{\\\\super a} Subjects are counted once for any given event."
+  ),
+  border_fns = list(spanning_borders(2))
+)
+
 # Use a watermark
 gentlg(
   huxme = final,
