@@ -37,6 +37,9 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
+    <loc>/reference/add_bottom_borders.html</loc>
+  </url>
+  <url>
     <loc>/reference/add_format.html</loc>
   </url>
   <url>
@@ -64,6 +67,9 @@
     <loc>/reference/char2factor.html</loc>
   </url>
   <url>
+    <loc>/reference/col_borders.html</loc>
+  </url>
+  <url>
     <loc>/reference/column_metadata.html</loc>
   </url>
   <url>
@@ -88,6 +94,12 @@
     <loc>/reference/nested_freq.html</loc>
   </url>
   <url>
+    <loc>/reference/no_borders.html</loc>
+  </url>
+  <url>
+    <loc>/reference/old_format.html</loc>
+  </url>
+  <url>
     <loc>/reference/replace_na_with_blank.html</loc>
   </url>
   <url>
@@ -95,6 +107,15 @@
   </url>
   <url>
     <loc>/reference/roundSAS.html</loc>
+  </url>
+  <url>
+    <loc>/reference/row_border.html</loc>
+  </url>
+  <url>
+    <loc>/reference/single_border.html</loc>
+  </url>
+  <url>
+    <loc>/reference/spanning_borders.html</loc>
   </url>
   <url>
     <loc>/reference/spanning_headers.html</loc>
