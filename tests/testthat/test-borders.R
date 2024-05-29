@@ -104,7 +104,7 @@ testthat::test_that("Inserts separated borders in the second row", {
           gentlg(
             huxme = tbl,
             orientation = "landscape",
-            file = "stubbornTest",
+            file = "stubborntest",
             title = "Summary of Concomitant Medications",
             colspan = list(
               c("", "Active Study Agent", "Active Study Agent", "Active Study Agent", "", ""),
@@ -120,5 +120,5 @@ testthat::test_that("Inserts separated borders in the second row", {
     }
   )
 
-  expect_snapshot_file(test_path(sprintf("%s/stubbornTest.rtf", output_directory)))
+  expect_snapshot_file(test_path(sprintf("%s/stubborntest.rtf", output_directory)))
 })
