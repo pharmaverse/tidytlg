@@ -196,7 +196,8 @@ add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns
           res
         }
       )
-      huxtable::right_padding(ht)[border_matrix[row, ] != 0] <- 4
+      huxtable::right_padding(ht)[border_matrix[row, ] != 0] <- 3
+      huxtable::top_padding(ht)[border_matrix[row, ] != 0] <- 3
       if (border_matrix[row, ncol(border_matrix)] != 0) {
         ht <- huxtable::set_right_padding(ht, row, ncol(border_matrix), 0)
       }
@@ -241,13 +242,13 @@ no_borders <- function(ht, matrix = NULL) {
 #' @param row `numeric` the row of the table
 #' @export
 #' @family border_functions
-spanning_borders <- function(row) {
+spanning_borders <- function(row, cols = c(-1)) {
   function(ht, matrix) {
     last_num <- matrix[row][1]
     r <- trimws(gsub("\\\\keepn\\\\trhdr", "", ht[row + 1, ]))
-    for (col in seq_len(length(r))[-1]) {
+    for (col in seq_len(length(r))[cols]) {
       if (r[col] != "") {
-        if (r[col - 1] != r[col]) {
+        if (col == 1 || (r[col - 1] != r[col])) {
           last_num <- last_num + 1
         }
         matrix[row, col] <- last_num
@@ -313,11 +314,12 @@ row_border <- function(row) {
 #' @param ht the hux object passed to [gentlg()]
 #' @param colspan `colspan` argument to [gentlg()]
 #' @param colheader `colheader` argument to [gentlg()]
+#' @param tlf `character` type of the output
 #' @return a bottom border matrix for use with [add_bottom_borders()] or `NULL`
 #' if `ht` is `NULL`
 #'
 #' @keywords internal
-old_format <- function(ht, colspan, colheader) {
+old_format <- function(ht, colspan, colheader, tlf) {
   if (is.null(ht)) {
     return(NULL)
   }
@@ -327,7 +329,10 @@ old_format <- function(ht, colspan, colheader) {
   # Attach borders to colspan and colheader rows
   colspan_length <- length(colspan)
   for (row in 1:(1 + colspan_length)) {
-    border_matrix <- spanning_borders(row)(ht, border_matrix)
+    border_matrix <- spanning_borders(
+      row,
+      cols = ifelse(is_listing(tlf), seq_along(border_matrix[row, ]), c(-1))
+    )(ht, border_matrix)
   }
 
   border_matrix
