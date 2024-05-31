@@ -197,6 +197,7 @@ add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns
         }
       )
       huxtable::right_padding(ht)[border_matrix[row, ] != 0] <- 3
+      # This is in fact interpreted as left padding by Word...
       huxtable::top_padding(ht)[border_matrix[row, ] != 0] <- 3
       if (border_matrix[row, ncol(border_matrix)] != 0) {
         ht <- huxtable::set_right_padding(ht, row, ncol(border_matrix), 0)
@@ -240,6 +241,7 @@ no_borders <- function(ht, matrix = NULL) {
 #' The borders do not touch each other - they are separate.
 #'
 #' @param row `numeric` the row of the table
+#' @param cols `numeric` the columns of the row to consider
 #' @export
 #' @family border_functions
 spanning_borders <- function(row, cols = c(-1)) {
@@ -328,11 +330,20 @@ old_format <- function(ht, colspan, colheader, tlf) {
 
   # Attach borders to colspan and colheader rows
   colspan_length <- length(colspan)
-  for (row in 1:(1 + colspan_length)) {
-    border_matrix <- spanning_borders(
-      row,
-      cols = ifelse(is_listing(tlf), seq_along(border_matrix[row, ]), c(-1))
-    )(ht, border_matrix)
+  if (is_listing(tlf)) {
+    for (row in 1:(1 + colspan_length)) {
+      border_matrix <- spanning_borders(
+        row,
+        cols = seq_len(ncol(border_matrix))
+      )(ht, border_matrix)
+    }
+  } else {
+    for (row in 1:(1 + colspan_length)) {
+      border_matrix <- spanning_borders(
+        row,
+        cols = c(-1)
+      )(ht, border_matrix)
+    }
   }
 
   border_matrix
