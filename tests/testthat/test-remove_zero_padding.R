@@ -14,6 +14,6 @@ testthat::test_that("Removes zero padding" ,{
     "\\clpadl0 \\clpadft3\\clpadt60 \\clpadfb3\\clpadb0 \\clpadfr3\\clpadr60"
   )
   actual <- remove_zero_padding(example)
-  expected <- "\\clbrdrt\\clbrdrl\\clbrdrb\\clbrdrr\\clvertalb \\clpadft3\\clpadt60  \\clpadfr3\\clpadr60"
+  expected <- "\\clbrdrt\\clbrdrl\\clbrdrb\\clbrdrr\\clvertalb\\clpadft3\\clpadt60 \\clpadfr3\\clpadr60"
   testthat::expect_equal(actual, expected)
 })

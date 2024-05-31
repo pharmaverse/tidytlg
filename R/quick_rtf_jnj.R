@@ -882,6 +882,8 @@ quick_rtf_jnj <- function(hts,
     tables
   )
 
+  file_contents <- remove_zero_padding(file_contents)
+
   sink(file)
   cat(file_contents)
   sink()

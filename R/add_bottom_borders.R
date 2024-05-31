@@ -196,12 +196,10 @@ add_bottom_borders <- function(ht, border_matrix = no_borders(ht), transform_fns
           res
         }
       )
-      huxtable::right_padding(ht)[border_matrix[row, ] != 0] <- 3
+      huxtable::right_padding(ht)[row, border_matrix[row, ] != 0] <- 3
       # This is in fact interpreted as left padding by Word...
-      huxtable::top_padding(ht)[border_matrix[row, ] != 0] <- 3
-      if (border_matrix[row, ncol(border_matrix)] != 0) {
-        ht <- huxtable::set_right_padding(ht, row, ncol(border_matrix), 0)
-      }
+      huxtable::top_padding(ht)[row, border_matrix[row, ] != 0] <- 3
+      huxtable::top_padding(ht)[row, 1] <- 0
     } else {
       huxtable::bottom_border(ht)[row, border_matrix[row, ] != 0] <- huxtable::brdr(thickness = 0.9, style = "solid")
     }
