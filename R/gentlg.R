@@ -249,10 +249,10 @@ gentlg <- function(huxme = NULL,
         nheader = 1 + ifelse(is.null(ht$colspan), 0, ht$colspan),
         tlf = tlf,
       )
-      return(invisible())
+      return(invisible(NULL))
     } else if (print.hux == TRUE && toupper(format) == "HTML") {
       huxtable::print_html(ht$ht)
-      return(invisible())
+      return(invisible(NULL))
     }
   }
 
