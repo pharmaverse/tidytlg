@@ -208,8 +208,12 @@ gentlg <- function(huxme = NULL,
                    pagenum = FALSE,
                    bottom_borders = "old_format",
                    border_fns = list()) {
+  adjfilename <- stringr::str_replace_all(
+    stringr::str_to_lower(file),
+    "(-|_)", ""
+  )
   if (is.null(huxme)) {
-    return(gentlg_single(
+    ht <- gentlg_single(
       huxme = NULL,
       tlf = tlf,
       format = format,
@@ -231,8 +235,27 @@ gentlg <- function(huxme = NULL,
       pagenum = pagenum,
       bottom_borders = bottom_borders,
       border_fns = border_fns
-    ))
+    )
+
+    if (print.hux == FALSE) {
+      return(ht$ht)
+    } else if (print.hux == TRUE && is_format_rtf(format)) {
+      quick_rtf_jnj(
+        list(ht$ht),
+        file = paste(file.path(opath, adjfilename), ".rtf", sep = ""),
+        pagenum = pagenum,
+        portrait = tolower(orientation) == "portrait",
+        watermark = list(watermark),
+        nheader = 1 + ifelse(is.null(ht$colspan), 0, ht$colspan),
+        tlf = tlf,
+      )
+      return(invisible())
+    } else if (print.hux == TRUE && toupper(format) == "HTML") {
+      huxtable::print_html(ht$ht)
+      return(invisible())
+    }
   }
+
   if (inherits(huxme, "data.frame") || inherits(huxme, "ggplot")) {
     huxme <- list(huxme)
   }
@@ -318,14 +341,9 @@ gentlg <- function(huxme = NULL,
     SIMPLIFY = FALSE
   )
 
-  adjfilename <- stringr::str_replace_all(
-    stringr::str_to_lower(file),
-    "(-|_)", ""
-  )
-
   if (print.hux == FALSE) {
     return(lapply(hts, function(ht) ht$ht))
-  } else if (print.hux == TRUE && toupper(format) == "RTF") {
+  } else if (print.hux == TRUE && is_format_rtf(format)) {
     quick_rtf_jnj(lapply(hts, function(ht) ht$ht),
       file = paste(file.path(opath, adjfilename), ".rtf", sep = ""),
       pagenum = pagenum,
