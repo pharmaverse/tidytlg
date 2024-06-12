@@ -122,3 +122,59 @@ testthat::test_that("Inserts separated borders in the second row", {
 
   expect_snapshot_file(test_path(sprintf("%s/stubborntest.rtf", output_directory)))
 })
+
+
+testthat::test_that("Inserts separated borders under the first row for a listing", {
+  withr::with_options(
+    list(tidytlg.add_datetime = FALSE),
+    {
+      adsl <- cdisc_adsl
+      adae <- cdisc_adae
+
+      adsl <- adsl %>%
+        filter(SAFFL == "Y") %>%
+        select(USUBJID, SAFFL, TRT01AN, TRT01A)
+
+      adae <- adae %>%
+        filter(SAFFL == "Y" & TRTEMFL == "Y") %>%
+        mutate(
+          BSPT = paste(AEBODSYS, "[", AEDECOD, "]"),
+          SAEFL = if_else(AESER == "Y", "Yes", "No"),
+          DTHFL = if_else(AEOUT == "FATAL", "Yes", "No")
+        ) %>%
+        select(USUBJID, ASTDY, TRTA, BSPT, AETERM, SAEFL, DTHFL)
+
+      tbl <- inner_join(adsl, adae, by = "USUBJID") %>%
+        arrange(TRT01AN, USUBJID, ASTDY) %>%
+        select(TRT01A, USUBJID, ASTDY, TRTA, BSPT, AETERM, SAEFL, DTHFL) %>%
+        filter(USUBJID %in% c("01-701-1015", "01-701-1023"))
+
+      withr::with_dir(
+        new = testthat::test_path(output_directory),
+        code = {
+          gentlg(
+            huxme = tbl,
+            tlf = "l",
+            orientation = "landscape",
+            file = "oldformatlisting",
+            title = "Listing of Adverse Events",
+            idvars = c("TRT01A", "USUBJID"),
+            wcol = 0.15,
+            colheader = c(
+              "Treatment Group",
+              "Subject ID",
+              "Study Day of AE",
+              "Treatment Period",
+              "Body System [Preferred Term]",
+              "Verbatim Term",
+              "Serious",
+              "Fatal"
+            )
+          )
+        }
+      )
+    }
+  )
+
+  expect_snapshot_file(test_path(sprintf("%s/oldformatlisting.rtf", output_directory)))
+})

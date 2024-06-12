@@ -4,7 +4,7 @@
 \alias{old_format}
 \title{Adds bottom borders according to the old formatting}
 \usage{
-old_format(ht, colspan, colheader)
+old_format(ht, colspan, colheader, tlf)
 }
 \arguments{
 \item{ht}{the hux object passed to \code{\link[=gentlg]{gentlg()}}}
@@ -12,6 +12,8 @@ old_format(ht, colspan, colheader)
 \item{colspan}{\code{colspan} argument to \code{\link[=gentlg]{gentlg()}}}
 
 \item{colheader}{\code{colheader} argument to \code{\link[=gentlg]{gentlg()}}}
+
+\item{tlf}{\code{character} type of the output}
 }
 \value{
 a bottom border matrix for use with \code{\link[=add_bottom_borders]{add_bottom_borders()}} or \code{NULL}

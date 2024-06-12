@@ -4,10 +4,12 @@
 \alias{spanning_borders}
 \title{Adds borders under cells in a row, excluding the first column.}
 \usage{
-spanning_borders(row)
+spanning_borders(row, cols = c(-1))
 }
 \arguments{
 \item{row}{\code{numeric} the row of the table}
+
+\item{cols}{\code{numeric} the columns of the row to consider}
 }
 \description{
 Adds borders under cells that are not empty in a given row,

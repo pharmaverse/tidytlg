@@ -759,7 +759,7 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   } else {
     header_pad <- header_pad + 1
   }
-  if (tolower(substr(tlf, 1, 1)) == "t" && !is.null(header_pad)) {
+  if (is_table(tlf) && !is.null(header_pad)) {
     result <- pad_header(result, nheader, header_pad)
   }
   return(result)
@@ -881,6 +881,8 @@ quick_rtf_jnj <- function(hts,
     header,
     tables
   )
+
+  file_contents <- remove_zero_padding(file_contents)
 
   sink(file)
   cat(file_contents)
