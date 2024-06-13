@@ -1,3 +1,13 @@
+# tidytlg 0.1.5
+
+* Updated `gentlg()` to allow for passing multiple of either plots or tables to
+`huxme`. The function supports printing multiple of these object to `.rtf` files.
+* Updated `gentlg()` to support refined control over the appearance of bottom borders
+in tables via new arguments `bottom_borders` and `border_fns`. See documentation
+for these arguments for more information.
+* Adjusted the text acompanying the page numbers to correctly reflect the contents
+of the printed documents produced by `gentlg()`.
+
 # tidytlg 0.1.4
 
 * Update getFileName.R to use the logrx package over the timber package
