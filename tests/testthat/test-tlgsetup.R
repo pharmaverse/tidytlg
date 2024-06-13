@@ -1,5 +1,4 @@
 test_that("tlgsetup will factorize the colnbr", {
-
   mtcars2 <- mtcars %>%
     filter(cyl != 8)
 
@@ -18,12 +17,12 @@ test_that("tlgsetup will factorize the colnbr", {
 
   expected <- tibble::tribble(
     ~label, ~col1, ~col2, ~col3, ~col4, ~col5, ~row_type, ~group_level,
-    "3",   "1",   "2",   "-",   "2",   "3",   "VALUE",            0,
-    "4",   "8",   "4",   "-",   "4",  "12",   "VALUE",            0,
-    "5",   "2",   "1",   "-",   "1",   "3",   "VALUE",            0
+    "3", "1", "2", "-", "2", "3", "VALUE", 0,
+    "4", "8", "4", "-", "4", "12", "VALUE", 0,
+    "5", "2", "1", "-", "1", "3", "VALUE", 0
   )
 
-  expect_equal(mtcars3 ,expected ,ignore_attr = TRUE)
+  expect_equal(mtcars3, expected, ignore_attr = TRUE)
 
 
   withr::with_options(
@@ -34,10 +33,13 @@ test_that("tlgsetup will factorize the colnbr", {
         code = {
           gentlg(
             mtcars3,
-            colheader = c("label","col1","col2","col3","col4","col5")
+            colheader = c("label", "col1", "col2", "col3", "col4", "col5"),
+            file = "testtlgsetup"
           )
-        })
-    })
+        }
+      )
+    }
+  )
 
-  expect_snapshot_file(test_path("test_outputs/test-tlgsetup.rtf"))
+  expect_snapshot_file(test_path("test_outputs/testtlgsetup.rtf"))
 })
