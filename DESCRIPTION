@@ -1,7 +1,7 @@
 Package: tidytlg
 Title: Create TLGs using the 'tidyverse'
-Version: 0.1.4
-Authors@R: 
+Version: 0.1.5
+Authors@R:
      c(person(given = "Nicholas",
            family = "Masel",
            role = "aut",
@@ -17,7 +17,7 @@ Authors@R:
        person(given = "Sheng-Wei",
            family = "Wang",
            role = "aut",
-           email = "swang69@its.jnj.com"),    
+           email = "swang69@its.jnj.com"),
        person(given = "Eli",
            family = "Miller",
            role = c("aut", "cre"),
@@ -52,7 +52,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
-Suggests: 
+Suggests:
     testthat (>= 2.1.0),
     knitr (>= 1.23),
     rmarkdown (>= 2.10),
