@@ -20,7 +20,7 @@ Authors@R:
            email = "swang69@its.jnj.com"),
        person(given = "Eli",
            family = "Miller",
-           role = c("aut", "cre"),
+           role = "aut",
            email = "eli.miller@atorusresearch.com",
            comment = c(ORCID = "0000-0002-2127-9456")),
        person(given = "Nathan",
@@ -38,7 +38,11 @@ Authors@R:
        person(given = "David",
            family = "Hugh-Jones",
            role = "cph",
-           comment = "Author of included huxtable library")
+           comment = "Author of included huxtable library"),
+        person(given = "Konrad",
+            family = "Pagacz",
+            role = c("aut", "cre"),
+            email = "kpagacz@its.jnj.com")
      )
 Description: Generate tables, listings, and graphs (TLG) using 'tidyverse.'
   Tables can be created functionally, using a standard TLG process, or by
