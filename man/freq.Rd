@@ -55,8 +55,8 @@ the by variables as part of the group denominators (default = FALSE)}
 \item{cutoff}{(optional) percentage cutoff threshold. This can be passed as a
 numeric cutoff, in that case any rows with greater than or equal to that
 cutoff will be preserved, others will be dropped. To specify a single column
-to define the cutoff logic, pass a character value of the form "\if{html}{\out{<colName>}} >=
-\if{html}{\out{<value>}}" and only that column will be used.}
+to define the cutoff logic, pass a character value of the form
+\verb{<colName> >= <value>} and only that column will be used.}
 
 \item{cutoff_stat}{(optional) The value to cutoff by, n or pct. (default =
 'pct'). Can be done with multiple columns by adding & or | ex. \code{col1} >=

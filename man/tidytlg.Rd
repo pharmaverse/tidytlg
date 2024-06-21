@@ -121,7 +121,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Eli Miller \email{eli.miller@atorusresearch.com} (\href{https://orcid.org/0000-0002-2127-9456}{ORCID})
+\strong{Maintainer}: Konrad Pagacz \email{kpagacz@its.jnj.com}
 
 Authors:
 \itemize{
@@ -129,6 +129,7 @@ Authors:
   \item Steven Haesendonckx \email{shaesen2@its.jnj.com}
   \item Pelagia Alexandra Papadopoulou \email{ppapadop@its.jnj.com}
   \item Sheng-Wei Wang \email{swang69@its.jnj.com}
+  \item Eli Miller \email{eli.miller@atorusresearch.com} (\href{https://orcid.org/0000-0002-2127-9456}{ORCID})
   \item Nathan Kosiba \email{nkosiba@its.jnj.com} (\href{https://orcid.org/0000-0001-5359-4234}{ORCID})
   \item Aidan Ceney \email{aceney@its.jnj.com} (\href{https://orcid.org/0000-0001-8313-487X}{ORCID})
 }
