@@ -61,13 +61,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/tidytlg/devel">devel</a> </div></li>
-<!-- end dropdown for versions -->
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -521,7 +514,8 @@ footnotes for the specified <code>tblid</code>.</p>
 <span>       opath       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">working_dir</span><span class="op">)</span>,</span>
 <span>       file        <span class="op">=</span> <span class="va">tblid</span>,</span>
 <span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt; NULL</span></span></code></pre></div>
 <p>To create the html output, users need to specify the
 <code>format</code> argument as “HTML” and <code>print.hux</code>
 argument as FALSE in the <code>gentlg</code> call.</p>
@@ -531,59 +525,144 @@ argument as FALSE in the <code>gentlg</code> call.</p>
 <span>       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>       file        <span class="op">=</span> <span class="va">tblid</span>,</span>
 <span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">&lt;div style='border-top :1pt solid; border-bottom :1pt solid; '&gt;  </span>           </span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">&lt;div style = "text-indent: -36px; padding-left: 36px;"&gt; Table01: </span>           </span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">&amp;emsp; Demographic and Baseline Characteristics; Intent-to-treat </span>           </span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">Analysis Set&lt;/div&gt;                                               </span>           </span></span>
-<span><span class="co">#&gt;                                                                &lt;div            </span></span>
-<span><span class="co">#&gt;                                                         style='border-bott     </span></span>
-<span><span class="co">#&gt;                                                           om:1pt solid'&gt;       </span></span>
-<span><span class="co">#&gt;                                                             Xanomeline         </span></span>
-<span><span class="co">#&gt;                                               &lt;div        &lt;div        &lt;div     </span></span>
-<span><span class="co">#&gt;                                             style='bo   style='bo   style='bo  </span></span>
-<span><span class="co">#&gt;                                             rder-bott   rder-bott   rder-bott  </span></span>
-<span><span class="co">#&gt;                                              om:1pt      om:1pt      om:1pt    </span></span>
-<span><span class="co">#&gt;                                              solid'&gt;     solid'&gt;     solid'&gt;   </span></span>
-<span><span class="co">#&gt;                                              Placebo    Low Dose    High Dose  </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          86          84          84      </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt; Analysis set:                                       </span></span>
-<span><span class="co">#&gt;    ITT                                                                         </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt;                                                     </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt; Age, years                                          </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          86          84          84      </span></span>
-<span><span class="co">#&gt;    padding-left: 35.52px'&gt; N                                                   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;         75.2        75.7        74.4     </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Mean (SD)         (8.59)      (8.29)      (7.89)    </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;         76.0        77.5        76.0     </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Median                                              </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;       (52; 89)    (51; 88)    (56; 88)   </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Range                                               </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;        (69.0;      (71.0;      (70.5;    </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; IQ range           82.0)       82.0)       80.0)    </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt;                                                     </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt; Gender                                              </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          86          84          84      </span></span>
-<span><span class="co">#&gt;    padding-left: 35.52px'&gt; N                                                   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          33          34          44      </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Male              (38.4%)     (40.5%)     (52.4%)   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          53          50          40      </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Female            (61.6%)     (59.5%)     (47.6%)   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;           0           0           0      </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Unknown                                             </span></span>
-<span><span class="co">#&gt;    &lt;div style='border-top:1pt solid;'&gt; &lt;br /&gt;Key: IQ = interquartile           </span></span>
-<span><span class="co">#&gt;    Note: N reflects non-missing values                                         </span></span>
-<span><span class="co">#&gt;    &lt;div style='border-bottom:1pt solid'&gt; [table01.html][] 14JUN2024,           </span></span>
-<span><span class="co">#&gt;                                                                14:57           </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Column names: label, col1, col2, col3, col4, col5</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 4/6 columns shown.</span></span></code></pre></div>
+<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 100%; margin-left: auto; margin-right: auto;  ">
+<col style="width: 45%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold; font-size: 10pt;"><div style="border-top :1pt solid; border-bottom :1pt solid; "> <div style="text-indent: -36px; padding-left: 36px;"> Table01:   Demographic and Baseline Characteristics; Intent-to-treat Analysis Set</div> </div></td></tr>
+<tr>
+<td colspan="2" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"></td>
+<td colspan="3" style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Xanomeline</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> </div></td>
+</tr>
+<tr>
+<th style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Placebo</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Low Dose</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> High Dose</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Combined</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Total</div></th>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> Analysis set: ITT</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">86</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">168</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">254</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> </div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> Age, years</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 35.52px"> N</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">86</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">168</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">254</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Mean (SD)</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.2 (8.59)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.7 (8.29)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">74.4 (7.89)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.0 (8.09)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.1 (8.25)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Median</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">76.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.5</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">76.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.0</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Range</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(52; 89)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(51; 88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(56; 88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(51; 88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(51; 89)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> IQ range</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(69.0; 82.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(71.0; 82.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(70.5; 80.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(71.0; 81.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(70.0; 81.0)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> </div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> Gender</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 35.52px"> N</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">86</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">168</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">254</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Male</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">33 (38.4%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">34 (40.5%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">44 (52.4%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">78 (46.4%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">111 (43.7%)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Female</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">53 (61.6%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">50 (59.5%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">40 (47.6%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">90 (53.6%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">143 (56.3%)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Unknown</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+</tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 02JUL2024, 17:26</div></td></tr>
+</table>
 <p>Users can also include superscripts, subscripts, or line breaks via
 unicode. Please see the <code><a href="../articles/symbols.html">vignette("symbols")</a></code> for more
 details. Besides using <code>univar</code>, <code>freq</code>, and
@@ -663,89 +742,99 @@ single number as the column width and apply to every column.</p></li>
 <span>                       <span class="st">"Body System [Preferred Term]"</span>,</span>
 <span>                       <span class="st">"Verbatim Term"</span>,</span>
 <span>                       <span class="st">"Serious"</span>,</span>
-<span>                       <span class="st">"Fatal"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">&lt;div style='border-top :1pt solid; border-bottom :1pt    </span>                    </span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">solid; '&gt; &lt;div style = "text-indent: -36px; padding-left:</span>                    </span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">36px;"&gt; Listing01: &amp;emsp; Listing of Adverse             </span>                    </span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">Events&lt;/div&gt;                                             </span>                    </span></span>
-<span><span class="co">#&gt;   &lt;div          &lt;div       &lt;div       &lt;div       &lt;div       &lt;div       &lt;div    </span></span>
-<span><span class="co">#&gt;   style='bo   style='b   style='b   style='b   style='b   style='b   style='b  </span></span>
-<span><span class="co">#&gt;   rder-bott   order-bo   order-bo   order-bo   order-bo   order-bo   order-bo  </span></span>
-<span><span class="co">#&gt;   om:1pt      ttom:1pt   ttom:1pt   ttom:1pt   ttom:1pt   ttom:1pt   ttom:1pt  </span></span>
-<span><span class="co">#&gt;   solid'&gt;     solid'&gt;    solid'&gt;    solid'&gt;    solid'&gt;    solid'&gt;    solid'&gt;   </span></span>
-<span><span class="co">#&gt;   Treatment   Subject     Study     Treatmen     Body     Verbatim   Serious   </span></span>
-<span><span class="co">#&gt;   Group          ID       Day of    t Period    System      Term               </span></span>
-<span><span class="co">#&gt;                             AE                 [Preferr                        </span></span>
-<span><span class="co">#&gt;                                                ed Term]                        </span></span>
-<span><span class="co">#&gt;   Placebo     01-701-1      2       Placebo    GENERAL    APPLICAT      No     </span></span>
-<span><span class="co">#&gt;                 015                            DISORDER   ION SITE             </span></span>
-<span><span class="co">#&gt;                                                 S AND     ERYTHEMA             </span></span>
-<span><span class="co">#&gt;                                                ADMINIST                        </span></span>
-<span><span class="co">#&gt;                                                 RATION                         </span></span>
-<span><span class="co">#&gt;                                                  SITE                          </span></span>
-<span><span class="co">#&gt;                                                CONDITIO                        </span></span>
-<span><span class="co">#&gt;                                                  NS [                          </span></span>
-<span><span class="co">#&gt;                                                APPLICAT                        </span></span>
-<span><span class="co">#&gt;                                                ION SITE                        </span></span>
-<span><span class="co">#&gt;                                                ERYTHEMA                        </span></span>
-<span><span class="co">#&gt;                                                   ]                            </span></span>
-<span><span class="co">#&gt;                             2       Placebo    GENERAL    APPLICAT      No     </span></span>
-<span><span class="co">#&gt;                                                DISORDER   ION SITE             </span></span>
-<span><span class="co">#&gt;                                                 S AND     PRURITUS             </span></span>
-<span><span class="co">#&gt;                                                ADMINIST                        </span></span>
-<span><span class="co">#&gt;                                                 RATION                         </span></span>
-<span><span class="co">#&gt;                                                  SITE                          </span></span>
-<span><span class="co">#&gt;                                                CONDITIO                        </span></span>
-<span><span class="co">#&gt;                                                  NS [                          </span></span>
-<span><span class="co">#&gt;                                                APPLICAT                        </span></span>
-<span><span class="co">#&gt;                                                ION SITE                        </span></span>
-<span><span class="co">#&gt;                                                PRURITUS                        </span></span>
-<span><span class="co">#&gt;                                                   ]                            </span></span>
-<span><span class="co">#&gt;                             8       Placebo    GASTROIN   DIARRHOE      No     </span></span>
-<span><span class="co">#&gt;                                                TESTINAL      A                 </span></span>
-<span><span class="co">#&gt;                                                DISORDER                        </span></span>
-<span><span class="co">#&gt;                                                  S [                           </span></span>
-<span><span class="co">#&gt;                                                DIARRHOE                        </span></span>
-<span><span class="co">#&gt;                                                  A ]                           </span></span>
-<span><span class="co">#&gt;               01-701-1      3       Placebo    SKIN AND   ERYTHEMA      No     </span></span>
-<span><span class="co">#&gt;                 023                            SUBCUTAN                        </span></span>
-<span><span class="co">#&gt;                                                  EOUS                          </span></span>
-<span><span class="co">#&gt;                                                 TISSUE                         </span></span>
-<span><span class="co">#&gt;                                                DISORDER                        </span></span>
-<span><span class="co">#&gt;                                                  S [                           </span></span>
-<span><span class="co">#&gt;                                                ERYTHEMA                        </span></span>
-<span><span class="co">#&gt;                                                   ]                            </span></span>
-<span><span class="co">#&gt;                             3       Placebo    SKIN AND   ERYTHEMA      No     </span></span>
-<span><span class="co">#&gt;                                                SUBCUTAN                        </span></span>
-<span><span class="co">#&gt;                                                  EOUS                          </span></span>
-<span><span class="co">#&gt;                                                 TISSUE                         </span></span>
-<span><span class="co">#&gt;                                                DISORDER                        </span></span>
-<span><span class="co">#&gt;                                                  S [                           </span></span>
-<span><span class="co">#&gt;                                                ERYTHEMA                        </span></span>
-<span><span class="co">#&gt;                                                   ]                            </span></span>
-<span><span class="co">#&gt;                             3       Placebo    SKIN AND   ERYTHEMA      No     </span></span>
-<span><span class="co">#&gt;                                                SUBCUTAN                        </span></span>
-<span><span class="co">#&gt;                                                  EOUS                          </span></span>
-<span><span class="co">#&gt;                                                 TISSUE                         </span></span>
-<span><span class="co">#&gt;                                                DISORDER                        </span></span>
-<span><span class="co">#&gt;                                                  S [                           </span></span>
-<span><span class="co">#&gt;                                                ERYTHEMA                        </span></span>
-<span><span class="co">#&gt;                                                   ]                            </span></span>
-<span><span class="co">#&gt;                             22      Placebo    CARDIAC    ATRIOVEN      No     </span></span>
-<span><span class="co">#&gt;                                                DISORDER   TRICULAR             </span></span>
-<span><span class="co">#&gt;                                                  S [       BLOCK               </span></span>
-<span><span class="co">#&gt;                                                ATRIOVEN    SECOND              </span></span>
-<span><span class="co">#&gt;                                                TRICULAR    DEGREE              </span></span>
-<span><span class="co">#&gt;                                                 BLOCK                          </span></span>
-<span><span class="co">#&gt;                                                 SECOND                         </span></span>
-<span><span class="co">#&gt;                                                DEGREE ]                        </span></span>
-<span><span class="co">#&gt;    &lt;div style='border-bottom:1pt solid'&gt; [listing01.html][]                    </span></span>
-<span><span class="co">#&gt;                                            14JUN2024, 14:57                    </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Column names: TRT01A, USUBJID, ASTDY, TRTA, BSPT, AETERM, SAEFL, DTHFL</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 7/8 columns shown.</span></span></code></pre></div>
+<span>                       <span class="st">"Fatal"</span><span class="op">)</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 100%; margin-left: auto; margin-right: auto;  ">
+<col style="width: 15%">
+<col style="width: 12.1428571428571%">
+<col style="width: 12.1428571428571%">
+<col style="width: 12.1428571428571%">
+<col style="width: 12.1428571428571%">
+<col style="width: 12.1428571428571%">
+<col style="width: 12.1428571428571%">
+<col style="width: 12.1428571428571%">
+<tr><td colspan="8" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold; font-size: 10pt;"><div style="border-top :1pt solid; border-bottom :1pt solid; "> <div style="text-indent: -36px; padding-left: 36px;"> Listing01:   Listing of Adverse Events</div> </div></td></tr>
+<tr>
+<th style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> Treatment Group</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> Subject ID</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> Study Day of AE</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> Treatment Period</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> Body System [Preferred Term]</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> Verbatim Term</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> Serious</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> Fatal</div></th>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">Placebo</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">01-701-1015</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">2</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">Placebo</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS [ APPLICATION SITE ERYTHEMA ]</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">APPLICATION SITE ERYTHEMA</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">2</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">Placebo</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS [ APPLICATION SITE PRURITUS ]</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">APPLICATION SITE PRURITUS</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">8</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">Placebo</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">GASTROINTESTINAL DISORDERS [ DIARRHOEA ]</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">DIARRHOEA</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">01-701-1023</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">3</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">Placebo</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">SKIN AND SUBCUTANEOUS TISSUE DISORDERS [ ERYTHEMA ]</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">ERYTHEMA</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">3</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">Placebo</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">SKIN AND SUBCUTANEOUS TISSUE DISORDERS [ ERYTHEMA ]</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">ERYTHEMA</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">3</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">Placebo</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">SKIN AND SUBCUTANEOUS TISSUE DISORDERS [ ERYTHEMA ]</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">ERYTHEMA</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">22</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">Placebo</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">CARDIAC DISORDERS [ ATRIOVENTRICULAR BLOCK SECOND DEGREE ]</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">ATRIOVENTRICULAR BLOCK SECOND DEGREE</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 8pt;">No</td>
+</tr>
+<tr><td colspan="8" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [listing01.html][] 02JUL2024, 17:26</div></td></tr>
+</table>
 </div>
 <div class="section level2">
 <h2 id="graph-programming">Graph programming<a class="anchor" aria-label="anchor" href="#graph-programming"></a>
@@ -874,59 +963,144 @@ the column metadata in the <code>generate_results</code> call.</p>
 <span>       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>       file        <span class="op">=</span> <span class="va">tblid</span>,</span>
 <span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">&lt;div style='border-top :1pt solid; border-bottom :1pt solid; '&gt;  </span>           </span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">&lt;div style = "text-indent: -36px; padding-left: 36px;"&gt; Table01: </span>           </span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">&amp;emsp; Demographic and Baseline Characteristics; Intent-to-treat </span>           </span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">Analysis Set&lt;/div&gt;                                               </span>           </span></span>
-<span><span class="co">#&gt;                                                                &lt;div            </span></span>
-<span><span class="co">#&gt;                                                         style='border-bott     </span></span>
-<span><span class="co">#&gt;                                                           om:1pt solid'&gt;       </span></span>
-<span><span class="co">#&gt;                                                             Xanomeline         </span></span>
-<span><span class="co">#&gt;                                               &lt;div        &lt;div        &lt;div     </span></span>
-<span><span class="co">#&gt;                                             style='bo   style='bo   style='bo  </span></span>
-<span><span class="co">#&gt;                                             rder-bott   rder-bott   rder-bott  </span></span>
-<span><span class="co">#&gt;                                              om:1pt      om:1pt      om:1pt    </span></span>
-<span><span class="co">#&gt;                                              solid'&gt;     solid'&gt;     solid'&gt;   </span></span>
-<span><span class="co">#&gt;                                              Placebo    Low Dose    High Dose  </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          86          84          84      </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt; Analysis set:                                       </span></span>
-<span><span class="co">#&gt;    ITT                                                                         </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt;                                                     </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt; Age (Years)                                         </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          86          84          84      </span></span>
-<span><span class="co">#&gt;    padding-left: 35.52px'&gt; N                                                   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;         75.2        75.7        74.4     </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Mean (SD)         (8.59)      (8.29)      (7.89)    </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;         76.0        77.5        76.0     </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Median                                              </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;       (52; 89)    (51; 88)    (56; 88)   </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Range                                               </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;        (69.0;      (71.0;      (70.5;    </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; IQ range           82.0)       82.0)       80.0)    </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt;                                                     </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt; Gender                                              </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          86          84          84      </span></span>
-<span><span class="co">#&gt;    padding-left: 35.52px'&gt; N                                                   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          33          34          44      </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Male              (38.4%)     (40.5%)     (52.4%)   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          53          50          40      </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Female            (61.6%)     (59.5%)     (47.6%)   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;           0           0           0      </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; Unknown                                             </span></span>
-<span><span class="co">#&gt;    &lt;div style='border-top:1pt solid;'&gt; &lt;br /&gt;Key: IQ = interquartile           </span></span>
-<span><span class="co">#&gt;    Note: N reflects non-missing values                                         </span></span>
-<span><span class="co">#&gt;    &lt;div style='border-bottom:1pt solid'&gt; [table01.html][] 14JUN2024,           </span></span>
-<span><span class="co">#&gt;                                                                14:57           </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Column names: label, col1, col2, col3, col4, col5</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 4/6 columns shown.</span></span></code></pre></div>
+<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 100%; margin-left: auto; margin-right: auto;  ">
+<col style="width: 45%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold; font-size: 10pt;"><div style="border-top :1pt solid; border-bottom :1pt solid; "> <div style="text-indent: -36px; padding-left: 36px;"> Table01:   Demographic and Baseline Characteristics; Intent-to-treat Analysis Set</div> </div></td></tr>
+<tr>
+<td colspan="2" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"></td>
+<td colspan="3" style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Xanomeline</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> </div></td>
+</tr>
+<tr>
+<th style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Placebo</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Low Dose</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> High Dose</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Combined</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Total</div></th>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> Analysis set: ITT</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">86</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">168</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">254</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> </div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> Age (Years)</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 35.52px"> N</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">86</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">168</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">254</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Mean (SD)</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.2 (8.59)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.7 (8.29)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">74.4 (7.89)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.0 (8.09)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.1 (8.25)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Median</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">76.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.5</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">76.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.0</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Range</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(52; 89)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(51; 88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(56; 88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(51; 88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(51; 89)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> IQ range</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(69.0; 82.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(71.0; 82.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(70.5; 80.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(71.0; 81.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(70.0; 81.0)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> </div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> Gender</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 35.52px"> N</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">86</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">84</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">168</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">254</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Male</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">33 (38.4%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">34 (40.5%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">44 (52.4%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">78 (46.4%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">111 (43.7%)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Female</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">53 (61.6%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">50 (59.5%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">40 (47.6%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">90 (53.6%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">143 (56.3%)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> Unknown</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+</tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 02JUL2024, 17:26</div></td></tr>
+</table>
 </div>
 <div class="section level2">
 <h2 id="by-processing">By processing<a class="anchor" aria-label="anchor" href="#by-processing"></a>
@@ -994,90 +1168,256 @@ gender using <code>tablebyvar</code>.</p>
 <span>       print.hux <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>       file        <span class="op">=</span> <span class="va">tblid</span>,</span>
 <span>       orientation <span class="op">=</span> <span class="st">"landscape"</span>,</span>
-<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">&lt;div style='border-top :1pt solid; border-bottom :1pt solid; '&gt;  </span>           </span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">&lt;div style = "text-indent: -36px; padding-left: 36px;"&gt; Table01: </span>           </span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">&amp;emsp; Demographic and Baseline Characteristics; Intent-to-treat </span>           </span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">Analysis Set&lt;/div&gt;                                               </span>           </span></span>
-<span><span class="co">#&gt;                                                                &lt;div            </span></span>
-<span><span class="co">#&gt;                                                         style='border-bott     </span></span>
-<span><span class="co">#&gt;                                                           om:1pt solid'&gt;       </span></span>
-<span><span class="co">#&gt;                                                             Xanomeline         </span></span>
-<span><span class="co">#&gt;                                               &lt;div        &lt;div        &lt;div     </span></span>
-<span><span class="co">#&gt;                                             style='bo   style='bo   style='bo  </span></span>
-<span><span class="co">#&gt;                                             rder-bott   rder-bott   rder-bott  </span></span>
-<span><span class="co">#&gt;                                              om:1pt      om:1pt      om:1pt    </span></span>
-<span><span class="co">#&gt;                                              solid'&gt;     solid'&gt;     solid'&gt;   </span></span>
-<span><span class="co">#&gt;                                              Placebo    Low Dose    High Dose  </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt; Male                                                </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt;                                                     </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 35.52px'&gt; Age (Years)                                         </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          33          34          44      </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; N                                                   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;         73.4        75.6        74.1     </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; Mean (SD)         (8.15)      (8.69)      (8.16)    </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;         74.0        77.5        77.0     </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; Median                                              </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;       (52; 85)    (51; 88)    (56; 86)   </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; Range                                               </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;        (69.0;      (68.0;      (69.0;    </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; IQ range           80.0)       82.0)       80.5)    </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt;                                                     </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 35.52px'&gt; Race                                                </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          33          34          44      </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; N                                                   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;           0           0       1 (2.3%)   </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; AMERICAN                                            </span></span>
-<span><span class="co">#&gt;    INDIAN OR ALASKA NATIVE                                                     </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;       3 (9.1%)        0       3 (6.8%)   </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; BLACK OR                                            </span></span>
-<span><span class="co">#&gt;    AFRICAN AMERICAN                                                            </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          30          34          40      </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; WHITE             (90.9%)    (100.0%)     (90.9%)   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt; Female                                              </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt;                                                     </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 35.52px'&gt; Age (Years)                                         </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          53          50          40      </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; N                                                   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;         76.4        75.7        74.7     </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; Mean (SD)         (8.73)      (8.09)      (7.67)    </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;         78.0        77.5        76.0     </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; Median                                              </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;       (59; 89)    (54; 87)    (56; 88)   </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; Range                                               </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;        (70.0;      (72.0;      (72.0;    </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; IQ range           84.0)       81.0)       79.0)    </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 17.76px'&gt;                                                     </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;                                          </span></span>
-<span><span class="co">#&gt;    padding-left: 35.52px'&gt; Race                                                </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          53          50          40      </span></span>
-<span><span class="co">#&gt;    padding-left: 53.28px'&gt; N                                                   </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;           0           0           0      </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; AMERICAN                                            </span></span>
-<span><span class="co">#&gt;    INDIAN OR ALASKA NATIVE                                                     </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;       5 (9.4%)    6 (12.0%)   6 (15.0%)  </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; BLACK OR                                            </span></span>
-<span><span class="co">#&gt;    AFRICAN AMERICAN                                                            </span></span>
-<span><span class="co">#&gt;    &lt;div style='text-indent: -17.76px;          48          44          34      </span></span>
-<span><span class="co">#&gt;    padding-left: 71.04px'&gt; WHITE             (90.6%)     (88.0%)     (85.0%)   </span></span>
-<span><span class="co">#&gt;    &lt;div style='border-top:1pt solid;'&gt; &lt;br /&gt;Key: IQ = interquartile           </span></span>
-<span><span class="co">#&gt;    Note: N reflects non-missing values                                         </span></span>
-<span><span class="co">#&gt;    &lt;div style='border-bottom:1pt solid'&gt; [table01.html][] 14JUN2024,           </span></span>
-<span><span class="co">#&gt;                                                                14:57           </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Column names: label, col1, col2, col3, col4, col5</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 4/6 columns shown.</span></span></code></pre></div>
+<span>       title_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/titles.xls"</span>, package <span class="op">=</span> <span class="st">"tidytlg"</span><span class="op">)</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
+<table class="table huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 100%; margin-left: auto; margin-right: auto;  ">
+<col style="width: 45%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold; font-size: 10pt;"><div style="border-top :1pt solid; border-bottom :1pt solid; "> <div style="text-indent: -36px; padding-left: 36px;"> Table01:   Demographic and Baseline Characteristics; Intent-to-treat Analysis Set</div> </div></td></tr>
+<tr>
+<td colspan="2" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"></td>
+<td colspan="3" style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Xanomeline</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> </div></td>
+</tr>
+<tr>
+<th style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Placebo</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Low Dose</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> High Dose</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Combined</div></th>
+<th style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="border-bottom:1pt solid"> Total</div></th>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> Male</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> </div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 35.52px"> Age (Years)</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> N</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">33</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">34</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">44</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">78</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">111</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> Mean (SD)</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">73.4 (8.15)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.6 (8.69)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">74.1 (8.16)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">74.8 (8.37)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">74.4 (8.29)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> Median</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">74.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.5</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.0</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> Range</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(52; 85)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(51; 88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(56; 86)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(51; 88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(51; 88)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> IQ range</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(69.0; 80.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(68.0; 82.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(69.0; 80.5)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(69.0; 81.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(69.0; 81.0)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> </div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 35.52px"> Race</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> N</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">33</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">34</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">44</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">78</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">111</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> AMERICAN INDIAN OR ALASKA NATIVE</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">1 (2.3%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">1 (1.3%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">1 (0.9%)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> BLACK OR AFRICAN AMERICAN</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">3 (9.1%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">3 (6.8%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">3 (3.8%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">6 (5.4%)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> WHITE</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">30 (90.9%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">34 (100.0%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">40 (90.9%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">74 (94.9%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">104 (93.7%)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> Female</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> </div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 35.52px"> Age (Years)</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> N</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">53</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">50</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">40</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">90</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">143</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> Mean (SD)</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">76.4 (8.73)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.7 (8.09)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">74.7 (7.67)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.2 (7.88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">75.7 (8.19)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> Median</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">78.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.5</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">76.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">76.0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">77.0</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> Range</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(59; 89)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(54; 87)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(56; 88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(54; 88)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(54; 89)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> IQ range</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(70.0; 84.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(72.0; 81.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(72.0; 79.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(72.0; 81.0)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">(72.0; 81.0)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 17.76px"> </div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 35.52px"> Race</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"></td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 53.28px"> N</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">53</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">50</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">40</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">90</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">143</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> AMERICAN INDIAN OR ALASKA NATIVE</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">0</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> BLACK OR AFRICAN AMERICAN</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">5 (9.4%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">6 (12.0%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">6 (15.0%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">12 (13.3%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">17 (11.9%)</td>
+</tr>
+<tr>
+<td style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;"><div style="text-indent: -17.76px; padding-left: 71.04px"> WHITE</div></td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">48 (90.6%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">44 (88.0%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">34 (85.0%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">78 (86.7%)</td>
+<td style="vertical-align: bottom; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 1pt 6pt 1pt; font-weight: normal; font-size: 9pt;">126 (88.1%)</td>
+</tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;"><div style="border-top:1pt solid;"> <br>Key: IQ = interquartile</div></td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 9pt;">Note: N reflects non-missing values</td></tr>
+<tr><td colspan="6" style="vertical-align: bottom; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 8pt;"><div style="border-bottom:1pt solid"> [table01.html][] 02JUL2024, 17:26</div></td></tr>
+</table>
 <p>In summary, <code>rowbyvar</code> is used to create the by-variable
 summary for one <code>rowvar</code> in a single function call. To
 perform sub-group analysis, users need to specify
