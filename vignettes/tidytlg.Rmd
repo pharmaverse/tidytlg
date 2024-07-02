@@ -188,7 +188,7 @@ gentlg(huxme       = tbl,
        opath       = file.path(working_dir),
        file        = tblid,
        orientation = "landscape",
-       title_file = system.file("extdata/titles.xls", package = "tidytlg"))
+       title_file = system.file("extdata/titles.xls", package = "tidytlg"))[[1]]
 ```
 
 To create the html output, users need to specify the `format` argument as "HTML" and `print.hux` argument as FALSE in the `gentlg` call.
@@ -199,7 +199,7 @@ gentlg(huxme       = tbl,
        print.hux = FALSE,
        file        = tblid,
        orientation = "landscape",
-       title_file = system.file("extdata/titles.xls", package = "tidytlg"))
+       title_file = system.file("extdata/titles.xls", package = "tidytlg"))[[1]]
 ```
 
 Users can also include superscripts, subscripts, or line breaks via unicode. Please see the `vignette("symbols")` for more details. Besides using `univar`, `freq`, and `nested_freq` functions to create the `tbl` dataframe, users can use other R packages to create analysis results and perform data wrangling to fit the `tbl` structure, which can be passed into the `gentlg` function call for generating the desired outputs.
@@ -259,7 +259,7 @@ gentlg(huxme       = tbl,
                        "Body System [Preferred Term]",
                        "Verbatim Term",
                        "Serious",
-                       "Fatal"))
+                       "Fatal"))[[1]]
 ```
 
 ## Graph programming
@@ -368,7 +368,7 @@ gentlg(huxme       = tbl,
        print.hux = FALSE,
        file        = tblid,
        orientation = "landscape",
-       title_file = system.file("extdata/titles.xls", package = "tidytlg"))
+       title_file = system.file("extdata/titles.xls", package = "tidytlg"))[[1]]
 ```
 
 ## By processing
@@ -416,7 +416,7 @@ gentlg(huxme       = tbl,
        print.hux = FALSE,
        file        = tblid,
        orientation = "landscape",
-       title_file = system.file("extdata/titles.xls", package = "tidytlg"))
+       title_file = system.file("extdata/titles.xls", package = "tidytlg"))[[1]]
 ```
 
 In summary, `rowbyvar` is used to create the by-variable summary for one `rowvar` in a single function call. To perform sub-group analysis, users need to specify `tablebyvar` in every function calls except the analysis population row.
