@@ -1,3 +1,7 @@
+# tidytlg 0.1.6
+
+* Fixed incorrect page size in landscape orientation (#47).
+
 # tidytlg 0.1.5
 
 * Updated `gentlg()` to allow for passing multiple of either plots or tables to
