@@ -1,3 +1,7 @@
+# tidytlg 0.1.7
+
+* Fixed rounding bug (#44).
+
 # tidytlg 0.1.6
 
 * Fixed incorrect page size in landscape orientation (#47).
