@@ -45,8 +45,8 @@ roundSAS <- function(x,
   z <- abs(x) * 10^digits
   z <- z + 0.5 + sqrt(.Machine$double.eps)
   z <- trunc(z)
-  z <- z / 10^digits
-  z <- z * posneg
+  z <- (z / 10^digits)
+  z <- ifelse(!is.na(z) & z > 0, z * posneg, z)
 
   # output rounded values ---------------------------------------------------
   if (as_char & is.null(na_char)) {

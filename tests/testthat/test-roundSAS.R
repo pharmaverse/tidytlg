@@ -26,6 +26,14 @@ test_that("T1.1 for rounding up midpoint values", {
                c(-3, -2, -1, 1, 2, 3))
 })
 
+test_that("T1.2 for rounding negative values to 0", {
+
+  x <- c(-2.5, -1.5, -0.0000000000000000005, 0.5, 1.5, 2.5)
+
+  expect_equal(roundSAS(x, digits = 0),
+               c(-3, -2, 0, 1, 2, 3))
+})
+
 test_that("T1.2 for rounding up midpoint values and convert to character", {
 
   x <- c(-2.5, -1.5, -0.5, 0.5, 1.5, 2.5)
@@ -54,6 +62,11 @@ test_that("T2.2 when converting to character and na_char is specified", {
 
 })
 
+test_that("T3.1 when converting to character and value is negative but rounds to 0", {
 
+  y <- c(8.65, 8.75, -0.0000000000000000005, 9.85, 9.95)
 
+  expect_equal(roundSAS(y, digits = 1, as_char = TRUE),
+               c("8.7", "8.8", "0.0", "9.9", "10.0"))
 
+})
