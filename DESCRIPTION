@@ -1,6 +1,6 @@
 Package: tidytlg
 Title: Create TLGs using the 'tidyverse'
-Version: 0.1.5.9001
+Version: 0.10.0
 Authors@R:
      c(person(given = "Nicholas",
            family = "Masel",
@@ -54,7 +54,7 @@ URL: https://pharmaverse.github.io/tidytlg/main/, https://github.com/pharmaverse
 BugReports: https://github.com/pharmaverse/tidytlg/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Suggests:
     testthat (>= 2.1.0),
