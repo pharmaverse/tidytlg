@@ -83,7 +83,7 @@ library(tidytlg)
 
 # read adsl from PhUSE test data factory
 testdata <- "https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"
-adsl <- read_xpt(url(paste0(testdata,"adsl.xpt")))
+adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
 ```
 
 ## Process data
@@ -95,10 +95,11 @@ Before generating analysis summary, the analysis data need to be processed first
 adsl <- adsl %>%
   filter(ITTFL == "Y") %>%
   mutate(SEX = factor(SEX, levels = c("M", "F", "U"), labels = c("Male", "Female", "Unknown"))) %>%
-  tlgsetup(var = "TRT01PN",
-           column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
-           tbltype = "type3")
-
+  tlgsetup(
+    var = "TRT01PN",
+    column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
+    tbltype = "type3"
+  )
 ```
 
 The above code perform the tasks below:
@@ -120,27 +121,32 @@ If you need multiple analysis datasets for creating TLG, `tlgsetup` will need to
 
 ## Analysis set row
 t1 <- adsl %>%
-  freq(colvar = "colnbr",
-       rowvar = "ITTFL",
-       statlist = statlist("n"),
-       subset = ITTFL == "Y",
-       rowtext = "Analysis set: ITT")
+  freq(
+    colvar = "colnbr",
+    rowvar = "ITTFL",
+    statlist = statlist("n"),
+    subset = ITTFL == "Y",
+    rowtext = "Analysis set: ITT"
+  )
 
 ## Univariate summary for AGE
 t2 <- adsl %>%
-  univar(colvar = "colnbr",
-         rowvar = "AGE",
-         statlist = statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE")),
-         decimal = 0,
-         row_header = "Age, years")
+  univar(
+    colvar = "colnbr",
+    rowvar = "AGE",
+    statlist = statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE")),
+    decimal = 0,
+    row_header = "Age, years"
+  )
 
 ## Count (percentages) for SEX
 t3 <- adsl %>%
-  freq(colvar = "colnbr",
-       rowvar = "SEX",
-       statlist = statlist(c("N","n (x.x%)")),
-       row_header = "Gender")
-
+  freq(
+    colvar = "colnbr",
+    rowvar = "SEX",
+    statlist = statlist(c("N", "n (x.x%)")),
+    row_header = "Gender"
+  )
 ```
 
 The above function calls generate the requested analysis rows for the table output sequentially and store the results in individual objects (i.e. `t1`, `t2`, `t3`). The next step is to combine analysis results into a single `tbl` dataframe through the `bind_table` function call.
@@ -149,8 +155,9 @@ The above function calls generate the requested analysis rows for the table outp
 # Format Results ---------------------------------------------------------------------------------------
 
 tbl <- bind_table(t1, t2, t3,
-       column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
-       tbltype = "type3")
+  column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
+  tbltype = "type3"
+)
 ```
 
 The above `bind_table` function call performs the following tasks:
@@ -184,22 +191,26 @@ The `gentlg` function call below will create the rtf output using the `tblid` as
 ```{r}
 tblid <- "Table01"
 
-gentlg(huxme       = tbl,
-       opath       = file.path(working_dir),
-       file        = tblid,
-       orientation = "landscape",
-       title_file = system.file("extdata/titles.xls", package = "tidytlg"))[[1]]
+gentlg(
+  huxme = tbl,
+  opath = file.path(working_dir),
+  file = tblid,
+  orientation = "landscape",
+  title_file = system.file("extdata/titles.xls", package = "tidytlg")
+)[[1]]
 ```
 
 To create the html output, users need to specify the `format` argument as "HTML" and `print.hux` argument as FALSE in the `gentlg` call.
 
 ```{r}
-gentlg(huxme       = tbl,
-       format      = "HTML",
-       print.hux = FALSE,
-       file        = tblid,
-       orientation = "landscape",
-       title_file = system.file("extdata/titles.xls", package = "tidytlg"))[[1]]
+gentlg(
+  huxme = tbl,
+  format = "HTML",
+  print.hux = FALSE,
+  file = tblid,
+  orientation = "landscape",
+  title_file = system.file("extdata/titles.xls", package = "tidytlg")
+)[[1]]
 ```
 
 Users can also include superscripts, subscripts, or line breaks via unicode. Please see the `vignette("symbols")` for more details. Besides using `univar`, `freq`, and `nested_freq` functions to create the `tbl` dataframe, users can use other R packages to create analysis results and perform data wrangling to fit the `tbl` structure, which can be passed into the `gentlg` function call for generating the desired outputs.
@@ -232,10 +243,12 @@ adsl <- adsl %>%
 
 adae <- adae %>%
   filter(SAFFL == "Y" & TRTEMFL == "Y") %>%
-  mutate(BSPT  = paste(AEBODSYS, "[", AEDECOD, "]"),
-         SAEFL = if_else(AESER == "Y", "Yes", "No"),
-         DTHFL = if_else(AEOUT == "FATAL", "Yes", "No")) %>%
-   select(USUBJID, ASTDY, TRTA, BSPT, AETERM, SAEFL, DTHFL)
+  mutate(
+    BSPT = paste(AEBODSYS, "[", AEDECOD, "]"),
+    SAEFL = if_else(AESER == "Y", "Yes", "No"),
+    DTHFL = if_else(AEOUT == "FATAL", "Yes", "No")
+  ) %>%
+  select(USUBJID, ASTDY, TRTA, BSPT, AETERM, SAEFL, DTHFL)
 
 tbl <- inner_join(adsl, adae, by = "USUBJID") %>%
   arrange(TRT01AN, USUBJID, ASTDY) %>%
@@ -243,23 +256,27 @@ tbl <- inner_join(adsl, adae, by = "USUBJID") %>%
   filter(USUBJID %in% c("01-701-1015", "01-701-1023"))
 
 # Output Results ------------------------------------------------------------------------------------------
-gentlg(huxme       = tbl,
-       tlf         = "l",
-       format      = "HTML",
-       print.hux = FALSE,
-       orientation = "landscape",
-       file        = "Listing01",
-       title       = "Listing of Adverse Events",
-       idvars      = c("TRT01A", "USUBJID"),
-       wcol        = 0.15,
-       colheader   = c("Treatment Group",
-                       "Subject ID",
-                       "Study Day of AE",
-                       "Treatment Period",
-                       "Body System [Preferred Term]",
-                       "Verbatim Term",
-                       "Serious",
-                       "Fatal"))[[1]]
+gentlg(
+  huxme = tbl,
+  tlf = "l",
+  format = "HTML",
+  print.hux = FALSE,
+  orientation = "landscape",
+  file = "Listing01",
+  title = "Listing of Adverse Events",
+  idvars = c("TRT01A", "USUBJID"),
+  wcol = 0.15,
+  colheader = c(
+    "Treatment Group",
+    "Subject ID",
+    "Study Day of AE",
+    "Treatment Period",
+    "Body System [Preferred Term]",
+    "Verbatim Term",
+    "Serious",
+    "Fatal"
+  )
+)[[1]]
 ```
 
 ## Graph programming
@@ -285,12 +302,12 @@ library(tidytlg)
 
 # read adsl from PhUSE test data factory
 testdata <- "https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"
-adsl <- read_xpt(url(paste0(testdata,"adsl.xpt")))
+adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
 
 tblid <- "Graph01"
 
 # Process Data --------------------------------------------------------------------------------------------
-adsl <- adsl  %>%
+adsl <- adsl %>%
   filter(ITTFL == "Y") %>%
   select(USUBJID, ITTFL, TRT01PN, TRT01P, AGE, SEX, HEIGHTBL, WEIGHTBL) %>%
   mutate(SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female")))
@@ -299,12 +316,14 @@ adsl <- adsl  %>%
 
 plot <- ggplot(data = adsl, aes(x = HEIGHTBL, y = WEIGHTBL)) +
   geom_point() +
-  labs(x = "Baseline Height (cm)",
-       y = "Baseline Weight (kg)") +
-  facet_wrap(~SEX, nrow=1)
+  labs(
+    x = "Baseline Height (cm)",
+    y = "Baseline Weight (kg)"
+  ) +
+  facet_wrap(~SEX, nrow = 1)
 
 # create png file
-png(file.path(working_dir, paste0(tblid,".png")), width=2800, height=1300, res=300, type = "cairo")
+png(file.path(working_dir, paste0(tblid, ".png")), width = 2800, height = 1300, res = 300, type = "cairo")
 
 plot
 
@@ -312,14 +331,16 @@ dev.off()
 
 # Output Results ------------------------------------------------------------------------------------------
 
-gentlg(tlf = "g",
-       plotnames = file.path(system.file("extdata", package = "tidytlg"), paste0(tblid,".png")),
-       plotwidth = 10,
-       plotheight = 5,
-       orientation = "landscape",
-       opath       = file.path(working_dir),,
-       file = tblid,
-       title_file = system.file("extdata/titles.xls", package = "tidytlg"))
+gentlg(
+  tlf = "g",
+  plotnames = file.path(system.file("extdata", package = "tidytlg"), paste0(tblid, ".png")),
+  plotwidth = 10,
+  plotheight = 5,
+  orientation = "landscape",
+  opath = file.path(working_dir), ,
+  file = tblid,
+  title_file = system.file("extdata/titles.xls", package = "tidytlg")
+)
 ```
 
 ```{r, echo=FALSE, out.width = "750px"}
@@ -339,7 +360,7 @@ library(tidytlg)
 
 # read adsl from PhUSE test data factory
 testdata <- "https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"
-adsl <- read_xpt(url(paste0(testdata,"adsl.xpt")))
+adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
 
 # Process data
 adsl <- adsl %>%
@@ -348,27 +369,30 @@ adsl <- adsl %>%
 
 # define table metadata
 table_metadata <- tibble::tribble(
-  ~func,     ~df,   ~rowvar, ~decimal, ~rowtext,     ~row_header, ~statlist,         ~subset,
-  "freq",  "adsl",  "ITTFL",     NA, "Analysis set: ITT",     NA, statlist("n"),  "ITTFL == 'Y'",
-  "univar", "adsl",   "AGE",      0,         NA, "Age (Years)",           NA,              NA,
-  "freq",  "adsl",    "SEX",     NA,         NA, "Gender", statlist(c("N", "n (x.x%)")),   NA
+  ~func, ~df, ~rowvar, ~decimal, ~rowtext, ~row_header, ~statlist, ~subset,
+  "freq", "adsl", "ITTFL", NA, "Analysis set: ITT", NA, statlist("n"), "ITTFL == 'Y'",
+  "univar", "adsl", "AGE", 0, NA, "Age (Years)", NA, NA,
+  "freq", "adsl", "SEX", NA, NA, "Gender", statlist(c("N", "n (x.x%)")), NA
 ) %>%
-  mutate(colvar  = "TRT01PN")
+  mutate(colvar = "TRT01PN")
 
 # Generate results
 tbl <- generate_results(table_metadata,
-                        column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
-                        tbltype = "type3")
+  column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
+  tbltype = "type3"
+)
 
 # Output results
 tblid <- "Table01"
 
-gentlg(huxme       = tbl,
-       format      = "HTML",
-       print.hux = FALSE,
-       file        = tblid,
-       orientation = "landscape",
-       title_file = system.file("extdata/titles.xls", package = "tidytlg"))[[1]]
+gentlg(
+  huxme = tbl,
+  format = "HTML",
+  print.hux = FALSE,
+  file = tblid,
+  orientation = "landscape",
+  title_file = system.file("extdata/titles.xls", package = "tidytlg")
+)[[1]]
 ```
 
 ## By processing
@@ -388,7 +412,7 @@ library(tidytlg)
 
 # read adsl from PhUSE test data factory
 testdata <- "https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"
-adsl <- read_xpt(url(paste0(testdata,"adsl.xpt")))
+adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
 
 # Process data
 adsl <- adsl %>%
@@ -397,26 +421,29 @@ adsl <- adsl %>%
 
 # define table metadata
 table_metadata <- tibble::tribble(
-  ~func,     ~df,   ~rowvar, ~decimal, ~rowtext,     ~row_header, ~statlist,         ~subset, ~tablebyvar,
-  "univar", "adsl",   "AGE",      0,         NA, "Age (Years)",           NA,              NA, "SEX",
-  "freq",  "adsl",    "RACE",     NA,         NA, "Race", statlist(c("N", "n (x.x%)")),   NA, "SEX"
+  ~func, ~df, ~rowvar, ~decimal, ~rowtext, ~row_header, ~statlist, ~subset, ~tablebyvar,
+  "univar", "adsl", "AGE", 0, NA, "Age (Years)", NA, NA, "SEX",
+  "freq", "adsl", "RACE", NA, NA, "Race", statlist(c("N", "n (x.x%)")), NA, "SEX"
 ) %>%
-  mutate(colvar  = "TRT01PN")
+  mutate(colvar = "TRT01PN")
 
 # Generate results
 tbl <- generate_results(table_metadata,
-                        column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
-                        tbltype = "type3")
+  column_metadata_file = system.file("extdata/column_metadata.xlsx", package = "tidytlg"),
+  tbltype = "type3"
+)
 
 # Output results
 tblid <- "Table01"
 
-gentlg(huxme       = tbl,
-       format      = "HTML",
-       print.hux = FALSE,
-       file        = tblid,
-       orientation = "landscape",
-       title_file = system.file("extdata/titles.xls", package = "tidytlg"))[[1]]
+gentlg(
+  huxme = tbl,
+  format = "HTML",
+  print.hux = FALSE,
+  file = tblid,
+  orientation = "landscape",
+  title_file = system.file("extdata/titles.xls", package = "tidytlg")
+)[[1]]
 ```
 
 In summary, `rowbyvar` is used to create the by-variable summary for one `rowvar` in a single function call. To perform sub-group analysis, users need to specify `tablebyvar` in every function calls except the analysis population row.

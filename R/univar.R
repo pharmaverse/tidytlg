@@ -1,6 +1,6 @@
-#'Descriptive statistics
+#' Descriptive statistics
 #'
-#'Univariate statitstics for a variables by treatment and/or group.
+#' Univariate statitstics for a variables by treatment and/or group.
 #'
 #' @param df (required) dataframe containing records to summarize by treatment
 #' @param colvar (required) character vector of the treatment variable within
@@ -32,15 +32,17 @@
 #'   useful if a table needs to be merged or reordered in any way after build.
 #' @param ... (optional) Named arguments to be included as columns on the table.
 #'
-#'@return dataframe of results
-#'@export
+#' @return dataframe of results
+#' @export
 #'
 #' @examples
 #' adsl <-
 #'   structure(
 #'     list(
-#'       USUBJID = c("DEMO-101", "DEMO-102", "DEMO-103", "DEMO-104",
-#'                   "DEMO-105", "DEMO-106"),
+#'       USUBJID = c(
+#'         "DEMO-101", "DEMO-102", "DEMO-103", "DEMO-104",
+#'         "DEMO-105", "DEMO-106"
+#'       ),
 #'       AGE = c(59, 51, 57, 65, 21, 80),
 #'       SEX = c("F", "M", "F", "M", "F", "M"),
 #'       WEIGHTBL = c(83.6, 75, 84, 90, 65, 70),
@@ -55,80 +57,88 @@
 #'   )
 #'
 #' # N, Mean(SD), Median, Range, IQ Range for a rowvar by colvar
-#' univar(adsl
-#'        ,colvar = "colnbr"
-#'        ,rowvar = "AGE")
+#' univar(adsl,
+#'   colvar = "colnbr",
+#'   rowvar = "AGE"
+#' )
 #'
 #' # N and Mean for a rowvar by colvar
-#' univar(adsl
-#'        ,colvar   = "colnbr"
-#'        ,rowvar   = "AGE"
-#'        ,statlist = statlist(c("N", "MEAN")))
+#' univar(adsl,
+#'   colvar   = "colnbr",
+#'   rowvar   = "AGE",
+#'   statlist = statlist(c("N", "MEAN"))
+#' )
 #'
 #' # N and Mean for a rowvar by colvar and a by variable
-#' univar(adsl
-#'        ,colvar   = "colnbr"
-#'        ,rowvar   = "AGE"
-#'        ,rowbyvar = "SEX"
-#'        ,statlist = statlist(c("N", "MEAN")))
+#' univar(adsl,
+#'   colvar   = "colnbr",
+#'   rowvar   = "AGE",
+#'   rowbyvar = "SEX",
+#'   statlist = statlist(c("N", "MEAN"))
+#' )
 #'
 #' # Below illustrates how make the same calls to univar() as above, using table
 #' # and column metadata # along with generate_results().
 #'
 #' column_metadata <- tibble::tribble(
-#'   ~tbltype, ~coldef,   ~decode,
-#'   "type1",     "0",  "Placebo",
-#'   "type1",     "54",     "Low",
-#'   "type1",     "81",    "High"
+#'   ~tbltype, ~coldef, ~decode,
+#'   "type1", "0", "Placebo",
+#'   "type1", "54", "Low",
+#'   "type1", "81", "High"
 #' )
 #'
 #' # N, Mean(SD), Median, Range, IQ Range for a rowvar by colvar
 #' table_metadata <- tibble::tribble(
-#'   ~anbr,  ~func,    ~df, ~rowvar, ~tbltype, ~colvar,
-#'   "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTA"
+#'   ~anbr, ~func, ~df, ~rowvar, ~tbltype, ~colvar,
+#'   "1", "univar", "cdisc_adae", "AGE", "type1", "TRTA"
 #' )
 #'
-#' generate_results(table_metadata, column_metadata = column_metadata,
-#'                  tbltype = "type1")
+#' generate_results(table_metadata,
+#'   column_metadata = column_metadata,
+#'   tbltype = "type1"
+#' )
 #'
 #'
 #' # N and Mean for a rowvar by colvar
 #' table_metadata <- tibble::tribble(
-#'   ~anbr,  ~func,    ~df, ~rowvar, ~tbltype,  ~colvar, ~statlist,
-#'   "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTA",
-#'   statlist(c("N","MEAN"))
+#'   ~anbr, ~func, ~df, ~rowvar, ~tbltype, ~colvar, ~statlist,
+#'   "1", "univar", "cdisc_adae", "AGE", "type1", "TRTA",
+#'   statlist(c("N", "MEAN"))
 #' )
 #'
-#' generate_results(table_metadata, column_metadata = column_metadata,
-#'                  tbltype = "type1")
+#' generate_results(table_metadata,
+#'   column_metadata = column_metadata,
+#'   tbltype = "type1"
+#' )
 #'
 #'
 #' # N and Mean for a rowvar by colvar and a by variable
 #' table_metadata <- tibble::tribble(
-#'   ~anbr,  ~func,    ~df, ~rowvar, ~tbltype,  ~colvar, ~statlist,  ~by,
-#'   "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTA",
-#'   statlist(c("N","MEAN")), "SEX"
+#'   ~anbr, ~func, ~df, ~rowvar, ~tbltype, ~colvar, ~statlist, ~by,
+#'   "1", "univar", "cdisc_adae", "AGE", "type1", "TRTA",
+#'   statlist(c("N", "MEAN")), "SEX"
 #' )
 #'
-#' generate_results(table_metadata, column_metadata = column_metadata,
-#'                  tbltype = "type1")
+#' generate_results(table_metadata,
+#'   column_metadata = column_metadata,
+#'   tbltype = "type1"
+#' )
 univar <- function(df,
-                    colvar = NULL,
-                    tablebyvar = NULL,
-                    rowvar = NULL,
-                    rowbyvar = NULL,
-                    statlist = getOption("tidytlg.univar.statlist.default"),
-                    decimal = 1,
-                    precisionby = NULL,
-                    precisionon = NULL,
-                    wide = FALSE,
-                    alpha = 0.05,
-                    rowtext = NULL,
-                    row_header = NULL,
-                    .keep = TRUE,
-                    .ord = FALSE,
-                    ...) {
-
+                   colvar = NULL,
+                   tablebyvar = NULL,
+                   rowvar = NULL,
+                   rowbyvar = NULL,
+                   statlist = getOption("tidytlg.univar.statlist.default"),
+                   decimal = 1,
+                   precisionby = NULL,
+                   precisionon = NULL,
+                   wide = FALSE,
+                   alpha = 0.05,
+                   rowtext = NULL,
+                   row_header = NULL,
+                   .keep = TRUE,
+                   .ord = FALSE,
+                   ...) {
   # check all the arguments being passed in except ...
   arglist <- list()
   args_to_chk <- names(formals())[names(formals()) != "..."]
@@ -136,7 +146,7 @@ univar <- function(df,
     args_to_chk,
     .f = function(x) {
       arglist[[x]] <<- eval(rlang::sym(x))
-      }
+    }
   )
   check_univar(arglist)
 
@@ -145,7 +155,7 @@ univar <- function(df,
 
   # build precision data for later
   if (!is.null(precisionby) ||
-      !is.null(precisionon)) {
+    !is.null(precisionon)) {
     if (!all(c(precisionby) %in% (c(tablebyvar, rowbyvar)))) {
       stop(
         "All values of argument `precisionby` must be a part of either
@@ -153,8 +163,9 @@ univar <- function(df,
         call. = FALSE
       )
     }
-    if (is.null(precisionon))
+    if (is.null(precisionon)) {
       precisionon <- rowvar
+    }
     precision_data <-
       make_precision_data(df, decimal, precisionby, precisionon)
   } else {
@@ -173,17 +184,19 @@ univar <- function(df,
     # are present but their individual components (i.e. SD) are not.
     arrange_univar(statlist, colvar, tablebyvar, rowbyvar, alpha) %>%
     # The final table is pivoted here.
-    pivot_univar(wide = wide,
-                 statlist = statlist,
-                 tablebyvar = tablebyvar,
-                 colvar = colvar,
-                 rowbyvar = rowbyvar,
-                 rowtext = rowtext,
-                 row_header = row_header,
-                 rowvar = rowvar,
-                 .keep = .keep,
-                 .ord = .ord,
-                 ...)
+    pivot_univar(
+      wide = wide,
+      statlist = statlist,
+      tablebyvar = tablebyvar,
+      colvar = colvar,
+      rowbyvar = rowbyvar,
+      rowtext = rowtext,
+      row_header = row_header,
+      rowvar = rowvar,
+      .keep = .keep,
+      .ord = .ord,
+      ...
+    )
 
   attr(univars, "colvar") <- colvar
   attr(univars, "tablebyvar") <- tablebyvar
@@ -198,8 +211,8 @@ univar <- function(df,
   attr(univars, "row_header") <- row_header
 
   structure(univars,
-            class = c("tidytlg.univar", class(univars)))
-
+    class = c("tidytlg.univar", class(univars))
+  )
 }
 
 #' Derive statistics for univar table
@@ -218,43 +231,45 @@ derive_univar <-
     name_levels <- unique(replace_statlist(statlist))
     name_levels <- name_levels[name_levels != "tval"]
 
-suppressWarnings(
-  df %>%
-    # Drop any NA values in df before derivation
-    tidyr::drop_na(.data[[rowvar]]) %>%
-    dplyr::group_by_at((c(colvar, tablebyvar, rowbyvar))) %>%
-    # Get summaries to derive. See get summaries for the interface between what
-    # the user passes and what is derived
-    dplyr::summarise(
-      rowvar = rowvar,
-      !!!get_summaries(statlist, rowvar, alpha)
-    ) %>%
-    dplyr::ungroup() %>%
-    # Flip the columns from the summaries into a long dataframe
-    pivot_longer(cols = any_of(replace_statlist(statlist))) %>%
-    # remove tval if there
-    filter(name != "tval") %>%
-    # make the name a factor
-    mutate(name = factor(name, levels = name_levels)) %>%
-    # Logic for completing the factors in the data.frame. This could be replaced
-    # by a preprocessing call similar to char2factor
-    complete(!!!syms(c(colvar, tablebyvar, rowbyvar, "name")),
-             fill = list(rowvar = rowvar, value = NaN)) %>%
-
-    mutate(
-      across(.cols = any_of(c(rowbyvar, tablebyvar)),
-                  .fns = function(var) {
-                    if (is.factor(var)) {
-                      unclass(var)
-                    } else {
-                      var2 <- as.factor(var)
-                      unclass(var2)
-                    }
-                  },
-                  .names = "{.col}_ord")
-      ))
-
-}
+    suppressWarnings(
+      df %>%
+        # Drop any NA values in df before derivation
+        tidyr::drop_na(.data[[rowvar]]) %>%
+        dplyr::group_by_at((c(colvar, tablebyvar, rowbyvar))) %>%
+        # Get summaries to derive. See get summaries for the interface between what
+        # the user passes and what is derived
+        dplyr::summarise(
+          rowvar = rowvar,
+          !!!get_summaries(statlist, rowvar, alpha)
+        ) %>%
+        dplyr::ungroup() %>%
+        # Flip the columns from the summaries into a long dataframe
+        pivot_longer(cols = any_of(replace_statlist(statlist))) %>%
+        # remove tval if there
+        filter(name != "tval") %>%
+        # make the name a factor
+        mutate(name = factor(name, levels = name_levels)) %>%
+        # Logic for completing the factors in the data.frame. This could be replaced
+        # by a preprocessing call similar to char2factor
+        complete(!!!syms(c(colvar, tablebyvar, rowbyvar, "name")),
+          fill = list(rowvar = rowvar, value = NaN)
+        ) %>%
+        mutate(
+          across(
+            .cols = any_of(c(rowbyvar, tablebyvar)),
+            .fns = function(var) {
+              if (is.factor(var)) {
+                unclass(var)
+              } else {
+                var2 <- as.factor(var)
+                unclass(var2)
+              }
+            },
+            .names = "{.col}_ord"
+          )
+        )
+    )
+  }
 
 #' Get number of decimals
 #'
@@ -307,60 +322,65 @@ make_precision_data <-
 #'
 #' @noRd
 update_missing <- function(df) {
-  missing_update <- c("N"       = "0",
-                        "SUM"     = "-",
-                        "MEAN"    = "-",
-                        "GeoMEAN" = "-",
-                        "SD"      = "-",
-                        "SE"      = "-",
-                        "CV"      = "-",
-                        "GSD"     = "-",
-                        "GSE"     = "-",
-                        "MEANSD"  = "-",
-                        "MEANSE"  = "-",
-                        "MEDIAN"  = "-",
-                        "MIN"     = "-",
-                        "MAX"     = "-",
-                        "RANGE"   = "(-; -)",
-                        "Q1"      = "-",
-                        "Q3"      = "-",
-                        "IQRANGE" = "(-; -)",
-                        "MEDRANGE"   = "(-; -)",
-                        "MEDIQRANGE" = "(-; -)",
-                        "MEAN_CI"    = "- (-; -)",
-                        "GeoMEAN_CI" = "- (-; -)")
+  missing_update <- c(
+    "N" = "0",
+    "SUM" = "-",
+    "MEAN" = "-",
+    "GeoMEAN" = "-",
+    "SD" = "-",
+    "SE" = "-",
+    "CV" = "-",
+    "GSD" = "-",
+    "GSE" = "-",
+    "MEANSD" = "-",
+    "MEANSE" = "-",
+    "MEDIAN" = "-",
+    "MIN" = "-",
+    "MAX" = "-",
+    "RANGE" = "(-; -)",
+    "Q1" = "-",
+    "Q3" = "-",
+    "IQRANGE" = "(-; -)",
+    "MEDRANGE" = "(-; -)",
+    "MEDIQRANGE" = "(-; -)",
+    "MEAN_CI" = "- (-; -)",
+    "GeoMEAN_CI" = "- (-; -)"
+  )
 
-  missing_base <-   c("N"          = "-",
-                        "SUM"        = "-",
-                        "MEAN"       = "-",
-                        "GeoMEAN"    = "-",
-                        "SD"         = "-",
-                        "SE"         = "-",
-                        "CV"         = "-",
-                        "GSD"        = "-",
-                        "GSE"        = "-",
-                        "MEANSD"     = "- (-)",
-                        "MEANSE"     = "- (-)",
-                        "MEDIAN"     = "-",
-                        "MIN"        = "-",
-                        "MAX"        = "-",
-                        "RANGE"      = "(-; -)",
-                        "Q1"         = "-",
-                        "Q3"         = "-",
-                        "IQRANGE"    = "(-; -)",
-                        "MEDRANGE"   = "(-; -)",
-                        "MEDIQRANGE" = "(-; -)",
-                        "MEAN_CI"    = "- (-; -)",
-                        "GeoMEAN_CI" = "- (-; -)")
+  missing_base <- c(
+    "N" = "-",
+    "SUM" = "-",
+    "MEAN" = "-",
+    "GeoMEAN" = "-",
+    "SD" = "-",
+    "SE" = "-",
+    "CV" = "-",
+    "GSD" = "-",
+    "GSE" = "-",
+    "MEANSD" = "- (-)",
+    "MEANSE" = "- (-)",
+    "MEDIAN" = "-",
+    "MIN" = "-",
+    "MAX" = "-",
+    "RANGE" = "(-; -)",
+    "Q1" = "-",
+    "Q3" = "-",
+    "IQRANGE" = "(-; -)",
+    "MEDRANGE" = "(-; -)",
+    "MEDIQRANGE" = "(-; -)",
+    "MEAN_CI" = "- (-; -)",
+    "GeoMEAN_CI" = "- (-; -)"
+  )
   ret <- df %>%
     group_by(name) %>%
     mutate(
       value = ifelse(value == missing_base[[name[1]]],
-                     missing_update[[name[1]]], value),
+        missing_update[[name[1]]], value
+      ),
       value = ifelse(
         value %>% stringr::str_detect(" ") &
-          missing_update[[name[1]]]  %>% str_detect(" ") &
-      value %>% stringr::str_detect("$[0-9]+(\\.[0-9]+)* (\\(-\\)|\\(-; -\\))"),
+          missing_update[[name[1]]] %>% str_detect(" ") &
+          value %>% stringr::str_detect("$[0-9]+(\\.[0-9]+)* (\\(-\\)|\\(-; -\\))"),
         paste0(
           value %>% stringr::str_extract("$[0-9]+(\\.[0-9]+)*"),
           missing_update[[name[1]]] %>% stringr::str_extract(" .+")
@@ -429,7 +449,6 @@ round_univar <-
         ))) %>%
         ungroup()
     }
-
   }
 
 #' Arrange values for merged stats
@@ -447,8 +466,8 @@ arrange_univar <-
            tablebyvar,
            rowbyvar,
            alpha) {
-  # The data.frame used to turn the stat into stat labels. Options are defaulted
-  # in tidytlg.R.  Confidence Interval is updated if alpha is not 0.05
+    # The data.frame used to turn the stat into stat labels. Options are defaulted
+    # in tidytlg.R.  Confidence Interval is updated if alpha is not 0.05
     stat_labels <- getOption("tidytlg.stat_labels")
     if (alpha != 0.05) {
       pctile <- 100 - (alpha * 100)
@@ -472,8 +491,10 @@ arrange_univar <-
       IQRANGE = paste0("(", .data$Q1, "; ", .data$Q3, ")"),
       MEDRANGE = paste0(.data$MEDIAN, " (", .data$MIN, "; ", .data$MAX, ")"),
       MEDIQRANGE = paste0(.data$MEDIAN, " (", .data$Q1, "; ", .data$Q3, ")"),
-      MEAN_CI = paste0(.data$MEAN, " (", .data$LCL_MEAN, "; ",
-                       .data$UCL_MEAN, ")"),
+      MEAN_CI = paste0(
+        .data$MEAN, " (", .data$LCL_MEAN, "; ",
+        .data$UCL_MEAN, ")"
+      ),
       GeoMEAN_CI = paste0(
         .data$GeoMEAN,
         " (",
@@ -503,8 +524,8 @@ arrange_univar <-
         ), ends_with("_ord"))) %>%
         # Pivot the merged statistics dataframe to a long dataframe
         pivot_longer(cols = c(any_of(merged_stats))) %>%
- # The . is the merged stats and df is the original data.frame. Now it contains
- # The merged stats and the original stats
+        # The . is the merged stats and df is the original data.frame. Now it contains
+        # The merged stats and the original stats
         bind_rows(df) %>%
         # Drop the stats that aren't being displayed
         filter(!(name %in% dropped_vars)) %>%
@@ -530,8 +551,6 @@ arrange_univar <-
         )) %>%
         update_missing()
     }
-
-
   }
 
 #' Pivot univar table
@@ -553,18 +572,24 @@ pivot_univar <-
            .ord,
            ...) {
     ord_columns <- names(df)[endsWith(names(df), "_ord")]
-    if (.keep)
+    if (.keep) {
       drop_columns <- "rowvar"
-    else
+    } else {
       drop_columns <- c("rowvar", rowbyvar, tablebyvar)
-    if (!.ord)
-      drop_columns <- c(drop_columns,
-                        ord_columns)
+    }
+    if (!.ord) {
+      drop_columns <- c(
+        drop_columns,
+        ord_columns
+      )
+    }
 
     if (!wide) {
       df2 <- df %>%
-        arrange(!!!syms(c(colvar, tablebyvar, rowbyvar)), "rowvar",
-                match(df$name, statlist)) %>%
+        arrange(
+          !!!syms(c(colvar, tablebyvar, rowbyvar)), "rowvar",
+          match(df$name, statlist)
+        ) %>%
         pivot_wider(id_cols = any_of(
           c(
             colvar,
@@ -578,11 +603,11 @@ pivot_univar <-
         mutate(row_type = ifelse(label == "N", "N", "VALUE")) %>%
         mutate(
           across(
-            .cols = - ends_with("_ord"),
+            .cols = -ends_with("_ord"),
             .fns = ~ as.character(.x)
           ),
           across(
-            .cols = - ends_with("_ord"),
+            .cols = -ends_with("_ord"),
             .fns = ~ replace_na_with_blank(.x)
           )
         ) %>%
@@ -593,23 +618,26 @@ pivot_univar <-
           rename_col = "label",
           row_header = row_header
         )
-
     } else {
       df2 <- df %>%
-        arrange(!!!syms(c(colvar, tablebyvar, rowbyvar)),
-                match(df$name, statlist)) %>%
-        pivot_wider(id_cols = c(any_of(c(
-          colvar, tablebyvar, rowbyvar
-        )), ends_with("_ord")),
-        names_from = "label") %>%
+        arrange(
+          !!!syms(c(colvar, tablebyvar, rowbyvar)),
+          match(df$name, statlist)
+        ) %>%
+        pivot_wider(
+          id_cols = c(any_of(c(
+            colvar, tablebyvar, rowbyvar
+          )), ends_with("_ord")),
+          names_from = "label"
+        ) %>%
         mutate(row_type = "VALUE") %>%
         mutate(
           across(
-            .cols = - ends_with("_ord"),
+            .cols = -ends_with("_ord"),
             .fns = ~ as.character(.x)
           ),
           across(
-            .cols = - ends_with("_ord"),
+            .cols = -ends_with("_ord"),
             .fns = ~ replace_na_with_blank(.x)
           )
         ) %>%
@@ -625,12 +653,14 @@ pivot_univar <-
       rowtext_univar(rowtext, rowvar, rowbyvar, tablebyvar, row_header) %>%
       # adding on the group_level variable for indentation
       add_group_level(rowbyvar) %>%
-      select(- any_of(drop_columns)) %>%
-      mutate(!!!list(...),
-             across(
-               .cols = - ends_with("_ord"),
-               .fns = ~ replace_na_with_blank(.)
-             ))
+      select(-any_of(drop_columns)) %>%
+      mutate(
+        !!!list(...),
+        across(
+          .cols = -ends_with("_ord"),
+          .fns = ~ replace_na_with_blank(.)
+        )
+      )
   }
 
 #' Return the summaries that need to be calculated
@@ -651,9 +681,11 @@ get_summaries <- function(statlist, rowvar, alpha) {
     CV = (.data$SD / .data$MEAN) * 100,
     MEDIAN = stats::median(.data[[rowvar]]),
     MIN = ifelse(all(is.na(.data[[rowvar]])), NA_real_,
-                 base::min(.data[[rowvar]])),
+      base::min(.data[[rowvar]])
+    ),
     MAX = ifelse(all(is.na(.data[[rowvar]])), NA_real_,
-                 base::max(.data[[rowvar]])),
+      base::max(.data[[rowvar]])
+    ),
     Q1 = stats::quantile(.data[[rowvar]], 0.25, type = 2),
     Q3 = stats::quantile(.data[[rowvar]], 0.75, type = 2),
     GeoMEAN = ifelse(any(.data[[rowvar]] < 0), NA_real_, exp(base::mean(log(
@@ -668,7 +700,8 @@ get_summaries <- function(statlist, rowvar, alpha) {
       .data[[rowvar]][.data[[rowvar]] > 0]
     )))),
     tval = ifelse(.data$N > 1, stats::qt(1 - (alpha / 2),
-                                         df = (.data$N - 1)), NA_real_),
+      df = (.data$N - 1)
+    ), NA_real_),
     LCL_MEAN = .data$MEAN - .data$tval * .data$SE,
     UCL_MEAN = .data$MEAN + .data$tval * .data$SE,
     LCL_GeoMEAN = ifelse(
@@ -677,7 +710,7 @@ get_summaries <- function(statlist, rowvar, alpha) {
       exp(
         base::mean(log(.data[[rowvar]][.data[[rowvar]] > 0])) -
           .data$tval * stats::sd(log(.data[[rowvar]][.data[[rowvar]] > 0])) /
-          sqrt(length(.data[[rowvar]][.data[[rowvar]] > 0]))
+            sqrt(length(.data[[rowvar]][.data[[rowvar]] > 0]))
       )
     ),
     UCL_GeoMEAN = ifelse(
@@ -686,14 +719,12 @@ get_summaries <- function(statlist, rowvar, alpha) {
       exp(
         base::mean(log(.data[[rowvar]][.data[[rowvar]] > 0])) +
           .data$tval * stats::sd(log(.data[[rowvar]][.data[[rowvar]] > 0])) /
-          sqrt(length(.data[[rowvar]][.data[[rowvar]] > 0]))
+            sqrt(length(.data[[rowvar]][.data[[rowvar]] > 0]))
       )
     )
   )
 
   summaries[statlist][order(match(statlist, names(summaries)))]
-
-
 }
 
 #' Convert a user list of stats into stats that need to be derived
@@ -703,25 +734,33 @@ get_summaries <- function(statlist, rowvar, alpha) {
 #'
 #' @noRd
 replace_statlist <- function(statlist) {
-  replaced_stats <- c("MEANSD", "MEANSE", "RANGE", "IQRANGE", "MEDRANGE",
-                      "MEDIQRANGE", "MEAN_CI", "GeoMEAN_CI", "SE", "CV",
-                      "LCL_MEAN", "UCL_MEAN", "LCL_GeoMEAN", "UCL_GeoMEAN")
-  new_stats <- list(MEANSD = c("MEAN", "SD", "N"),
-                    MEANSE = c("MEAN", "SE", "SD", "N"),
-                    RANGE = c("MIN", "MAX"),
-                    IQRANGE = c("Q1", "Q3"),
-                    MEDRANGE = c("MEDIAN", "MIN", "MAX"),
-                    MEDIQRANGE = c("MEDIAN", "Q1", "Q3"),
-                    MEAN_CI = c("MEAN", "LCL_MEAN", "UCL_MEAN", "tval", "SE",
-                                "SD", "N"),
-                    GeoMEAN_CI = c("GeoMEAN", "LCL_GeoMEAN", "UCL_GeoMEAN",
-                                   "tval", "N"),
-                    SE = c("SE", "SD", "N"),
-                    CV = c("CV", "SD", "MEAN"),
-                    LCL_MEAN = c("LCL_MEAN", "MEAN", "tval", "SE", "SD", "N"),
-                    UCL_MEAN = c("UCL_MEAN", "MEAN", "tval", "SE", "SD", "N"),
-                    LCL_GeoMEAN = c("LCL_GeoMEAN", "tval", "N"),
-                    UCL_GeoMEAN = c("UCL_GeoMEAN", "tval", "N"))
+  replaced_stats <- c(
+    "MEANSD", "MEANSE", "RANGE", "IQRANGE", "MEDRANGE",
+    "MEDIQRANGE", "MEAN_CI", "GeoMEAN_CI", "SE", "CV",
+    "LCL_MEAN", "UCL_MEAN", "LCL_GeoMEAN", "UCL_GeoMEAN"
+  )
+  new_stats <- list(
+    MEANSD = c("MEAN", "SD", "N"),
+    MEANSE = c("MEAN", "SE", "SD", "N"),
+    RANGE = c("MIN", "MAX"),
+    IQRANGE = c("Q1", "Q3"),
+    MEDRANGE = c("MEDIAN", "MIN", "MAX"),
+    MEDIQRANGE = c("MEDIAN", "Q1", "Q3"),
+    MEAN_CI = c(
+      "MEAN", "LCL_MEAN", "UCL_MEAN", "tval", "SE",
+      "SD", "N"
+    ),
+    GeoMEAN_CI = c(
+      "GeoMEAN", "LCL_GeoMEAN", "UCL_GeoMEAN",
+      "tval", "N"
+    ),
+    SE = c("SE", "SD", "N"),
+    CV = c("CV", "SD", "MEAN"),
+    LCL_MEAN = c("LCL_MEAN", "MEAN", "tval", "SE", "SD", "N"),
+    UCL_MEAN = c("UCL_MEAN", "MEAN", "tval", "SE", "SD", "N"),
+    LCL_GeoMEAN = c("LCL_GeoMEAN", "tval", "N"),
+    UCL_GeoMEAN = c("UCL_GeoMEAN", "tval", "N")
+  )
 
   # Logic for replacing statlist
   present_replacements <- statlist[statlist %in% replaced_stats]
@@ -740,7 +779,7 @@ byvar_merge_univar <-
            row_header) {
     if (!is.null(row_header)) {
       df <- df %>%
-        nest(nest = - any_of(c(
+        nest(nest = -any_of(c(
           rowbyvar,
           rowvar,
           tablebyvar,
@@ -759,12 +798,13 @@ byvar_merge_univar <-
         unnest(nest)
     }
 
-    if (is.null(rowbyvar))
+    if (is.null(rowbyvar)) {
       return(df)
+    }
 
     if (length(rowbyvar) == 1) {
       df %>%
-        nest(nest = - any_of(c(
+        nest(nest = -any_of(c(
           rowbyvar, rowvar, tablebyvar, paste0(rowbyvar, "_ord")
         ))) %>%
         rowwise() %>%
@@ -776,14 +816,14 @@ byvar_merge_univar <-
             .before = 1
           ) %>%
             mutate(across(
-              .cols = - ends_with("_ord"),
+              .cols = -ends_with("_ord"),
               .fns = ~ replace_na_with_blank(.x)
             ))
         )) %>%
         unnest(nest)
     } else {
       df %>%
-        nest(nest = - any_of(c(
+        nest(nest = -any_of(c(
           rowbyvar, rowvar, tablebyvar, paste0(rowbyvar, "_ord")
         ))) %>%
         rowwise() %>%
@@ -794,12 +834,12 @@ byvar_merge_univar <-
             .before = 1
           ) %>%
             mutate(across(
-              .cols = - ends_with("_ord"),
+              .cols = -ends_with("_ord"),
               .fns = ~ replace_na_with_blank(.x)
             ))
         )) %>%
         unnest(nest) %>%
-        nest(nest = - any_of(c(
+        nest(nest = -any_of(c(
           rowbyvar[1], rowvar, tablebyvar, paste0(rowbyvar[1], "_ord")
         ))) %>%
         rowwise() %>%
@@ -811,14 +851,12 @@ byvar_merge_univar <-
             .before = 1
           ) %>%
             mutate(across(
-              .cols = - ends_with("_ord"),
+              .cols = -ends_with("_ord"),
               .fns = ~ replace_na_with_blank(.x)
             ))
         )) %>%
         unnest(nest)
     }
-
-
   }
 
 rowtext_univar <-
@@ -834,10 +872,10 @@ rowtext_univar <-
 
     res_group <- c(rowbyvar, tablebyvar)
     len_oner <-
-      #length of single row table
+      # length of single row table
       as.numeric(!is.null(row_header)) + as.numeric(!is.null(rowbyvar)) + 1
     res <- res %>% group_by_at(res_group)
-    unq_labels        <- unique(res$label)
+    unq_labels <- unique(res$label)
     names(unq_labels) <- unq_labels
     if (is_named(rowtext)) {
       unq_labels[which(unq_labels %in% rowtext)] <-
@@ -845,14 +883,14 @@ rowtext_univar <-
     }
 
     suppressWarnings(res <-
-                       res %>% mutate(
-                         label = case_when(
-                           is_named(rowtext) ~ unq_labels[label],
-                           length(rowtext) == 1 &
-                             len_oner == n() & row_number() == n() ~ rowtext[1],
-                           TRUE ~ label
-                         )
-                       ))
+      res %>% mutate(
+        label = case_when(
+          is_named(rowtext) ~ unq_labels[label],
+          length(rowtext) == 1 &
+            len_oner == n() & row_number() == n() ~ rowtext[1],
+          TRUE ~ label
+        )
+      ))
 
     res <- res %>% ungroup()
   }

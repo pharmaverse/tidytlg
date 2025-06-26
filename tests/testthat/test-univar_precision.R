@@ -1,5 +1,4 @@
-test_that("univar computes by parameter precision",{
-
+test_that("univar computes by parameter precision", {
   expected <- tibble::tribble(
     ~am, ~vs,      ~label,              ~X3,              ~X4,              ~X5,    ~row_type, ~group_level,
     "0", "0",         "0",               "",               "",               "", "BY_HEADER1",            0,
@@ -29,17 +28,17 @@ test_that("univar computes by parameter precision",{
   )
 
   expect_equal(
-      mtcars %>%
-        univar(
-          colvar = "gear",
-          rowvar = "wt",
-          rowbyvar = "vs",
-          tablebyvar = "am",
-          precisionby = c("vs", "am"),
-          decimal = 2
-        ),
-      expected,
-      ignore_attr = TRUE
+    mtcars %>%
+      univar(
+        colvar = "gear",
+        rowvar = "wt",
+        rowbyvar = "vs",
+        tablebyvar = "am",
+        precisionby = c("vs", "am"),
+        decimal = 2
+      ),
+    expected,
+    ignore_attr = TRUE
   )
 
   expected <- tibble::tribble(
@@ -71,15 +70,15 @@ test_that("univar computes by parameter precision",{
   )
 
   expect_equal(
-      mtcars %>%
-        univar(
-          colvar = "gear",
-          rowvar = "wt",
-          rowbyvar = "vs",
-          tablebyvar = "am",
-          precisionby = c("vs", "am"),
-          decimal = Inf
-    ),
+    mtcars %>%
+      univar(
+        colvar = "gear",
+        rowvar = "wt",
+        rowbyvar = "vs",
+        tablebyvar = "am",
+        precisionby = c("vs", "am"),
+        decimal = Inf
+      ),
     expected,
     ignore_attr = TRUE
   )

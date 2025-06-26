@@ -1,4 +1,3 @@
-
 library(dplyr)
 library(haven)
 
@@ -34,6 +33,3 @@ save(cdisc_adsl, file = "data/cdisc_adsl.rda")
 save(cdisc_adae, file = "data/cdisc_adae.rda")
 save(cdisc_adlb, file = "data/cdisc_adlb.rda")
 save(cdisc_advs, file = "data/cdisc_advs.rda")
-
-
-

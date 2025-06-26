@@ -8,7 +8,7 @@ testthat::test_that("Removes zero padding (real rtf)", {
   testthat::expect_equal(actual, expected)
 })
 
-testthat::test_that("Removes zero padding" ,{
+testthat::test_that("Removes zero padding", {
   example <- paste0(
     "\\clbrdrt\\clbrdrl\\clbrdrb\\clbrdrr\\clvertalb\\clpadfl3",
     "\\clpadl0 \\clpadft3\\clpadt60 \\clpadfb3\\clpadb0 \\clpadfr3\\clpadr60"

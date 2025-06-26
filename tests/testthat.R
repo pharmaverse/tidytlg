@@ -7,7 +7,5 @@ withr::with_options(
   list(width = 86),
   {
     test_check("tidytlg")
-
   }
 )
-

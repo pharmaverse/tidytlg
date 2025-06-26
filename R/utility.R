@@ -1,4 +1,3 @@
-
 #' Replace NA with ""
 #'
 #' Used to swap in "" for by variables so the headers sort correctly to the top
@@ -10,11 +9,10 @@
 #' @export
 #'
 #' @examples
-#'replace_na_with_blank(c("a", "b", NA))
+#' replace_na_with_blank(c("a", "b", NA))
 #'
-#'replace_na_with_blank(factor(c("a", "b", NA), levels = c("a", "b")))
+#' replace_na_with_blank(factor(c("a", "b", NA), levels = c("a", "b")))
 replace_na_with_blank <- function(x) {
-
   if (sum(is.na(x)) > 0) {
     if (is.factor(x)) {
       x <- forcats::fct_relevel(forcats::fct_expand(x, ""), "", after = 0)
@@ -24,7 +22,6 @@ replace_na_with_blank <- function(x) {
   } else {
     x
   }
-
 }
 
 #' @title roxygen2_data
@@ -40,40 +37,46 @@ replace_na_with_blank <- function(x) {
 #'
 #' @return Roxygen2 documentation for the data frame.
 roxygen2_data <- function(df, study = NULL, pkg = "~/tidytlg") {
-  name  <-  deparse(substitute(df))
+  name <- deparse(substitute(df))
 
-  title <-  paste0("#' @title ", name)
+  title <- paste0("#' @title ", name)
 
-  descr <-  paste0("#' @description ", name, " copied from ", study)
-  src   <-
+  descr <- paste0("#' @description ", name, " copied from ", study)
+  src <-
     "#' @source Synthetic data on S drive, general compound."
 
-  fmt   <-
-    paste0("#' @format A data frame with ",
-           nrow(df),
-           " rows and ",
-           ncol(df),
-           " variables:")
+  fmt <-
+    paste0(
+      "#' @format A data frame with ",
+      nrow(df),
+      " rows and ",
+      ncol(df),
+      " variables:"
+    )
   itemize <- data.frame(
     colname = colnames(df),
-    label    = purrr::map_chr(seq_along(colnames(df)), function(x) {
+    label = purrr::map_chr(seq_along(colnames(df)), function(x) {
       attr(df[[x]], "label")
-      }),
+    }),
     stringsAsFactors = FALSE
   )
   item <-
     paste0("#'  \\item{", itemize$colname, "}{", itemize$label, "}")
   item <- c("#' \\describe{", item, "#' }")
   seealso <-
-    paste0("#' @seealso ",
-           paste0("\\code{\\link{", noquote(gsub(
-             ".rda", "", list.files(path = paste0(pkg, "/data"))
-           )), "}}", collapse = " "))
-  key     <-
-    paste0("#' @keywords datasets synthetic ",
-           tolower(stringr::word(gsub("_", " ", name), 1)))
-  atname  <- paste0("#' @name ", tolower(name))
-  examp   <-
+    paste0(
+      "#' @seealso ",
+      paste0("\\code{\\link{", noquote(gsub(
+        ".rda", "", list.files(path = paste0(pkg, "/data"))
+      )), "}}", collapse = " ")
+    )
+  key <-
+    paste0(
+      "#' @keywords datasets synthetic ",
+      tolower(stringr::word(gsub("_", " ", name), 1))
+    )
+  atname <- paste0("#' @name ", tolower(name))
+  examp <-
     c(
       "#' @examples",
       paste0("#'  data(\"", deparse(substitute(df)), "\")"),
@@ -81,7 +84,8 @@ roxygen2_data <- function(df, study = NULL, pkg = "~/tidytlg") {
     )
 
   description <-
-    c(title,
+    c(
+      title,
       "#'",
       descr,
       src,
@@ -92,7 +96,8 @@ roxygen2_data <- function(df, study = NULL, pkg = "~/tidytlg") {
       key,
       atname,
       examp,
-      "")
+      ""
+    )
 
   return(writeLines(description))
 }
@@ -111,10 +116,10 @@ roxygen2_data <- function(df, study = NULL, pkg = "~/tidytlg") {
 #' @examples
 #' df <- tibble::tribble(
 #'   ~TRT01P, ~TRT01PN,
-#'   "Placebo",   1,
-#'   "Low Dose",  2,
+#'   "Placebo", 1,
+#'   "Low Dose", 2,
 #'   "High Dose", 3
-#'   )
+#' )
 #'
 #' # alphabetical order
 #' dplyr::arrange(df, TRT01P)
@@ -142,7 +147,8 @@ add_group_level <- function(df, rowbyvar) {
     for (var in rowbyvar) {
       current_level <- match(var, rowbyvar) - 1
       df$group_level <- ifelse(as.character(df[[var]]) != "",
-                               current_level, df$group_level)
+        current_level, df$group_level
+      )
     }
   }
   df
@@ -155,8 +161,9 @@ add_group_level <- function(df, rowbyvar) {
 #' @param ext Vector of possible extensions
 #' @noRd
 find_file <- function(base_path, name, ext) {
-  if (!dir.exists(base_path))
+  if (!dir.exists(base_path)) {
     stop(paste("Directory:", base_path, "does not exist"))
+  }
 }
 
 #' Helper functions for returning files used in gentlg
@@ -169,15 +176,19 @@ find_file <- function(base_path, name, ext) {
 #'
 #' @rdname files
 tidytlg_titles <- function(path) {
-  list.files(path, pattern = "(^titles\\.xl)", full.names = TRUE,
-             ignore.case = TRUE)
+  list.files(path,
+    pattern = "(^titles\\.xl)", full.names = TRUE,
+    ignore.case = TRUE
+  )
 }
 
 #' @rdname files
 #' @export
 tidytlg_metadata <- function(path) {
-  list.files(path, pattern = "(^column_metadata\\.xl)", full.names = TRUE,
-             ignore.case = TRUE)
+  list.files(path,
+    pattern = "(^column_metadata\\.xl)", full.names = TRUE,
+    ignore.case = TRUE
+  )
 }
 
 first_class <- function(.) {

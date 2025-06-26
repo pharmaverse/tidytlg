@@ -1,4 +1,3 @@
-
 library(tibble)
 
 test_that("colheader works as expected for listings", {
@@ -7,9 +6,11 @@ test_that("colheader works as expected for listings", {
     {
       mtcars2 <- mtcars %>%
         rownames_to_column(var = "USUBJID") %>%
-        mutate(am = factor(am),
-               cyl = factor(cyl),
-               gear = factor(gear)) %>%
+        mutate(
+          am = factor(am),
+          cyl = factor(cyl),
+          gear = factor(gear)
+        ) %>%
         select("USUBJID", "mpg", "cyl", "disp", "hp")
 
       withr::with_dir(
@@ -27,7 +28,7 @@ test_that("colheader works as expected for listings", {
       attr(mtcars3$mpg, "label") <- "Miles/(US) gallon"
       attr(mtcars3$cyl, "label") <- "Number of cylinders"
       attr(mtcars3$disp, "label") <- "Displacement (cu.in.)"
-      attr(mtcars3$hp , "label") <- "Gross horsepower"
+      attr(mtcars3$hp, "label") <- "Gross horsepower"
 
       withr::with_dir(
         test_path("test_outputs"),
@@ -39,7 +40,8 @@ test_that("colheader works as expected for listings", {
           )
         }
       )
-    })
+    }
+  )
 
   expect_snapshot_file(test_path("test_outputs/colheader1.rtf"))
   expect_snapshot_file(test_path("test_outputs/colheader2.rtf"))

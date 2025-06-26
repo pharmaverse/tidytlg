@@ -1,4 +1,3 @@
-
 library(tibble)
 test_that("titles_file addes titles as expected", {
   withr::with_options(
@@ -6,9 +5,11 @@ test_that("titles_file addes titles as expected", {
     {
       mtcars2 <- mtcars %>%
         rownames_to_column(var = "USUBJID") %>%
-        mutate(am = factor(am),
-               cyl = factor(cyl),
-               gear = factor(gear))
+        mutate(
+          am = factor(am),
+          cyl = factor(cyl),
+          gear = factor(gear)
+        )
 
       tab <- freq(
         mtcars2,
@@ -41,5 +42,6 @@ test_that("titles_file addes titles as expected", {
         }
       )
       expect_snapshot_file(test_path("test_outputs/gsvit01a.rtf"))
-    })
+    }
+  )
 })
