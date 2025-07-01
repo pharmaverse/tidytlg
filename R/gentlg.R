@@ -207,7 +207,8 @@ gentlg <- function(huxme = NULL,
                    colheader = NULL,
                    pagenum = FALSE,
                    bottom_borders = "old_format",
-                   border_fns = list()) {
+                   border_fns = list(),
+                   alignments = list()) {
   adjfilename <- stringr::str_replace_all(
     stringr::str_to_lower(file),
     "(-|_)", ""
@@ -234,7 +235,8 @@ gentlg <- function(huxme = NULL,
       colheader = colheader,
       pagenum = pagenum,
       bottom_borders = bottom_borders,
-      border_fns = border_fns
+      border_fns = border_fns,
+      alignments = alignments
     )
 
     if (print.hux == FALSE) {
@@ -325,6 +327,7 @@ gentlg <- function(huxme = NULL,
         pagenum = pagenum,
         bottom_borders = bottom_borders,
         border_fns = border_fns,
+        alignments = alignments,
         index_in_result = index
       )
     },
