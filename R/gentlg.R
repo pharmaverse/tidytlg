@@ -80,6 +80,9 @@
 #' then borders are added to the `colspan` and `colheader` rows. (Default = "old_format").
 #' @param border_fns (optional) List. A list of functions that transform the matrix
 #' passed to `bottom_borders`. Vectorized. See [add_bottom_borders()] for more information.
+#' @param alignments (optional) A list of named lists. Used to specify individual
+#' column or cell alignments. Each named list contains `row`, `col`, and `value`,
+#' which are passed to [huxtable::set_align()] to set the alignments.
 #'
 #' @section Huxme Details:
 #' For tables and listings, formatting of the output can be dictated through the
@@ -164,6 +167,19 @@
 #'     "{\\super a} Subjects are counted once for any given event."
 #'   ),
 #'   watermark = "Confidential"
+#' )
+#'
+#' # Set alignments
+#' gentlg(
+#'   huxme = final,
+#'   file = "TSFAEX",
+#'   alignments = list(
+#'     # Align the second column to the left
+#'     list(row = 1:7, col = 2, value = "left"),
+#'
+#'     # Align cell "Drug: B" to the right
+#'     list(row = 2, col = 3, value = "right")
+#'   )
 #' )
 #'
 #' # Produce output in HTML format
