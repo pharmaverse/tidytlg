@@ -973,7 +973,13 @@ gentlg_single <- function(huxme = NULL,
   } # Alignment fileloc, datetime to the right
 
   # Custom alignments
+  if (!is.null(alignments)) {
+    stopifnot("`alignments` must be a list" = is.list(alignments))
+  }
+
   for (alignment in alignments) {
+    stopifnot("Each item of `alignments` must be a list" = is.list(alignment))
+
     ht <- huxtable::set_align(
       ht,
       alignment$row,
