@@ -39,7 +39,6 @@ roundSAS <- function(x,
                      digits = 0,
                      as_char = FALSE,
                      na_char = NULL) {
-
   # perform SAS rounding ----------------------------------------------------
   posneg <- sign(x)
   z <- abs(x) * 10^digits
@@ -50,16 +49,12 @@ roundSAS <- function(x,
 
   # output rounded values ---------------------------------------------------
   if (as_char & is.null(na_char)) {
-
     ## convert rounded values to character vector
     formatC(z, format = "f", digits = digits)
-
   } else if (as_char & !is.null(na_char)) {
-
     ## convert to character vector and use na_char for missing value
     formatC(z, format = "f", digits = digits) %>%
       str_replace(" *(NA|NaN|NULL)", na_char)
-
   } else {
     ## return numeric vector of rounded values
     z

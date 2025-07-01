@@ -50,20 +50,21 @@ glimpse(adsl)
 ```
 
 ```{r echo = FALSE}
-paste0("Dimensions prior to the tlgsetup call are ", dim(adsl)[1] , " rows and ", dim(adsl)[2], " columns.")
+paste0("Dimensions prior to the tlgsetup call are ", dim(adsl)[1], " rows and ", dim(adsl)[2], " columns.")
 ```
 
 Now let's pass the adsl data through our tlgsetup function to add observations to support the `type1` column structure and check out the dimensions.
 
 ```{r warning=FALSE}
 setup_table <- tlgsetup(adsl,
-                        var = "TRT01PN",
-                        column_metadata = column_metadata)
+  var = "TRT01PN",
+  column_metadata = column_metadata
+)
 glimpse(setup_table)
 ```
 
 ```{r echo = FALSE}
-paste0("Dimensions after to the rmtsetup call are ", dim(setup_table)[1] , " rows and ", dim(setup_table)[2], " columns.")
+paste0("Dimensions after to the rmtsetup call are ", dim(setup_table)[1], " rows and ", dim(setup_table)[2], " columns.")
 ```
 
 Here we see we have added two new variables, `colnbr` and `tbltype`, which will now be used as our treatment variable when generating our results.

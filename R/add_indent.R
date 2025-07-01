@@ -33,17 +33,19 @@
 #' @export
 #'
 #' @examples
-#' df <- tibble::tibble(row_type     =  c("TABLE_BY_HEADER", "HEADER",
-#'        "BY_HEADER1", "N", "VALUE", "COUNTS", "UNIVAR", "NESTED", "NESTED"),
-#'                      nested_level =  c(NA, NA, NA, NA, NA, NA, NA, 1, 2),
-#'                      group_level =  c(0, 0, 0, 0, 0, 0, 0, 0, 0),
-#'                      label        =  c(NA, NA, NA, NA, NA, "N",NA, NA, NA),
-#'                      by           =  c(NA, NA, NA, NA, NA, NA, NA, NA, NA),
-#'                      tableby      =  c(NA, NA, NA, NA, NA, NA, NA, NA, NA))
+#' df <- tibble::tibble(
+#'   row_type = c(
+#'     "TABLE_BY_HEADER", "HEADER",
+#'     "BY_HEADER1", "N", "VALUE", "COUNTS", "UNIVAR", "NESTED", "NESTED"
+#'   ),
+#'   nested_level = c(NA, NA, NA, NA, NA, NA, NA, 1, 2),
+#'   group_level = c(0, 0, 0, 0, 0, 0, 0, 0, 0),
+#'   label = c(NA, NA, NA, NA, NA, "N", NA, NA, NA),
+#'   by = c(NA, NA, NA, NA, NA, NA, NA, NA, NA),
+#'   tableby = c(NA, NA, NA, NA, NA, NA, NA, NA, NA)
+#' )
 #' add_indent(df)
-
 add_indent <- function(df) {
-
   # set default list of variables to be removed
   remove_vars <- c("nested_level", "group_level", "value_add")
 
@@ -73,18 +75,20 @@ add_indent <- function(df) {
   add_tableby_to_default <- any(df[["row_type"]] == "TABLE_BY_HEADER")
 
   df %>%
-    dplyr::mutate(indentme =
-            dplyr::case_when(
-              row_type == "TABLE_BY_HEADER" ~ 0,
-                grepl("BY_HEADER[0-9]", row_type) ~ 0 + add_tableby_to_default
-                  + group_level,
-              row_type == "HEADER" ~ 0 + add_tableby_to_default + group_level,
-              row_type == "N" ~ 1 + add_tableby_to_default + group_level,
-              row_type == "VALUE" ~ value_add + add_tableby_to_default
-                + group_level,
-              row_type == "NESTED" ~ nested_level + add_tableby_to_default
-                + group_level,
-              TRUE ~ 0
-                    )) %>%
+    dplyr::mutate(
+      indentme =
+        dplyr::case_when(
+          row_type == "TABLE_BY_HEADER" ~ 0,
+          grepl("BY_HEADER[0-9]", row_type) ~ 0 + add_tableby_to_default
+            + group_level,
+          row_type == "HEADER" ~ 0 + add_tableby_to_default + group_level,
+          row_type == "N" ~ 1 + add_tableby_to_default + group_level,
+          row_type == "VALUE" ~ value_add + add_tableby_to_default
+            + group_level,
+          row_type == "NESTED" ~ nested_level + add_tableby_to_default
+            + group_level,
+          TRUE ~ 0
+        )
+    ) %>%
     select(-any_of(remove_vars))
 }

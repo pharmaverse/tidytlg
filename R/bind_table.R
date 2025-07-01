@@ -31,53 +31,65 @@
 #'
 #' # bind tables together
 #' t1 <- cdisc_adsl %>%
-#'   freq(colvar = "TRT01PN",
-#'        rowvar = "ITTFL",
-#'        statlist = statlist("n"),
-#'        subset = ITTFL == "Y",
-#'        rowtext = "Analysis set: ITT")
+#'   freq(
+#'     colvar = "TRT01PN",
+#'     rowvar = "ITTFL",
+#'     statlist = statlist("n"),
+#'     subset = ITTFL == "Y",
+#'     rowtext = "Analysis set: ITT"
+#'   )
 #'
 #' t2 <- cdisc_adsl %>%
-#'   univar(colvar = "TRT01PN",
-#'          rowvar = "AGE",
-#'          decimal = 0,
-#'          row_header = "Age, years")
+#'   univar(
+#'     colvar = "TRT01PN",
+#'     rowvar = "AGE",
+#'     decimal = 0,
+#'     row_header = "Age, years"
+#'   )
 #'
 #' bind_table(t1, t2)
 #'
 #' # bind tables together w/by groups
 #' t1 <- cdisc_adsl %>%
-#'   freq(colvar = "TRT01PN",
-#'        rowvar = "ITTFL",
-#'        rowbyvar = "SEX",
-#'        statlist = statlist("n"),
-#'        subset = ITTFL == "Y",
-#'        rowtext = "Analysis set: ITT")
+#'   freq(
+#'     colvar = "TRT01PN",
+#'     rowvar = "ITTFL",
+#'     rowbyvar = "SEX",
+#'     statlist = statlist("n"),
+#'     subset = ITTFL == "Y",
+#'     rowtext = "Analysis set: ITT"
+#'   )
 #'
 #' t2 <- cdisc_adsl %>%
-#'   univar(colvar = "TRT01PN",
-#'          rowvar = "AGE",
-#'          rowbyvar = "SEX",
-#'          decimal = 0,
-#'          row_header = "Age, years")
+#'   univar(
+#'     colvar = "TRT01PN",
+#'     rowvar = "AGE",
+#'     rowbyvar = "SEX",
+#'     decimal = 0,
+#'     row_header = "Age, years"
+#'   )
 #'
 #' bind_table(t1, t2, rowbyvar = "SEX")
 #'
 #' # bind tables together w/table by groups
 #' t1 <- cdisc_adsl %>%
-#'   freq(colvar = "TRT01PN",
-#'        rowvar = "ITTFL",
-#'        tablebyvar = "SEX",
-#'        statlist = statlist("n"),
-#'        subset = ITTFL == "Y",
-#'        rowtext = "Analysis set: ITT")
+#'   freq(
+#'     colvar = "TRT01PN",
+#'     rowvar = "ITTFL",
+#'     tablebyvar = "SEX",
+#'     statlist = statlist("n"),
+#'     subset = ITTFL == "Y",
+#'     rowtext = "Analysis set: ITT"
+#'   )
 #'
 #' t2 <- cdisc_adsl %>%
-#'   univar(colvar = "TRT01PN",
-#'          rowvar = "AGE",
-#'          tablebyvar = "SEX",
-#'          decimal = 0,
-#'          row_header = "Age, years")
+#'   univar(
+#'     colvar = "TRT01PN",
+#'     rowvar = "AGE",
+#'     tablebyvar = "SEX",
+#'     decimal = 0,
+#'     row_header = "Age, years"
+#'   )
 #'
 #' bind_table(t1, t2, tablebyvar = "SEX")
 #'
@@ -96,36 +108,40 @@ bind_table <- function(...,
                        column_metadata_file = NULL,
                        column_metadata = NULL,
                        tbltype = NULL) {
-
   # Logic to unnest list if passed in generate_results
   dfs_ <- list(...)
-  if (length(dfs_) == 1 && all(class(dfs_[[1]]) == "list"))
+  if (length(dfs_) == 1 && all(class(dfs_[[1]]) == "list")) {
     dfs_ <- dfs_[[1]]
+  }
 
   # check all the arguments being passed in except ...
   arglist <- list()
   args_to_chk <- names(formals())[names(formals()) != "..."]
   purrr::walk(args_to_chk, .f = function(x) {
     arglist[[x]] <<- eval(rlang::sym(x))
-  }
-    )
+  })
   check_bind_table(dfs_, arglist)
 
   # set up the environment for the iteration of anbr to happen in
   env <- new.env()
   if (is.null(tablebyvar)) {
-    res <- map_dfr(dfs_, ~add_anbr(.x, env = env)) %>%
-      {if (add_format) add_format(., tableby = tablebyvar, groupby = rowbyvar)
-        else .
+    res <- map_dfr(dfs_, ~ add_anbr(.x, env = env)) %>%
+      {
+        if (add_format) {
+          add_format(., tableby = tablebyvar, groupby = rowbyvar)
+        } else {
+          .
         }
+      }
   } else {
-
-    dfs <- purrr::map_dfr(dfs_, ~add_rowtext_by(.x, tablebyvar = tablebyvar,
-                                                env = env))
+    dfs <- purrr::map_dfr(dfs_, ~ add_rowtext_by(.x,
+      tablebyvar = tablebyvar,
+      env = env
+    ))
 
     if (add_count) {
       first_freq <- min(which(purrr::map_chr(dfs_, first_class) ==
-                                "tidytlg.freq"))
+        "tidytlg.freq"))
       denoms_ <- attr(dfs_[[first_freq]], "denom")
 
       res <- dfs %>%
@@ -133,41 +149,53 @@ bind_table <- function(...,
 
       if (is.null(colvar)) stop("bind_table is missing colvar")
       for (i in seq_len(nrow(res))) {
-        cur_denoms_ <- get_tby_denoms(denoms_, tablebyvar,
-                                      res[i, tablebyvar][[1]], colvar)
+        cur_denoms_ <- get_tby_denoms(
+          denoms_, tablebyvar,
+          res[i, tablebyvar][[1]], colvar
+        )
         res[i, "data_nest"] <- res[i, "data_nest"] %>%
           extract2(1) %>%
           extract2(1) %>%
           add_row(!!!as.list(cur_denoms_),
-                  label = paste0(prefix, res[i, tablebyvar][[1]]),
-                  row_type = "TABLE_BY_HEADER",
-                  .before = 1) %>%
+            label = paste0(prefix, res[i, tablebyvar][[1]]),
+            row_type = "TABLE_BY_HEADER",
+            .before = 1
+          ) %>%
           list() %>%
           list()
       }
       res <- res %>%
         unnest(data_nest) %>%
         ungroup() %>%
-        {if (add_format) add_format(., tableby = tablebyvar, groupby = rowbyvar)
-          else .
+        {
+          if (add_format) {
+            add_format(., tableby = tablebyvar, groupby = rowbyvar)
+          } else {
+            .
           }
+        }
     } else {
-
       res <- dfs %>%
         nest(data_nest = -all_of(tablebyvar)) %>%
         rowwise() %>%
         mutate(data_nest = list(
           data_nest %>%
-            add_row(label = paste0(prefix, !!sym(tablebyvar)),
-                    row_type = "TABLE_BY_HEADER", anbr = 0,
-                    .before = 1))) %>%
+            add_row(
+              label = paste0(prefix, !!sym(tablebyvar)),
+              row_type = "TABLE_BY_HEADER", anbr = 0,
+              .before = 1
+            )
+        )) %>%
         unnest(data_nest) %>%
         ungroup() %>%
-        {if (add_format) add_format(., tableby = tablebyvar, groupby = rowbyvar)
-          else .
+        {
+          if (add_format) {
+            add_format(., tableby = tablebyvar, groupby = rowbyvar)
+          } else {
+            .
           }
+        }
     }
-
   }
 
   if (!is.null(c(column_metadata_file, column_metadata)) && !is.null(tbltype)) {
@@ -193,7 +221,6 @@ bind_table <- function(...,
 #' @return df with rowtext row header added
 #' @noRd
 add_rowtext_by <- function(df, tablebyvar, env) {
-
   if (any(df[[tablebyvar]] == "")) {
     rowtext <- df[df[[tablebyvar]] == "", "label"][[1]]
     df <- df %>%
@@ -201,17 +228,20 @@ add_rowtext_by <- function(df, tablebyvar, env) {
       rowwise() %>%
       filter(!(!!sym(tablebyvar) == "")) %>%
       mutate(data_nest = list(data_nest %>%
-                                add_row(label = rowtext,
-                                        row_type = "HEADER",
-                                        .before = 1))) %>%
+        add_row(
+          label = rowtext,
+          row_type = "HEADER",
+          .before = 1
+        ))) %>%
       unnest(data_nest)
   }
 
   df <- df %>%
     add_anbr(env = env)
 
-  if ("anbr" %in% names(df))
+  if ("anbr" %in% names(df)) {
     df[is.na(df[["anbr"]]), "anbr"] <- unique(df[is.na(df[["anbr"]]), "anbr"])
+  }
 
   df
 }
@@ -235,13 +265,16 @@ add_anbr <- function(df, env = parent.frame()) {
 
   # check if anbr has been added or if it's not a valid numeric
   if ("anbr" %in% names(df) &&
-      !all(is.na(suppressWarnings(as.numeric(df[["anbr"]]))))) {
+    !all(is.na(suppressWarnings(as.numeric(df[["anbr"]]))))) {
     # update counter to be the max anbr in the input df for future layers
     anbr_values <- df[["anbr"]]
     assign("anbr_counter",
-           max(c(suppressWarnings(as.numeric(df[["anbr"]])),
-                 get("anbr_counter", envir = env) + 1), na.rm = TRUE),
-           envir = env)
+      max(c(
+        suppressWarnings(as.numeric(df[["anbr"]])),
+        get("anbr_counter", envir = env) + 1
+      ), na.rm = TRUE),
+      envir = env
+    )
     # return df
     df %>%
       select(-"anbr") %>%

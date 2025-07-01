@@ -1,4 +1,3 @@
-
 test_that("univar works with .ord as expected", {
   mtcars2 <- mtcars %>%
     rownames_to_column(var = "USUBJID")
@@ -20,12 +19,12 @@ test_that("univar works with .ord as expected", {
   )
 
   expect_equal(
-      univar(
-        mtcars2,
-        colvar = "cyl",
-        rowvar = "mpg",
-        rowbyvar = "vs",
-        .ord = TRUE
+    univar(
+      mtcars2,
+      colvar = "cyl",
+      rowvar = "mpg",
+      rowbyvar = "vs",
+      .ord = TRUE
     ),
     expected,
     ignore_attr = TRUE
@@ -60,17 +59,16 @@ test_that("univar works with .ord as expected", {
   )
 
   expect_equal(
-      univar(
-        mtcars2,
-        colvar = "cyl",
-        rowvar = "mpg",
-        rowbyvar = "vs",
-        tablebyvar = "am",
-        .ord = TRUE
-      ),
-      expected,
-      ignore_attr = TRUE
-
+    univar(
+      mtcars2,
+      colvar = "cyl",
+      rowvar = "mpg",
+      rowbyvar = "vs",
+      tablebyvar = "am",
+      .ord = TRUE
+    ),
+    expected,
+    ignore_attr = TRUE
   )
 
   expected <- tibble::tribble(
@@ -104,15 +102,14 @@ test_that("univar works with .ord as expected", {
   )
 
   expect_equal(
-      univar(
-        mtcars2,
-        colvar = "cyl",
-        rowvar = "mpg",
-        rowbyvar = c("vs", "am"),
-        .ord = TRUE
+    univar(
+      mtcars2,
+      colvar = "cyl",
+      rowvar = "mpg",
+      rowbyvar = c("vs", "am"),
+      .ord = TRUE
     ),
     expected,
     ignore_attr = TRUE
   )
-
 })

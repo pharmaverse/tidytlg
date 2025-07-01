@@ -106,15 +106,17 @@
 #' @keywords internal
 "_PACKAGE"
 
-utils::globalVariables(c("anbr", "label", "rowvar", "rowcondition", "row_type",
-                  "rowtext", "tableby", "by", "func", "colvar", "header_order",
-                  "df", "filter_to_df", "statlist", "denom_df", "precision",
-                  "tbltype", "dotdotdot",
-                  ".", "name", "alpha", "value", "N", "pct", "denom", "results",
-                  "n_ord", "n_ord2", "n_ord3", "data_nest", "nested_treatment",
-                  "nested_level", "nest_treatment", "stat", "extra", "prec",
-                  "IDENTIFIER", "TABLE ID", "decode", "colnbr", "newrows", "el",
-                  "sorter", "coldef", "V1"))
+utils::globalVariables(c(
+  "anbr", "label", "rowvar", "rowcondition", "row_type",
+  "rowtext", "tableby", "by", "func", "colvar", "header_order",
+  "df", "filter_to_df", "statlist", "denom_df", "precision",
+  "tbltype", "dotdotdot",
+  ".", "name", "alpha", "value", "N", "pct", "denom", "results",
+  "n_ord", "n_ord2", "n_ord3", "data_nest", "nested_treatment",
+  "nested_level", "nest_treatment", "stat", "extra", "prec",
+  "IDENTIFIER", "TABLE ID", "decode", "colnbr", "newrows", "el",
+  "sorter", "coldef", "V1"
+))
 
 ## usethis namespace: start
 #' @importFrom rlang enexprs is_call expr sym %||% exprs syms as_string is_named
@@ -155,10 +157,12 @@ NULL
   op <- options()
   op.tidytlg <- list(
     tidytlg.row_type.levels =
-      c("TABLE_BY_HEADER",
+      c(
+        "TABLE_BY_HEADER",
         "BY_HEADER1", "BY_HEADER2", "BY_HEADER3", "BY_HEADER4", "BY_HEADER5",
         "HEADER",
-        "N", "VALUE", "NESTED"),
+        "N", "VALUE", "NESTED"
+      ),
     tidytlg.fontsize.title = 10,
     tidytlg.fontsize.table.footnote = 9,
     tidytlg.fontsize.listing.footnote = 8,

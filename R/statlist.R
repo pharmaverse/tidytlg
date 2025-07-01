@@ -85,16 +85,15 @@
 #'   rowvar = "cyl",
 #'   rowbyvar = "am",
 #'   statlist = statlist("n/N (x.x)",
-#'                       distinct = FALSE,
-#'                       denoms_by = c("gear", "am"),
-#'                       zero_denom = "_0_")
+#'     distinct = FALSE,
+#'     denoms_by = c("gear", "am"),
+#'     zero_denom = "_0_"
 #'   )
+#' )
 statlist <- function(stats, ...) {
-
   # Validate Here
   st <- list()
   st$stats <- stats
 
   structure(append(st, list(...)), class = c("statlist", "list"))
-
 }

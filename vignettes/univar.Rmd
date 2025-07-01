@@ -22,11 +22,13 @@ The `univar` function is called to produce univariate-type summary statistics fo
 
 ```{r, message=FALSE}
 tbl <- cdisc_adsl %>%
-  univar(colvar = "TRT01PN",
-         rowvar = "AGE",
-         statlist = statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE")),
-         decimal = 0,
-         row_header = "Age (Years)")
+  univar(
+    colvar = "TRT01PN",
+    rowvar = "AGE",
+    statlist = statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE")),
+    decimal = 0,
+    row_header = "Age (Years)"
+  )
 
 knitr::kable(tbl)
 ```
@@ -65,11 +67,13 @@ A customized example is shown below for displaying N, Mean (95% C.I.), and Geome
 
 ```{r}
 tbl <- cdisc_adsl %>%
-  univar(colvar = "TRT01PN",
-         rowvar = "AGE",
-         statlist = statlist(c("N", "MEAN_CI", "GeoMEAN_CI")),
-         decimal = 0,
-         row_header = "Age (Years)")
+  univar(
+    colvar = "TRT01PN",
+    rowvar = "AGE",
+    statlist = statlist(c("N", "MEAN_CI", "GeoMEAN_CI")),
+    decimal = 0,
+    row_header = "Age (Years)"
+  )
 
 knitr::kable(tbl)
 ```
@@ -80,10 +84,12 @@ The decimal precision to be used in display of univariate statistics is comprise
 
 ```{r}
 tbl <- cdisc_adsl %>%
-  univar(colvar = "TRT01PN",
-         rowvar = "BMIBL",
-         decimal = 2,
-         row_header = "Age (Years)")
+  univar(
+    colvar = "TRT01PN",
+    rowvar = "BMIBL",
+    decimal = 2,
+    row_header = "Age (Years)"
+  )
 
 knitr::kable(tbl)
 ```
@@ -97,11 +103,13 @@ A customized example is shown below for presenting the univariate summary of vit
 
 ```{r}
 tbl <- cdisc_advs %>%
-  univar(colvar = "TRTAN",
-         rowvar = "AVAL",
-         rowbyvar = "PARAMCD",
-         precisionby = "PARAMCD",
-         decimal = 4)
+  univar(
+    colvar = "TRTAN",
+    rowvar = "AVAL",
+    rowbyvar = "PARAMCD",
+    precisionby = "PARAMCD",
+    decimal = 4
+  )
 
 knitr::kable(tbl)
 ```
@@ -111,10 +119,12 @@ While data driven precision is usually done with a by variable it doesn't always
 ```{r}
 tbl <- cdisc_advs %>%
   filter(PARAMCD == "SYSBP") %>%
-  univar(colvar = "TRTAN",
-         rowvar = "CHG",
-         precisionon = "CHG",
-         decimal = 4)
+  univar(
+    colvar = "TRTAN",
+    rowvar = "CHG",
+    precisionon = "CHG",
+    decimal = 4
+  )
 
 knitr::kable(tbl)
 ```
@@ -124,12 +134,14 @@ Another use case for the `precisionon` argument could be if you need to calculat
 ```{r}
 tbl <- cdisc_advs %>%
   filter(PARAMCD == "SYSBP") %>%
-  univar(colvar = "TRTAN",
-         rowvar = "AVAL",
-         rowbyvar = "PARAMCD",
-         precisionby = "PARAMCD",
-         precisionon = "CHG",
-         decimal = 4)
+  univar(
+    colvar = "TRTAN",
+    rowvar = "AVAL",
+    rowbyvar = "PARAMCD",
+    precisionby = "PARAMCD",
+    precisionon = "CHG",
+    decimal = 4
+  )
 
 knitr::kable(tbl)
 ```

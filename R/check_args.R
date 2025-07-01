@@ -29,8 +29,10 @@ check_is_nested_rowvar <- function(arg) {
   if (!stringr::str_detect(arg, "[a-zA-Z0-9]+\\*[a-zA-Z0-9]+")) {
     return(FALSE)
   }
-  if (stringr::str_detect(arg,
-                "[a-zA-Z0-9]+\\*[a-zA-Z0-9]+\\*[a-zA-Z0-9]+\\*[a-zA-Z0-9]+")) {
+  if (stringr::str_detect(
+    arg,
+    "[a-zA-Z0-9]+\\*[a-zA-Z0-9]+\\*[a-zA-Z0-9]+\\*[a-zA-Z0-9]+"
+  )) {
     return(FALSE)
   }
   return(stringr::str_detect(arg, "^[a-zA-Z0-9]+\\*([a-zA-Z0-9]+\\**)+$"))
@@ -174,7 +176,9 @@ check_cutoff_stat <- function(func, cutoff_stat) {
     return()
   }
   stop("Cutoff stat ", cutoff_stat,
-       " for function ", func, "\n\n", call. = FALSE)
+    " for function ", func, "\n\n",
+    call. = FALSE
+  )
 }
 
 
@@ -277,10 +281,12 @@ check_in_df <- function(func,
                         arglist,
                         df_field = "df",
                         args_req_check =
-                          c("colvar", "rowvar",
+                          c(
+                            "colvar", "rowvar",
                             "rowbyvar", "tablebyvar",
                             "precisionby", "precisionon",
-                            "groupby", "tableby", "idvars", "var")) {
+                            "groupby", "tableby", "idvars", "var"
+                          )) {
   args_req_check <- args_req_check[args_req_check %in% names(arglist)]
 
   tests <- tidyr::tibble(args = "arglist", el = args_req_check)
@@ -363,7 +369,9 @@ check_req_fields <- function(func, arglist, req_fields) {
   }
 
   stop("Reqiured fields ", paste0(missing, colapse = ", "),
-       " for function ", func, "\n\n", call. = FALSE)
+    " for function ", func, "\n\n",
+    call. = FALSE
+  )
 }
 
 #' check_cutoff_format
@@ -381,7 +389,9 @@ check_cutoff_format <- function(func, cutoff) {
     return()
   }
   stop("cutoff for function ", func,
-       " is incorrectly formated\n\n", call. = FALSE)
+    " is incorrectly formated\n\n",
+    call. = FALSE
+  )
 }
 
 
@@ -402,7 +412,9 @@ check_req_fields <- function(func, arglist, req_fields) {
   }
 
   stop("Reqiured fields ", paste0(missing, colapse = ", "),
-       " for function ", func, "\n\n", call. = FALSE)
+    " for function ", func, "\n\n",
+    call. = FALSE
+  )
 }
 
 #' check_req_vars
@@ -491,8 +503,10 @@ check_var_types <- function(func, arglist, lst_types) {
 #' Throws error if arg reference the same value
 #' @noRd
 check_var_duplicates <- function(func, arglist) {
-  args_req_check <- c("colvar", "rowvar", "rowbyvar",
-                               "tablebyvar", "groupby", "tableby")
+  args_req_check <- c(
+    "colvar", "rowvar", "rowbyvar",
+    "tablebyvar", "groupby", "tableby"
+  )
   args_req_check <- arglist[names(arglist) %in% args_req_check]
 
   if (length(args_req_check) < 2) {
@@ -506,7 +520,7 @@ check_var_duplicates <- function(func, arglist) {
         stringr::str_split("\\*") %>%
         base::unlist()
       names(row_var_list) <- paste0("nested rowvar ", seq_along(row_var_list))
-      args_req_check <- args_req_check[- (which(names(args_req_check) == "rowvar"))]
+      args_req_check <- args_req_check[-(which(names(args_req_check) == "rowvar"))]
       args_req_check <- append(args_req_check, row_var_list)
     }
   }
@@ -517,7 +531,7 @@ check_var_duplicates <- function(func, arglist) {
     dplyr::rowwise() %>%
     dplyr::mutate(
       CHECK = length(args_req_check) == length(unique(dplyr::c_across(cols = everything())))
-      )
+    )
 
   if (df_dupes$CHECK[1]) {
     return()
@@ -531,12 +545,15 @@ check_var_duplicates <- function(func, arglist) {
   first <- TRUE
   for (i in dup_count$V1) {
     if (first) {
-      msg <- paste0(paste0(names(lst_dupes[lst_dupes == i]), collapse = ", "),
-                    " all have value ", i, " for function ", func)
+      msg <- paste0(
+        paste0(names(lst_dupes[lst_dupes == i]), collapse = ", "),
+        " all have value ", i, " for function ", func
+      )
       first <- FALSE
     } else {
       msg <- paste0(msg, "\n", paste0(names(lst_dupes[lst_dupes == i]),
-                collapse = ", "), " all have value ", i, " for function ", func)
+        collapse = ", "
+      ), " all have value ", i, " for function ", func)
     }
   }
 
@@ -610,7 +627,8 @@ check_statlist_N <- function(func, astatlist) {
 check_freq_cutoff <- function(df) {
   if (nrow(df) == 0) {
     stop("cutoff resulted in an empty table for function freq\n\n",
-         call. = FALSE)
+      call. = FALSE
+    )
   } else {
     return()
   }
@@ -625,7 +643,7 @@ check_freq_cutoff <- function(df) {
 check_geo_stats <- function(arglist) {
   # add optional checks for special cases
   if (!any(arglist[["statlist"]][["stats"]] %in%
-           c("GeoMEAN", "GSD", "GSE", "GeoMEAN_CI"))) {
+    c("GeoMEAN", "GSD", "GSE", "GeoMEAN_CI"))) {
     return()
   }
 
@@ -653,7 +671,8 @@ check_alpha <- function(alpha) {
     return()
   }
   stop("alpha must be a number in between 0 and 1 for function univar\n\n",
-       call. = FALSE)
+    call. = FALSE
+  )
 }
 
 
@@ -670,7 +689,8 @@ check_opath <- function(opath) {
     return()
   }
   stop(paste0("opath '", opath, "' does not exist for function gentlg", "\n\n"),
-       call. = FALSE)
+    call. = FALSE
+  )
 }
 
 #' check_wcol
@@ -685,14 +705,17 @@ check_wcol <- function(huxme, wcol) {
     "anbr", "roworder", "boldme", "indentme", "newrows", "newpage",
     "rowvar", "row_type", "nested_level", "group_level"
   )
-  huxme_output <- huxme %>% dplyr::select(!c(any_of(c("func", lst_to_remove)),
-                                                    ends_with("_ord")))
+  huxme_output <- huxme %>% dplyr::select(!c(
+    any_of(c("func", lst_to_remove)),
+    ends_with("_ord")
+  ))
 
   if (length(wcol) == 1 || length(wcol) == length(huxme_output)) {
     return()
   }
   stop(paste0("wcol's length must be 1 or the length of final output", "\n\n"),
-       call. = FALSE)
+    call. = FALSE
+  )
 }
 
 #' check_plotnames
@@ -708,8 +731,10 @@ check_plotnames <- function(plotnames) {
   if (all(file.exists(plotnames))) {
     return()
   }
-  stop(paste0("plotnames '", plotnames,
-              "' does not exist for function gentlg", "\n\n"), call. = FALSE)
+  stop(paste0(
+    "plotnames '", plotnames,
+    "' does not exist for function gentlg", "\n\n"
+  ), call. = FALSE)
 }
 
 #' check_orientation
@@ -723,9 +748,11 @@ check_orientation <- function(orientation) {
   if (orientation %in% c("landscape", "portrait")) {
     return()
   }
-  stop(paste0("orientation '", orientation,
-              "' is not either 'landscape' or 'portrait' for function gentlg",
-              "\n\n"), call. = FALSE)
+  stop(paste0(
+    "orientation '", orientation,
+    "' is not either 'landscape' or 'portrait' for function gentlg",
+    "\n\n"
+  ), call. = FALSE)
 }
 
 #' check_dfs_formats
@@ -747,9 +774,11 @@ check_dfs_formats <- function(dfs) {
   if (length(index_missing) == 0) {
     return()
   }
-  stop(paste0("dfs ", paste0(index_missing, collapse = ", "),
-              " are missing the required fields for function bind_table",
-              "\n\n"), call. = FALSE)
+  stop(paste0(
+    "dfs ", paste0(index_missing, collapse = ", "),
+    " are missing the required fields for function bind_table",
+    "\n\n"
+  ), call. = FALSE)
 }
 
 #' check_dfs
@@ -1020,8 +1049,10 @@ check_freq <- function(arglist) {
   # run stats tests
   check_in_df("freq", arglist)
   if (!is.null(arglist["denom_df"])) {
-    check_in_df("freq", arglist, df_field = "denom_df",
-                args_req_check = c("colvar"))
+    check_in_df("freq", arglist,
+      df_field = "denom_df",
+      args_req_check = c("colvar")
+    )
   }
   check_var_duplicates("freq", arglist)
   check_statlist("freq", arglist[["statlist"]]$stats)
@@ -1094,7 +1125,7 @@ check_gentlg <- function(arglist) {
 
   # build tier two tests
   tier_two_tests <- tribble(
-    ~ arglist, ~ el, ~ func, ~ issue, ~ msg, ~ use_df,
+    ~arglist, ~el, ~func, ~issue, ~msg, ~use_df,
     "arglist", "tlf", "check_arg_tlf", "stop",
     quote(paste0(
       "The following values are included in argument ", element,

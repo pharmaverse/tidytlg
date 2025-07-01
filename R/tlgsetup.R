@@ -24,11 +24,11 @@
 #' @examples
 #' df <-
 #'   tibble::tribble(
-#'   ~TRT01AN, ~USUBJID,
-#'   0,        "A",
-#'  54,       "B",
-#'  81,       "C"
-#' )
+#'     ~TRT01AN, ~USUBJID,
+#'     0, "A",
+#'     54, "B",
+#'     81, "C"
+#'   )
 #'
 #' tlgsetup(df, "TRT01AN", column_metadata = column_metadata)
 #'
@@ -49,65 +49,66 @@ tlgsetup <-
            column_metadata_file = NULL,
            column_metadata = NULL,
            tbltype = NULL) {
+    arglist <- list()
+    args_to_chk <- names(formals())[names(formals()) != "..."]
+    purrr::walk(
+      args_to_chk,
+      .f = function(x) {
+        arglist[[x]] <<- eval(rlang::sym(x))
+      }
+    )
+    check_tlgsetup(arglist)
 
-  arglist <- list()
-  args_to_chk <- names(formals())[names(formals()) != "..."]
-  purrr::walk(
-    args_to_chk,
-    .f = function(x) {
-      arglist[[x]] <<- eval(rlang::sym(x))
-    }
-  )
-  check_tlgsetup(arglist)
-
-  if ("colnbr" %in% names(df)) {
-    message("tidytlg seems to have been run more than once. Remove 'colnbr'
+    if ("colnbr" %in% names(df)) {
+      message("tidytlg seems to have been run more than once. Remove 'colnbr'
             column and rerun if chnages to column_metadata.")
-    return(df)
+      return(df)
+    }
+
+    if (is.null(c(column_metadata_file, column_metadata))) {
+      return(df)
+    } else if (is.null(column_metadata)) {
+      column_metadata <- readxl::read_excel(column_metadata_file, sheet = 1)
+    }
+
+    if (!is.null(tbltype)) {
+      column_metadata <- column_metadata %>%
+        # Per JCEV-16: Any non breaking space(utf8 160) should be collapsed into space
+        # (utf8 32)
+        mutate(
+          tbltype = gsub("\u00A0", " ", tbltype)
+        ) %>%
+        filter(tbltype == !!tbltype)
+    }
+
+    rlang::check_required(df)
+    rlang::check_required(var)
+    rlang::check_required(column_metadata)
+
+    if (inherits(df, "survfit")) {
+      return(df)
+    } else {
+      # add rows to df based off column metadata
+      split <- column_metadata %>%
+        dplyr::mutate(colnbr = forcats::fct_reorder(paste0(
+          "col",
+          dplyr::row_number()
+        ), dplyr::row_number())) %>%
+        tidyr::separate_rows(coldef, sep = "\\+")
+
+      if (!is.factor(df[[var]])) {
+        df[[var]] <- as.character(df[[var]])
+      }
+
+
+      # temp fix to align attributes and prevent warning
+      attr(split$coldef, "label") <- attr(df[[var]], "label")
+
+      split %>%
+        inner_join(df, by = c("coldef" = var), keep = TRUE, relationship = "many-to-many") %>%
+        select(-coldef, -decode, -dplyr::starts_with("span")) %>%
+        mutate(
+          colnbr = fct_expand(colnbr, unique(as.character(split$colnbr)))
+        )
+    }
   }
-
-  if (is.null(c(column_metadata_file, column_metadata))) {
-    return(df)
-  } else if (is.null(column_metadata)) {
-    column_metadata <- readxl::read_excel(column_metadata_file, sheet = 1)
-  }
-
-  if (!is.null(tbltype)) {
-    column_metadata <- column_metadata %>%
-# Per JCEV-16: Any non breaking space(utf8 160) should be collapsed into space
-# (utf8 32)
-      mutate(
-        tbltype = gsub("\u00A0", " ", tbltype)
-      ) %>%
-      filter(tbltype == !!tbltype)
-  }
-
-  rlang::check_required(df)
-  rlang::check_required(var)
-  rlang::check_required(column_metadata)
-
-  if (inherits(df, "survfit")) {
-    return(df)
-  } else {
-    # add rows to df based off column metadata
-    split <- column_metadata %>%
-      dplyr::mutate(colnbr = forcats::fct_reorder(paste0("col",
-                              dplyr::row_number()), dplyr::row_number())) %>%
-      tidyr::separate_rows(coldef, sep = "\\+")
-
-    if (!is.factor(df[[var]]))
-      df[[var]] <- as.character(df[[var]])
-
-
-    # temp fix to align attributes and prevent warning
-    attr(split$coldef, "label") <- attr(df[[var]], "label")
-
-    split %>%
-      inner_join(df, by = c("coldef" = var), keep = TRUE, relationship = "many-to-many") %>%
-      select(-coldef, -decode, -dplyr::starts_with("span")) %>%
-      mutate(
-        colnbr = fct_expand(colnbr, unique(as.character(split$colnbr)))
-      )
-
-  }
-}
