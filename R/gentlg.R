@@ -320,6 +320,7 @@ gentlg <- function(huxme = NULL,
              pagenum,
              bottom_borders,
              border_fns,
+             alignments,
              index) {
       gentlg_single(
         huxme = ht,
@@ -356,6 +357,7 @@ gentlg <- function(huxme = NULL,
     pagenum,
     bottom_borders,
     border_fns,
+    alignments,
     seq_len(length(huxme)),
     SIMPLIFY = FALSE
   )
