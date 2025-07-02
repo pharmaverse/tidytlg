@@ -123,9 +123,10 @@ then borders are added to the \code{colspan} and \code{colheader} rows. (Default
 \item{border_fns}{(optional) List. A list of functions that transform the matrix
 passed to \code{bottom_borders}. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information.}
 
-\item{alignments}{(optional) A list of named lists. Used to specify individual
-column or cell alignments. Each named list contains \code{row}, \code{col}, and \code{value},
-which are passed to \code{\link[huxtable:align]{huxtable::set_align()}} to set the alignments.}
+\item{alignments}{(optional) List of named lists. Vectorized.
+(Default = list()) Used to specify individual column or cell alignments.
+Each named list contains \code{row}, \code{col}, and \code{value}, which are passed to
+\code{\link[huxtable:align]{huxtable::set_align()}} to set the alignments.}
 }
 \value{
 A list of formatted huxtables with desired properties for output to an RTF/HTML
