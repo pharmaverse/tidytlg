@@ -19,6 +19,7 @@ gentlg_single <- function(huxme = NULL,
                           pagenum = FALSE,
                           bottom_borders = NULL,
                           border_fns = list(),
+                          alignments = list(),
                           index_in_result = 1) {
   assertthat::is.count(index_in_result)
   # check all the arguments being passed in except ...
@@ -970,6 +971,16 @@ gentlg_single <- function(huxme = NULL,
   if (getOption("tidytlg.add_datetime")) {
     ht <- huxtable::set_align(ht, nrow(ht), seq_len(ncol(ht)), "right")
   } # Alignment fileloc, datetime to the right
+
+  # Custom alignments
+  for (alignment in alignments) {
+    ht <- huxtable::set_align(
+      ht,
+      alignment$row,
+      alignment$col,
+      alignment$value
+    )
+  }
 
   #############################
   ###       Escapeme!       ###

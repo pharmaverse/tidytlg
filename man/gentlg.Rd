@@ -25,7 +25,8 @@ gentlg(
   colheader = NULL,
   pagenum = FALSE,
   bottom_borders = "old_format",
-  border_fns = list()
+  border_fns = list(),
+  alignments = list()
 )
 }
 \arguments{
@@ -121,6 +122,11 @@ then borders are added to the \code{colspan} and \code{colheader} rows. (Default
 
 \item{border_fns}{(optional) List. A list of functions that transform the matrix
 passed to \code{bottom_borders}. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information.}
+
+\item{alignments}{(optional) List of named lists. Vectorized.
+(Default = list()) Used to specify individual column or cell alignments.
+Each named list contains \code{row}, \code{col}, and \code{value}, which are passed to
+\code{\link[huxtable:align]{huxtable::set_align()}} to set the alignments.}
 }
 \value{
 A list of formatted huxtables with desired properties for output to an RTF/HTML
@@ -213,6 +219,19 @@ gentlg(
     "{\\\\super a} Subjects are counted once for any given event."
   ),
   watermark = "Confidential"
+)
+
+# Set alignments
+gentlg(
+  huxme = final,
+  file = "TSFAEX",
+  alignments = list(
+    # Align the second column to the left
+    list(row = 1:7, col = 2, value = "left"),
+
+    # Align cell "Drug: B" to the right
+    list(row = 2, col = 3, value = "right")
+  )
 )
 
 # Produce output in HTML format

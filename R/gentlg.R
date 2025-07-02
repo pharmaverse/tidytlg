@@ -80,6 +80,10 @@
 #' then borders are added to the `colspan` and `colheader` rows. (Default = "old_format").
 #' @param border_fns (optional) List. A list of functions that transform the matrix
 #' passed to `bottom_borders`. Vectorized. See [add_bottom_borders()] for more information.
+#' @param alignments (optional) List of named lists. Vectorized.
+#' (Default = `list()`) Used to specify individual column or cell alignments.
+#' Each named list contains `row`, `col`, and `value`, which are passed to
+#' [huxtable::set_align()] to set the alignments.
 #'
 #' @section Huxme Details:
 #' For tables and listings, formatting of the output can be dictated through the
@@ -166,6 +170,19 @@
 #'   watermark = "Confidential"
 #' )
 #'
+#' # Set alignments
+#' gentlg(
+#'   huxme = final,
+#'   file = "TSFAEX",
+#'   alignments = list(
+#'     # Align the second column to the left
+#'     list(row = 1:7, col = 2, value = "left"),
+#'
+#'     # Align cell "Drug: B" to the right
+#'     list(row = 2, col = 3, value = "right")
+#'   )
+#' )
+#'
 #' # Produce output in HTML format
 #' hux <- gentlg(
 #'   huxme = final,
@@ -207,7 +224,15 @@ gentlg <- function(huxme = NULL,
                    colheader = NULL,
                    pagenum = FALSE,
                    bottom_borders = "old_format",
-                   border_fns = list()) {
+                   border_fns = list(),
+                   alignments = list()) {
+  # Validate `alignments` here because of its complicated data structure
+  stopifnot("`alignments` must be a list" = is.list(alignments))
+
+  for (alignment in alignments) {
+    stopifnot("Each item of `alignments` must be a list" = is.list(alignment))
+  }
+
   adjfilename <- stringr::str_replace_all(
     stringr::str_to_lower(file),
     "(-|_)", ""
@@ -234,7 +259,8 @@ gentlg <- function(huxme = NULL,
       colheader = colheader,
       pagenum = pagenum,
       bottom_borders = bottom_borders,
-      border_fns = border_fns
+      border_fns = border_fns,
+      alignments = alignments
     )
 
     if (print.hux == FALSE) {
@@ -292,6 +318,10 @@ gentlg <- function(huxme = NULL,
     colspan <- list(colspan)
   }
 
+  if (length(alignments) == 0 || !all(sapply(unlist(alignments, FALSE), is.list))) {
+    alignments <- list(alignments)
+  }
+
   hts <- mapply(
     function(ht,
              colspan,
@@ -302,6 +332,7 @@ gentlg <- function(huxme = NULL,
              pagenum,
              bottom_borders,
              border_fns,
+             alignments,
              index) {
       gentlg_single(
         huxme = ht,
@@ -325,6 +356,7 @@ gentlg <- function(huxme = NULL,
         pagenum = pagenum,
         bottom_borders = bottom_borders,
         border_fns = border_fns,
+        alignments = alignments,
         index_in_result = index
       )
     },
@@ -337,6 +369,7 @@ gentlg <- function(huxme = NULL,
     pagenum,
     bottom_borders,
     border_fns,
+    alignments,
     seq_len(length(huxme)),
     SIMPLIFY = FALSE
   )
