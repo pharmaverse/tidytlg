@@ -226,6 +226,13 @@ gentlg <- function(huxme = NULL,
                    bottom_borders = "old_format",
                    border_fns = list(),
                    alignments = list()) {
+  # Validate `alignments` here because of its complicated data structure
+  stopifnot("`alignments` must be a list" = is.list(alignments))
+
+  for (alignment in alignments) {
+    stopifnot("Each item of `alignments` must be a list" = is.list(alignment))
+  }
+
   adjfilename <- stringr::str_replace_all(
     stringr::str_to_lower(file),
     "(-|_)", ""
@@ -309,6 +316,10 @@ gentlg <- function(huxme = NULL,
       is.null(colspan)
   ) {
     colspan <- list(colspan)
+  }
+
+  if (length(alignments) == 0 || !all(sapply(unlist(alignments, FALSE), is.list))) {
+    alignments <- list(alignments)
   }
 
   hts <- mapply(
