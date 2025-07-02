@@ -6,8 +6,15 @@ test_that("custom alignments work", {
   )
 
   # `alignments` must be a list of named lists
-  expect_error(gentlg(huxme = df, print.hux = FALSE, alignments = 1))
-  expect_error(gentlg(huxme = df, print.hux = FALSE, alignments = list(1)))
+  expect_error(
+    gentlg(huxme = df, print.hux = FALSE, alignments = 1),
+    "`alignments` must be a list"
+  )
+
+  expect_error(
+    gentlg(huxme = df, print.hux = FALSE, alignments = list(1)),
+    "Each item of `alignments` must be a list"
+  )
 
   hux_table <- gentlg(
     huxme = df,
