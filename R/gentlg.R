@@ -81,7 +81,7 @@
 #' @param border_fns (optional) List. A list of functions that transform the matrix
 #' passed to `bottom_borders`. Vectorized. See [add_bottom_borders()] for more information.
 #' @param alignments (optional) List of named lists. Vectorized.
-#' (Default = list()) Used to specify individual column or cell alignments.
+#' (Default = `list()`) Used to specify individual column or cell alignments.
 #' Each named list contains `row`, `col`, and `value`, which are passed to
 #' [huxtable::set_align()] to set the alignments.
 #'
