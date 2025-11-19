@@ -1,3 +1,7 @@
+# tidytlg 0.10.1
+
+- Fixed RTF landscape tag (#54). 
+
 # tidytlg 0.10.0
 
 - Fixed rounding bug (#44).
