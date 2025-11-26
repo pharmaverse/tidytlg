@@ -879,7 +879,7 @@ gentlg_single <- function(huxme = NULL,
       ),
       size = 8
       ),
-      ht <- ht
+      ht <- add_footer(ht, " ", size = 8)
     )
   )
 
