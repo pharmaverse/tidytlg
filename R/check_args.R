@@ -182,8 +182,6 @@ check_cutoff_stat <- function(func, cutoff_stat) {
 }
 
 
-
-
 #' check_arg_tlf
 #'
 #' @param arg tlg argument from gentlg
@@ -674,7 +672,6 @@ check_alpha <- function(alpha) {
     call. = FALSE
   )
 }
-
 
 
 #' check_opath
