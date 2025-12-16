@@ -1,13 +1,13 @@
 #' Add the formatting variables of `indentme`, `newrows`, `newpage`, and `roworder` to
 #' the results dataframe
 #'
-#' @param df (required) dataframe of results and must contain the `anbr` variable
-#' @param tableby (optional) character vector containing table by variables
-#' @param groupby (optional) character vector containing group by variables
+#' @param df (required) dataframe of results and must contain the `anbr` variable.
+#' @param tableby (optional) character vector containing table by variables.
+#' @param groupby (optional) character vector containing group by variables.
 #' @param .keep (optional) should `tableby` and `groupby` variables be kept in the
-#'   final dataframe.  (default = FALSE)
+#'   final dataframe. (default = `FALSE`).
 #'
-#' @return dataframe with the formatting variables indentme, newrows, newpage, and roworder added
+#' @return dataframe with the formatting variables `indentme`, `newrows`, `newpage`, and `roworder` added.
 #' @importFrom purrr walk
 #' @importFrom rlang sym
 #' @export
@@ -34,15 +34,15 @@ add_format <- function(df, tableby = NULL, groupby = NULL, .keep = FALSE) {
   walk(args_to_chk, .f = function(x) arglist[[x]] <<- eval(sym(x)))
   check_add_format(arglist)
 
-  df2 <- df %>%
-    add_indent() %>%
-    add_newrows(tableby = tableby, groupby = groupby) %>%
+  df2 <- df |>
+    add_indent() |>
+    add_newrows(tableby = tableby, groupby = groupby) |>
     add_newpage()
 
-  if (is.null(c(tableby, groupby)) | .keep == TRUE) {
+  if (is.null(c(tableby, groupby)) || .keep == TRUE) {
     df2
   } else {
-    df2 %>%
+    df2 |>
       select(-all_of(c(tableby, groupby)))
   }
 }

@@ -13,7 +13,6 @@ test_that("titles_file addes titles as expected", {
         gentlg(tab, file = "TSIDEM01", title_file = "titles.xls", colheader = c("label", "4", "6", "8"))
       }
     )
-    # expect_snapshot_file(test_path("test_outputs/tsidem01.rtf"))
 
     withr::with_dir(
       new = test_path("test_outputs"),

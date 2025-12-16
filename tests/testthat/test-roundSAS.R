@@ -16,8 +16,6 @@ library(dplyr)
 #' T2.1 when converting to character with missing values
 #' T2.2 when converting to character and na_char is specified
 
-# context("roundSAS - T1. The function produces expected decimal rounding ...")
-
 test_that("T1.1 for rounding up midpoint values", {
   x <- c(-2.5, -1.5, -0.5, 0.5, 1.5, 2.5)
 
@@ -35,8 +33,6 @@ test_that("T1.2 for rounding up midpoint values and convert to character", {
 
   expect_equal(roundSAS(x, digits = 0, as_char = TRUE), c("-3", "-2", "-1", "1", "2", "3"))
 })
-
-# context("roundSAS - T2. The function creates expected missing value label ...")
 
 test_that("T2.1 when converting to character with missing values", {
   y <- c(8.65, 8.75, NA, 9.85, 9.95)

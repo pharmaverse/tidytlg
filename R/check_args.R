@@ -16,7 +16,7 @@ check_req_arg <- function(arg) {
 #' @return TRUE/FALSE if is statlist
 #' @noRd
 check_is_statlist <- function(arg) {
-  return(class(arg)[1] == "statlist")
+  class(arg)[1] == "statlist"
 }
 
 #' check_is_nested_rowvar
@@ -35,7 +35,7 @@ check_is_nested_rowvar <- function(arg) {
   )) {
     return(FALSE)
   }
-  return(stringr::str_detect(arg, "^[a-zA-Z0-9]+\\*([a-zA-Z0-9]+\\**)+$"))
+  stringr::str_detect(arg, "^[a-zA-Z0-9]+\\*([a-zA-Z0-9]+\\**)+$")
 }
 
 
@@ -102,7 +102,7 @@ check_arg_exists <- function(arg, df) {
   if (!all(arg %in% names(df))) {
     return(FALSE)
   }
-  return(TRUE)
+  TRUE
 }
 #' check_arg_exists
 #'
@@ -113,9 +113,10 @@ check_arg_exists <- function(arg, df) {
 check_file <- function(arg) {
   arg <- arg[[1]]
   if (is.null(arg)) {
-    return(TRUE)
+    TRUE
+  } else {
+    file.exists(arg)
   }
-  return(file.exists(arg))
 }
 
 
@@ -383,7 +384,9 @@ check_cutoff_format <- function(func, cutoff) {
   if (is.null(cutoff)) {
     return()
   }
-  if (stringr::str_detect(cutoff, "^([a-zA-Z0-9]+|[a-zA-Z0-9]+ >= [a-zA-Z0-9]+( (&|\\|) [a-zA-Z0-9]+ >= [a-zA-Z0-9]+)*)$")) {
+  if (stringr::str_detect(
+    cutoff, "^([a-zA-Z0-9]+|[a-zA-Z0-9]+ >= [a-zA-Z0-9]+( (&|\\|) [a-zA-Z0-9]+ >= [a-zA-Z0-9]+)*)$"
+  )) {
     return()
   }
   stop("cutoff for function ", func,
@@ -550,7 +553,7 @@ check_var_duplicates <- function(func, arglist) {
       first <- FALSE
     } else {
       msg <- paste0(msg, "\n", paste0(names(lst_dupes[lst_dupes == i]),
-        collapse = ", "
+        collapse = ", " # nolint indentation_linter
       ), " all have value ", i, " for function ", func)
     }
   }
@@ -596,14 +599,14 @@ check_statlist <- function(func, astatlist) {
 }
 
 
-#' check_statlist_N
+#' check_statlist_n
 #' Throws error if N is used with no other args used by freq functions
 #' @param func argument base function name
 #' @param astatlist statlist to test
 #'
 #' @return NULL
 #' @noRd
-check_statlist_N <- function(func, astatlist) {
+check_statlist_n <- function(func, astatlist) {
   if (!("N" %in% astatlist)) {
     return()
   }
@@ -1052,7 +1055,7 @@ check_freq <- function(arglist) {
   }
   check_var_duplicates("freq", arglist)
   check_statlist("freq", arglist[["statlist"]]$stats)
-  check_statlist_N("freq", arglist[["statlist"]]$stats)
+  check_statlist_n("freq", arglist[["statlist"]]$stats)
   check_cutoff_stat("freq", arglist[["cutoff_stat"]])
   check_cutoff_format("freq", arglist[["cutoff"]])
 }
@@ -1087,7 +1090,7 @@ check_nested_freq <- function(arglist) {
   check_in_df("nested_freq", arglist)
   check_var_duplicates("nested_freq", arglist)
   check_statlist("nested_freq", arglist[["statlist"]]$stats)
-  check_statlist_N("nested_freq", arglist[["statlist"]]$stats)
+  check_statlist_n("nested_freq", arglist[["statlist"]]$stats)
   check_cutoff_stat("nested_freq", arglist[["cutoff_stat"]])
   check_cutoff_format("nested_freq", arglist[["cutoff"]])
 }

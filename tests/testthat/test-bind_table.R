@@ -39,7 +39,7 @@ test_that("bind_table can handle non tidytlg tables", {
       subset = TRTEMFL == "Y"
     )
 
-  t3.1 <- data.frame(label = c("System organ class", "Preferred term"), row_type = "HEADER")
+  t3_1 <- data.frame(label = c("System organ class", "Preferred term"), row_type = "HEADER")
 
   t3 <- adae %>%
     nested_freq(
@@ -51,6 +51,6 @@ test_that("bind_table can handle non tidytlg tables", {
     )
 
   expect_silent({
-    bind_table(t1, t2, t3.1, t3, colvar = "TRT01AN", rowbyvar = "AEBODSYS")
+    bind_table(t1, t2, t3_1, t3, colvar = "TRT01AN", rowbyvar = "AEBODSYS")
   })
 })

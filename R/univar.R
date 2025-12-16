@@ -155,7 +155,7 @@ univar <- function(df,
 
   # build precision data for later
   if (!is.null(precisionby) ||
-    !is.null(precisionon)) {
+    !is.null(precisionon)) { # nolint indentation_linter
     if (!all(c(precisionby) %in% (c(tablebyvar, rowbyvar)))) {
       stop(
         "All values of argument `precisionby` must be a part of either
@@ -371,8 +371,8 @@ update_missing <- function(df) {
     "MEAN_CI" = "- (-; -)",
     "GeoMEAN_CI" = "- (-; -)"
   )
-  ret <- df %>%
-    group_by(name) %>%
+  ret <- df |>
+    group_by(name) |>
     mutate(
       value = ifelse(value == missing_base[[name[1]]],
         missing_update[[name[1]]], value
@@ -387,9 +387,9 @@ update_missing <- function(df) {
         ),
         value
       )
-    ) %>%
+    ) |>
     ungroup()
-  return(ret)
+  ret
 }
 
 #' Round values from derived dataframe
@@ -700,7 +700,7 @@ get_summaries <- function(statlist, rowvar, alpha) {
       .data[[rowvar]][.data[[rowvar]] > 0]
     )))),
     tval = ifelse(.data$N > 1, stats::qt(1 - (alpha / 2),
-      df = (.data$N - 1)
+      df = (.data$N - 1) # nolint indentation_linter
     ), NA_real_),
     LCL_MEAN = .data$MEAN - .data$tval * .data$SE,
     UCL_MEAN = .data$MEAN + .data$tval * .data$SE,

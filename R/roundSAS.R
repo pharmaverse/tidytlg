@@ -35,7 +35,7 @@
 #' ### rounds to tenths and label the missing value with "NE"
 #' roundSAS(y, digits = 1, as_char = TRUE, na_char = "NE")
 #'
-roundSAS <- function(x,
+roundSAS <- function(x, # nolint object_name_linter
                      digits = 0,
                      as_char = FALSE,
                      na_char = NULL) {
@@ -48,10 +48,10 @@ roundSAS <- function(x,
   z <- ifelse(!is.na(z) & z > 0, z * posneg, z)
 
   # output rounded values ---------------------------------------------------
-  if (as_char & is.null(na_char)) {
+  if (as_char && is.null(na_char)) {
     ## convert rounded values to character vector
     formatC(z, format = "f", digits = digits)
-  } else if (as_char & !is.null(na_char)) {
+  } else if (as_char && !is.null(na_char)) {
     ## convert to character vector and use na_char for missing value
     formatC(z, format = "f", digits = digits) %>%
       str_replace(" *(NA|NaN|NULL)", na_char)

@@ -156,7 +156,7 @@ NULL
 
 .onLoad <- function(libname, pkgname) {
   op <- options()
-  op.tidytlg <- list(
+  op_tidytlg <- list(
     tidytlg.row_type.levels =
       c(
         "TABLE_BY_HEADER",
@@ -228,8 +228,8 @@ NULL
     tidytlg.add_datetime = TRUE
   )
 
-  toset <- !(names(op.tidytlg) %in% names(op))
-  if (any(toset)) options(op.tidytlg[toset])
+  toset <- !(names(op_tidytlg) %in% names(op))
+  if (any(toset)) options(op_tidytlg[toset])
 
   invisible()
 }

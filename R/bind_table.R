@@ -138,13 +138,13 @@ bind_table <- function(...,
       }
   } else {
     dfs <- purrr::map_dfr(dfs_, ~ add_rowtext_by(.x,
-      tablebyvar = tablebyvar,
+      tablebyvar = tablebyvar, # nolint indentation_linter
       env = env
     ))
 
     if (add_count) {
       first_freq <- min(which(purrr::map_chr(dfs_, first_class) ==
-        "tidytlg.freq"))
+        "tidytlg.freq")) # nolint indentation_linter
       denoms_ <- attr(dfs_[[first_freq]], "denom")
 
       res <- dfs %>%
@@ -268,7 +268,7 @@ add_anbr <- function(df, env = parent.frame()) {
 
   # check if anbr has been added or if it's not a valid numeric
   if ("anbr" %in% names(df) &&
-    !all(is.na(suppressWarnings(as.numeric(df[["anbr"]]))))) {
+    !all(is.na(suppressWarnings(as.numeric(df[["anbr"]]))))) { # nolint indentation_linter
     # update counter to be the max anbr in the input df for future layers
     anbr_values <- df[["anbr"]]
     assign("anbr_counter",

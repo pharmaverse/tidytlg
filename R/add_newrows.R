@@ -91,7 +91,7 @@ add_newrows <- function(df, tableby = NULL, groupby = NULL) {
     dplyr::mutate(
       newrows = ifelse(dplyr::row_number() == 1, 0, .data$newrows),
       newrows = ifelse(lag(newrows, na = 0) == 1 &
-        row_type == "BY_HEADER2", 0, newrows)
+        row_type == "BY_HEADER2", 0, newrows) # nolint indentation_linter
     )
 
   if ("nested_level" %in% names(dfn)) {

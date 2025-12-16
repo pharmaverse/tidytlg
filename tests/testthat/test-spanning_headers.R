@@ -19,8 +19,6 @@ library(dplyr)
 
 
 # Tests ---------------------------------------------------------------------------------------
-# context("spanning_headers - T1. Accounts for ...")
-
 test_that("T1.1 NA.", {
   column_metadata <- tibble::tribble(
     ~tbltype, ~coldef, ~decode, ~span1, "type1", "0", "Placebo", NA, "type1", "1", "Low", NA, "type1", "2", "High", NA
@@ -36,8 +34,6 @@ test_that("T1.2 ''.", {
 
   expect_equal(spanning_headers(column_metadata), NULL)
 })
-
-# context("spanning_headers - T2. Is accurate for ...")
 
 test_that("T2.1 one spanning header.", {
   column_metadata <- tibble::tribble(

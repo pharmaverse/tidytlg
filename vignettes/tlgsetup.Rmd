@@ -64,7 +64,9 @@ glimpse(setup_table)
 ```
 
 ```{r echo = FALSE}
-paste0("Dimensions after to the rmtsetup call are ", dim(setup_table)[1], " rows and ", dim(setup_table)[2], " columns.")
+paste0(
+  "Dimensions after to the rmtsetup call are ", dim(setup_table)[1], " rows and ", dim(setup_table)[2], " columns."
+)
 ```
 
 Here we see we have added two new variables, `colnbr` and `tbltype`, which will now be used as our treatment variable when generating our results.

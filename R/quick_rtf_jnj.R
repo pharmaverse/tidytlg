@@ -18,8 +18,7 @@ merge_header <- function(result) {
   result_sectioned[1] <- result_sectioned[1] %>%
     stringr::str_replace_all("\\\\clbrdrt", "\\\\clmrg\\\\clbrdrt") %>%
     stringr::str_replace("\\\\clmrg\\\\clbrdrt", "\\\\clmgf\\\\clbrdrt")
-  ret <- base::paste0(result_sectioned, collapse = "\\row")
-  return(ret)
+  base::paste0(result_sectioned, collapse = "\\row")
 }
 
 #' pad_header
@@ -41,11 +40,11 @@ pad_header <- function(result, nheader, header_pad) {
 
   result_sectioned[section_selection] <- result_sectioned[section_selection] %>%
     stringr::str_replace_all("\\\\cellx", "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx") %>%
-    stringr::str_replace("\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx", "\\\\clpadr67\\\\clpadfr3\\\\cellx")
+    stringr::str_replace(
+      "\\\\clpadt67\\\\clpadft3\\\\clpadr67\\\\clpadfr3\\\\cellx", "\\\\clpadr67\\\\clpadfr3\\\\cellx"
+    )
 
-  ret <- base::paste0(result_sectioned, collapse = "\\row")
-
-  return(ret)
+  base::paste0(result_sectioned, collapse = "\\row")
 }
 
 ncharw <- function(x) nchar(x, type = "width")
@@ -163,8 +162,7 @@ get_visible_borders <- function(ht) {
   top_shadowed <- as.matrix(top_shadowed[c("row", "col")])
   horiz_borders[top_shadowed] <- 0
 
-  res <- list(vert = vert_borders, horiz = horiz_borders)
-  return(res)
+  list(vert = vert_borders, horiz = horiz_borders)
 }
 
 # returns two rows(+1),cols(+1) arrays of border colors.
@@ -227,7 +225,7 @@ do_collapse <- function(ht, prop_fun, default) {
   res$top <- rbind(res$top, default)
   res$bottom <- rbind(default, res$bottom)
 
-  return(res)
+  res
 }
 
 # Format numeral generics
@@ -243,17 +241,17 @@ numeral_formatter.default <- function(x) {
 # If we are a function then return output from the function
 #' @export
 numeral_formatter.function <- function(x) {
-  return(x)
+  x
 }
 
 #' @export
 numeral_formatter.character <- function(x) {
-  return(function(numeral) sprintf(x, numeral))
+  function(numeral) sprintf(x, numeral)
 }
 
 #' @export
 numeral_formatter.numeric <- function(x) {
-  return(function(numeral) formatC(round(numeral, x), format = "f", digits = x))
+  function(numeral) formatC(round(numeral, x), format = "f", digits = x)
 }
 
 
@@ -329,7 +327,7 @@ check_positive_dims <- function(ht) {
     return(FALSE)
   }
 
-  return(TRUE)
+  TRUE
 }
 
 
@@ -550,14 +548,17 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   bdr_def_top <- bdr_def_horiz[-nrow(bdr_def_horiz), , drop = FALSE]
   bdr_def_bottom <- bdr_def_horiz[-1, , drop = FALSE]
 
-  bdr_def_left <- blank_where(bdr_def_left, cb$vert[, -ncol(cb$vert),
+  bdr_def_left <- blank_where(bdr_def_left, cb$vert[
+    , -ncol(cb$vert),
     drop = FALSE
   ] == 0)
   bdr_def_right <- blank_where(bdr_def_right, cb$vert[, -1, drop = FALSE] == 0)
-  bdr_def_top <- blank_where(bdr_def_top, cb$horiz[-nrow(cb$horiz), ,
+  bdr_def_top <- blank_where(bdr_def_top, cb$horiz[
+    -nrow(cb$horiz), ,
     drop = FALSE
   ] == 0)
-  bdr_def_bottom <- blank_where(bdr_def_bottom, cb$horiz[-1, ,
+  bdr_def_bottom <- blank_where(bdr_def_bottom, cb$horiz[
+    -1, ,
     drop = FALSE
   ] == 0)
 
@@ -661,8 +662,12 @@ custom_to_rtf <- function(ht, fc_tables = rtf_fc_tables(ht), watermark,
   dim(cells) <- dim(ht)
 
   if (!is.null(watermark)) {
-    watermark_bf <- "{{\\shp{\\*\\shpinst\\shpleft0\\shptop0\\shpright13921\\shpbottom2320\\shpfhdr0\\shpbxcolumn\\shpbxignore\\shpbypara\\shpbyignore\\shpwr3
+    watermark_bf <-
+      paste0(
+        "{{\\shp{\\*\\shpinst\\shpleft0\\shptop0\\shpright13921\\shpbottom",
+        "2320\\shpfhdr0\\shpbxcolumn\\shpbxignore\\shpbypara\\shpbyignore\\shpwr3
     {\\sp{\\sn gtextUNICODE}   {\\sv "
+      )
     watermark_af <- "}}
     {\\sp{\\sn gtextSize}      {\\sv 65536}}
     {\\sp{\\sn gtextFont}      {\\sv Calibri}}
@@ -846,12 +851,45 @@ quick_rtf_jnj <- function(hts,
   force(file)
   hts <- huxtableize(hts, borders)
 
-  portrait_t <- "{\\rtf1\\ansi\\deff0\\portrait\\paperw12240\\paperh15840\\margl1440\\margr1440\\margt1440\\margb1440\\headery1440\\footery1440{\\stylesheet{\\ql \\li0\\ri0\\widctlpar\\wrapdefault\\faauto\\adjustright\\rin0\\lin0\\itap0 \\rtlch\\fcs1 \\af0\\afs20\\alang1025 \\ltrch\\fcs0 \\fs20\\lang9\\langfe3081\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp9\\langfenp3081 \\snext0 \\sqformat \\spriority0 Normal;}{\\s15\\ql \\fi-1152\\li1152\\ri0\\keepn\\widctlpar\\tx1152\\wrapdefault\\faauto\\rin0\\lin1152\\itap0 \\rtlch\\fcs1 \\af0\\afs18\\alang1025 \\ltrch\\fcs0 \\b\\fs20\\lang1033\\langfe1033\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp1033\\langfenp1033 \\sbasedon0 \\snext0 \\sqformat caption;}{\\s16 \\ql \\fi-1152\\li1152\\ri0\\keepn\\widctlpar\\tx1152\\wrapdefault\\faauto\\rin0\\lin1152\\itap0 \\rtlch\\fcs1 \\af0\\afs18\\alang1025 \\ltrch\\fcs0 \\b\\fs20\\lang1033\\langfe1033\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp1033\\langfenp1033 \\sbasedon0 \\snext0 \\sqformat;}}\n"
-  portrait_f <- "{\\rtf1\\ansi\\deff0\\landscape\\paperw15840\\paperh12240\\margl1440\\margr1440\\margt1440\\margb1440\\headery1440\\footery1440{\\stylesheet{\\ql \\li0\\ri0\\widctlpar\\wrapdefault\\faauto\\adjustright\\rin0\\lin0\\itap0 \\rtlch\\fcs1 \\af0\\afs20\\alang1025 \\ltrch\\fcs0 \\fs20\\lang9\\langfe3081\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp9\\langfenp3081 \\snext0 \\sqformat \\spriority0 Normal;}{\\s15\\ql \\fi-1152\\li1152\\ri0\\keepn\\widctlpar\\tx1152\\wrapdefault\\faauto\\rin0\\lin1152\\itap0 \\rtlch\\fcs1 \\af0\\afs18\\alang1025 \\ltrch\\fcs0 \\b\\fs20\\lang1033\\langfe1033\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp1033\\langfenp1033 \\sbasedon0 \\snext0 \\sqformat caption;}{\\s16 \\ql \\fi-1152\\li1152\\ri0\\keepn\\widctlpar\\tx1152\\wrapdefault\\faauto\\rin0\\lin1152\\itap0 \\rtlch\\fcs1 \\af0\\afs18\\alang1025 \\ltrch\\fcs0 \\b\\fs20\\lang1033\\langfe1033\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp1033\\langfenp1033 \\sbasedon0 \\snext0 \\sqformat;}}\n"
+  portrait_t <- paste0(
+    "{\\rtf1\\ansi\\deff0\\portrait\\paperw12240\\paperh15840\\margl1440\\margr1440\\",
+    "margt1440\\margb1440\\headery1440\\footery1440{\\stylesheet{\\ql \\li0\\ri0\\wid",
+    "ctlpar\\wrapdefault\\faauto\\adjustright\\rin0\\lin0\\itap0 \\rtlch\\fcs1 \\af0",
+    "\\afs20\\alang1025 \\ltrch\\fcs0 \\fs20\\lang9\\langfe3081\\loch\\f0\\hich\\af0\\",
+    "dbch\\af31505\\cgrid\\langnp9\\langfenp3081 \\snext0 \\sqformat \\spriority0 Normal;}",
+    "{\\s15\\ql \\fi-1152\\li1152\\ri0\\keepn\\widctlpar\\tx1152\\wrapdefault\\faauto\\",
+    "rin0\\lin1152\\itap0 \\rtlch\\fcs1 \\af0\\afs18\\alang1025 \\ltrch\\fcs0 \\b\\fs20",
+    "\\lang1033\\langfe1033\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp1033\\",
+    "langfenp1033 \\sbasedon0 \\snext0 \\sqformat caption;}{\\s16 \\ql \\fi-1152\\li1152",
+    "\\ri0\\keepn\\widctlpar\\tx1152\\wrapdefault\\faauto\\rin0\\lin1152\\itap0 \\rtlch",
+    "\\fcs1 \\af0\\afs18\\alang1025 \\ltrch\\fcs0 \\b\\fs20\\lang1033\\langfe1033\\loch",
+    "\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp1033\\langfenp1033 \\sbasedon0 \\snext0 ",
+    "\\sqformat;}}\n"
+  )
+  portrait_f <- paste0(
+    "{\\rtf1\\ansi\\deff0\\landscape\\paperw15840\\paperh12240\\margl1440\\margr1440",
+    "\\margt1440\\margb1440\\headery1440\\footery1440{\\stylesheet{\\ql \\li0\\ri0\\",
+    "widctlpar\\wrapdefault\\faauto\\adjustright\\rin0\\lin0\\itap0 \\rtlch\\fcs1 \\",
+    "af0\\afs20\\alang1025 \\ltrch\\fcs0 \\fs20\\lang9\\langfe3081\\loch\\f0\\hich\\",
+    "af0\\dbch\\af31505\\cgrid\\langnp9\\langfenp3081 \\snext0 \\sqformat \\",
+    "spriority0 Normal;}{\\s15\\ql \\fi-1152\\li1152\\ri0\\keepn\\widctlpar\\tx1152\\",
+    "wrapdefault\\faauto\\rin0\\lin1152\\itap0 \\rtlch\\fcs1 \\af0\\afs18\\alang1025 \\",
+    "ltrch\\fcs0 \\b\\fs20\\lang1033\\langfe1033\\loch\\f0\\hich\\af0\\dbch\\af31505\\",
+    "cgrid\\langnp1033\\langfenp1033 \\sbasedon0 \\snext0 \\sqformat caption;}{\\s16 \\",
+    "ql \\fi-1152\\li1152\\ri0\\keepn\\widctlpar\\tx1152\\wrapdefault\\faauto\\rin0\\",
+    "lin1152\\itap0 \\rtlch\\fcs1 \\af0\\afs18\\alang1025 \\ltrch\\fcs0 \\b\\fs20\\",
+    "lang1033\\langfe1033\\loch\\f0\\hich\\af0\\dbch\\af31505\\cgrid\\langnp1033\\",
+    "langfenp1033 \\sbasedon0 \\snext0 \\sqformat;}}\n"
+  )
   pagenum_t <- paste(
     "\\par {\\footer\\pard\\sb240\\qr\\fs16{\\insrsid2691151 ",
     ifelse(substr(tolower(tlf), 1, 1) == "t", "Table", "Listing"),
-    " Page }{\\field{\\*\\fldinst {\\insrsid2691151 PAGE }}{\\fldrslt {\\insrsid26911511}}}{\\insrsid2691151  of }{\\field{\\*\\fldinst {\\insrsid2691151  NUMPAGES }} {\\fldrslt {\\insrsid112265262}}}{\\insrsid2691151 \\par }}",
+    paste0(
+      " Page }{\\field{\\*\\fldinst {\\insrsid2691151 PAGE }}{\\fldrslt {\\",
+      "insrsid26911511}}}{\\insrsid2691151  of }{\\field{\\*\\fldinst {",
+      "\\insrsid2691151  NUMPAGES }} {\\fldrslt {\\insrsid112265262}}}{\\insrsid2691151 \\",
+      "par }}"
+    ),
     collapse = "",
     sep = ""
   )
