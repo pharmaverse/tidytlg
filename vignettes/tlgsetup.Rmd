@@ -1,8 +1,8 @@
 ---
-title: "Column Metadata & How tidytlg Sets Up Your Data Using tlgsetup"
+title: "Column Metadata & How tidytlg Sets Up Your Data Using `tlgsetup`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Column Metadata & How tidytlg Sets Up Your Data Using tlgsetup}
+  %\VignetteIndexEntry{Column Metadata & How tidytlg Sets Up Your Data Using `tlgsetup`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,7 +19,7 @@ library(dplyr)
 library(tidytlg)
 ```
 
-The tlgsetup helper function was created to support generating different column structures for our outputs.  This allows us to specify column types once that can be used across multiple outputs.  This metadata can be hardcoded as well (please see the code below), or pulled from another source like a dataframe, file or database.
+The `tlgsetup` helper function was created to support generating different column structures for our outputs.  This allows us to specify column types once that can be used across multiple outputs.  This metadata can be hardcoded as well (please see the code below), or pulled from another source like a dataframe, file or database.
 
 Here we see an example of the column metadata which defines our columns, how to combine columns, column labels and spanning headers across columns.
 
@@ -53,7 +53,7 @@ glimpse(adsl)
 paste0("Dimensions prior to the tlgsetup call are ", dim(adsl)[1], " rows and ", dim(adsl)[2], " columns.")
 ```
 
-Now let's pass the adsl data through our tlgsetup function to add observations to support the `type1` column structure and check out the dimensions.
+Now let's pass the adsl data through our `tlgsetup` function to add observations to support the `type1` column structure and check out the dimensions.
 
 ```{r warning=FALSE}
 setup_table <- tlgsetup(adsl,

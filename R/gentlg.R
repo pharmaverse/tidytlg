@@ -1,4 +1,4 @@
-#' Output a tidytlg table
+#' Output a `tidytlg` table
 #'
 #' Generate and output a huxtable with desired properties
 #' During this function call, the huxtable can be written to an RTF or
@@ -12,7 +12,7 @@
 #'   containing all columns of interest. For graphs, either `NULL` or
 #'   a list of `ggplot` objects. Vectorized.
 #' @param tlf (optional) String, representing the output choice. Choices are
-#' "Table" "Listing" "Figure". Abbreviations are allowed eg "T" for Table.
+#' "Table" "Listing" "Figure". Abbreviations are allowed eg. "T" for Table.
 #' Strings can be either upper- or lowercase. Vectorized. (Default = "Table")
 #' @param format (optional) String, representing the output format. Choices are
 #' "rtf" and "html". Strings can be either upper- or lowercase.(Default = "rtf")
@@ -23,12 +23,13 @@
 #' is identified through the use of the same column name in adjacent elements.
 #' Vectorized.
 #' @param idvars (optional) Character vector defining the columns of a listing
-#' where repeated values should be removed recursively. If NULL then
-#' all column names are used in the algorithm. If NA, then the listing remains
+#' where repeated values should be removed recursively. If `NULL` then
+#' all column names are used in the algorithm. If `NA`, then the listing remains
 #' as is.
 #' @param plotnames (optional) Character vector containing the names of the png
 #' files, with their extension to be incorporated for figure outputs.
-#' The png files need to be located in the path defined by the parameter `opath`.
+#' The PNG files need to be located in the path defined by the
+#' parameter `opath`.
 #' @param plotwidth (optional) Numerical value that indicates the plot width in
 #' cm for figure outputs. (Default = 6)
 #' @param plotheight (optional) Numerical value that indicates the plot height
@@ -42,62 +43,69 @@
 #' represent the widths of all columns in the final output. The order of the
 #' arguments needs to correspond to the order of the columns in the `huxme`
 #' dataset, that are not part of the formatting algorithms
-#' (eg anbr, roworder, newpage, newrow, indentme, boldme, by_value, by_order).
+#' (eg. `anbr`, `roworder`, `newpage`, `newrow`,
+#' `indentme`, `boldme`, `by_value`, `by_order`).
 #' The sum of the widths in the vector needs to be less or equal to one. When
-#' 'format="HTML"' `wcol` can take only one value, the width of the first column.
-#' (Default = 0.45)
+#' `format="HTML"` `wcol` can take only one value, the width
+#' of the first column. (Default = 0.45).
 #' @param opath (optional) File path pointing to the output files
-#' (including .png files for graphs). (Default = ".")
+#' (including PNG files for graphs). (Default = ".").
 #' @param orientation (optional) String: "portrait" or "landscape".
 #' (Default = "portrait")
 #' @param file (required) String. Output identifier.
-#' File name will be adjusted to be lowercase and have - and _ removed,
+#' File name will be adjusted to be lowercase and have `-` and `_` removed,
 #' this will not affect table title.
 #' @param title_file An Excel file that will be read in
 #' with `readxl::read_excel()` to be used as the `title` and `footers` arugment.
 #' The use of `title` or `footers` will override the values passed by this
 #' argument. The file should be either an `xls` or `xlsx` file with the columns
-#' 'TABLE ID', 'IDENTIFIER', and TEXT'. The file will be read in, subset to
-#' where the tblid matches the tlf argument, and identifiers with 'title' or
+#' `TABLE ID`, `IDENTIFIER`, and `TEXT`. The file will be read in, subset to
+#' where the `tblid` matches the `tlf` argument, and identifiers with 'title' or
 #' 'footnote' will be used to populate the table.
 #' @param title (required) String. Title of the output. Vectorized.
 #' @param footers (optional) Character vector, containing strings of footnotes
 #' to be included. Vectorized.
 #' @param print.hux (optional) Logical, indicating whether the output should be
-#' printed to RTF ('format' = "rtf") / displayed as HTML ('format' = "HTML").
-#' (Default = TRUE) Note that RTF is written using `quick_rtf_jnj()`
-#' function and that the HTML is displayed via the huxtable::print_html
+#' printed to RTF `('format' = "rtf")` or displayed
+#' as HTML `('format' = "HTML")`.
+#' (Default = `TRUE`). Note that RTF is written using `quick_rtf_jnj()`
+#' function and that the HTML is displayed via the `huxtable::print_html`
 #' function.
 #' @param watermark (optional) String containing the desired watermark for
 #' RTF outputs. Vectorized.
 #' @param colheader (optional) Character vector that contains the column labels
-#' for a table or listing. Default uses the column labels of huxme. Vectorized.
+#' for a table or listing. Default uses the column labels of `huxme`.
+#' Vectorized.
 #' @param pagenum (optional) Logical. When true page numbers are added on the
-#' right side of the footer section in the format page x/y.
-#' Vectorized. (Default = FALSE)
-#' @param bottom_borders (optional) Matrix or `"old_format"`. A matrix indicating where to add the bottom
-#' borders. Vectorized. See [add_bottom_borders()] for more information. If `"old_format"`,
-#' then borders are added to the `colspan` and `colheader` rows. (Default = "old_format").
-#' @param border_fns (optional) List. A list of functions that transform the matrix
-#' passed to `bottom_borders`. Vectorized. See [add_bottom_borders()] for more information.
+#' right side of the footer section in the format page `x/y`.
+#' Vectorized. (Default = `FALSE`).
+#' @param bottom_borders (optional) Matrix or `"old_format"`.
+#' A matrix indicating where to add the bottom
+#' borders. Vectorized. See [add_bottom_borders()] for more information.
+#' If `"old_format"`, then borders are added to the `colspan` and `colheader`
+#' rows. (Default = "old_format").
+#' @param border_fns (optional) List. A list of functions that transform
+#' the matrix passed to `bottom_borders`. Vectorized. See
+#' [add_bottom_borders()] for more information.
 #' @param alignments (optional) List of named lists. Vectorized.
 #' (Default = `list()`) Used to specify individual column or cell alignments.
 #' Each named list contains `row`, `col`, and `value`, which are passed to
 #' [huxtable::set_align()] to set the alignments.
 #'
-#' @section Huxme Details:
+#' @section `Huxme` Details:
 #' For tables and listings, formatting of the output can be dictated through the
 #' formatting columns
 #' (`newrows`, `indentme`, `boldme`, `newpage`), present in the input dataframe.
-#' The final huxtable will display all columns of the input dataframe, except
-#' any recognized formatting/sorting columns.
-#' For tables, the algorithm uses
-#' the column `label` as first column. The remaining columns are treated as
-#' summary columns.
-#' For graphs, you can pass a ggplot object directly into huxme and gentlg will
-#' save a png with with `ggplot2::ggsave()` and output an rtf.
+#' The final `huxtable` will display all columns of the input dataframe, except
+#' any recognized formatting or sorting columns.
+#' For tables, the algorithm uses the column `label` as first column.
+#' The remaining columns are treated as summary columns.
+#' For graphs, you can pass a `ggplot` object directly
+#' into `huxme` and `gentlg` will save a PNG with with `ggplot2::ggsave()`
+#' and output an RTF.
 #'
-#' @return A list of formatted huxtables with desired properties for output to an RTF/HTML
+#' @return A list of formatted `huxtables` with desired
+#' properties for output to an RTF or HTML.
 #' @export
 #'
 #' @examples

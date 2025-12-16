@@ -259,11 +259,11 @@
 
 #' Metadata describing table column layouts
 #'
-#' This is used by tlgsetup to prepare you input data to support
+#' This is used by `tlgsetup` to prepare you input data to support
 #' the desired column layout.
 #'
 #' @format A data frame with one row per column for each table type
-#' and 6 variables:
+#' and six variables:
 #' \describe{
 #'   \item{tbltype}{identifier used to group a table column layout}
 #'   \item{coldef}{distinct variable values used, typically numeric

@@ -2,32 +2,32 @@
 #'
 #' Univariate statitstics for a variables by treatment and/or group.
 #'
-#' @param df (required) dataframe containing records to summarize by treatment
+#' @param df (required) dataframe containing records to summarize by treatment.
 #' @param colvar (required) character vector of the treatment variable within
-#'   the dataframe
-#' @param tablebyvar (optional) repeat entire table by variable within df
+#'   the dataframe.
+#' @param tablebyvar (optional) repeat entire table by variable within `df`.
 #' @param rowvar (required) character vector of variable to summarize within the
-#'   dataframe
-#' @param rowbyvar (optional) repeat `rowvar` by variable within df
-#' @param statlist (optional) statlist object of stats to keep (default =
-#'   statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE")))
+#'   dataframe.
+#' @param rowbyvar (optional) repeat `rowvar` by variable within `df`.
+#' @param statlist (optional) `statlist` object of stats to keep (default =
+#'   `statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE"))`).
 #' @param decimal (optional) decimal precision root level, when using
-#'   `presisionby` this will be used as the base decimal cap (default = 1)
+#'   `presisionby` this will be used as the base decimal cap (default = 1).
 #' @param precisionby (optional) vector of by variable(s) to use when
-#'   calculating parameter based precision
+#'   calculating parameter based precision.
 #' @param precisionon (optional) variable to use when calculating parameter
-#'   based precision. If `precisionby` is specified but not `precisionon` this will
-#'   default to `rowvar`
+#'   based precision. If `precisionby` is specified but not `precisionon`
+#'   this will default to `rowvar`.
 #' @param wide (optional) logical indicating to convert labels to column and
-#'   columns to labels (default = FALSE)
+#'   columns to labels (default = `FALSE`).
 #' @param alpha (optional) alpha level for 2-sided confidence interval (default
-#'   = 0.05)
+#'   = 0.05).
 #' @param rowtext (optional) A text string to replace the `label` value on the
 #'   table. Useful for tables with a single row.
 #' @param row_header (optional) A row to add as a header for the table.
-#' @param .keep (optional) Should the `rowbyvar` and `tablebyvar` be output in the
-#'   table.  If FALSE, `rowbyvar` will still be output in the `label` column.
-#'   (default = TRUE)
+#' @param .keep (optional) Should the `rowbyvar` and `tablebyvar` be
+#'   output in the table. If `FALSE`, `rowbyvar` will still be output
+#'   in the `label` column. (default = `TRUE`).
 #' @param .ord Should the ordering columns be output with the table? This is
 #'   useful if a table needs to be merged or reordered in any way after build.
 #' @param ... (optional) Named arguments to be included as columns on the table.

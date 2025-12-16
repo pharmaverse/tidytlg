@@ -1,20 +1,20 @@
 #' Add the newrows variable to the results dataframe.
 #'
 #' The newrows variable is used by `gentlg()` to define when to add a blank row
-#' to the output. Data will be grouped by anbr and the variables passed into
-#' the tableby and groupby parameters.`newrows` will be set to 1 for the first
-#' record in each group, except for the first row in the data.
+#' to the output. Data will be grouped by `anbr` and the variables passed into
+#' the `tableby` and `groupby` parameters. `newrows` will be set to 1
+#' for the first record in each group, except for the first row in the data.
 #' The first row will always be set to 0.
 #'
-#' @param df dataframe of results.  must contain the anbr variable that is
-#' added by add_format()
+#' @param df dataframe of results. must contain the `anbr` variable that is
+#' added by [add_format()].
 #' @param tableby character vector containing table by variables used to
-#' generate the results
+#' generate the results.
 #' @param groupby character vector containing group by variables used to
-#' generate the results
+#' generate the results.
 #'
-#' @return dataframe with the variable newrows and roworder added.
-#' newrows is used by gentlg to insert line breaks.
+#' @return dataframe with the variable `newrows` and `roworder` added.
+#' `newrows` is used by `gentlg` to insert line breaks.
 #' @export
 #'
 #' @examples

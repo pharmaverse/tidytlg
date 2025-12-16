@@ -2,7 +2,7 @@
 % Please edit documentation in R/statlist.R
 \name{statlist}
 \alias{statlist}
-\title{Create a statlist interface for a table}
+\title{Create a \code{statlist} interface for a table}
 \usage{
 statlist(stats, ...)
 }
@@ -14,75 +14,76 @@ table.}
 for allowable arguments.}
 }
 \value{
-A statlist object that can be passed in the 'statlist' argument of
+A \code{statlist} object that can be passed in the \code{statlist} argument of
 \code{freq}, \code{nested_freq}, or \code{univar}.
 }
 \description{
-The statlist is the interface for the presentation of data in a tidytlg
+The \code{statlist} is the interface for the presentation of data in a \code{tidytlg}
 table.
 }
-\section{Statlists for \code{freq()} and \code{nested_freq()}}{
+\section{\code{Statlists} for \code{freq()} and \code{nested_freq()}}{
 
-\code{freq()} statlists can be composed of n(count), N(denominator), and
-x.x(percentage, formatted with or without a percent sign). Denominators will
-include missing values if the 'display_missing' argument is TRUE, otherwise
-they will be excluded. They can be arranged
+\code{freq()} \code{statlists} can be composed of \code{n} (count), \code{N} (denominator), and
+\code{x.x} (percentage, formatted with or without a percent sign).
+Denominators will include missing values if the 'display_missing'
+argument is \code{TRUE}, otherwise they will be excluded. They can be arranged
 in the following ways:
 \itemize{
-\item{n}
-\item{n/N}
-\item{n (x.x)}
-\item{n (x.x\%)}
-\item{n/N (x.x)}
-\item{n/N (x.x\%)}
+\item{\code{n}}
+\item{\code{n/N}}
+\item{\code{n (x.x)}}
+\item{\verb{n (x.x\%)}}
+\item{\code{n/N (x.x)}}
+\item{\verb{n/N (x.x\%)}}
 }
 
 The following other configurations are supported:
 \itemize{
-\item{denoms_by - Controls what groupings of variables should define the
+\item{\code{denoms_by} - Controls what groupings of variables should define the
 denominator. Variables should be passed as a quoted vector}
-\item{distinct - A boolean value. Should the numerator reflect distinct
-\code{USUBJIDs} or event counts. Defaults to TRUE which captures distinct
+\item{\code{distinct} - A boolean value. Should the numerator reflect distinct
+\code{USUBJIDs} or event counts. Defaults to \code{TRUE} which captures distinct
 subjects.}
-\item{distinct_by - A character value used to select the variable that
-should be used to "distinct" the freq tables. Defaults to \code{USUBJID}.}
-\item{zero_denom - The string to display when there are no records found
+\item{\code{distinct_by} - A character value used to select the variable that
+should be used to "distinct" the frequency tables. Defaults to \code{USUBJID}.}
+\item{\code{zero_denom} - The string to display when there are no records found
 in an entire denominator group. Defaults to \code{-}}
-\item{zero_n - The string to display when there are no records found for
+\item{\code{zero_n} - The string to display when there are no records found for
 a numerator. Defaults to \code{0}.}
 }
 }
 
-\section{Statlists for \code{univar} statlists}{
+\section{\code{Statlists} for \code{univar} \code{statlists}}{
 
 \itemize{
-\item{N}
-\item{SUM}
-\item{MEAN}
-\item{GeoMEAN}
-\item{SD}
-\item{SE}
-\item{CV}
-\item{GSD}
-\item{GSE}
-\item{MEANSD}
-\item{MEANSE}
-\item{MEDIAN}
-\item{MIN}
-\item{MAX}
-\item{RANGE}
-\item{Q1}
-\item{Q3}
-\item{IQRANGE}
-\item{MEDRANGE}
-\item{MEDIQRANGE}
-\item{MEAN_CI}
-\item{GeoMEAN_CI}
+\item{\code{N}}
+\item{\code{SUM}}
+\item{\code{MEAN}}
+\item{\code{GeoMEAN}}
+\item{\code{SD}}
+\item{\code{SE}}
+\item{\code{CV}}
+\item{\code{GSD}}
+\item{\code{GSE}}
+\item{\code{MEANSD}}
+\item{\code{MEANSE}}
+\item{\code{MEDIAN}}
+\item{\code{MIN}}
+\item{\code{MAX}}
+\item{\code{RANGE}}
+\item{\code{Q1}}
+\item{\code{Q3}}
+\item{\code{IQRANGE}}
+\item{\code{MEDRANGE}}
+\item{\code{MEDIQRANGE}}
+\item{\code{MEAN_CI}}
+\item{\code{GeoMEAN_CI}}
 }
 
-where GeoMEAN: Geometric Mean, CV: Coefficient of Variation, GSD: Geometric
-Std. Dev., GSE: Geometric Std. Error, MEAN_CI: Mean (95\% C.I.), GeoMEAN_CI:
-Geometric Mean (95\% C.I.). In calculating geometric statistics, if there
+where \code{GeoMEAN}: Geometric Mean, \code{CV}: Coefficient of Variation,
+\code{GSD}: Geometric standard deviation, \code{GSE}: Geometric standard error,
+\code{MEAN_CI}: Mean (95\% C.I.), \code{GeoMEAN_CI}: Geometric Mean (95\% C.I.).
+In calculating geometric statistics, if there
 are zero values in the inputs, zero values will be excluded before
 calculating geometric statistics.
 }

@@ -14,23 +14,24 @@ generate_results(
 )
 }
 \arguments{
-\item{table_metadata}{dataframe containing table metadata (see
+\item{table_metadata}{a data frame containing table metadata (see
 ?table_metadata for details)}
 
-\item{column_metadata_file}{An excel file with the data for column_metadata.
+\item{column_metadata_file}{An excel file with the data
+for \code{column_metadata}.
 The file is read in with \code{readxl::read_excel()}. Should not be used with
-\code{column_metadata} argument. Results in a dataframe containing the column
-metadata that is passed to tlgsetup (see \code{tlgsetup()} for details). If a
-column_metadata dataframe is passed in too, this is ignored.}
+\code{column_metadata} argument. Results in a data frame containing the column
+metadata that is passed to \code{tlgsetup} (see \code{tlgsetup()} for details). If a
+\code{column_metadata} data frame is passed in too, this is ignored.}
 
-\item{column_metadata}{A dataframe containing the column metadata. This will
+\item{column_metadata}{A data frame containing the column metadata. This will
 be used in place of \code{column_metadata_file}.}
 
-\item{env}{environment to find dataframe specified in the table metadata
-(defaults to parent environment)}
+\item{env}{environment to find data frame specified in the table metadata
+(defaults to parent environment).}
 
-\item{tbltype}{If used, this will be used to subset the \code{column_metadata} based
-on the \code{tbltype} column.}
+\item{tbltype}{If used, this will be used to subset
+the \code{column_metadata} based on the \code{tbltype} column.}
 
 \item{add_count}{Passed to \code{bind_table()} should counts be added for
 \code{tablebyvars}?}

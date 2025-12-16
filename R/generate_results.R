@@ -1,18 +1,19 @@
 #' Generate Results using Table and Column Metadata
 #'
-#' @param table_metadata dataframe containing table metadata (see
+#' @param table_metadata a data frame containing table metadata (see
 #'   ?table_metadata for details)
-#' @param column_metadata_file An excel file with the data for column_metadata.
+#' @param column_metadata_file An excel file with the data
+#'   for `column_metadata`.
 #'   The file is read in with `readxl::read_excel()`. Should not be used with
-#'   `column_metadata` argument. Results in a dataframe containing the column
-#'   metadata that is passed to tlgsetup (see `tlgsetup()` for details). If a
-#'   column_metadata dataframe is passed in too, this is ignored.
-#' @param column_metadata A dataframe containing the column metadata. This will
+#'   `column_metadata` argument. Results in a data frame containing the column
+#'   metadata that is passed to `tlgsetup` (see `tlgsetup()` for details). If a
+#'   `column_metadata` data frame is passed in too, this is ignored.
+#' @param column_metadata A data frame containing the column metadata. This will
 #'   be used in place of `column_metadata_file`.
-#' @param env environment to find dataframe specified in the table metadata
-#'   (defaults to parent environment)
-#' @param tbltype If used, this will be used to subset the `column_metadata` based
-#'   on the `tbltype` column.
+#' @param env environment to find data frame specified in the table metadata
+#'   (defaults to parent environment).
+#' @param tbltype If used, this will be used to subset
+#'   the `column_metadata` based on the `tbltype` column.
 #' @param add_count Passed to `bind_table()` should counts be added for
 #'   `tablebyvars`?
 #'

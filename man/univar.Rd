@@ -24,45 +24,45 @@ univar(
 )
 }
 \arguments{
-\item{df}{(required) dataframe containing records to summarize by treatment}
+\item{df}{(required) dataframe containing records to summarize by treatment.}
 
 \item{colvar}{(required) character vector of the treatment variable within
-the dataframe}
+the dataframe.}
 
-\item{tablebyvar}{(optional) repeat entire table by variable within df}
+\item{tablebyvar}{(optional) repeat entire table by variable within \code{df}.}
 
 \item{rowvar}{(required) character vector of variable to summarize within the
-dataframe}
+dataframe.}
 
-\item{rowbyvar}{(optional) repeat \code{rowvar} by variable within df}
+\item{rowbyvar}{(optional) repeat \code{rowvar} by variable within \code{df}.}
 
-\item{statlist}{(optional) statlist object of stats to keep (default =
-statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE")))}
+\item{statlist}{(optional) \code{statlist} object of stats to keep (default =
+\code{statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE"))}).}
 
 \item{decimal}{(optional) decimal precision root level, when using
-\code{presisionby} this will be used as the base decimal cap (default = 1)}
+\code{presisionby} this will be used as the base decimal cap (default = 1).}
 
 \item{precisionby}{(optional) vector of by variable(s) to use when
-calculating parameter based precision}
+calculating parameter based precision.}
 
 \item{precisionon}{(optional) variable to use when calculating parameter
-based precision. If \code{precisionby} is specified but not \code{precisionon} this will
-default to \code{rowvar}}
+based precision. If \code{precisionby} is specified but not \code{precisionon}
+this will default to \code{rowvar}.}
 
 \item{wide}{(optional) logical indicating to convert labels to column and
-columns to labels (default = FALSE)}
+columns to labels (default = \code{FALSE}).}
 
 \item{alpha}{(optional) alpha level for 2-sided confidence interval (default
-= 0.05)}
+= 0.05).}
 
 \item{rowtext}{(optional) A text string to replace the \code{label} value on the
 table. Useful for tables with a single row.}
 
 \item{row_header}{(optional) A row to add as a header for the table.}
 
-\item{.keep}{(optional) Should the \code{rowbyvar} and \code{tablebyvar} be output in the
-table.  If FALSE, \code{rowbyvar} will still be output in the \code{label} column.
-(default = TRUE)}
+\item{.keep}{(optional) Should the \code{rowbyvar} and \code{tablebyvar} be
+output in the table. If \code{FALSE}, \code{rowbyvar} will still be output
+in the \code{label} column. (default = \code{TRUE}).}
 
 \item{.ord}{Should the ordering columns be output with the table? This is
 useful if a table needs to be merged or reordered in any way after build.}

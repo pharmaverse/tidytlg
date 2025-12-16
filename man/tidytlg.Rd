@@ -4,13 +4,13 @@
 \name{tidytlg}
 \alias{tidytlg-package}
 \alias{tidytlg}
-\title{tidytlg: A package for producing tables, listings, and graphs (\code{TLGs}) using
-tidyverse packages.}
+\title{\code{tidytlg}: A package for producing tables, listings,
+and graphs (\code{TLGs}) using \code{tidyverse} packages.}
 \description{
-The tidytlg package provide a set of function allowing you to produce TLGs
+The \code{tidytlg} package provide a set of function allowing you to produce TLGs
 using table metadata.
 }
-\section{tidytlg Options}{
+\section{\code{tidytlg} Options}{
 
 
 \itemize{ \item{\code{tidytlg.row_type.levels} - The values of row_type and their
@@ -32,13 +32,13 @@ all available statistics if this option is changed!}
 \item{\code{tidytlg.precision.extra} - Value to be added on for each summary
 statistic when calculating precision.  This will be used to make different
 statistics have different precision as needed}
-\item{\code{tidytlg.nested_freq.statlist.default} - Default statlist object for
-nested_freq tables. Default: statlist("n (x.x)")}
-\item{\code{tidytlg.univar.statlist.default} - Default statlist object
+\item{\code{tidytlg.nested_freq.statlist.default} - Default \code{statlist} object for
+nested_freq tables. Default: \code{statlist("n (x.x)")}}
+\item{\code{tidytlg.univar.statlist.default} - Default \code{statlist} object
 for \code{univar} tables.
 Default: \code{statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE"))}}
-\item{\code{tidytlg.freq.statlist.default} - Default statlist object for frequency
-tables. Default: \code{statlist("n (x.x)")}}
+\item{\code{tidytlg.freq.statlist.default} - Default \code{statlist} object
+for frequency tables. Default: \code{statlist("n (x.x)")}}
 \item{\code{tidytlg.stat_labels} - A \code{data.frame} controlling how the stats
 are labeled in a \code{univar} table. See 'Default Stat Labels' section
 for defaults.}

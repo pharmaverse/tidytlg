@@ -7,24 +7,24 @@
 add_newrows(df, tableby = NULL, groupby = NULL)
 }
 \arguments{
-\item{df}{dataframe of results.  must contain the anbr variable that is
-added by add_format()}
+\item{df}{dataframe of results. must contain the \code{anbr} variable that is
+added by \code{\link[=add_format]{add_format()}}.}
 
 \item{tableby}{character vector containing table by variables used to
-generate the results}
+generate the results.}
 
 \item{groupby}{character vector containing group by variables used to
-generate the results}
+generate the results.}
 }
 \value{
-dataframe with the variable newrows and roworder added.
-newrows is used by gentlg to insert line breaks.
+dataframe with the variable \code{newrows} and \code{roworder} added.
+\code{newrows} is used by \code{gentlg} to insert line breaks.
 }
 \description{
 The newrows variable is used by \code{gentlg()} to define when to add a blank row
-to the output. Data will be grouped by anbr and the variables passed into
-the tableby and groupby parameters.\code{newrows} will be set to 1 for the first
-record in each group, except for the first row in the data.
+to the output. Data will be grouped by \code{anbr} and the variables passed into
+the \code{tableby} and \code{groupby} parameters. \code{newrows} will be set to 1
+for the first record in each group, except for the first row in the data.
 The first row will always be set to 0.
 }
 \examples{
