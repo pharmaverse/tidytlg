@@ -1,6 +1,6 @@
-# tidytlg 0.10.1
+# tidytlg 0.10.0.9000
 
-- Fixed RTF landscape tag (#54). 
+- Fixed RTF landscape tag (#54).
 
 # tidytlg 0.10.0
 

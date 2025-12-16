@@ -1,6 +1,6 @@
 Package: tidytlg
 Title: Create TLGs using the 'tidyverse'
-Version: 0.10.0
+Version: 0.10.0.9000
 Authors@R:
      c(person(given = "Nicholas",
            family = "Masel",
