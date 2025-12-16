@@ -19,3 +19,4 @@ benchmark/*
 \.lintr
 huxtable-output\.rtf
 docs
+pkgdown/
