@@ -42,18 +42,18 @@ The following other configurations are supported:
 \item{denoms_by - Controls what groupings of variables should define the
 denominator. Variables should be passed as a quoted vector}
 \item{distinct - A boolean value. Should the numerator reflect distinct
-USUBJIDs or event counts. Defaults to TRUE which captures distinct
+\code{USUBJIDs} or event counts. Defaults to TRUE which captures distinct
 subjects.}
 \item{distinct_by - A character value used to select the variable that
-should be used to "distinct" the freq tables. Defaults to USUBJID.}
+should be used to "distinct" the freq tables. Defaults to \code{USUBJID}.}
 \item{zero_denom - The string to display when there are no records found
-in an entire denominator group. Defaults to "-"}
+in an entire denominator group. Defaults to \code{-}}
 \item{zero_n - The string to display when there are no records found for
-a numerator. Defaults to "0".}
+a numerator. Defaults to \code{0}.}
 }
 }
 
-\section{Statlists for univar statlists}{
+\section{Statlists for \code{univar} statlists}{
 
 \itemize{
 \item{N}
@@ -95,8 +95,9 @@ freq(
   rowvar = "cyl",
   rowbyvar = "am",
   statlist = statlist("n/N (x.x)",
-                      distinct = FALSE,
-                      denoms_by = c("gear", "am"),
-                      zero_denom = "_0_")
+    distinct = FALSE,
+    denoms_by = c("gear", "am"),
+    zero_denom = "_0_"
   )
+)
 }

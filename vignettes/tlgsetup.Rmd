@@ -35,7 +35,7 @@ column_metadata <-
 column_metadata
 ```
 
-In this example, we would summarize Placebo, Xanomeline Low Dose, and Xanomeline High Dose which are already available in the data. The helper function will add the observations to the data for the Total Xanomeline column based off of `coldef`.  So for our adsl data, we will add a spanning header for Xanomeline and a total Xanomeline column which is a combination of the Xanomeline Low Dose and Xanomeline High Dose.
+In this example, we would summarize `Placebo`, `Xanomeline Low Dose`, and `Xanomeline High Dose` which are already available in the data. The helper function will add the observations to the data for the `Total Xanomeline` column based off of `coldef`.  So for our `adsl` data, we will add a spanning header for `Xanomeline` and a total `Xanomeline` column which is a combination of the `Xanomeline Low Dose` and `Xanomeline High Dose`.
 
 In addition, the helper function will add the factor variable `colnbr` which is used as our new column summary variable.  Note that our column summary variable has been converted to a factor.  This is required and allows us to define column order as well as label in one variable.
 

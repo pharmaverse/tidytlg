@@ -32,13 +32,16 @@ The first row will always be set to 0.
 # the first
 tbl <-
   structure(
-    list(rowvar = c("RANDFL", "AGE", "AGE", "AGE", "AGE", "AGE"),
-     anbr   = c(1L, 2L, 2L, 2L, 2L, 2L),
-     label  = c("Analysis set: Subjects Randomized", "Age (Years)", "N",
-     "Mean (SD)", "Range", "IQ Range"),
-     row_type = c("COUNT", "UNIVAR", "UNIVAR", "UNIVAR", "UNIVAR", "UNIVAR")
+    list(
+      rowvar = c("RANDFL", "AGE", "AGE", "AGE", "AGE", "AGE"),
+      anbr = c(1L, 2L, 2L, 2L, 2L, 2L),
+      label = c(
+        "Analysis set: Subjects Randomized", "Age (Years)", "N",
+        "Mean (SD)", "Range", "IQ Range"
       ),
-    row.names = c(NA,-6L),
+      row_type = c("COUNT", "UNIVAR", "UNIVAR", "UNIVAR", "UNIVAR", "UNIVAR")
+    ),
+    row.names = c(NA, -6L),
     class = c("tbl_df", "tbl", "data.frame")
   )
 
@@ -46,39 +49,39 @@ add_newrows(tbl)
 
 # Example of use when you have results summarized by one or more variables
 tbl2 <- tibble::tribble(
-  ~anbr, ~SEX,    ~label,         ~row_type,
-  "01",  "F", "Sex : F", "TABLE_BY_HEADER",
-  "01",  "F",     "<65",           "VALUE",
-  "01",  "F",   "65-80",           "VALUE",
-  "01",  "F",     ">80",           "VALUE",
-  "01",  "M", "Sex : M", "TABLE_BY_HEADER",
-  "01",  "M",     "<65",           "VALUE",
-  "01",  "M",   "65-80",           "VALUE",
-  "01",  "M",     ">80",           "VALUE"
+  ~anbr, ~SEX, ~label, ~row_type,
+  "01", "F", "Sex : F", "TABLE_BY_HEADER",
+  "01", "F", "<65", "VALUE",
+  "01", "F", "65-80", "VALUE",
+  "01", "F", ">80", "VALUE",
+  "01", "M", "Sex : M", "TABLE_BY_HEADER",
+  "01", "M", "<65", "VALUE",
+  "01", "M", "65-80", "VALUE",
+  "01", "M", ">80", "VALUE"
 )
 
 add_newrows(tbl2, tableby = "SEX")
 
 tbl3 <- tibble::tribble(
-~anbr, ~SEX,           ~ETHNIC,                  ~label,         ~row_type,
- "01",  "F",                NA,                "Sex : F", "TABLE_BY_HEADER",
- "01",  "F", "HISPANIC OR LATINO", "HISPANIC OR LATINO",      "BY_HEADER1",
- "01",  "F", "HISPANIC OR LATINO",               "<65",           "VALUE",
- "01",  "F", "HISPANIC OR LATINO",               ">80",           "VALUE",
- "01",  "F", "HISPANIC OR LATINO",             "65-80",           "VALUE",
- "01", "F", "NOT HISPANIC OR LATINO", "NOT HISPANIC OR LATINO", "BY_HEADER1",
- "01", "F", "NOT HISPANIC OR LATINO",                    "<65",      "VALUE",
- "01", "F", "NOT HISPANIC OR LATINO",                  "65-80",      "VALUE",
- "01", "F", "NOT HISPANIC OR LATINO",                    ">80",      "VALUE",
- "01", "M",                       NA,           "Sex : M", "TABLE_BY_HEADER",
- "01", "M",    "HISPANIC OR LATINO",   "HISPANIC OR LATINO",    "BY_HEADER1",
- "01", "M",    "HISPANIC OR LATINO",                  "<65",         "VALUE",
- "01", "M",    "HISPANIC OR LATINO",                "65-80",         "VALUE",
- "01", "M",     "HISPANIC OR LATINO",               ">80",           "VALUE",
- "01", "M", "NOT HISPANIC OR LATINO", "NOT HISPANIC OR LATINO", "BY_HEADER1",
- "01", "M", "NOT HISPANIC OR LATINO",              "<65",           "VALUE",
- "01",  "M", "NOT HISPANIC OR LATINO",            "65-80",           "VALUE",
- "01",  "M", "NOT HISPANIC OR LATINO",              ">80",           "VALUE"
+  ~anbr, ~SEX, ~ETHNIC, ~label, ~row_type,
+  "01", "F", NA, "Sex : F", "TABLE_BY_HEADER",
+  "01", "F", "HISPANIC OR LATINO", "HISPANIC OR LATINO", "BY_HEADER1",
+  "01", "F", "HISPANIC OR LATINO", "<65", "VALUE",
+  "01", "F", "HISPANIC OR LATINO", ">80", "VALUE",
+  "01", "F", "HISPANIC OR LATINO", "65-80", "VALUE",
+  "01", "F", "NOT HISPANIC OR LATINO", "NOT HISPANIC OR LATINO", "BY_HEADER1",
+  "01", "F", "NOT HISPANIC OR LATINO", "<65", "VALUE",
+  "01", "F", "NOT HISPANIC OR LATINO", "65-80", "VALUE",
+  "01", "F", "NOT HISPANIC OR LATINO", ">80", "VALUE",
+  "01", "M", NA, "Sex : M", "TABLE_BY_HEADER",
+  "01", "M", "HISPANIC OR LATINO", "HISPANIC OR LATINO", "BY_HEADER1",
+  "01", "M", "HISPANIC OR LATINO", "<65", "VALUE",
+  "01", "M", "HISPANIC OR LATINO", "65-80", "VALUE",
+  "01", "M", "HISPANIC OR LATINO", ">80", "VALUE",
+  "01", "M", "NOT HISPANIC OR LATINO", "NOT HISPANIC OR LATINO", "BY_HEADER1",
+  "01", "M", "NOT HISPANIC OR LATINO", "<65", "VALUE",
+  "01", "M", "NOT HISPANIC OR LATINO", "65-80", "VALUE",
+  "01", "M", "NOT HISPANIC OR LATINO", ">80", "VALUE"
 )
 
 add_newrows(tbl3, tableby = "SEX", groupby = "ETHNIC")

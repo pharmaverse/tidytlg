@@ -36,13 +36,14 @@ denominator (default = df)}
 \item{tablebyvar}{(optional) repeat entire table by variable within df.}
 
 \item{rowvar}{(required) nested levels separated by a star, for example
-AEBODSYS*AEDECOD,  this can handle up to three levels.}
+\code{AEBODSYS*AEDECOD},  this can handle up to three levels.}
 
 \item{rowbyvar}{(optional) repeat \code{rowvar} by variable within df}
 
-\item{statlist}{(optional) count/percent type to return (default = "n (x.x)")}
+\item{statlist}{(optional) count/percent type to return
+\code{(default = "n (x.x)")}}
 
-\item{decimal}{(optional) decimal precision root level (default = 1)}
+\item{decimal}{(optional) decimal precision root level \code{(default = 1)}}
 
 \item{cutoff}{(optional) numeric value used to cut the data to a percentage
 threshold, if any column meets the threshold the entire record is kept.}
@@ -55,12 +56,12 @@ threshold, if any column meets the threshold the entire record is kept.}
 
 \item{descending_by}{(optional) The column or columns to sort descending
 values by. Can also provide a named list to do ascending order. ex.
-c("VarName1" = "asc", "VarName2" = "desc") would sort by VarName1 in
-ascending order and VarName2 in descending order. If not provided, the
+\code{c("VarName1" = "asc", "VarName2" = "desc")} would sort by \code{VarName1} in
+ascending order and \code{VarName2} in descending order. If not provided, the
 columns will be sorted alphabetically.}
 
 \item{display_missing}{(optional) Should the "missing" values be displayed?
-(default = FALSE)}
+(default = \code{FALSE})}
 
 \item{rowtext}{(optional) A character vector used to rename the \code{label}
 column. If named, names will give the new level and values will be the
@@ -69,9 +70,9 @@ will rename the \code{label} of the row.}
 
 \item{row_header}{(optional) A character vector to be added to the table.}
 
-\item{.keep}{(optional) Should the \code{rowbyvar} and \code{tablebyvar} be output in the
-table.  If FALSE, \code{rowbyvar} will still be output in the \code{label} column.
-(default = TRUE)}
+\item{.keep}{(optional) Should the \code{rowbyvar} and \code{tablebyvar} be
+output in the table. If \code{FALSE}, \code{rowbyvar} will still be output
+in the \code{label} column. \code{(default = TRUE)}.}
 
 \item{.ord}{Should the ordering columns be output with the table? This is
 useful if a table needs to be merged or reordered in any way after build.}
@@ -97,123 +98,134 @@ is useful for adverse event and concomitant mediations.
 }
 \examples{
 adae <- data.frame(
-      SITEID = c("100", "100", "100","200", "200", "200"),
-      USUBJID = c("Demo1-101", "Demo1-102", "Demo1-103",
-                  "Demo1-104", "Demo1-105", "Demo1-106"),
-      AEBODSYS = c("Cardiac disorders", "Cardiac disorders",
-                   "Respiratory, thoracic and mediastinal disorders",
-                   "Infections and infestations",
-                   "Skin and subcutaneous tissue disorders",
-                   "Infections and infestations"),
-      AEDECOD = c("Arrhythmia supraventricular", "Cardiac failure",
-                  "Chronic obstructive pulmonary disease", "Pneumonia",
-                  "Pustular psoriasis", "Upper respiratory tract infection"),
-      colnbr = structure(
-        c(1L, 2L, 3L, 1L,  2L, 3L),
-        .Label = c("Active", "Placebo", "Comparator"),
-        class = "factor"
-      )
-    )
+  SITEID = c("100", "100", "100", "200", "200", "200"),
+  USUBJID = c(
+    "Demo1-101", "Demo1-102", "Demo1-103",
+    "Demo1-104", "Demo1-105", "Demo1-106"
+  ),
+  AEBODSYS = c(
+    "Cardiac disorders", "Cardiac disorders",
+    "Respiratory, thoracic and mediastinal disorders",
+    "Infections and infestations",
+    "Skin and subcutaneous tissue disorders",
+    "Infections and infestations"
+  ),
+  AEDECOD = c(
+    "Arrhythmia supraventricular", "Cardiac failure",
+    "Chronic obstructive pulmonary disease", "Pneumonia",
+    "Pustular psoriasis", "Upper respiratory tract infection"
+  ),
+  colnbr = structure(
+    c(1L, 2L, 3L, 1L, 2L, 3L),
+    .Label = c("Active", "Placebo", "Comparator"),
+    class = "factor"
+  )
+)
 
 # Frequency and percent for two levels of nesting
-nested_freq(adae
-           ,colvar = "colnbr"
-           ,rowvar = "AEBODSYS*AEDECOD"
-           ,statlist = statlist("n (x.x\%)"))
+nested_freq(adae,
+  colvar = "colnbr",
+  rowvar = "AEBODSYS*AEDECOD",
+  statlist = statlist("n (x.x\%)")
+)
 
 # Frequency and percent for three levels of nesting (for illustrative
 # purpose)
-nested_freq(adae
-           ,colvar = "colnbr"
-          ,rowvar = "SITEID*AEBODSYS*AEDECOD"
-           ,statlist = statlist("n (x.x\%)"))
+nested_freq(adae,
+  colvar = "colnbr",
+  rowvar = "SITEID*AEBODSYS*AEDECOD",
+  statlist = statlist("n (x.x\%)")
+)
 
 # Cut records where pct meets threshold for a any column
-nested_freq(cdisc_adae
-            ,colvar = "TRTA"
-            ,rowvar = "AEBODSYS*AEDECOD"
-            ,statlist = statlist("n (x.x\%)", distinct = TRUE)
-            ,cutoff = 2
-            ,cutoff_stat = "n")
+nested_freq(cdisc_adae,
+  colvar = "TRTA",
+  rowvar = "AEBODSYS*AEDECOD",
+  statlist = statlist("n (x.x\%)", distinct = TRUE),
+  cutoff = 2,
+  cutoff_stat = "n"
+)
 
 # Cut records where pct meets threshold for a specific column
-nested_freq(cdisc_adae
-            ,rowvar = "AEBODSYS*AEDECOD"
-            ,colvar = "TRTAN"
-            ,statlist = statlist("n (x.x\%)", distinct = TRUE)
-            ,cutoff = "54 >= 2"
-            ,cutoff_stat = "n")
+nested_freq(cdisc_adae,
+  rowvar = "AEBODSYS*AEDECOD",
+  colvar = "TRTAN",
+  statlist = statlist("n (x.x\%)", distinct = TRUE),
+  cutoff = "54 >= 2",
+  cutoff_stat = "n"
+)
 
 # Frequency and percent for two levels of nesting and sort by descending
 # active
-nested_freq(adae
-            ,colvar = "colnbr"
-            ,rowvar = "AEBODSYS*AEDECOD"
-            ,statlist = statlist("n (x.x\%)")
-            ,descending = "Active")
+nested_freq(adae,
+  colvar = "colnbr",
+  rowvar = "AEBODSYS*AEDECOD",
+  statlist = statlist("n (x.x\%)"),
+  descending = "Active"
+)
 
 # Below illustrates how make the same calls to nested_freq() as above, using
 # table and # column metadata along with generate_results().
 
 column_metadata <- tibble::tribble(
- ~tbltype, ~coldef,   ~decode,
- "type1",     "1", "Placebo",
- "type1",     "2",     "Low",
- "type1",     "3",    "High"
+  ~tbltype, ~coldef, ~decode,
+  "type1", "1", "Placebo",
+  "type1", "2", "Low",
+  "type1", "3", "High"
 )
 
 # Frequency and percent for two levels of nesting
 table_metadata <- tibble::tribble(
- ~anbr,         ~func,    ~df,       ~rowvar, ~tbltype,  ~colvar, ~statlist,
- "1", "nested_freq", "cdisc_adae", "AEBODSYS*AEDECOD",  "type1",  "TRTP",
- statlist("n (x.x\%)")
+  ~anbr, ~func, ~df, ~rowvar, ~tbltype, ~colvar, ~statlist,
+  "1", "nested_freq", "cdisc_adae", "AEBODSYS*AEDECOD", "type1", "TRTP",
+  statlist("n (x.x\%)")
 )
-#generate_results(table_metadata,
-#column_metadata_file = tidytlg_metadata(path)
+# generate_results(table_metadata,
+# column_metadata_file = tidytlg_metadata(path)
 
 
 # Frequency and percent for three levels of nesting (for illustrative purpose)
 table_metadata <- tibble::tribble(
- ~anbr,         ~func,    ~df,                 ~rowvar, ~tbltype,  ~colvar,
- ~statlist,
- "1", "nested_freq", "cdisc_adae", "SITEID*AEBODSYS*AEDECOD","type1",
- "TRTP", statlist("n (x.x\%)")
+  ~anbr, ~func, ~df, ~rowvar, ~tbltype, ~colvar,
+  ~statlist,
+  "1", "nested_freq", "cdisc_adae", "SITEID*AEBODSYS*AEDECOD", "type1",
+  "TRTP", statlist("n (x.x\%)")
 )
 # Commented out because it takes too long
 # generate_results(table_metadata, column_metadata)
 
-#Cut records where pct meets threshold for a any column
+# Cut records where pct meets threshold for a any column
 column_metadata <- tibble::tribble(
- ~tbltype, ~coldef,   ~decode,
- "type2",     "1", "Placebo",
- "type2",     "2",  "Active"
+  ~tbltype, ~coldef, ~decode,
+  "type2", "1", "Placebo",
+  "type2", "2", "Active"
 )
 table_metadata <- tibble::tibble(
- anbr = "1", func = "nested_freq", df= "cdisc_adae",
- rowvar = "AEBODSYS*AEDECOD",
- tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
- dotdotdot = "cutoff = 5"
+  anbr = "1", func = "nested_freq", df = "cdisc_adae",
+  rowvar = "AEBODSYS*AEDECOD",
+  tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
+  dotdotdot = "cutoff = 5"
 )
-#generate_results(table_metadata,
+# generate_results(table_metadata,
 # column_metadata_file = tidytlg_metadata(path)
 
 # Cut records where pct meets threshold for a specific column
 table_metadata <- tibble::tibble(
- anbr = "1", func = "nested_freq", df= "cdisc_adae",
- rowvar = "AEBODSYS*AEDECOD",
- tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
- dotdotdot = "cutoff = 'col1 >= 5'"
+  anbr = "1", func = "nested_freq", df = "cdisc_adae",
+  rowvar = "AEBODSYS*AEDECOD",
+  tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
+  dotdotdot = "cutoff = 'col1 >= 5'"
 )
-#generate_results(table_metadata,
-#column_metadata_file = tidytlg_metadata(path)
+# generate_results(table_metadata,
+# column_metadata_file = tidytlg_metadata(path)
 
 # Frequency and percent for two levels of nesting and sort by descending col1
 table_metadata <- tibble::tibble(
- anbr = "1", func = "nested_freq", df= "cdisc_adae",
- rowvar = "AEBODSYS*AEDECOD",
- tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
- dotdotdot = "descending = 'col1'"
+  anbr = "1", func = "nested_freq", df = "cdisc_adae",
+  rowvar = "AEBODSYS*AEDECOD",
+  tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
+  dotdotdot = "descending = 'col1'"
 )
-#generate_results(table_metadata,
-#column_metadata_file = tidytlg_metadata(path)
+# generate_results(table_metadata,
+# column_metadata_file = tidytlg_metadata(path)
 }

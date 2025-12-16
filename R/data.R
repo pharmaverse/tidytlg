@@ -1,4 +1,4 @@
-#' ADSL data created from subsetting the CDISC ADSL with 15 subjects (5 subjects in each arm)
+#' `ADSL` data created from subsetting the `CDISC` `ADSL` with 15 subjects (5 subjects in each arm)
 #'
 #' @source CDISC SDTM/ADAM Pilot Project.
 #'
@@ -34,7 +34,7 @@
 #'  \item{COMP16FL}{Completers of Week 16 Population Flag}
 #'  \item{COMP24FL}{Completers of Week 24 Population Flag}
 #'  \item{DISCONFL}{Did the Subject Discontinue the Study?}
-#'  \item{DSRAEFL}{Discontinued due to AE?}
+#'  \item{DSRAEFL}{Discontinued due to `AE`?}
 #'  \item{DTHFL}{Subject Died?}
 #'  \item{BMIBL}{Baseline BMI (kg/m^2)}
 #'  \item{BMIBLGR1}{Pooled Baseline BMI Group 1}
@@ -47,7 +47,7 @@
 #'  \item{VISIT1DT}{Date of Visit 1}
 #'  \item{RFSTDTC}{Subject Reference Start Date/Time}
 #'  \item{RFENDTC}{Subject Reference End Date/Time}
-#'  \item{VISNUMEN}{End of Trt Visit (Vis 12 or Early Term.)}
+#'  \item{VISNUMEN}{End of Treatment Visit (Visit 12 or Early Term.)}
 #'  \item{RFENDT}{Date of Discontinuation/Completion}
 #'  \item{DCDECOD}{Standardized Disposition Term}
 #'  \item{EOSSTT}{End of Study Status}
@@ -59,7 +59,7 @@
 #' @name cdisc adsl
 "cdisc_adsl"
 
-#'  ADAE data created from subsetting the CDISC ADAE dataset
+#'  `ADAE` data created from subsetting the `CDISC` `ADAE` dataset
 #'
 #' @source CDISC SDTM/ADAM Pilot Project.
 #'
@@ -126,7 +126,7 @@
 #' @name cdisc adae
 "cdisc_adae"
 
-#' ADLB data created from subsetting the CDISC ADLB dataset
+#' `ADLB` data created from subsetting the `CDISC` `ADLB` dataset
 #'
 #' @source CDISC SDTM/ADAM Pilot Project.
 #'
@@ -182,7 +182,7 @@
 "cdisc_adlb"
 
 
-#' ADVS data created from subsetting the CDISC ADVS dataset
+#' `ADVS` data created from subsetting the `CDISC` `ADVS` dataset
 #'
 #' @source CDISC SDTM/ADAM Pilot Project.
 #'
@@ -267,7 +267,7 @@
 #' \describe{
 #'   \item{tbltype}{identifier used to group a table column layout}
 #'   \item{coldef}{distinct variable values used, typically numeric
-#'   and typically a treatment/main effect variable, think TRT01PN}
+#'   and typically a treatment or main effect variable, think `TRT01PN`}
 #'   \item{decode}{decode of coldef that will display as a column header
 #'   in the table}
 #'   \item{span1}{spanning header to display across multiple columns}

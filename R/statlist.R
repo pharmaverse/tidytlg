@@ -29,18 +29,18 @@
 #'   \item{denoms_by - Controls what groupings of variables should define the
 #'     denominator. Variables should be passed as a quoted vector}
 #'   \item{distinct - A boolean value. Should the numerator reflect distinct
-#'     USUBJIDs or event counts. Defaults to TRUE which captures distinct
+#'     `USUBJIDs` or event counts. Defaults to TRUE which captures distinct
 #'     subjects.}
 #'    \item{distinct_by - A character value used to select the variable that
-#'    should be used to "distinct" the freq tables. Defaults to USUBJID.}
+#'    should be used to "distinct" the freq tables. Defaults to `USUBJID`.}
 #'   \item{zero_denom - The string to display when there are no records found
-#'     in an entire denominator group. Defaults to "-"}
+#'     in an entire denominator group. Defaults to `-`}
 
 #'   \item{zero_n - The string to display when there are no records found for
-#'     a numerator. Defaults to "0".}
+#'     a numerator. Defaults to `0`.}
 #' }
 #'
-#' @section Statlists for univar statlists:
+#' @section Statlists for `univar` statlists:
 #' \itemize{
 #'   \item{N}
 #'   \item{SUM}

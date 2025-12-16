@@ -10,7 +10,7 @@ and 6 variables:
 \describe{
 \item{tbltype}{identifier used to group a table column layout}
 \item{coldef}{distinct variable values used, typically numeric
-and typically a treatment/main effect variable, think TRT01PN}
+and typically a treatment or main effect variable, think \code{TRT01PN}}
 \item{decode}{decode of coldef that will display as a column header
 in the table}
 \item{span1}{spanning header to display across multiple columns}

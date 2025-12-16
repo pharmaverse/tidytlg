@@ -69,13 +69,14 @@ preprocessed and passed through using \code{denom_df}.}
 
 \item{descending_by}{(optional) The column or columns to sort descending
 counts. Can also provide a named list to do ascending order ex.
-c("VarName1" = "asc", "VarName2" = "desc") would sort by VarName1 in
-ascending order and VarName2 in descending order. In case of a tie in count
-or \code{descending_by} not provided, the columns will be sorted alphabetically.}
+\code{c("VarName1" = "asc", "VarName2" = "desc")} would sort by \code{VarName1} in
+ascending order and \code{VarName2} in descending order.
+In case of a tie in count or \code{descending_by} not provided,
+the columns will be sorted alphabetically.}
 
-\item{display_missing}{(optional) Should the "missing" values be displayed? If
-missing values are displayed, denominators will include missing values.
-(default = FALSE)}
+\item{display_missing}{(optional) Should the "missing" values be displayed?
+If missing values are displayed, denominators will include missing values.
+(default = \code{FALSE}).}
 
 \item{rowtext}{(optional) A character vector used to rename the \code{label}
 column. If named, names will give the new level and values will be the
@@ -88,13 +89,13 @@ label will be the only row.}
 
 \item{.keep}{(optional) Should the \code{rowbyvar} and \code{tablebyvar} be output in the
 table.  If FALSE, \code{rowbyvar} will still be output in the \code{label} column.
-(default = TRUE)}
+(default = \code{TRUE})}
 
 \item{.ord}{Should the ordering columns be output with the table? This is
 useful if a table needs to be merged or reordered in any way after build.}
 
 \item{pad}{(optional) A boolean that controls if levels with zero records
-should be included in the final table. (default = TRUE)}
+should be included in the final table. (default = \code{TRUE})}
 
 \item{...}{(optional) Named arguments to be included as columns on the table.}
 }
@@ -111,101 +112,113 @@ By default, a frequency table is sorted based on the factor level of the
 \code{rowvar} variable. If the \code{rowvar} variable isn't a factor, it will be
 sorted alphabetically. This behavior can be modified in two ways, the first
 is the \code{char2factor()} function that offers a interface for releveling a
-variable based on a numeric variable, like VISITN. The second is based on
+variable based on a numeric variable, like \code{VISITN.} The second is based on
 the \code{descending_by} argument which will sort based on counts on a variable.
 }
 
 \examples{
 adsl <- data.frame(
-      USUBJID = c("DEMO-101", "DEMO-102", "DEMO-103"),
-      RACE = c("WHITE", "BLACK", "ASIAN"),
-      SEX = c("F", "M", "F"),
-      colnbr = factor(c("Placebo", "Low", "High"))
-  )
+  USUBJID = c("DEMO-101", "DEMO-102", "DEMO-103"),
+  RACE = c("WHITE", "BLACK", "ASIAN"),
+  SEX = c("F", "M", "F"),
+  colnbr = factor(c("Placebo", "Low", "High"))
+)
 
 # Unique subject count of a single variable
-freq(adsl
-     ,colvar = "colnbr"
-     ,rowvar = "RACE"
-     ,statlist = statlist("n"))
+freq(adsl,
+  colvar = "colnbr",
+  rowvar = "RACE",
+  statlist = statlist("n")
+)
 
 # Unique subject count and percent of a single variable
-freq(adsl
-     ,colvar = "colnbr"
-     ,rowvar = "RACE"
-     ,statlist = statlist(c("N", "n (x.x\%)")))
+freq(adsl,
+  colvar = "colnbr",
+  rowvar = "RACE",
+  statlist = statlist(c("N", "n (x.x\%)"))
+)
 
 # Unique subject count of a variable by another variable
-freq(adsl
-     ,colvar = "colnbr"
-     ,rowvar = "RACE"
-     ,rowbyvar = "SEX"
-     ,statlist = statlist("n"))
+freq(adsl,
+  colvar = "colnbr",
+  rowvar = "RACE",
+  rowbyvar = "SEX",
+  statlist = statlist("n")
+)
 
 # Unique subject count of a variable by another variable using colvar and
 # group to define the denominator
-freq(adsl
-     ,colvar = "colnbr"
-     ,rowvar = "RACE"
-     ,rowbyvar = "SEX"
-     ,statlist = statlist("n (x.x\%)", denoms_by = c("colnbr", "SEX")))
+freq(adsl,
+  colvar = "colnbr",
+  rowvar = "RACE",
+  rowbyvar = "SEX",
+  statlist = statlist("n (x.x\%)", denoms_by = c("colnbr", "SEX"))
+)
 
 # Cut records where count meets threshold for any column
-freq(cdisc_adsl
-     ,rowvar = "ETHNIC"
-     ,colvar = "TRT01P"
-     ,statlist = statlist("n (x.x\%)")
-     ,cutoff = "5"
-     ,cutoff_stat = "n")
+freq(cdisc_adsl,
+  rowvar = "ETHNIC",
+  colvar = "TRT01P",
+  statlist = statlist("n (x.x\%)"),
+  cutoff = "5",
+  cutoff_stat = "n"
+)
 
 # Cut records where count meets threshold for a specific column
-freq(cdisc_adsl
-     ,rowvar = "ETHNIC"
-     ,colvar = "TRT01P"
-     ,statlist = statlist("n (x.x\%)")
-     ,cutoff = "Placebo >= 3"
-     ,cutoff_stat = "n")
+freq(cdisc_adsl,
+  rowvar = "ETHNIC",
+  colvar = "TRT01P",
+  statlist = statlist("n (x.x\%)"),
+  cutoff = "Placebo >= 3",
+  cutoff_stat = "n"
+)
 
 # Below illustrates how to make the same calls to freq() as above, using
 # table and column metadata.
 
 # Unique subject count of a single variable
 table_metadata <- tibble::tribble(
-  ~anbr,  ~func,          ~df,   ~rowvar,      ~statlist,  ~colvar,
-  1,     "freq", "cdisc_adsl",  "ETHNIC",  statlist("n"), "TRT01PN"
+  ~anbr, ~func, ~df, ~rowvar, ~statlist, ~colvar,
+  1, "freq", "cdisc_adsl", "ETHNIC", statlist("n"), "TRT01PN"
 )
 
 generate_results(table_metadata,
-                 column_metadata = column_metadata,
-                 tbltype = "type1")
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 
 # Unique subject count and percent of a single variable
 table_metadata <- tibble::tribble(
-  ~anbr,  ~func,    ~df,     ~rowvar,     ~statlist,            ~colvar,
-  "1", "freq", "cdisc_adsl", "ETHNIC", statlist(c("N", "n (x.x\%)")),"TRT01PN"
+  ~anbr, ~func, ~df, ~rowvar, ~statlist, ~colvar,
+  "1", "freq", "cdisc_adsl", "ETHNIC", statlist(c("N", "n (x.x\%)")), "TRT01PN"
 )
 
 generate_results(table_metadata,
-                 column_metadata = column_metadata,
-                 tbltype = "type1")
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 
 # Cut records where count meets threshold for any column
 table_metadata <- tibble::tibble(
-  anbr= "1", func = "freq", df = "cdisc_adsl", rowvar = "ETHNIC",
+  anbr = "1", func = "freq", df = "cdisc_adsl", rowvar = "ETHNIC",
   statlist = statlist("n (x.x\%)"), colvar = "TRT01PN", cutoff = 5,
-  cutoff_stat = "n")
+  cutoff_stat = "n"
+)
 
 generate_results(table_metadata,
-                 column_metadata = column_metadata,
-                 tbltype = "type1")
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 
 # Cut records where count meets threshold for a specific column
 table_metadata <- tibble::tibble(
-  anbr= 1, func = "freq", df = "cdisc_adsl", rowvar = "ETHNIC",
+  anbr = 1, func = "freq", df = "cdisc_adsl", rowvar = "ETHNIC",
   statlist = statlist("n (x.x\%)"), colvar = "TRT01PN",
-  cutoff = 'col1 >= 3', cutoff_stat = "n")
+  cutoff = "col1 >= 3", cutoff_stat = "n"
+)
 
 generate_results(table_metadata,
-                 column_metadata = column_metadata,
-                 tbltype = "type1")
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 }

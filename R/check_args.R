@@ -136,9 +136,9 @@ make_function <- function(args = pairlist(), body, env = parent.frame()) {
 }
 
 
-#' check_statlist_univar
+#' `check_statlist_univar`
 #'
-#' @param vec statlist argument to univar
+#' @param vec statlist argument to `univar`
 #'
 #' @return TRUE/FALSE based on if stat in accepted values
 #' @noRd
@@ -1011,7 +1011,6 @@ check_univar <- function(arglist) {
   )
 
 
-
   var_type_check <- var_type_check[names(var_type_check) %in% names(arglist)]
   check_var_types("univar", arglist, var_type_check)
   # run stats tests
@@ -1071,7 +1070,6 @@ check_nested_freq <- function(arglist) {
   }
   # statlist is passed through as a vector so need to evaluate
   arglist[["statlist"]] <- eval_tidy(arglist[["statlist"]])
-
 
 
   check_req_vars("nested_freq", arglist, c("df", "colvar", "rowvar"))

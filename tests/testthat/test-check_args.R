@@ -361,8 +361,6 @@ test_that("Test univar new checks", {
   )
 
 
-
-
   expect_error(
     univar(cdisc_advs %>% filter(PARAMCD %in% c("HEIGHT", "WEIGHT")),
       colvar = "TRTA",
@@ -382,9 +380,6 @@ test_that("Test univar new checks", {
       alpha = .10
     ), "tablebyvar, rowbyvar all have value SEX for function univar"
   )
-
-
-
 
 
   expect_error(

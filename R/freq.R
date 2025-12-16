@@ -31,12 +31,13 @@
 #'  preprocessed and passed through using `denom_df`.
 #' @param descending_by (optional) The column or columns to sort descending
 #'  counts. Can also provide a named list to do ascending order ex.
-#'  c("VarName1" = "asc", "VarName2" = "desc") would sort by VarName1 in
-#'  ascending order and VarName2 in descending order. In case of a tie in count
-#'  or `descending_by` not provided, the columns will be sorted alphabetically.
-#' @param display_missing (optional) Should the "missing" values be displayed? If
-#'  missing values are displayed, denominators will include missing values.
-#'  (default = FALSE)
+#'  `c("VarName1" = "asc", "VarName2" = "desc")` would sort by `VarName1` in
+#'  ascending order and `VarName2` in descending order.
+#'  In case of a tie in count or `descending_by` not provided,
+#'  the columns will be sorted alphabetically.
+#' @param display_missing (optional) Should the "missing" values be displayed?
+#'  If missing values are displayed, denominators will include missing values.
+#'  (default = `FALSE`).
 #' @param rowtext (optional) A character vector used to rename the `label`
 #'  column. If named, names will give the new level and values will be the
 #'  replaced value. If unnamed, and the table has only one row, the rowtext will
@@ -46,11 +47,11 @@
 #' @param row_header (optional) A character vector to be added to the table.
 #' @param .keep (optional) Should the `rowbyvar` and `tablebyvar` be output in the
 #'  table.  If FALSE, `rowbyvar` will still be output in the `label` column.
-#'  (default = TRUE)
+#'  (default = `TRUE`)
 #' @param .ord Should the ordering columns be output with the table? This is
 #'  useful if a table needs to be merged or reordered in any way after build.
 #' @param pad (optional) A boolean that controls if levels with zero records
-#'  should be included in the final table. (default = TRUE)
+#'  should be included in the final table. (default = `TRUE`)
 #' @param ... (optional) Named arguments to be included as columns on the table.
 #'
 #' @section Sorting a 'freq' table:
@@ -59,7 +60,7 @@
 #'  `rowvar` variable. If the `rowvar` variable isn't a factor, it will be
 #'  sorted alphabetically. This behavior can be modified in two ways, the first
 #'  is the `char2factor()` function that offers a interface for releveling a
-#'  variable based on a numeric variable, like VISITN. The second is based on
+#'  variable based on a numeric variable, like `VISITN.` The second is based on
 #'  the `descending_by` argument which will sort based on counts on a variable.
 #'
 #' @return A dataframe of results

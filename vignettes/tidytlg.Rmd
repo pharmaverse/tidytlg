@@ -37,7 +37,7 @@ To set up the R environment, you can set the path objects of the input folder an
 
 ### titles and footnotes
 
-The information for titles and footnotes for each TLG can be stored in an excel file called titles.xls (see below snapshot), which will be used later to create the outputs.
+The information for titles and footnotes for each TLG can be stored in an excel file called `titles.xls` (see below snapshot), which will be used later to create the outputs.
 
 ```{r, echo=FALSE, out.width = "600px"}
 knitr::include_graphics("titles.PNG")
@@ -49,7 +49,7 @@ Column metadata provides the column structure of the table layout and includes t
 
 * tbltype: identifier used to group a table column layout
 
-* coldef: distinct variable values used, typically numeric and typically a treatment variable, think TRT01PN
+* coldef: distinct variable values used, typically numeric and typically a treatment variable, think `TRT01PN`
 
 * decode: decode of coldef that will display as a column header in the table
 
@@ -59,13 +59,13 @@ Column metadata provides the column structure of the table layout and includes t
 
 * span3: spanning header to display across multiple columns, third level
 
-Please see below for a snapshot of column_metadata.xlsx.
+Please see below for a snapshot of `column_metadata.xlsx`.
 
 ```{r, echo=FALSE, out.width = "500px"}
 knitr::include_graphics("column_metadata.PNG")
 ```
 
-Different types of column layouts identified by different `tbltype` can be stored in an excel file called column_metadata.xlsx. Within each `tbltype`, the `coldef` variable defines the order of the column based on the column variable used for creating the output (typically the numeric treatment variable, TRT01PN, is used as the column variable). For example, there are 3 columns for `tbltype` = "type1" in the above snapshot and the column layout is defined as follows: the first column of summary statistics represents the treatment group of `TRT01PN = 0` with the column header of Placebo defined by `decode`, the second and third columns represent the Low Dose and High Dose groups respectively with the spanning header of Xanomeline defined by the `span1` variable.
+Different types of column layouts identified by different `tbltype` can be stored in an excel file called `column_metadata.xlsx`. Within each `tbltype`, the `coldef` variable defines the order of the column based on the column variable used for creating the output (typically the numeric treatment variable, `TRT01PN`, is used as the column variable). For example, there are 3 columns for `tbltype` = "type1" in the above snapshot and the column layout is defined as follows: the first column of summary statistics represents the treatment group of `TRT01PN = 0` with the column header of Placebo defined by `decode`, the second and third columns represent the Low Dose and High Dose groups respectively with the spanning header of `Xanomeline` defined by the `span1` variable.
 
 Users can also include the column that is derived from combination of individual columns. For example, the `tbltype` of type3 include the 4th column of combined Low Dose and High Dose as well as the 5th column of total group. Please see below for the snapshot of column headers defined by type3.
 
@@ -82,7 +82,7 @@ library(haven)
 library(tidytlg)
 
 # read adsl from PhUSE test data factory
-testdata <- "https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"
+testdata <- "https://github.com/phuse-org/TestDataFactory/tree/main/Updated/TDF_ADaM"
 adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
 ```
 
@@ -213,7 +213,7 @@ gentlg(
 )[[1]]
 ```
 
-Users can also include superscripts, subscripts, or line breaks via unicode. Please see the `vignette("symbols")` for more details. Besides using `univar`, `freq`, and `nested_freq` functions to create the `tbl` dataframe, users can use other R packages to create analysis results and perform data wrangling to fit the `tbl` structure, which can be passed into the `gentlg` function call for generating the desired outputs.
+Users can also include superscripts, subscripts, or line breaks via `UNICODE`. Please see the `vignette("symbols")` for more details. Besides using `univar`, `freq`, and `nested_freq` functions to create the `tbl` dataframe, users can use other R packages to create analysis results and perform data wrangling to fit the `tbl` structure, which can be passed into the `gentlg` function call for generating the desired outputs.
 
 ## Listing programming
 
@@ -221,7 +221,7 @@ The above workflow can also be used to create listings. Users need to prepare th
 
 * specify the `tlf` argument to `Listing` (i.e. `tlf = "Listing"`)
 
-* specify the `idvars` argument for identifying variables (such as treatment variable and USUBJID) where repeated values will be removed
+* specify the `idvars` argument for identifying variables (such as treatment variable and `USUBJID`) where repeated values will be removed
 
 * specify the `colheader` (column header) argument; if not specified, the column labels will be used as the column headers. For the below example, if `colheader` argument is not specified, some column headers will use variable names since these columns are newly created without labels.
 
@@ -301,7 +301,7 @@ library(ggplot2)
 library(tidytlg)
 
 # read adsl from PhUSE test data factory
-testdata <- "https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"
+testdata <- "https://github.com/phuse-org/TestDataFactory/tree/main/Updated/TDF_ADaM"
 adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
 
 tblid <- "Graph01"
@@ -359,7 +359,7 @@ library(haven)
 library(tidytlg)
 
 # read adsl from PhUSE test data factory
-testdata <- "https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"
+testdata <- "https://github.com/phuse-org/TestDataFactory/tree/main/Updated/TDF_ADaM"
 adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
 
 # Process data
@@ -411,7 +411,7 @@ library(haven)
 library(tidytlg)
 
 # read adsl from PhUSE test data factory
-testdata <- "https://github.com/phuse-org/TestDataFactory/raw/main/Updated/TDF_ADaM/"
+testdata <- "https://github.com/phuse-org/TestDataFactory/tree/main/Updated/TDF_ADaM"
 adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
 
 # Process data

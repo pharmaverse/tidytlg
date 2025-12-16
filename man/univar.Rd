@@ -79,8 +79,10 @@ Univariate statitstics for a variables by treatment and/or group.
 adsl <-
   structure(
     list(
-      USUBJID = c("DEMO-101", "DEMO-102", "DEMO-103", "DEMO-104",
-                  "DEMO-105", "DEMO-106"),
+      USUBJID = c(
+        "DEMO-101", "DEMO-102", "DEMO-103", "DEMO-104",
+        "DEMO-105", "DEMO-106"
+      ),
       AGE = c(59, 51, 57, 65, 21, 80),
       SEX = c("F", "M", "F", "M", "F", "M"),
       WEIGHTBL = c(83.6, 75, 84, 90, 65, 70),
@@ -95,61 +97,70 @@ adsl <-
   )
 
 # N, Mean(SD), Median, Range, IQ Range for a rowvar by colvar
-univar(adsl
-       ,colvar = "colnbr"
-       ,rowvar = "AGE")
+univar(adsl,
+  colvar = "colnbr",
+  rowvar = "AGE"
+)
 
 # N and Mean for a rowvar by colvar
-univar(adsl
-       ,colvar   = "colnbr"
-       ,rowvar   = "AGE"
-       ,statlist = statlist(c("N", "MEAN")))
+univar(adsl,
+  colvar   = "colnbr",
+  rowvar   = "AGE",
+  statlist = statlist(c("N", "MEAN"))
+)
 
 # N and Mean for a rowvar by colvar and a by variable
-univar(adsl
-       ,colvar   = "colnbr"
-       ,rowvar   = "AGE"
-       ,rowbyvar = "SEX"
-       ,statlist = statlist(c("N", "MEAN")))
+univar(adsl,
+  colvar   = "colnbr",
+  rowvar   = "AGE",
+  rowbyvar = "SEX",
+  statlist = statlist(c("N", "MEAN"))
+)
 
 # Below illustrates how make the same calls to univar() as above, using table
 # and column metadata # along with generate_results().
 
 column_metadata <- tibble::tribble(
-  ~tbltype, ~coldef,   ~decode,
-  "type1",     "0",  "Placebo",
-  "type1",     "54",     "Low",
-  "type1",     "81",    "High"
+  ~tbltype, ~coldef, ~decode,
+  "type1", "0", "Placebo",
+  "type1", "54", "Low",
+  "type1", "81", "High"
 )
 
 # N, Mean(SD), Median, Range, IQ Range for a rowvar by colvar
 table_metadata <- tibble::tribble(
-  ~anbr,  ~func,    ~df, ~rowvar, ~tbltype, ~colvar,
-  "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTA"
+  ~anbr, ~func, ~df, ~rowvar, ~tbltype, ~colvar,
+  "1", "univar", "cdisc_adae", "AGE", "type1", "TRTA"
 )
 
-generate_results(table_metadata, column_metadata = column_metadata,
-                 tbltype = "type1")
+generate_results(table_metadata,
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 
 
 # N and Mean for a rowvar by colvar
 table_metadata <- tibble::tribble(
-  ~anbr,  ~func,    ~df, ~rowvar, ~tbltype,  ~colvar, ~statlist,
-  "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTA",
-  statlist(c("N","MEAN"))
+  ~anbr, ~func, ~df, ~rowvar, ~tbltype, ~colvar, ~statlist,
+  "1", "univar", "cdisc_adae", "AGE", "type1", "TRTA",
+  statlist(c("N", "MEAN"))
 )
 
-generate_results(table_metadata, column_metadata = column_metadata,
-                 tbltype = "type1")
+generate_results(table_metadata,
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 
 
 # N and Mean for a rowvar by colvar and a by variable
 table_metadata <- tibble::tribble(
-  ~anbr,  ~func,    ~df, ~rowvar, ~tbltype,  ~colvar, ~statlist,  ~by,
-  "1", "univar", "cdisc_adae",   "AGE",  "type1", "TRTA",
-  statlist(c("N","MEAN")), "SEX"
+  ~anbr, ~func, ~df, ~rowvar, ~tbltype, ~colvar, ~statlist, ~by,
+  "1", "univar", "cdisc_adae", "AGE", "type1", "TRTA",
+  statlist(c("N", "MEAN")), "SEX"
 )
 
-generate_results(table_metadata, column_metadata = column_metadata,
-                 tbltype = "type1")
+generate_results(table_metadata,
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 }

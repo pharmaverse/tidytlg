@@ -4,7 +4,7 @@
 \name{cdisc adsl}
 \alias{cdisc adsl}
 \alias{cdisc_adsl}
-\title{ADSL data created from subsetting the CDISC ADSL with 15 subjects (5 subjects in each arm)}
+\title{\code{ADSL} data created from subsetting the \code{CDISC} \code{ADSL} with 15 subjects (5 subjects in each arm)}
 \format{
 A data frame with 15 rows and 49 variables:
 \describe{
@@ -38,7 +38,7 @@ A data frame with 15 rows and 49 variables:
 \item{COMP16FL}{Completers of Week 16 Population Flag}
 \item{COMP24FL}{Completers of Week 24 Population Flag}
 \item{DISCONFL}{Did the Subject Discontinue the Study?}
-\item{DSRAEFL}{Discontinued due to AE?}
+\item{DSRAEFL}{Discontinued due to \code{AE}?}
 \item{DTHFL}{Subject Died?}
 \item{BMIBL}{Baseline BMI (kg/m^2)}
 \item{BMIBLGR1}{Pooled Baseline BMI Group 1}
@@ -51,7 +51,7 @@ A data frame with 15 rows and 49 variables:
 \item{VISIT1DT}{Date of Visit 1}
 \item{RFSTDTC}{Subject Reference Start Date/Time}
 \item{RFENDTC}{Subject Reference End Date/Time}
-\item{VISNUMEN}{End of Trt Visit (Vis 12 or Early Term.)}
+\item{VISNUMEN}{End of Treatment Visit (Visit 12 or Early Term.)}
 \item{RFENDT}{Date of Discontinuation/Completion}
 \item{DCDECOD}{Standardized Disposition Term}
 \item{EOSSTT}{End of Study Status}
@@ -67,7 +67,7 @@ CDISC SDTM/ADAM Pilot Project.
 cdisc_adsl
 }
 \description{
-ADSL data created from subsetting the CDISC ADSL with 15 subjects (5 subjects in each arm)
+\code{ADSL} data created from subsetting the \code{CDISC} \code{ADSL} with 15 subjects (5 subjects in each arm)
 }
 \keyword{CDISC}
 \keyword{adsl}

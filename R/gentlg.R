@@ -9,8 +9,8 @@
 #' @author Pelagia Alexandra Papadopoulou <ppapadop@@its.jnj.com>
 #'
 #' @param huxme (optional) For tables and listings, A list of input dataframes
-#' containing all columns of interest. For graphs, either NULL or a  list of ggplot
-#' objects. Vectorized.
+#'   containing all columns of interest. For graphs, either `NULL` or
+#'   a list of `ggplot` objects. Vectorized.
 #' @param tlf (optional) String, representing the output choice. Choices are
 #' "Table" "Listing" "Figure". Abbreviations are allowed eg "T" for Table.
 #' Strings can be either upper- or lowercase. Vectorized. (Default = "Table")
@@ -44,7 +44,7 @@
 #' dataset, that are not part of the formatting algorithms
 #' (eg anbr, roworder, newpage, newrow, indentme, boldme, by_value, by_order).
 #' The sum of the widths in the vector needs to be less or equal to one. When
-#' 'format="HTML"' wcol can take only one value, the width of the first column.
+#' 'format="HTML"' `wcol` can take only one value, the width of the first column.
 #' (Default = 0.45)
 #' @param opath (optional) File path pointing to the output files
 #' (including .png files for graphs). (Default = ".")
@@ -56,7 +56,7 @@
 #' @param title_file An Excel file that will be read in
 #' with `readxl::read_excel()` to be used as the `title` and `footers` arugment.
 #' The use of `title` or `footers` will override the values passed by this
-#' argument. The file should be either an xls or xlsx file with the columns
+#' argument. The file should be either an `xls` or `xlsx` file with the columns
 #' 'TABLE ID', 'IDENTIFIER', and TEXT'. The file will be read in, subset to
 #' where the tblid matches the tlf argument, and identifiers with 'title' or
 #' 'footnote' will be used to populate the table.

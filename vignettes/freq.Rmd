@@ -150,7 +150,7 @@ knitr::kable(tbl)
 
 ### Denominator Dataframe
 
-When using frequency analysis you do not need to always use your main dataframe to calculate your denominators.  For example, an adverse event table may use ADSL as the denominator dataframe instead of ADAE even though the counts are coming from ADAE.  The example below shows a table counting AEDECOD but using ADSL to calculate the denominators.
+When using frequency analysis you do not need to always use your main dataframe to calculate your denominators.  For example, an adverse event table may use ADSL as the denominator dataframe instead of `ADAE` even though the counts are coming from `ADAE.`  The example below shows a table counting AEDECOD but using ADSL to calculate the denominators.
 
 ```{r}
 adae <- cdisc_adae %>%
@@ -167,9 +167,9 @@ tbl <- adae %>%
 knitr::kable(head(tbl, 10))
 ```
 
-### By processing and denominators: statlist = statlist(c("n (x.x)"), denoms_by = "TRT01AN")
+### By processing and denominators: `statlist = statlist(c("n (x.x)"), denoms_by = "TRT01AN")`
 
-When using by variables such as `tablebyvar` and `rowbyvar` the denominators may need to be changed to work correctly.  This also works in conjunction with the `denom_df` argument.  By default, the denominators are calculated by using `colvar`, `tablebyvar`, and `rowbyvar`.  This works well if you are using the same dataframe for counts and denominators but this is not always the case.  In the following example we are doing a similar table as above but using AESEV as a `rowbyvar`.  In this example we don't want our denoms by AESEV since that variable is not in ADSL, which is where our denominators are coming from.  To change the variables by which our denoms are calculated by we use the `denoms_by` argument to the `statlist` function.  Below you can see that we are using only our `colvar` of TRT01PN as our `denoms_by`.
+When using by variables such as `tablebyvar` and `rowbyvar` the denominators may need to be changed to work correctly.  This also works in conjunction with the `denom_df` argument.  By default, the denominators are calculated by using `colvar`, `tablebyvar`, and `rowbyvar`.  This works well if you are using the same dataframe for counts and denominators but this is not always the case.  In the following example we are doing a similar table as above but using AESEV as a `rowbyvar`.  In this example we don't want our denoms by AESEV since that variable is not in ADSL, which is where our denominators are coming from.  To change the variables by which our denoms are calculated by we use the `denoms_by` argument to the `statlist` function.  Below you can see that we are using only our `colvar` of `TRT01PN` as our `denoms_by`.
 
 ```{r}
 tbl <- adae %>%
@@ -230,7 +230,7 @@ adsl <- cdisc_adsl %>%
   filter(SAFFL == "Y")
 ```
 
-For illustration purpose, we subset the adae data to only contain records in the 2 categories of system organ class: GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS, SKIN AND SUBCUTANEOUS TISSUE DISORDERS. So the table output is not too long and will be easier to visualize. In addition, we would like to sort the output by the active drug group (TRT01AN = 81) with descending frequency. Therefore, we specify `descending_by = "81"`.
+For illustration purpose, we subset the `adae` data to only contain records in the 2 categories of system organ class: GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS, SKIN AND SUBCUTANEOUS TISSUE DISORDERS. So the table output is not too long and will be easier to visualize. In addition, we would like to sort the output by the active drug group `(TRT01AN = 81)` with descending frequency. Therefore, we specify `descending_by = "81"`.
 
 ```{r}
 tbl <- nested_freq(adae,

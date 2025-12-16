@@ -240,7 +240,6 @@ test_that("nested values can span over higher levels", {
 })
 
 
-
 test_that("subValues in a nested count layer should respect rowbyvar", {
   # If a value is found in one table by var but not another it should only be
   # found in one tablebyvar

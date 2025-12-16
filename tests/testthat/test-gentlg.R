@@ -1,6 +1,6 @@
 test_that("custom alignments work", {
   df <- data.frame(
-    label = c("boy", 'girl'),
+    label = c("boy", "girl"),
     name = c("Bob", "Lily"),
     age = c(12, 15)
   )

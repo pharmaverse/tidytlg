@@ -31,8 +31,8 @@ gentlg(
 }
 \arguments{
 \item{huxme}{(optional) For tables and listings, A list of input dataframes
-containing all columns of interest. For graphs, either NULL or a  list of ggplot
-objects. Vectorized.}
+containing all columns of interest. For graphs, either \code{NULL} or
+a list of \code{ggplot} objects. Vectorized.}
 
 \item{tlf}{(optional) String, representing the output choice. Choices are
 "Table" "Listing" "Figure". Abbreviations are allowed eg "T" for Table.
@@ -74,7 +74,7 @@ arguments needs to correspond to the order of the columns in the \code{huxme}
 dataset, that are not part of the formatting algorithms
 (eg anbr, roworder, newpage, newrow, indentme, boldme, by_value, by_order).
 The sum of the widths in the vector needs to be less or equal to one. When
-'format="HTML"' wcol can take only one value, the width of the first column.
+'format="HTML"' \code{wcol} can take only one value, the width of the first column.
 (Default = 0.45)}
 
 \item{orientation}{(optional) String: "portrait" or "landscape".
@@ -86,7 +86,7 @@ The sum of the widths in the vector needs to be less or equal to one. When
 \item{title_file}{An Excel file that will be read in
 with \code{readxl::read_excel()} to be used as the \code{title} and \code{footers} arugment.
 The use of \code{title} or \code{footers} will override the values passed by this
-argument. The file should be either an xls or xlsx file with the columns
+argument. The file should be either an \code{xls} or \code{xlsx} file with the columns
 'TABLE ID', 'IDENTIFIER', and TEXT'. The file will be read in, subset to
 where the tblid matches the tlf argument, and identifiers with 'title' or
 'footnote' will be used to populate the table.}
@@ -124,7 +124,7 @@ then borders are added to the \code{colspan} and \code{colheader} rows. (Default
 passed to \code{bottom_borders}. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information.}
 
 \item{alignments}{(optional) List of named lists. Vectorized.
-(Default = list()) Used to specify individual column or cell alignments.
+(Default = \code{list()}) Used to specify individual column or cell alignments.
 Each named list contains \code{row}, \code{col}, and \code{value}, which are passed to
 \code{\link[huxtable:align]{huxtable::set_align()}} to set the alignments.}
 }
