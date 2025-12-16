@@ -95,8 +95,9 @@ freq(
   rowvar = "cyl",
   rowbyvar = "am",
   statlist = statlist("n/N (x.x)",
-                      distinct = FALSE,
-                      denoms_by = c("gear", "am"),
-                      zero_denom = "_0_")
+    distinct = FALSE,
+    denoms_by = c("gear", "am"),
+    zero_denom = "_0_"
   )
+)
 }

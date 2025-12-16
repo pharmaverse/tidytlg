@@ -124,7 +124,7 @@ then borders are added to the \code{colspan} and \code{colheader} rows. (Default
 passed to \code{bottom_borders}. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information.}
 
 \item{alignments}{(optional) List of named lists. Vectorized.
-(Default = list()) Used to specify individual column or cell alignments.
+(Default = \code{list()}) Used to specify individual column or cell alignments.
 Each named list contains \code{row}, \code{col}, and \code{value}, which are passed to
 \code{\link[huxtable:align]{huxtable::set_align()}} to set the alignments.}
 }

@@ -37,12 +37,16 @@ Both of these are added to the default indentation which is driven by
 }
 }
 \examples{
-df <- tibble::tibble(row_type     =  c("TABLE_BY_HEADER", "HEADER",
-       "BY_HEADER1", "N", "VALUE", "COUNTS", "UNIVAR", "NESTED", "NESTED"),
-                     nested_level =  c(NA, NA, NA, NA, NA, NA, NA, 1, 2),
-                     group_level =  c(0, 0, 0, 0, 0, 0, 0, 0, 0),
-                     label        =  c(NA, NA, NA, NA, NA, "N",NA, NA, NA),
-                     by           =  c(NA, NA, NA, NA, NA, NA, NA, NA, NA),
-                     tableby      =  c(NA, NA, NA, NA, NA, NA, NA, NA, NA))
+df <- tibble::tibble(
+  row_type = c(
+    "TABLE_BY_HEADER", "HEADER",
+    "BY_HEADER1", "N", "VALUE", "COUNTS", "UNIVAR", "NESTED", "NESTED"
+  ),
+  nested_level = c(NA, NA, NA, NA, NA, NA, NA, 1, 2),
+  group_level = c(0, 0, 0, 0, 0, 0, 0, 0, 0),
+  label = c(NA, NA, NA, NA, NA, "N", NA, NA, NA),
+  by = c(NA, NA, NA, NA, NA, NA, NA, NA, NA),
+  tableby = c(NA, NA, NA, NA, NA, NA, NA, NA, NA)
+)
 add_indent(df)
 }

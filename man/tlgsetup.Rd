@@ -42,11 +42,11 @@ be run manually for custom tables.
 \examples{
 df <-
   tibble::tribble(
-  ~TRT01AN, ~USUBJID,
-  0,        "A",
- 54,       "B",
- 81,       "C"
-)
+    ~TRT01AN, ~USUBJID,
+    0, "A",
+    54, "B",
+    81, "C"
+  )
 
 tlgsetup(df, "TRT01AN", column_metadata = column_metadata)
 

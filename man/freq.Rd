@@ -117,95 +117,107 @@ the \code{descending_by} argument which will sort based on counts on a variable.
 
 \examples{
 adsl <- data.frame(
-      USUBJID = c("DEMO-101", "DEMO-102", "DEMO-103"),
-      RACE = c("WHITE", "BLACK", "ASIAN"),
-      SEX = c("F", "M", "F"),
-      colnbr = factor(c("Placebo", "Low", "High"))
-  )
+  USUBJID = c("DEMO-101", "DEMO-102", "DEMO-103"),
+  RACE = c("WHITE", "BLACK", "ASIAN"),
+  SEX = c("F", "M", "F"),
+  colnbr = factor(c("Placebo", "Low", "High"))
+)
 
 # Unique subject count of a single variable
-freq(adsl
-     ,colvar = "colnbr"
-     ,rowvar = "RACE"
-     ,statlist = statlist("n"))
+freq(adsl,
+  colvar = "colnbr",
+  rowvar = "RACE",
+  statlist = statlist("n")
+)
 
 # Unique subject count and percent of a single variable
-freq(adsl
-     ,colvar = "colnbr"
-     ,rowvar = "RACE"
-     ,statlist = statlist(c("N", "n (x.x\%)")))
+freq(adsl,
+  colvar = "colnbr",
+  rowvar = "RACE",
+  statlist = statlist(c("N", "n (x.x\%)"))
+)
 
 # Unique subject count of a variable by another variable
-freq(adsl
-     ,colvar = "colnbr"
-     ,rowvar = "RACE"
-     ,rowbyvar = "SEX"
-     ,statlist = statlist("n"))
+freq(adsl,
+  colvar = "colnbr",
+  rowvar = "RACE",
+  rowbyvar = "SEX",
+  statlist = statlist("n")
+)
 
 # Unique subject count of a variable by another variable using colvar and
 # group to define the denominator
-freq(adsl
-     ,colvar = "colnbr"
-     ,rowvar = "RACE"
-     ,rowbyvar = "SEX"
-     ,statlist = statlist("n (x.x\%)", denoms_by = c("colnbr", "SEX")))
+freq(adsl,
+  colvar = "colnbr",
+  rowvar = "RACE",
+  rowbyvar = "SEX",
+  statlist = statlist("n (x.x\%)", denoms_by = c("colnbr", "SEX"))
+)
 
 # Cut records where count meets threshold for any column
-freq(cdisc_adsl
-     ,rowvar = "ETHNIC"
-     ,colvar = "TRT01P"
-     ,statlist = statlist("n (x.x\%)")
-     ,cutoff = "5"
-     ,cutoff_stat = "n")
+freq(cdisc_adsl,
+  rowvar = "ETHNIC",
+  colvar = "TRT01P",
+  statlist = statlist("n (x.x\%)"),
+  cutoff = "5",
+  cutoff_stat = "n"
+)
 
 # Cut records where count meets threshold for a specific column
-freq(cdisc_adsl
-     ,rowvar = "ETHNIC"
-     ,colvar = "TRT01P"
-     ,statlist = statlist("n (x.x\%)")
-     ,cutoff = "Placebo >= 3"
-     ,cutoff_stat = "n")
+freq(cdisc_adsl,
+  rowvar = "ETHNIC",
+  colvar = "TRT01P",
+  statlist = statlist("n (x.x\%)"),
+  cutoff = "Placebo >= 3",
+  cutoff_stat = "n"
+)
 
 # Below illustrates how to make the same calls to freq() as above, using
 # table and column metadata.
 
 # Unique subject count of a single variable
 table_metadata <- tibble::tribble(
-  ~anbr,  ~func,          ~df,   ~rowvar,      ~statlist,  ~colvar,
-  1,     "freq", "cdisc_adsl",  "ETHNIC",  statlist("n"), "TRT01PN"
+  ~anbr, ~func, ~df, ~rowvar, ~statlist, ~colvar,
+  1, "freq", "cdisc_adsl", "ETHNIC", statlist("n"), "TRT01PN"
 )
 
 generate_results(table_metadata,
-                 column_metadata = column_metadata,
-                 tbltype = "type1")
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 
 # Unique subject count and percent of a single variable
 table_metadata <- tibble::tribble(
-  ~anbr,  ~func,    ~df,     ~rowvar,     ~statlist,            ~colvar,
-  "1", "freq", "cdisc_adsl", "ETHNIC", statlist(c("N", "n (x.x\%)")),"TRT01PN"
+  ~anbr, ~func, ~df, ~rowvar, ~statlist, ~colvar,
+  "1", "freq", "cdisc_adsl", "ETHNIC", statlist(c("N", "n (x.x\%)")), "TRT01PN"
 )
 
 generate_results(table_metadata,
-                 column_metadata = column_metadata,
-                 tbltype = "type1")
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 
 # Cut records where count meets threshold for any column
 table_metadata <- tibble::tibble(
-  anbr= "1", func = "freq", df = "cdisc_adsl", rowvar = "ETHNIC",
+  anbr = "1", func = "freq", df = "cdisc_adsl", rowvar = "ETHNIC",
   statlist = statlist("n (x.x\%)"), colvar = "TRT01PN", cutoff = 5,
-  cutoff_stat = "n")
+  cutoff_stat = "n"
+)
 
 generate_results(table_metadata,
-                 column_metadata = column_metadata,
-                 tbltype = "type1")
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 
 # Cut records where count meets threshold for a specific column
 table_metadata <- tibble::tibble(
-  anbr= 1, func = "freq", df = "cdisc_adsl", rowvar = "ETHNIC",
+  anbr = 1, func = "freq", df = "cdisc_adsl", rowvar = "ETHNIC",
   statlist = statlist("n (x.x\%)"), colvar = "TRT01PN",
-  cutoff = 'col1 >= 3', cutoff_stat = "n")
+  cutoff = "col1 >= 3", cutoff_stat = "n"
+)
 
 generate_results(table_metadata,
-                 column_metadata = column_metadata,
-                 tbltype = "type1")
+  column_metadata = column_metadata,
+  tbltype = "type1"
+)
 }

@@ -59,53 +59,65 @@ library(magrittr)
 
 # bind tables together
 t1 <- cdisc_adsl \%>\%
-  freq(colvar = "TRT01PN",
-       rowvar = "ITTFL",
-       statlist = statlist("n"),
-       subset = ITTFL == "Y",
-       rowtext = "Analysis set: ITT")
+  freq(
+    colvar = "TRT01PN",
+    rowvar = "ITTFL",
+    statlist = statlist("n"),
+    subset = ITTFL == "Y",
+    rowtext = "Analysis set: ITT"
+  )
 
 t2 <- cdisc_adsl \%>\%
-  univar(colvar = "TRT01PN",
-         rowvar = "AGE",
-         decimal = 0,
-         row_header = "Age, years")
+  univar(
+    colvar = "TRT01PN",
+    rowvar = "AGE",
+    decimal = 0,
+    row_header = "Age, years"
+  )
 
 bind_table(t1, t2)
 
 # bind tables together w/by groups
 t1 <- cdisc_adsl \%>\%
-  freq(colvar = "TRT01PN",
-       rowvar = "ITTFL",
-       rowbyvar = "SEX",
-       statlist = statlist("n"),
-       subset = ITTFL == "Y",
-       rowtext = "Analysis set: ITT")
+  freq(
+    colvar = "TRT01PN",
+    rowvar = "ITTFL",
+    rowbyvar = "SEX",
+    statlist = statlist("n"),
+    subset = ITTFL == "Y",
+    rowtext = "Analysis set: ITT"
+  )
 
 t2 <- cdisc_adsl \%>\%
-  univar(colvar = "TRT01PN",
-         rowvar = "AGE",
-         rowbyvar = "SEX",
-         decimal = 0,
-         row_header = "Age, years")
+  univar(
+    colvar = "TRT01PN",
+    rowvar = "AGE",
+    rowbyvar = "SEX",
+    decimal = 0,
+    row_header = "Age, years"
+  )
 
 bind_table(t1, t2, rowbyvar = "SEX")
 
 # bind tables together w/table by groups
 t1 <- cdisc_adsl \%>\%
-  freq(colvar = "TRT01PN",
-       rowvar = "ITTFL",
-       tablebyvar = "SEX",
-       statlist = statlist("n"),
-       subset = ITTFL == "Y",
-       rowtext = "Analysis set: ITT")
+  freq(
+    colvar = "TRT01PN",
+    rowvar = "ITTFL",
+    tablebyvar = "SEX",
+    statlist = statlist("n"),
+    subset = ITTFL == "Y",
+    rowtext = "Analysis set: ITT"
+  )
 
 t2 <- cdisc_adsl \%>\%
-  univar(colvar = "TRT01PN",
-         rowvar = "AGE",
-         tablebyvar = "SEX",
-         decimal = 0,
-         row_header = "Age, years")
+  univar(
+    colvar = "TRT01PN",
+    rowvar = "AGE",
+    tablebyvar = "SEX",
+    decimal = 0,
+    row_header = "Age, years"
+  )
 
 bind_table(t1, t2, tablebyvar = "SEX")
 

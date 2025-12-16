@@ -97,123 +97,134 @@ is useful for adverse event and concomitant mediations.
 }
 \examples{
 adae <- data.frame(
-      SITEID = c("100", "100", "100","200", "200", "200"),
-      USUBJID = c("Demo1-101", "Demo1-102", "Demo1-103",
-                  "Demo1-104", "Demo1-105", "Demo1-106"),
-      AEBODSYS = c("Cardiac disorders", "Cardiac disorders",
-                   "Respiratory, thoracic and mediastinal disorders",
-                   "Infections and infestations",
-                   "Skin and subcutaneous tissue disorders",
-                   "Infections and infestations"),
-      AEDECOD = c("Arrhythmia supraventricular", "Cardiac failure",
-                  "Chronic obstructive pulmonary disease", "Pneumonia",
-                  "Pustular psoriasis", "Upper respiratory tract infection"),
-      colnbr = structure(
-        c(1L, 2L, 3L, 1L,  2L, 3L),
-        .Label = c("Active", "Placebo", "Comparator"),
-        class = "factor"
-      )
-    )
+  SITEID = c("100", "100", "100", "200", "200", "200"),
+  USUBJID = c(
+    "Demo1-101", "Demo1-102", "Demo1-103",
+    "Demo1-104", "Demo1-105", "Demo1-106"
+  ),
+  AEBODSYS = c(
+    "Cardiac disorders", "Cardiac disorders",
+    "Respiratory, thoracic and mediastinal disorders",
+    "Infections and infestations",
+    "Skin and subcutaneous tissue disorders",
+    "Infections and infestations"
+  ),
+  AEDECOD = c(
+    "Arrhythmia supraventricular", "Cardiac failure",
+    "Chronic obstructive pulmonary disease", "Pneumonia",
+    "Pustular psoriasis", "Upper respiratory tract infection"
+  ),
+  colnbr = structure(
+    c(1L, 2L, 3L, 1L, 2L, 3L),
+    .Label = c("Active", "Placebo", "Comparator"),
+    class = "factor"
+  )
+)
 
 # Frequency and percent for two levels of nesting
-nested_freq(adae
-           ,colvar = "colnbr"
-           ,rowvar = "AEBODSYS*AEDECOD"
-           ,statlist = statlist("n (x.x\%)"))
+nested_freq(adae,
+  colvar = "colnbr",
+  rowvar = "AEBODSYS*AEDECOD",
+  statlist = statlist("n (x.x\%)")
+)
 
 # Frequency and percent for three levels of nesting (for illustrative
 # purpose)
-nested_freq(adae
-           ,colvar = "colnbr"
-          ,rowvar = "SITEID*AEBODSYS*AEDECOD"
-           ,statlist = statlist("n (x.x\%)"))
+nested_freq(adae,
+  colvar = "colnbr",
+  rowvar = "SITEID*AEBODSYS*AEDECOD",
+  statlist = statlist("n (x.x\%)")
+)
 
 # Cut records where pct meets threshold for a any column
-nested_freq(cdisc_adae
-            ,colvar = "TRTA"
-            ,rowvar = "AEBODSYS*AEDECOD"
-            ,statlist = statlist("n (x.x\%)", distinct = TRUE)
-            ,cutoff = 2
-            ,cutoff_stat = "n")
+nested_freq(cdisc_adae,
+  colvar = "TRTA",
+  rowvar = "AEBODSYS*AEDECOD",
+  statlist = statlist("n (x.x\%)", distinct = TRUE),
+  cutoff = 2,
+  cutoff_stat = "n"
+)
 
 # Cut records where pct meets threshold for a specific column
-nested_freq(cdisc_adae
-            ,rowvar = "AEBODSYS*AEDECOD"
-            ,colvar = "TRTAN"
-            ,statlist = statlist("n (x.x\%)", distinct = TRUE)
-            ,cutoff = "54 >= 2"
-            ,cutoff_stat = "n")
+nested_freq(cdisc_adae,
+  rowvar = "AEBODSYS*AEDECOD",
+  colvar = "TRTAN",
+  statlist = statlist("n (x.x\%)", distinct = TRUE),
+  cutoff = "54 >= 2",
+  cutoff_stat = "n"
+)
 
 # Frequency and percent for two levels of nesting and sort by descending
 # active
-nested_freq(adae
-            ,colvar = "colnbr"
-            ,rowvar = "AEBODSYS*AEDECOD"
-            ,statlist = statlist("n (x.x\%)")
-            ,descending = "Active")
+nested_freq(adae,
+  colvar = "colnbr",
+  rowvar = "AEBODSYS*AEDECOD",
+  statlist = statlist("n (x.x\%)"),
+  descending = "Active"
+)
 
 # Below illustrates how make the same calls to nested_freq() as above, using
 # table and # column metadata along with generate_results().
 
 column_metadata <- tibble::tribble(
- ~tbltype, ~coldef,   ~decode,
- "type1",     "1", "Placebo",
- "type1",     "2",     "Low",
- "type1",     "3",    "High"
+  ~tbltype, ~coldef, ~decode,
+  "type1", "1", "Placebo",
+  "type1", "2", "Low",
+  "type1", "3", "High"
 )
 
 # Frequency and percent for two levels of nesting
 table_metadata <- tibble::tribble(
- ~anbr,         ~func,    ~df,       ~rowvar, ~tbltype,  ~colvar, ~statlist,
- "1", "nested_freq", "cdisc_adae", "AEBODSYS*AEDECOD",  "type1",  "TRTP",
- statlist("n (x.x\%)")
+  ~anbr, ~func, ~df, ~rowvar, ~tbltype, ~colvar, ~statlist,
+  "1", "nested_freq", "cdisc_adae", "AEBODSYS*AEDECOD", "type1", "TRTP",
+  statlist("n (x.x\%)")
 )
-#generate_results(table_metadata,
-#column_metadata_file = tidytlg_metadata(path)
+# generate_results(table_metadata,
+# column_metadata_file = tidytlg_metadata(path)
 
 
 # Frequency and percent for three levels of nesting (for illustrative purpose)
 table_metadata <- tibble::tribble(
- ~anbr,         ~func,    ~df,                 ~rowvar, ~tbltype,  ~colvar,
- ~statlist,
- "1", "nested_freq", "cdisc_adae", "SITEID*AEBODSYS*AEDECOD","type1",
- "TRTP", statlist("n (x.x\%)")
+  ~anbr, ~func, ~df, ~rowvar, ~tbltype, ~colvar,
+  ~statlist,
+  "1", "nested_freq", "cdisc_adae", "SITEID*AEBODSYS*AEDECOD", "type1",
+  "TRTP", statlist("n (x.x\%)")
 )
 # Commented out because it takes too long
 # generate_results(table_metadata, column_metadata)
 
-#Cut records where pct meets threshold for a any column
+# Cut records where pct meets threshold for a any column
 column_metadata <- tibble::tribble(
- ~tbltype, ~coldef,   ~decode,
- "type2",     "1", "Placebo",
- "type2",     "2",  "Active"
+  ~tbltype, ~coldef, ~decode,
+  "type2", "1", "Placebo",
+  "type2", "2", "Active"
 )
 table_metadata <- tibble::tibble(
- anbr = "1", func = "nested_freq", df= "cdisc_adae",
- rowvar = "AEBODSYS*AEDECOD",
- tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
- dotdotdot = "cutoff = 5"
+  anbr = "1", func = "nested_freq", df = "cdisc_adae",
+  rowvar = "AEBODSYS*AEDECOD",
+  tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
+  dotdotdot = "cutoff = 5"
 )
-#generate_results(table_metadata,
+# generate_results(table_metadata,
 # column_metadata_file = tidytlg_metadata(path)
 
 # Cut records where pct meets threshold for a specific column
 table_metadata <- tibble::tibble(
- anbr = "1", func = "nested_freq", df= "cdisc_adae",
- rowvar = "AEBODSYS*AEDECOD",
- tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
- dotdotdot = "cutoff = 'col1 >= 5'"
+  anbr = "1", func = "nested_freq", df = "cdisc_adae",
+  rowvar = "AEBODSYS*AEDECOD",
+  tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
+  dotdotdot = "cutoff = 'col1 >= 5'"
 )
-#generate_results(table_metadata,
-#column_metadata_file = tidytlg_metadata(path)
+# generate_results(table_metadata,
+# column_metadata_file = tidytlg_metadata(path)
 
 # Frequency and percent for two levels of nesting and sort by descending col1
 table_metadata <- tibble::tibble(
- anbr = "1", func = "nested_freq", df= "cdisc_adae",
- rowvar = "AEBODSYS*AEDECOD",
- tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
- dotdotdot = "descending = 'col1'"
+  anbr = "1", func = "nested_freq", df = "cdisc_adae",
+  rowvar = "AEBODSYS*AEDECOD",
+  tbltype = "type2", colvar = "TRTP", statlist = statlist("n (x.x\%)"),
+  dotdotdot = "descending = 'col1'"
 )
-#generate_results(table_metadata,
-#column_metadata_file = tidytlg_metadata(path)
+# generate_results(table_metadata,
+# column_metadata_file = tidytlg_metadata(path)
 }
