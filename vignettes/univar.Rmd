@@ -23,7 +23,7 @@ of using the `univar` function is to create a `tbl` chunk as shown below for sum
 `N`, `MEAN (SD)`, `MEDIAN`, `RANGE`, `IQ Range` for the `Age` variable in `ADSL`.
 
 ```{r, message=FALSE}
-tbl <- cdisc_adsl %>%
+tbl <- cdisc_adsl |>
   univar(
     colvar = "TRT01PN",
     rowvar = "AGE",
@@ -69,7 +69,7 @@ any univariate statistics from the table below and arrange them in a character v
 A customized example is shown below for displaying `N`, `Mean (95% C.I.)`, and `Geometric Mean (95% C.I.)` for the `Age` variable in `ADSL`.
 
 ```{r}
-tbl <- cdisc_adsl %>%
+tbl <- cdisc_adsl |>
   univar(
     colvar = "TRT01PN",
     rowvar = "AGE",
@@ -94,7 +94,7 @@ extra defaults, please type `options("tidytlg.precision.extra")` in your console
 is shown below for presenting the data using a base decimal value of 2.
 
 ```{r}
-tbl <- cdisc_adsl %>%
+tbl <- cdisc_adsl |>
   univar(
     colvar = "TRT01PN",
     rowvar = "BMIBL",
@@ -121,7 +121,7 @@ be achieved by setting `precisionby = "PARAMCD"`.
 
 
 ```{r}
-tbl <- cdisc_advs %>%
+tbl <- cdisc_advs |>
   univar(
     colvar = "TRTAN",
     rowvar = "AVAL",
@@ -141,8 +141,8 @@ The following example uses the variable CHG to calculate precision, similar to t
 `decimal = 4` to cap our decimal spaces at 4.
 
 ```{r}
-tbl <- cdisc_advs %>%
-  filter(PARAMCD == "SYSBP") %>%
+tbl <- cdisc_advs |>
+  filter(PARAMCD == "SYSBP") |>
   univar(
     colvar = "TRTAN",
     rowvar = "CHG",
@@ -161,8 +161,8 @@ This allows us to have consistent formatting throughout the table even though th
 We also calculate precision by `PARAMCD` since the output table will be presented using that as a by variable.
 
 ```{r}
-tbl <- cdisc_advs %>%
-  filter(PARAMCD == "SYSBP") %>%
+tbl <- cdisc_advs |>
+  filter(PARAMCD == "SYSBP") |>
   univar(
     colvar = "TRTAN",
     rowvar = "AVAL",
