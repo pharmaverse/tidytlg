@@ -8,17 +8,17 @@ the results dataframe}
 add_format(df, tableby = NULL, groupby = NULL, .keep = FALSE)
 }
 \arguments{
-\item{df}{(required) dataframe of results and must contain the \code{anbr} variable}
+\item{df}{(required) dataframe of results and must contain the \code{anbr} variable.}
 
-\item{tableby}{(optional) character vector containing table by variables}
+\item{tableby}{(optional) character vector containing table by variables.}
 
-\item{groupby}{(optional) character vector containing group by variables}
+\item{groupby}{(optional) character vector containing group by variables.}
 
 \item{.keep}{(optional) should \code{tableby} and \code{groupby} variables be kept in the
-final dataframe.  (default = FALSE)}
+final dataframe. (default = \code{FALSE}).}
 }
 \value{
-dataframe with the formatting variables indentme, newrows, newpage, and roworder added
+dataframe with the formatting variables \code{indentme}, \code{newrows}, \code{newpage}, and \code{roworder} added.
 }
 \description{
 Add the formatting variables of \code{indentme}, \code{newrows}, \code{newpage}, and \code{roworder} to
