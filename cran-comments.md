@@ -1,4 +1,4 @@
-## tidytlg 0.1.4
+## tidytlg 0.11.0
 
 ### Testing
 
