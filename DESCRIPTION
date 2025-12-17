@@ -1,6 +1,6 @@
 Package: tidytlg
 Title: Create TLGs using the 'tidyverse'
-Version: 0.11.0
+Version: 0.11.0.9000
 Language: en-US
 Authors@R:
      c(person(given = "Nicholas",
@@ -89,6 +89,6 @@ Imports:
     ggplot2 (>= 3.3.2),
     rstudioapi (>= 0.13)
 Depends:
-    R (>= 3.6.0)
+    R (>= 4.1.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
