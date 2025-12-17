@@ -4,7 +4,7 @@
 #'
 #' @param x variable to check for NA and replace with "".
 #'
-#' @return x with NA's replaced with "".  Factors will add ""
+#' @return x with NAs replaced with "". Factors will add ""
 #' as the first level.
 #' @export
 #'
@@ -166,7 +166,7 @@ find_file <- function(base_path, name, ext) {
   }
 }
 
-#' Helper functions for returning files used in gentlg
+#' Helper functions for returning files used in `gentlg`
 #'
 #' @param path Working directory of the project
 #'

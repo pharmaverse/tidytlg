@@ -1,16 +1,16 @@
 #' Generate nested count/percent for two or three levels
 #'
 #' This will call `freq()` multiple times and combine the levels together. This
-#' is useful for adverse event and concomitant mediations.
+#' is useful for adverse event and concomitant medications.
 #'
 #' @param df (required) dataframe containing the two levels to summarize
 #' @param denom_df (optional) dataframe containing records to use as the
-#'   denominator (default = df)
-#' @param colvar (required) treatment variable within df to use to summarize
-#' @param tablebyvar (optional) repeat entire table by variable within df.
+#'   denominator (default = `df`)
+#' @param colvar (required) treatment variable within `df` to use to summarize
+#' @param tablebyvar (optional) repeat entire table by variable within `df.`
 #' @param rowvar (required) nested levels separated by a star, for example
 #'   `AEBODSYS*AEDECOD`,  this can handle up to three levels.
-#' @param rowbyvar (optional) repeat `rowvar` by variable within df
+#' @param rowbyvar (optional) repeat `rowvar` by variable within `df`
 #' @param statlist (optional) count/percent type to return
 #'   `(default = "n (x.x)")`
 #' @param decimal (optional) decimal precision root level `(default = 1)`

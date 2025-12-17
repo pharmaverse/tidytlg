@@ -1,7 +1,7 @@
-#' @title Adds bottom borders to a huxtable
+#' @title Adds bottom borders to a `huxtable`
 #'
 #' @details
-#' Adds bottom borders to a huxtable based on
+#' Adds bottom borders to a `huxtable` based on
 #' a matrix indicating where the borders should be put.
 #'
 #' @details
@@ -25,7 +25,7 @@
 #' Table:
 #' | foo | bar |
 #' | --- | --- |
-#' | baz | bim |
+#' | `baz` | `bim` |
 #'
 #' A border matrix:
 #' | 1 | 1 |
@@ -61,23 +61,23 @@
 #' `border_fns` will accept your own, custom functions as long as
 #' they adhere to the format.
 #' All the functions passed to `border_fns` need to accept two arguments:
-#' * the first - the printed huxtable object,
+#' * the first - the printed `huxtable` object,
 #' * the second - a border matrix.
 #'
 #' They also must return a matrix interpreted the same way as `border_matrix`
 #' passed to `add_bottom_borders` or [gentlg()].
 #'
-#' @param ht `huxtable` A huxtable object
+#' @param ht `huxtable` A `huxtable` object
 #' @param border_matrix (optional) `matrix` A matrix indicating where to add the bottom
 #' borders. If `NULL`, then no borders are added.
 #' @param transform_fns (optional) `list` of `function` A list of functions applied to the
 #' `border_matrix`. The functions have to accept two arguments:
 #' 1. The `huxtable`.
-#' 1. The `border_matrix` with dimentions matching `huxtable`.
+#' 1. The `border_matrix` with dimensions matching `huxtable`.
 #'
 #' The functions in the list are applied sequentially to `border_matrix`.
 #'
-#' @return A huxtable with added borders.
+#' @return A `huxtable` with added borders.
 #'
 #' @examples
 #' border_matrix <- matrix(c(1, 1, 2, 0, 1, 1, 0, 0, 0), nrow = 3, ncol = 3)
@@ -311,7 +311,7 @@ row_border <- function(row) {
 #'
 #' This function is vectorized over its arguments.
 #'
-#' @param ht the hux object passed to [gentlg()]
+#' @param ht the `hux` object passed to [gentlg()]
 #' @param colspan `colspan` argument to [gentlg()]
 #' @param colheader `colheader` argument to [gentlg()]
 #' @param tlf `character` type of the output

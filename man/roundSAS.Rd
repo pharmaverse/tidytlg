@@ -13,16 +13,16 @@ roundSAS(x, digits = 0, as_char = FALSE, na_char = NULL)
 displayed after rounding. Default is 0.}
 
 \item{as_char}{logical value indicating conversion of rounded numerical
-vector to character vector; default is FALSE}
+vector to character vector; default is \code{FALSE}.}
 
 \item{na_char}{A character string indicating missing value; if not specified,
-"NA" is created}
+\code{"NA"} is created.}
 }
 \value{
 character vector of rounded values
 }
 \description{
-roundSAS is an alternative rounding function, ensuring that decimals equal or
+\code{roundSAS} is an alternative rounding function, ensuring that decimals equal or
 bigger than 5 are rounded upwards to the nearest number and returned as
 character vector.
 }
@@ -30,9 +30,10 @@ character vector.
 At the midpoint of a decimal place (e.g. 0.5, 1.5), the round function in R
 rounds to the nearest even number (i.e. 0.5 is rounded to 0; 1.5 is rounded
 to 2), whereas SAS rounds to the nearest number (i.e. 0.5 is rounded to 1;
-1.5 is rounded to 2). The roundSAS function is an alternative rounding
+1.5 is rounded to 2). The \code{roundSAS} function is an alternative rounding
 function for R that ensures rounding to the nearest number, as done in SAS.
-roundSAS comes from this Stack Overflow post https://stackoverflow.com/questions/12688717/round-up-from-5
+\code{roundSAS} comes from this Stack Overflow
+\href{https://stackoverflow.com/questions/12688717/round-up-from-5}{post}.
 }
 \examples{
 ### input data vector with midpoint decimals

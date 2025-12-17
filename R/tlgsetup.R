@@ -1,12 +1,12 @@
 #' Setup data to support the specified column type
 #'
-#' `tlgsetup` is useful for pre-processing total columns and columns composed of
+#' `tlgsetup` is useful for preprocessing total columns and columns composed of
 #' other columns. `tlgsetup` is called internally by `generate_results()`
 #' and can be run manually for custom tables.
 #'
-#' @param df dataframe of records for analysis
+#' @param df dataframe of records for analysis.
 #' @param var character vector that identifies the numeric column/treatment
-#'   variable
+#'   variable.
 #' @param column_metadata_file A file containing the column metadata. Read in
 #'   with `readxl::read_excel()`. If a `column_metadata` dataframe is passed in
 #'   too, this is ignored.

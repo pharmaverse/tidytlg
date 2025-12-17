@@ -1,7 +1,7 @@
 #' Output a `tidytlg` table
 #'
-#' Generate and output a huxtable with desired properties
-#' During this function call, the huxtable can be written to an RTF or
+#' Generate and output a `huxtable` with desired properties
+#' During this function call, the `huxtable` can be written to an RTF or
 #' displayed in HTML. `gentlg` is vectorized, see parameter descriptions
 #' to learn for which arguments.
 #'
@@ -12,10 +12,10 @@
 #'   containing all columns of interest. For graphs, either `NULL` or
 #'   a list of `ggplot` objects. Vectorized.
 #' @param tlf (optional) String, representing the output choice. Choices are
-#' "Table" "Listing" "Figure". Abbreviations are allowed eg. "T" for Table.
-#' Strings can be either upper- or lowercase. Vectorized. (Default = "Table")
+#' `"Table"` `"Listing"` `"Figure"`. Abbreviations are allowed e.g. `"T"` for Table.
+#' Strings can be either upper- or lowercase. Vectorized. (Default = `"Table"`)
 #' @param format (optional) String, representing the output format. Choices are
-#' "rtf" and "html". Strings can be either upper- or lowercase.(Default = "rtf")
+#' `"rtf"` and `"html"`. Strings can be either upper- or lowercase.(Default = `"rtf"`)
 #' @param colspan (optional) A list of character vectors representing the
 #' spanning headers to be used for the table or listing. The first vector
 #' represents the top spanning header, etc. Each vector should have a length
@@ -26,7 +26,7 @@
 #' where repeated values should be removed recursively. If `NULL` then
 #' all column names are used in the algorithm. If `NA`, then the listing remains
 #' as is.
-#' @param plotnames (optional) Character vector containing the names of the png
+#' @param plotnames (optional) Character vector containing the names of the PNG
 #' files, with their extension to be incorporated for figure outputs.
 #' The PNG files need to be located in the path defined by the
 #' parameter `opath`.
@@ -43,7 +43,7 @@
 #' represent the widths of all columns in the final output. The order of the
 #' arguments needs to correspond to the order of the columns in the `huxme`
 #' dataset, that are not part of the formatting algorithms
-#' (eg. `anbr`, `roworder`, `newpage`, `newrow`,
+#' (e.g. `anbr`, `roworder`, `newpage`, `newrow`,
 #' `indentme`, `boldme`, `by_value`, `by_order`).
 #' The sum of the widths in the vector needs to be less or equal to one. When
 #' `format="HTML"` `wcol` can take only one value, the width
@@ -56,7 +56,7 @@
 #' File name will be adjusted to be lowercase and have `-` and `_` removed,
 #' this will not affect table title.
 #' @param title_file An Excel file that will be read in
-#' with `readxl::read_excel()` to be used as the `title` and `footers` arugment.
+#' with `readxl::read_excel()` to be used as the `title` and `footers` argument.
 #' The use of `title` or `footers` will override the values passed by this
 #' argument. The file should be either an `xls` or `xlsx` file with the columns
 #' `TABLE ID`, `IDENTIFIER`, and `TEXT`. The file will be read in, subset to

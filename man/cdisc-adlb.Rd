@@ -8,50 +8,50 @@
 \format{
 A data frame with 2154 rows and 46 variables:
 \describe{
-\item{STUDYID}{Study Identifier}
-\item{SUBJID}{Subject Identifier for the Study}
-\item{USUBJID}{Unique Subject Identifier}
-\item{TRTA}{Actual Treatment}
-\item{TRTAN}{Actual Treatment (N)}
-\item{TRTSDT}{Date of First Exposure to Treatment}
-\item{TRTEDT}{Date of Last Exposure to Treatment}
-\item{AGE}{Age}
-\item{AGEGR1}{Pooled Age Group 1}
-\item{AGEGR1N}{Pooled Age Group 1 (N)}
-\item{RACE}{Race}
-\item{RACEN}{Race (N)}
-\item{SEX}{Sex}
-\item{COMP24FL}{Completers of Week 24 Population Flag}
-\item{DSRAEFL}{Discontinued due to AE?}
-\item{SAFFL}{Safety Population Flag}
-\item{AVISIT}{Analysis Visit}
-\item{AVISITN}{Analysis Visit (N)}
-\item{ADY}{Analysis Relative Day}
-\item{ADT}{Analysis Date}
-\item{VISIT}{Visit Name}
-\item{VISITNUM}{Visit Number}
-\item{PARAM}{Parameter}
-\item{PARAMCD}{Parameter Code}
-\item{PARAMN}{Parameter (N)}
-\item{PARCAT1}{Parameter Category 1}
-\item{AVAL}{Analysis Value}
-\item{BASE}{Baseline Value}
-\item{CHG}{Change from Baseline}
-\item{A1LO}{Analysis Range 1 Lower Limit}
-\item{A1HI}{Analysis Range 1 Upper Limit}
-\item{R2A1LO}{Ratio to Analysis Range 1 Lower Limit}
-\item{R2A1HI}{Ratio to Analysis Range 1 Upper Limit}
-\item{BR2A1LO}{Base Ratio to Analysis Range 1 Lower Lim}
-\item{BR2A1HI}{Base Ratio to Analysis Range 1 Upper Lim}
-\item{ANL01FL}{Analysis 01 - Special Interest Flag}
-\item{ALBTRVAL}{Amount Threshold Range}
-\item{ANRIND}{Analysis Reference Range Indicator}
-\item{BNRIND}{Baseline Reference Range Indicator}
-\item{ABLFL}{Baseline Record Flag}
-\item{AENTMTFL}{Last value in treatment visit}
-\item{LBSEQ}{Sequence Number}
-\item{LBNRIND}{Reference Range Indicator}
-\item{LBSTRESN}{Numeric Result/Finding in Standard Units}
+\item{\code{STUDYID}}{Study Identifier}
+\item{\code{SUBJID}}{Subject Identifier for the Study}
+\item{\code{USUBJID}}{Unique Subject Identifier}
+\item{\code{TRTA}}{Actual Treatment}
+\item{\code{TRTAN}}{Actual Treatment (N)}
+\item{\code{TRTSDT}}{Date of First Exposure to Treatment}
+\item{\code{TRTEDT}}{Date of Last Exposure to Treatment}
+\item{\code{AGE}}{Age}
+\item{\code{AGEGR1}}{Pooled Age Group 1}
+\item{\code{AGEGR1N}}{Pooled Age Group 1 (N)}
+\item{\code{RACE}}{Race}
+\item{\code{RACEN}}{Race (N)}
+\item{\code{SEX}}{Sex}
+\item{\code{COMP24FL}}{Finishers of Week 24 Population Flag}
+\item{\code{DSRAEFL}}{Discontinued due to \code{AE}?}
+\item{\code{SAFFL}}{Safety Population Flag}
+\item{\code{AVISIT}}{Analysis Visit}
+\item{\code{AVISITN}}{Analysis Visit (N)}
+\item{\code{ADY}}{Analysis Relative Day}
+\item{\code{ADT}}{Analysis Date}
+\item{\code{VISIT}}{Visit Name}
+\item{\code{VISITNUM}}{Visit Number}
+\item{\code{PARAM}}{Parameter}
+\item{\code{PARAMCD}}{Parameter Code}
+\item{\code{PARAMN}}{Parameter (N)}
+\item{\code{PARCAT1}}{Parameter Category 1}
+\item{\code{AVAL}}{Analysis Value}
+\item{\code{BASE}}{Baseline Value}
+\item{\code{CHG}}{Change from Baseline}
+\item{\code{A1LO}}{Analysis Range 1 Lower Limit}
+\item{\code{A1HI}}{Analysis Range 1 Upper Limit}
+\item{\code{R2A1LO}}{Ratio to Analysis Range 1 Lower Limit}
+\item{\code{R2A1HI}}{Ratio to Analysis Range 1 Upper Limit}
+\item{\code{BR2A1LO}}{Base Ratio to Analysis Range 1 Lower Limit}
+\item{\code{BR2A1HI}}{Base Ratio to Analysis Range 1 Upper Limit}
+\item{\code{ANL01FL}}{Analysis 01 - Special Interest Flag}
+\item{\code{ALBTRVAL}}{Amount Threshold Range}
+\item{\code{ANRIND}}{Analysis Reference Range Indicator}
+\item{\code{BNRIND}}{Baseline Reference Range Indicator}
+\item{\code{ABLFL}}{Baseline Record Flag}
+\item{\code{AENTMTFL}}{Last value in treatment visit}
+\item{\code{LBSEQ}}{Sequence Number}
+\item{\code{LBNRIND}}{Reference Range Indicator}
+\item{\code{LBSTRESN}}{Numeric Result/Finding in Standard Units}
 }
 }
 \source{

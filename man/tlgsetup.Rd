@@ -13,10 +13,10 @@ tlgsetup(
 )
 }
 \arguments{
-\item{df}{dataframe of records for analysis}
+\item{df}{dataframe of records for analysis.}
 
 \item{var}{character vector that identifies the numeric column/treatment
-variable}
+variable.}
 
 \item{column_metadata_file}{A file containing the column metadata. Read in
 with \code{readxl::read_excel()}. If a \code{column_metadata} dataframe is passed in
@@ -35,7 +35,7 @@ variable. Regardless of if a \code{coldef} exists in data,
 the column will exist in the table.
 }
 \description{
-\code{tlgsetup} is useful for pre-processing total columns and columns composed of
+\code{tlgsetup} is useful for preprocessing total columns and columns composed of
 other columns. \code{tlgsetup} is called internally by \code{generate_results()}
 and can be run manually for custom tables.
 }

@@ -8,62 +8,62 @@
 \format{
 A data frame with 84 rows and 55 variables:
 \describe{
-\item{STUDYID}{Study Identifier}
-\item{SITEID}{Study Site Identifier}
-\item{USUBJID}{Unique Subject Identifier}
-\item{SUBJID}{Subject Identifier for the Study}
-\item{TRTA}{Actual Treatment}
-\item{TRTAN}{Actual Treatment (N)}
-\item{AGE}{Age}
-\item{AGEGR1}{Pooled Age Group 1}
-\item{AGEGR1N}{Pooled Age Group 1 (N)}
-\item{RACE}{Race}
-\item{RACEN}{Race (N)}
-\item{SEX}{Sex}
-\item{SAFFL}{Safety Population Flag}
-\item{TRTSDT}{Date of First Exposure to Treatment}
-\item{TRTEDT}{Date of Last Exposure to Treatment}
-\item{ASTDT}{Analysis Start Date}
-\item{ASTDTF}{Analysis Start Date Imputation Flag}
-\item{ASTDY}{Analysis Start Relative Day}
-\item{AENDT}{Analysis End Date}
-\item{AENDY}{Analysis End Relative Day}
-\item{ADURN}{AE Duration (N)}
-\item{ADURU}{AE Duration Units}
-\item{AETERM}{Reported Term for the Adverse Event}
-\item{AELLT}{Lowest Level Term}
-\item{AELLTCD}{Lowest Level Term Code}
-\item{AEDECOD}{Dictionary-Derived Term}
-\item{AEPTCD}{Preferred Term Code}
-\item{AEHLT}{High Level Term}
-\item{AEHLTCD}{High Level Term Code}
-\item{AEHLGT}{High Level Group Term}
-\item{AEHLGTCD}{High Level Group Term Code}
-\item{AEBODSYS}{Body System or Organ Class}
-\item{AESOC}{Primary System Organ Class}
-\item{AESOCCD}{Primary System Organ Class Code}
-\item{AESEV}{Severity/Intensity}
-\item{AESER}{Serious Event}
-\item{AESCAN}{Involves Cancer}
-\item{AESCONG}{Congenital Anomaly or Birth Defect}
-\item{AESDISAB}{Persist or Signif Disability/Incapacity}
-\item{AESDTH}{Results in Death}
-\item{AESHOSP}{Requires or Prolongs Hospitalization}
-\item{AESLIFE}{Is Life Threatening}
-\item{AESOD}{Occurred with Overdose}
-\item{AEREL}{Causality}
-\item{AEACN}{Action Taken with Study Treatment}
-\item{AEOUT}{Outcome of Adverse Event}
-\item{AESEQ}{Sequence Number}
-\item{TRTEMFL}{Treatment Emergent Analysis Flag}
-\item{AOCCFL}{1st Occurrence of Any AE Flag}
-\item{AOCCSFL}{1st Occurrence of SOC Flag}
-\item{AOCCPFL}{1st Occurrence of Preferred Term Flag}
-\item{AOCC02FL}{1st Occurrence 02 Flag for Serious}
-\item{AOCC03FL}{1st Occurrence 03 Flag for Serious SOC}
-\item{AOCC04FL}{1st Occurrence 04 Flag for Serious PT}
-\item{CQ01NAM}{Customized Query 01 Name}
-\item{AOCC01FL}{1st Occurrence 01 Flag for CQ01}
+\item{\code{STUDYID}}{Study Identifier}
+\item{\code{SITEID}}{Study Site Identifier}
+\item{\code{USUBJID}}{Unique Subject Identifier}
+\item{\code{SUBJID}}{Subject Identifier for the Study}
+\item{\code{TRTA}}{Actual Treatment}
+\item{\code{TRTAN}}{Actual Treatment (N)}
+\item{\code{AGE}}{Age}
+\item{\code{AGEGR1}}{Pooled Age Group 1}
+\item{\code{AGEGR1N}}{Pooled Age Group 1 (N)}
+\item{\code{RACE}}{Race}
+\item{\code{RACEN}}{Race (N)}
+\item{\code{SEX}}{Sex}
+\item{\code{SAFFL}}{Safety Population Flag}
+\item{\code{TRTSDT}}{Date of First Exposure to Treatment}
+\item{\code{TRTEDT}}{Date of Last Exposure to Treatment}
+\item{\code{ASTDT}}{Analysis Start Date}
+\item{\code{ASTDTF}}{Analysis Start Date Imputation Flag}
+\item{\code{ASTDY}}{Analysis Start Relative Day}
+\item{\code{AENDT}}{Analysis End Date}
+\item{\code{AENDY}}{Analysis End Relative Day}
+\item{\code{ADURN}}{\code{AE} Duration (N)}
+\item{\code{ADURU}}{\code{AE} Duration Units}
+\item{\code{AETERM}}{Reported Term for the Adverse Event}
+\item{\code{AELLT}}{Lowest Level Term}
+\item{\code{AELLTCD}}{Lowest Level Term Code}
+\item{\code{AEDECOD}}{Dictionary-Derived Term}
+\item{\code{AEPTCD}}{Preferred Term Code}
+\item{\code{AEHLT}}{High Level Term}
+\item{\code{AEHLTCD}}{High Level Term Code}
+\item{\code{AEHLGT}}{High Level Group Term}
+\item{\code{AEHLGTCD}}{High Level Group Term Code}
+\item{\code{AEBODSYS}}{Body System or Organ Class}
+\item{\code{AESOC}}{Primary System Organ Class}
+\item{\code{AESOCCD}}{Primary System Organ Class Code}
+\item{\code{AESEV}}{Severity/Intensity}
+\item{\code{AESER}}{Serious Event}
+\item{\code{AESCAN}}{Involves Cancer}
+\item{\code{AESCONG}}{Congenital Anomaly or Birth Defect}
+\item{\code{AESDISAB}}{Persist or \code{Signif} Disability/Incapacity}
+\item{\code{AESDTH}}{Results in Death}
+\item{\code{AESHOSP}}{Requires or Prolongs Hospitalization}
+\item{\code{AESLIFE}}{Is Life Threatening}
+\item{\code{AESOD}}{Occurred with Overdose}
+\item{\code{AEREL}}{Causality}
+\item{\code{AEACN}}{Action Taken with Study Treatment}
+\item{\code{AEOUT}}{Outcome of Adverse Event}
+\item{\code{AESEQ}}{Sequence Number}
+\item{\code{TRTEMFL}}{Treatment Emergent Analysis Flag}
+\item{\code{AOCCFL}}{First Occurrence of Any \code{AE} Flag}
+\item{\code{AOCCSFL}}{First Occurrence of \code{SOC} Flag}
+\item{\code{AOCCPFL}}{First Occurrence of Preferred Term Flag}
+\item{\code{AOCC02FL}}{First Occurrence 02 Flag for Serious}
+\item{\code{AOCC03FL}}{First Occurrence 03 Flag for Serious \code{SOC}}
+\item{\code{AOCC04FL}}{First Occurrence 04 Flag for Serious \code{PT}}
+\item{\code{CQ01NAM}}{Customized Query 01 Name}
+\item{\code{AOCC01FL}}{First Occurrence 01 Flag for \code{CQ01}}
 }
 }
 \source{

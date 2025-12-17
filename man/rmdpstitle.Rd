@@ -13,8 +13,8 @@ rmdpstitle(
 )
 }
 \arguments{
-\item{df}{dataframe with three variables; table name, row identifier (TITLE
-or FOOTNOTEn), and title or footnote text to display.}
+\item{df}{dataframe with three variables; table name, row identifier (\code{TITLE}
+or \code{FOOTNOTEn}), and title or footnote text to display.}
 
 \item{tblid}{character vector containing the table id, optional, used to
 subset \code{df} to a specific table (defaults to \code{tblid}).}

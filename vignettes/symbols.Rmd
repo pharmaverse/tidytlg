@@ -16,7 +16,8 @@ knitr::opts_chunk$set(
 
 # Symbols
 
-Symbols can be added to the label column via `UNICODE`.  Here is a quick reference to commonly used symbols.
+Symbols can be added to the label column via `UNICODE`.  Here is a quick reference to commonly
+used symbols.
 
 
 ```{r setup, echo = FALSE}
@@ -45,9 +46,8 @@ df
 #
 ```
 
-
-Here is an example call to tidytlg::gentlg() that will add the symbols to the label column.
-
+Here is an example call to `tidytlg::gentlg()` that will add the symbols
+to the label column.
 
 ```{r eval = FALSE}
 df <- tibble::tibble(
@@ -99,7 +99,8 @@ tidytlg::gentlg(df,
 
 # Inline RTF Line Breaks
 
-Sometimes you need add a line break into your RTF.  Inserting '\\\\\\n' into your string will add your line break for you.
+Sometimes you need add a line break into your RTF.  Inserting `'\\\\\\n'` into your string will add your
+line break for you.
 
 
 ```{r eval = FALSE}
@@ -113,7 +114,7 @@ tidytlg::gentlg(df,
 )
 ```
 
-If you need a line break followed by a tab, just add in '\\\\li180'.
+If you need a line break followed by a tab, just add in `'\\\\li180'`.
 
 ```{r eval = FALSE}
 df <- tibble::tibble(

@@ -73,7 +73,7 @@ useful if a table needs to be merged or reordered in any way after build.}
 dataframe of results
 }
 \description{
-Univariate statitstics for a variables by treatment and/or group.
+Univariate statistics for a variables by treatment and/or group.
 }
 \examples{
 adsl <-

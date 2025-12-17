@@ -8,55 +8,55 @@
 \format{
 A data frame with 15 rows and 49 variables:
 \describe{
-\item{STUDYID}{Study Identifier}
-\item{USUBJID}{Unique Subject Identifier}
-\item{SUBJID}{Subject Identifier for the Study}
-\item{SITEID}{Study Site Identifier}
-\item{SITEGR1}{Pooled Site Group 1}
-\item{ARM}{Description of Planned Arm}
-\item{TRT01P}{Planned Treatment for Period 01}
-\item{TRT01PN}{Planned Treatment for Period 01 (N)}
-\item{TRT01A}{Actual Treatment for Period 01}
-\item{TRT01AN}{Actual Treatment for Period 01 (N)}
-\item{TRTSDT}{Date of First Exposure to Treatment}
-\item{TRTEDT}{Date of Last Exposure to Treatment}
-\item{TRTDUR}{Duration of Treatment (days)}
-\item{AVGDD}{Avg Daily Dose (as planned)}
-\item{CUMDOSE}{Cumulative Dose (as planned)}
-\item{AGE}{Age}
-\item{AGEGR1}{Pooled Age Group 1}
-\item{AGEGR1N}{Pooled Age Group 1 (N)}
-\item{AGEU}{Age Units}
-\item{RACE}{Race}
-\item{RACEN}{Race (N)}
-\item{SEX}{Sex}
-\item{ETHNIC}{Ethnicity}
-\item{SAFFL}{Safety Population Flag}
-\item{ITTFL}{Intent-To-Treat Population Flag}
-\item{EFFFL}{Efficacy Population Flag}
-\item{COMP8FL}{Completers of Week 8 Population Flag}
-\item{COMP16FL}{Completers of Week 16 Population Flag}
-\item{COMP24FL}{Completers of Week 24 Population Flag}
-\item{DISCONFL}{Did the Subject Discontinue the Study?}
-\item{DSRAEFL}{Discontinued due to \code{AE}?}
-\item{DTHFL}{Subject Died?}
-\item{BMIBL}{Baseline BMI (kg/m^2)}
-\item{BMIBLGR1}{Pooled Baseline BMI Group 1}
-\item{HEIGHTBL}{Baseline Height (cm)}
-\item{WEIGHTBL}{Baseline Weight (kg)}
-\item{EDUCLVL}{Years of Education}
-\item{DISONSDT}{Date of Onset of Disease}
-\item{DURDIS}{Duration of Disease (Months)}
-\item{DURDSGR1}{Pooled Disease Duration Group 1}
-\item{VISIT1DT}{Date of Visit 1}
-\item{RFSTDTC}{Subject Reference Start Date/Time}
-\item{RFENDTC}{Subject Reference End Date/Time}
-\item{VISNUMEN}{End of Treatment Visit (Visit 12 or Early Term.)}
-\item{RFENDT}{Date of Discontinuation/Completion}
-\item{DCDECOD}{Standardized Disposition Term}
-\item{EOSSTT}{End of Study Status}
-\item{DCREASCD}{Reason for Discontinuation}
-\item{MMSETOT}{MMSE Total}
+\item{\code{STUDYID}}{Study Identifier}
+\item{\code{USUBJID}}{Unique Subject Identifier}
+\item{\code{SUBJID}}{Subject Identifier for the Study}
+\item{\code{SITEID}}{Study Site Identifier}
+\item{\code{SITEGR1}}{Pooled Site Group 1}
+\item{\code{ARM}}{Description of Planned Arm}
+\item{\code{TRT01P}}{Planned Treatment for Period 01}
+\item{\code{TRT01PN}}{Planned Treatment for Period 01 (N)}
+\item{\code{TRT01A}}{Actual Treatment for Period 01}
+\item{\code{TRT01AN}}{Actual Treatment for Period 01 (N)}
+\item{\code{TRTSDT}}{Date of First Exposure to Treatment}
+\item{\code{TRTEDT}}{Date of Last Exposure to Treatment}
+\item{\code{TRTDUR}}{Duration of Treatment (days)}
+\item{\code{AVGDD}}{Avg Daily Dose (as planned)}
+\item{\code{CUMDOSE}}{Cumulative Dose (as planned)}
+\item{\code{AGE}}{Age}
+\item{\code{AGEGR1}}{Pooled Age Group 1}
+\item{\code{AGEGR1N}}{Pooled Age Group 1 (N)}
+\item{\code{AGEU}}{Age Units}
+\item{\code{RACE}}{Race}
+\item{\code{RACEN}}{Race (N)}
+\item{\code{SEX}}{Sex}
+\item{\code{ETHNIC}}{Ethnicity}
+\item{\code{SAFFL}}{Safety Population Flag}
+\item{\code{ITTFL}}{Intent-To-Treat Population Flag}
+\item{\code{EFFFL}}{Efficacy Population Flag}
+\item{\code{COMP8FL}}{Finishers of Week 8 Population Flag}
+\item{\code{COMP16FL}}{Finishers of Week 16 Population Flag}
+\item{\code{COMP24FL}}{Finishers of Week 24 Population Flag}
+\item{\code{DISCONFL}}{Did the Subject Discontinue the Study?}
+\item{\code{DSRAEFL}}{Discontinued due to \code{AE}?}
+\item{\code{DTHFL}}{Subject Died?}
+\item{\code{BMIBL}}{Baseline BMI (kg/m^2)}
+\item{\code{BMIBLGR1}}{Pooled Baseline BMI Group 1}
+\item{\code{HEIGHTBL}}{Baseline Height (cm)}
+\item{\code{WEIGHTBL}}{Baseline Weight (kg)}
+\item{\code{EDUCLVL}}{Years of Education}
+\item{\code{DISONSDT}}{Date of Onset of Disease}
+\item{\code{DURDIS}}{Duration of Disease (Months)}
+\item{\code{DURDSGR1}}{Pooled Disease Duration Group 1}
+\item{\code{VISIT1DT}}{Date of Visit 1}
+\item{\code{RFSTDTC}}{Subject Reference Start Date/Time}
+\item{\code{RFENDTC}}{Subject Reference End Date/Time}
+\item{\code{VISNUMEN}}{End of Treatment Visit (Visit 12 or Early Term.)}
+\item{\code{RFENDT}}{Date of Discontinuation/Completion}
+\item{\code{DCDECOD}}{Standardized Disposition Term}
+\item{\code{EOSSTT}}{End of Study Status}
+\item{\code{DCREASCD}}{Reason for Discontinuation}
+\item{\code{MMSETOT}}{\code{MMSE} Total}
 
 }
 }

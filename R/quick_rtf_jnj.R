@@ -809,9 +809,9 @@ auto_open <- function(path) {
 #' @title quick_rtf_jnj
 #' @aliases {quick_rtf}
 #'
-#' @description Write a series of huxtables to a RTF document.
-#' Please refer to quick_rtf of the huxtable package for more information.
-#'   Adjusted from huxtable::quick_rtf.
+#' @description Write a series of `huxtables` to a RTF document.
+#' Please refer to `quick_rtf` of the `huxtable` package for more information.
+#'   Adjusted from [huxtable::quick_rtf()].
 #'
 #' @seealso \code{\link{gentlg}} \code{\link[huxtable]{quick_rtf}}
 #'
@@ -821,11 +821,11 @@ auto_open <- function(path) {
 #'
 #' @inheritParams huxtable::quick_rtf
 #' @inheritParams gentlg
-#' @param hts list of huxtables to print
+#' @param hts list of `huxtables` to print.
 #' @param portrait String: "portrait" or "landscape". Default is portrait.
 #' @param mode Permissions to apply to file (default to 770)
-#' @param debug logical to turn on browser(), defaults to FALSE
-#' @param nheader ('numeric' vector) number of header rows
+#' @param debug logical to turn on `browser()`, defaults to `FALSE`.
+#' @param nheader ('numeric' vector) number of header rows.
 #' @noRd
 #'
 #' @references \url{https://github.com/hughjonesd/huxtable}

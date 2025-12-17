@@ -29,16 +29,16 @@ nested_freq(
 \item{df}{(required) dataframe containing the two levels to summarize}
 
 \item{denom_df}{(optional) dataframe containing records to use as the
-denominator (default = df)}
+denominator (default = \code{df})}
 
-\item{colvar}{(required) treatment variable within df to use to summarize}
+\item{colvar}{(required) treatment variable within \code{df} to use to summarize}
 
-\item{tablebyvar}{(optional) repeat entire table by variable within df.}
+\item{tablebyvar}{(optional) repeat entire table by variable within \code{df.}}
 
 \item{rowvar}{(required) nested levels separated by a star, for example
 \code{AEBODSYS*AEDECOD},  this can handle up to three levels.}
 
-\item{rowbyvar}{(optional) repeat \code{rowvar} by variable within df}
+\item{rowbyvar}{(optional) repeat \code{rowvar} by variable within \code{df}}
 
 \item{statlist}{(optional) count/percent type to return
 \code{(default = "n (x.x)")}}
@@ -94,7 +94,7 @@ each \code{colvar}.  This can be used to sort and filter records.\cr  \cr
 }
 \description{
 This will call \code{freq()} multiple times and combine the levels together. This
-is useful for adverse event and concomitant mediations.
+is useful for adverse event and concomitant medications.
 }
 \examples{
 adae <- data.frame(

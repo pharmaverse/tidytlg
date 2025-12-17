@@ -2,21 +2,21 @@
 % Please edit documentation in R/remove_zero_padding.R
 \name{remove_zero_padding}
 \alias{remove_zero_padding}
-\title{Removes noop padding from an RTF markup}
+\title{Removes no-op padding from an RTF markup}
 \usage{
 remove_zero_padding(rtf)
 }
 \arguments{
-\item{rtf}{\code{character(1)} RTF markup}
+\item{rtf}{\code{character(1)} RTF markup.}
 }
 \value{
 \code{character(1)} RTF markup with removed zero padding
 }
 \description{
-Removes noop padding from an RTF markup
+Removes no-op padding from an RTF markup
 }
 \details{
-Removes noop padding, which is padding that has a thickness of zero
+Removes no-op padding, which is padding that has a thickness of zero
 from an RTF markup.
 }
 \keyword{internal}

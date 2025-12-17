@@ -8,41 +8,41 @@
 \format{
 A data frame with 1938 rows and 35 variables:
 \describe{
-\item{STUDYID}{Study Identifier}
-\item{SITEID}{Study Site Identifier}
-\item{USUBJID}{Unique Subject Identifier}
-\item{AGE}{Age}
-\item{AGEGR1}{Pooled Age Group 1}
-\item{AGEGR1N}{Pooled Age Group 1 (N)}
-\item{RACE}{Race}
-\item{RACEN}{Race (N)}
-\item{SEX}{Sex}
-\item{SAFFL}{Safety Population Flag}
-\item{TRTSDT}{Date of First Exposure to Treatment}
-\item{TRTEDT}{Date of Last Exposure to Treatment}
-\item{TRTP}{Planned  Treatment}
-\item{TRTPN}{Planned  Treatment (N)}
-\item{TRTA}{Actual Treatment}
-\item{TRTAN}{Actual Treatment (N)}
-\item{PARAMCD}{Parameter Code}
-\item{PARAM}{Parameter}
-\item{PARAMN}{Parameter (N)}
-\item{ADT}{Analysis Date}
-\item{ADY}{Analysis Relative Day}
-\item{ATPTN}{Analysis Timepoint (N)}
-\item{ATPT}{Analysis Timepoint}
-\item{AVISIT}{Analysis Visit}
-\item{AVISITN}{Analysis Visit (N)}
-\item{AVAL}{Analysis Value}
-\item{BASE}{Baseline Value}
-\item{BASETYPE}{Baseline Value}
-\item{CHG}{Change from Baseline}
-\item{PCHG}{Percent Change from Baseline}
-\item{VISITNUM}{Visit Number}
-\item{VISIT}{Visit Name}
-\item{VSSEQ}{Sequence Number}
-\item{ANL01FL}{Analysis 01 - Special Interest Flag}
-\item{ABLFL}{Baseline Record Flag}
+\item{\code{STUDYID}}{Study Identifier}
+\item{\code{SITEID}}{Study Site Identifier}
+\item{\code{USUBJID}}{Unique Subject Identifier}
+\item{\code{AGE}}{Age}
+\item{\code{AGEGR1}}{Pooled Age Group 1}
+\item{\code{AGEGR1N}}{Pooled Age Group 1 (N)}
+\item{\code{RACE}}{Race}
+\item{\code{RACEN}}{Race (N)}
+\item{\code{SEX}}{Sex}
+\item{\code{SAFFL}}{Safety Population Flag}
+\item{\code{TRTSDT}}{Date of First Exposure to Treatment}
+\item{\code{TRTEDT}}{Date of Last Exposure to Treatment}
+\item{\code{TRTP}}{Planned  Treatment}
+\item{\code{TRTPN}}{Planned  Treatment (N)}
+\item{\code{TRTA}}{Actual Treatment}
+\item{\code{TRTAN}}{Actual Treatment (N)}
+\item{\code{PARAMCD}}{Parameter Code}
+\item{\code{PARAM}}{Parameter}
+\item{\code{PARAMN}}{Parameter (N)}
+\item{\code{ADT}}{Analysis Date}
+\item{\code{ADY}}{Analysis Relative Day}
+\item{\code{ATPTN}}{Analysis Timepoint (N)}
+\item{\code{ATPT}}{Analysis Timepoint}
+\item{\code{AVISIT}}{Analysis Visit}
+\item{\code{AVISITN}}{Analysis Visit (N)}
+\item{\code{AVAL}}{Analysis Value}
+\item{\code{BASE}}{Baseline Value}
+\item{\code{BASETYPE}}{Baseline Value}
+\item{\code{CHG}}{Change from Baseline}
+\item{\code{PCHG}}{Percent Change from Baseline}
+\item{\code{VISITNUM}}{Visit Number}
+\item{\code{VISIT}}{Visit Name}
+\item{\code{VSSEQ}}{Sequence Number}
+\item{\code{ANL01FL}}{Analysis 01 - Special Interest Flag}
+\item{\code{ABLFL}}{Baseline Record Flag}
 }
 }
 \source{

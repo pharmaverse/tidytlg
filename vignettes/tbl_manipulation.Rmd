@@ -120,7 +120,7 @@ gentlg(
 
 ### Enable bold font
 
-To enable bolding on the row of `Age (Years)`, the `boldme` variable with `value = 1` will need to be added.
+To enable bold font on the row of `Age (Years)`, the `boldme` variable with `value = 1` will need to be added.
 
 ```{r}
 tbl <- tbl %>%
@@ -147,7 +147,7 @@ gentlg(
 
 There is another formatting variable called `newpage`, where assigning `newpage = 1` will start a new page in the output.
 
-## Fomatting functions
+## Formatting functions
 
 Besides manually adding the formatting variables to `tbl`, we have developed several formatting
 functions to facilitate the formatting process:
