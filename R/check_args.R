@@ -631,7 +631,7 @@ check_freq_cutoff <- function(df) {
       call. = FALSE
     )
   } else {
-    return()
+    invisible(NULL)
   }
 }
 
@@ -643,8 +643,10 @@ check_freq_cutoff <- function(df) {
 #' @noRd
 check_geo_stats <- function(arglist) {
   # add optional checks for special cases
-  if (!any(arglist[["statlist"]][["stats"]] %in%
-    c("GeoMEAN", "GSD", "GSE", "GeoMEAN_CI"))) {
+  if (!any(
+    arglist[["statlist"]][["stats"]] %in%
+      c("GeoMEAN", "GSD", "GSE", "GeoMEAN_CI")
+  )) {
     return()
   }
 

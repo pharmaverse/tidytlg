@@ -39,16 +39,16 @@ Authors@R:
        person(given = "David",
            family = "Hugh-Jones",
            role = "cph",
-           comment = "Author of included huxtable library"),
+           comment = "Author of included 'huxtable' library"),
         person(given = "Konrad",
             family = "Pagacz",
             role = c("aut", "cre"),
             email = "kpagacz@its.jnj.com")
      )
-Description: Generate tables, listings, and graphs (TLG) using 'tidyverse.'
+Description: Generate tables, listings, and graphs (TLG) using `tidyverse`.
   Tables can be created functionally, using a standard TLG process, or by
   specifying table and column metadata to create generic analysis summaries.
-  The 'envsetup' package can also be leveraged to create environments for table
+  The `envsetup` package can also be leveraged to create environments for table
   creation.
 License: Apache License 2.0
 URL: https://pharmaverse.github.io/tidytlg/main/, https://github.com/pharmaverse/tidytlg

@@ -1,7 +1,7 @@
 #' Get Titles and Footnotes for all TLGs or one specific TLG
 #'
-#' @param df dataframe with three variables; table name, row identifier (TITLE
-#'   or FOOTNOTEn), and title or footnote text to display.
+#' @param df dataframe with three variables; table name, row identifier (`TITLE`
+#'   or `FOOTNOTEn`), and title or footnote text to display.
 #' @param tblid  character vector containing the table id, optional, used to
 #'   subset `df` to a specific table (defaults to `tblid`).
 #' @param idvar  character vector containing the variable in `df` that contains

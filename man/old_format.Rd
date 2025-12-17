@@ -7,7 +7,7 @@
 old_format(ht, colspan, colheader, tlf)
 }
 \arguments{
-\item{ht}{the hux object passed to \code{\link[=gentlg]{gentlg()}}}
+\item{ht}{the \code{hux} object passed to \code{\link[=gentlg]{gentlg()}}}
 
 \item{colspan}{\code{colspan} argument to \code{\link[=gentlg]{gentlg()}}}
 

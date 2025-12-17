@@ -11,15 +11,16 @@
 #' "BY_HEADER3", "BY_HEADER4", "BY_HEADER5", "HEADER", "N", "VALUE", "NESTED")}
 #' \item{`tidytlg.fontsize.title` - Font size for titles in points. Default: 10}
 #' \item{`tidytlg.fontsize.table.footnote` - Font size for footnotes in points.
-#' For tables. Default: 9} \item{tidytlg.fontsize.listing.footnote - Font size
+#' For tables. Default: 9} \item{`tidytlg.fontsize.listing.footnote` - Font size
 #' for footnotes in points. For listings. Default: 8}
 #' \item{`tidytlg.fontsize.graph.footnote` - Font size for footnotes in points.
-#' For graphs. Default: 8} \item{tidytlg.fontsize.table - Font size for tables
-#' in points. Default: 9} \item{tidytlg.fontsize.graph - Font size for graphs in
-#' points. Default: 10} \item{tidytlg.fontsize.listing - Font size for listings
-#' in poins. Default: 8} \item{tidytlg.right.padding - Amount of right padding
-#' for cells in points. Default: 1} \item{tidytlg.left.padding - Amount of left
-#' padding for cells in points. Default: 1} \item{tidytlg.stat_labels - Labels
+#' For graphs. Default: 8} \item{`tidytlg.fontsize.table` - Font size for tables
+#' in points. Default: 9} \item{`tidytlg.fontsize.graph` - Font size for graphs in
+#' points. Default: 10} \item{`tidytlg.fontsize.listing` - Font size for listings
+#' in points. Default: 8} \item{`tidytlg.right.padding` - Amount of right padding
+#' for cells in points. Default: 1} \item{`tidytlg.left.padding` - Amount of left
+#' padding for cells in points. Default: 1}
+#' \item{`tidytlg.stat_labels` - Labels
 #' to be used for each summary statistic in the output table.  Will need to have
 #' all available statistics if this option is changed!}
 #' \item{`tidytlg.precision.extra` - Value to be added on for each summary
@@ -35,7 +36,7 @@
 #' \item{`tidytlg.stat_labels` - A `data.frame` controlling how the stats
 #' are labeled in a `univar` table. See 'Default Stat Labels' section
 #' for defaults.}
-#' \item{tidytlg.denoms.message - A `boolean`, should a message print
+#' \item{`tidytlg.denoms.message` - A `boolean`, should a message print
 #' detailing what the denominators are?}
 #' }
 #'
@@ -43,47 +44,47 @@
 #'
 #' | **stat** | **label** |
 #' | --- | --- |
-#' | N | N |
-#' | SUM | Sum |
-#' | MEAN | Mean |
-#' | GeoMEAN | Geometric Mean |
-#' | SD | Std. Dev. |
-#' | SE | Std. Error |
-#' | GSD | Geometric Std. Dev. |
-#' | GSE | Geometric Std. Error |
-#' | CV | CV |
-#' | MEANSD | Mean (SD) |
-#' | MEANSE | Mean (SE) |
-#' | MEDIAN | Median |
-#' | MIN | Minimum |
-#' | MAX | Maximum |
-#' | RANGE | Range |
-#' | Q1 | First quartile |
-#' | Q3 | Third quartile |
-#' | IQRANGE | IQ range |
-#' | MEDRANGE | Median (Range) |
-#' | MEDIQRANGE | Median (Q1; Q3) |
-#' | MEAN_CI | Mean (95% C.I.) |
-#' | GeoMEAN_CI | Geometric Mean (95% C.I.) |
+#' | `N` | N |
+#' | `SUM` | Sum |
+#' | `MEAN` | Mean |
+#' | `GeoMEAN` | Geometric Mean |
+#' | `SD` | Std. Deviation |
+#' | `SE` | Std. Error |
+#' | `GSD` | Geometric Std. Deviation |
+#' | `GSE` | Geometric Std. Error |
+#' | `CV` | CV |
+#' | `MEANSD` | Mean (SD) |
+#' | `MEANSE` | Mean (SE) |
+#' | `MEDIAN` | Median |
+#' | `MIN` | Minimum |
+#' | `MAX` | Maximum |
+#' | `RANGE` | Range |
+#' | `Q1` | First quartile |
+#' | `Q3` | Third quartile |
+#' | `IQRANGE` | IQ range |
+#' | `MEDRANGE` | Median (Range) |
+#' | `MEDIQRANGE` | Median (Q1; Q3) |
+#' | `MEAN_CI` | Mean (95% C.I.) |
+#' | `GeoMEAN_CI` | Geometric Mean (95% C.I.) |
 #'
 #' @section Default Precision Extra:
 #'
 #' | **stat** | **extra** |
 #' | --- | --- |
-#' |N| 0 |
-#' |SUM| 0 |
-#' |MEAN| 1 |
-#' |GeoMEAN| 1 |
-#' |SD| 2 |
-#' |SE| 2 |
-#' |GSD| 2 |
-#' |GSE| 2 |
-#' |CV| 1 |
-#' |MEDIAN| 1 |
-#' |MIN| 0 |
-#' |MAX| 0 |
-#' |Q1| 1 |
-#' |Q3| 1 |
+#' |`N` | 0 |
+#' |`SUM`| 0 |
+#' |`MEAN`| 1 |
+#' |`GeoMEAN`| 1 |
+#' |`SD`| 2 |
+#' |`SE`| 2 |
+#' |`GSD`| 2 |
+#' |`GSE`| 2 |
+#' |`CV`| 1 |
+#' |`MEDIAN`| 1 |
+#' |`MIN`| 0 |
+#' |`MAX`| 0 |
+#' |`Q1`| 1 |
+#' |`Q3`| 1 |
 #' |`LCL_MEAN`| 2 |
 #' |`UCL_MEAN`| 2 |
 #' |`LCL_GeoMEAN`| 2 |

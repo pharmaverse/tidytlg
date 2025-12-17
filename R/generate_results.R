@@ -34,7 +34,7 @@ generate_results <-
     }
 
     if (!("anbr" %in% names(table_metadata))) {
-      table_metadata$anbr <- 1:nrow(table_metadata)
+      table_metadata$anbr <- seq_len(nrow(table_metadata))
     }
 
     # check incoming metadata
@@ -80,8 +80,10 @@ generate_results <-
         mutate_if(is.character, function(x) {
           x %>% stringr::str_replace_all("\\\\U00ab", "\U00ab")
         })
-    } else if (is.null(column_metadata_file) &&
-      is.null(column_metadata)) {
+    } else if (
+      is.null(column_metadata_file) &&
+        is.null(column_metadata)
+    ) {
       stop(
         "Either column_metadata_file or column_metadata must be supplied
       to generate_results"

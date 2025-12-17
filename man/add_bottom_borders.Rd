@@ -2,12 +2,12 @@
 % Please edit documentation in R/add_bottom_borders.R
 \name{add_bottom_borders}
 \alias{add_bottom_borders}
-\title{Adds bottom borders to a huxtable}
+\title{Adds bottom borders to a \code{huxtable}}
 \usage{
 add_bottom_borders(ht, border_matrix = no_borders(ht), transform_fns = list())
 }
 \arguments{
-\item{ht}{\code{huxtable} A huxtable object}
+\item{ht}{\code{huxtable} A \code{huxtable} object}
 
 \item{border_matrix}{(optional) \code{matrix} A matrix indicating where to add the bottom
 borders. If \code{NULL}, then no borders are added.}
@@ -16,19 +16,19 @@ borders. If \code{NULL}, then no borders are added.}
 \code{border_matrix}. The functions have to accept two arguments:
 \enumerate{
 \item The \code{huxtable}.
-\item The \code{border_matrix} with dimentions matching \code{huxtable}.
+\item The \code{border_matrix} with dimensions matching \code{huxtable}.
 }
 
 The functions in the list are applied sequentially to \code{border_matrix}.}
 }
 \value{
-A huxtable with added borders.
+A \code{huxtable} with added borders.
 }
 \description{
-Adds bottom borders to a huxtable
+Adds bottom borders to a \code{huxtable}
 }
 \details{
-Adds bottom borders to a huxtable based on
+Adds bottom borders to a \code{huxtable} based on
 a matrix indicating where the borders should be put.
 
 This function is responsible for adding bottom borders to a \code{huxtable} object.
@@ -51,7 +51,7 @@ At that point, \code{border_matrix}'s dimensions match \code{ht}'s dimensions.
 
 Table:\tabular{ll}{
    foo \tab bar \cr
-   baz \tab bim \cr
+   \code{baz} \tab \code{bim} \cr
 }
 
 
@@ -95,7 +95,7 @@ Border functions:
 they adhere to the format.
 All the functions passed to \code{border_fns} need to accept two arguments:
 \itemize{
-\item the first - the printed huxtable object,
+\item the first - the printed \code{huxtable} object,
 \item the second - a border matrix.
 }
 

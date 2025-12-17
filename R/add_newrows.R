@@ -1,6 +1,6 @@
-#' Add the newrows variable to the results dataframe.
+#' Add the `newrows` variable to the results dataframe.
 #'
-#' The newrows variable is used by `gentlg()` to define when to add a blank row
+#' The `newrows` variable is used by `gentlg()` to define when to add a blank row
 #' to the output. Data will be grouped by `anbr` and the variables passed into
 #' the `tableby` and `groupby` parameters. `newrows` will be set to 1
 #' for the first record in each group, except for the first row in the data.

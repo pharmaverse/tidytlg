@@ -3,7 +3,7 @@
 \name{tidytlg_titles}
 \alias{tidytlg_titles}
 \alias{tidytlg_metadata}
-\title{Helper functions for returning files used in gentlg}
+\title{Helper functions for returning files used in \code{gentlg}}
 \usage{
 tidytlg_titles(path)
 
@@ -16,5 +16,5 @@ tidytlg_metadata(path)
 A character vector to the requested file.
 }
 \description{
-Helper functions for returning files used in gentlg
+Helper functions for returning files used in \code{gentlg}
 }

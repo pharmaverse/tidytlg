@@ -8,23 +8,23 @@ results.}
 \format{
 A data frame with one row per function call and 16 variables:
 \describe{
-\item{func}{name of the function you wish to call}
-\item{df}{data frame to pass to the function call}
-\item{subset}{filter df records, this is passed directly to filter,
-ex. "AESER == 'Y'"}
-\item{rowvar}{variable being summarized that will pass to the function
+\item{\code{func}}{name of the function you wish to call}
+\item{\code{df}}{data frame to pass to the function call}
+\item{\code{subset}}{filter \code{df} records, this is passed directly to filter,
+ex. \code{"AESER == 'Y'"}}
+\item{\code{rowvar}}{variable being summarized that will pass to the function
 call}
-\item{rowtext}{row label text to display in the table}
-\item{row_header}{header text to display above row summary}
-\item{statlist}{list of statistics in the analysis, see individual
-functions for what is available per function (eg. "N, n (x.x)")}
-\item{colvar}{variable used to determine the columns of the table}
-\item{decimal}{decimal precision}
-\item{rowbyvar}{repeat rowvar summary by this variable/s, comma separated
-for multiple (eg. "ETHNIC, AGEGR1")}
-\item{tablebyvar}{repeat the entire table summary by this variable/s,
-comma separated for multiple (eg. "ETHNIC, AGEGR1")}
-\item{denom_df}{used to set denominators if df does not contain
+\item{\code{rowtext}}{row label text to display in the table}
+\item{\code{row_header}}{header text to display above row summary}
+\item{\code{statlist}}{list of statistics in the analysis, see individual
+functions for what is available per function (e.g. \code{"N, n (x.x)"})}
+\item{\code{colvar}}{variable used to determine the columns of the table}
+\item{\code{decimal}}{decimal precision}
+\item{\code{rowbyvar}}{repeat \code{rowvar} summary by this variable/s, comma separated
+for multiple (e.g. \code{"ETHNIC, AGEGR1"})}
+\item{\code{tablebyvar}}{repeat the entire table summary by this variable/s,
+comma separated for multiple (e.g. \code{"ETHNIC, AGEGR1"})}
+\item{\code{denom_df}}{used to set denominators if \code{df} does not contain
 all required records}
 }
 }

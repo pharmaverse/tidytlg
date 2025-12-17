@@ -33,7 +33,7 @@ We will illustrate the above steps by creating a demographic table first, and th
 To set up the R environment, you can set the path objects of the input folder and output folder
 consistently for all TLG programs. The analysis datasets and other required inputs such as the titles file and column metadata
 file are placed in the input folder, while the output folder will be used to store the output files.
-The [envsetup](https://pharmaverse.github.io/envsetup/main/) package can be used to set up the R environment for TLG programming.
+The [`envsetup`](https://pharmaverse.github.io/envsetup/main/) package can be used to set up the R environment for TLG programming.
 
 ### titles and footnotes
 
@@ -50,7 +50,7 @@ Column metadata provides the column structure of the table layout and includes t
 
 * `tbltype`: identifier used to group a table column layout
 * `coldef`: distinct variable values used, typically numeric and typically a treatment variable, think `TRT01PN`
-* `decode`: decode of coldef that will display as a column header in the table
+* `decode`: decode of `coldef` that will display as a column header in the table
 * `span1`: spanning header to display across multiple columns (the lowest level)
 * `span2`: spanning header to display across multiple columns, second level
 * `span3`: spanning header to display across multiple columns, third level
@@ -194,13 +194,13 @@ The above `bind_table` function call performs the following tasks:
 
 ## Output results
 
-The `tbl` data frame is the main input to the gentlg function for creating the RTF/HTML outputs.
+The `tbl` data frame is the main input to the `gentlg` function for creating the RTF/HTML outputs.
 
 The basic structure of `tbl` includes `label`, `col1`, `col2`, `...`, `coln`, where:
 
-* `label`: row text displayed on the 1st column of the table
-* `col1`: statistic results displayed on the 2nd column of the table
-* `col2`: statistic results displayed on the 3rd column of the table.
+* `label`: row text displayed on the first column of the table
+* `col1`: statistic results displayed on the second column of the table
+* `col2`: statistic results displayed on the third column of the table.
 
 All other columns contain formatting instructions to create the RTF/HTML outputs. For tweaking the formatting variables to customize
 the table layout, please see the `vignette("tbl_manipulation")` for more details.

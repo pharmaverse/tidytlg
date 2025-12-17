@@ -35,11 +35,11 @@ containing all columns of interest. For graphs, either \code{NULL} or
 a list of \code{ggplot} objects. Vectorized.}
 
 \item{tlf}{(optional) String, representing the output choice. Choices are
-"Table" "Listing" "Figure". Abbreviations are allowed eg. "T" for Table.
-Strings can be either upper- or lowercase. Vectorized. (Default = "Table")}
+\code{"Table"} \code{"Listing"} \code{"Figure"}. Abbreviations are allowed e.g. \code{"T"} for Table.
+Strings can be either upper- or lowercase. Vectorized. (Default = \code{"Table"})}
 
 \item{format}{(optional) String, representing the output format. Choices are
-"rtf" and "html". Strings can be either upper- or lowercase.(Default = "rtf")}
+\code{"rtf"} and \code{"html"}. Strings can be either upper- or lowercase.(Default = \code{"rtf"})}
 
 \item{colspan}{(optional) A list of character vectors representing the
 spanning headers to be used for the table or listing. The first vector
@@ -53,7 +53,7 @@ where repeated values should be removed recursively. If \code{NULL} then
 all column names are used in the algorithm. If \code{NA}, then the listing remains
 as is.}
 
-\item{plotnames}{(optional) Character vector containing the names of the png
+\item{plotnames}{(optional) Character vector containing the names of the PNG
 files, with their extension to be incorporated for figure outputs.
 The PNG files need to be located in the path defined by the
 parameter \code{opath}.}
@@ -73,7 +73,7 @@ remainder of the available space. Alternatively, a vector can be used to
 represent the widths of all columns in the final output. The order of the
 arguments needs to correspond to the order of the columns in the \code{huxme}
 dataset, that are not part of the formatting algorithms
-(eg. \code{anbr}, \code{roworder}, \code{newpage}, \code{newrow},
+(e.g. \code{anbr}, \code{roworder}, \code{newpage}, \code{newrow},
 \code{indentme}, \code{boldme}, \code{by_value}, \code{by_order}).
 The sum of the widths in the vector needs to be less or equal to one. When
 \code{format="HTML"} \code{wcol} can take only one value, the width
@@ -86,7 +86,7 @@ of the first column. (Default = 0.45).}
 (including PNG files for graphs). (Default = ".").}
 
 \item{title_file}{An Excel file that will be read in
-with \code{readxl::read_excel()} to be used as the \code{title} and \code{footers} arugment.
+with \code{readxl::read_excel()} to be used as the \code{title} and \code{footers} argument.
 The use of \code{title} or \code{footers} will override the values passed by this
 argument. The file should be either an \code{xls} or \code{xlsx} file with the columns
 \verb{TABLE ID}, \code{IDENTIFIER}, and \code{TEXT}. The file will be read in, subset to
@@ -140,8 +140,8 @@ A list of formatted \code{huxtables} with desired
 properties for output to an RTF or HTML.
 }
 \description{
-Generate and output a huxtable with desired properties
-During this function call, the huxtable can be written to an RTF or
+Generate and output a \code{huxtable} with desired properties
+During this function call, the \code{huxtable} can be written to an RTF or
 displayed in HTML. \code{gentlg} is vectorized, see parameter descriptions
 to learn for which arguments.
 }

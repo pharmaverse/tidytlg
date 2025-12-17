@@ -9,9 +9,9 @@
 #' @param file name of the file
 #'
 #' @noRd
-getFileName <- function() {
+get_file_name <- function() {
   ##### If run from MCD BATCH\
-  file_name <- getFileNameBatch(commandArgs(trailingOnly = FALSE))
+  file_name <- get_file_name_batch(commandArgs(trailingOnly = FALSE))
   if (!is.null(file_name)) {
     return(file_name)
   }
@@ -32,23 +32,23 @@ getFileName <- function() {
     }
   }
 
-  return(NULL)
+  NULL
 }
 
 #' @noRd
-getFileNameBatch <- function(cmdArgs) {
+get_file_name_batch <- function(cmd_args) {
   res <- NULL
 
   # Update to use logrx over timber
   timber_needle <- "logrx::axecute"
-  timber_match <- base::grep(timber_needle, cmdArgs)
+  timber_match <- base::grep(timber_needle, cmd_args)
   file_needle <- "--file="
-  file_match <- base::grep(file_needle, cmdArgs)
+  file_match <- base::grep(file_needle, cmd_args)
 
 
   if (any(timber_match)) {
     file_arg <- stringr::str_extract(
-      cmdArgs[timber_match],
+      cmd_args[timber_match],
       'file~\\+~\\=~\\+~"(.+?)"'
     )
     if (!is.na(file_arg)) {
@@ -57,13 +57,13 @@ getFileNameBatch <- function(cmdArgs) {
     } else {
       try(
         {
-          res <- rlang::call_args(str2lang(cmdArgs[timber_match]))$file
+          res <- rlang::call_args(str2lang(cmd_args[timber_match]))$file
         },
         silent = TRUE
       )
     }
   } else if (any(file_match)) {
-    res <- normalizePath(sub(file_needle, "", cmdArgs[file_match]))
+    res <- normalizePath(sub(file_needle, "", cmd_args[file_match]))
   }
 
   res

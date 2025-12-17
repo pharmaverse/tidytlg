@@ -19,9 +19,12 @@ library(dplyr)
 library(tidytlg)
 ```
 
-The `tlgsetup` helper function was created to support generating different column structures for our outputs.  This allows us to specify column types once that can be used across multiple outputs.  This metadata can be hardcoded as well (please see the code below), or pulled from another source like a dataframe, file or database.
+The `tlgsetup` helper function was created to support generating different column structures for our outputs.  This allows us
+to specify column types once that can be used across multiple outputs.  This metadata can be hardcoded as well
+(please see the code below), or pulled from another source like a dataframe, file or database.
 
-Here we see an example of the column metadata which defines our columns, how to combine columns, column labels and spanning headers across columns.
+Here we see an example of the column metadata which defines our columns, how to combine columns, column
+labels and spanning headers across columns.
 
 ```{r}
 column_metadata <-
@@ -35,11 +38,17 @@ column_metadata <-
 column_metadata
 ```
 
-In this example, we would summarize `Placebo`, `Xanomeline Low Dose`, and `Xanomeline High Dose` which are already available in the data. The helper function will add the observations to the data for the `Total Xanomeline` column based off of `coldef`.  So for our `adsl` data, we will add a spanning header for `Xanomeline` and a total `Xanomeline` column which is a combination of the `Xanomeline Low Dose` and `Xanomeline High Dose`.
+In this example, we would summarize `Placebo`, `Xanomeline Low Dose`, and `Xanomeline High Dose`
+which are already available in the data. The helper function will add the observations to the data for the
+`Total Xanomeline` column based off of `coldef`.  So for our `adsl` data,
+we will add a spanning header for `Xanomeline` and a total `Xanomeline` column which is a
+combination of the `Xanomeline Low Dose` and `Xanomeline High Dose`.
 
-In addition, the helper function will add the factor variable `colnbr` which is used as our new column summary variable.  Note that our column summary variable has been converted to a factor.  This is required and allows us to define column order as well as label in one variable.
+In addition, the helper function will add the factor variable `colnbr` which is used as our new
+column summary variable.  Note that our column summary variable has been converted to a factor.  This is required and allows
+us to define column order as well as label in one variable.
 
-Let's read in adsl and check the dimensions.
+Let's read in `adsl` and check the dimensions.
 
 ```{r}
 data("cdisc_adsl")
@@ -53,7 +62,8 @@ glimpse(adsl)
 paste0("Dimensions prior to the tlgsetup call are ", dim(adsl)[1], " rows and ", dim(adsl)[2], " columns.")
 ```
 
-Now let's pass the adsl data through our `tlgsetup` function to add observations to support the `type1` column structure and check out the dimensions.
+Now let's pass the `adsl` data through our `tlgsetup` function to add observations to support the
+`type1` column structure and check out the dimensions.
 
 ```{r warning=FALSE}
 setup_table <- tlgsetup(adsl,

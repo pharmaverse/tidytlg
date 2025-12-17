@@ -18,9 +18,9 @@ test_that("getFileNameBatch returns the expected results", {
 
   skip_on_os(c("windows", "mac", "solaris"))
 
-  expect_equal(suppressWarnings(getFileNameBatch(cmd_args1)), "/asdf/programs/CopyOftest_demo.R")
+  expect_equal(suppressWarnings(get_file_name_batch(cmd_args1)), "/asdf/programs/CopyOftest_demo.R")
 
-  expect_equal(suppressWarnings(getFileNameBatch(cmd_args2)), "/asdf/programs/CopyOftest_demo.R")
+  expect_equal(suppressWarnings(get_file_name_batch(cmd_args2)), "/asdf/programs/CopyOftest_demo.R")
 
-  expect_equal(suppressWarnings(getFileNameBatch(cmd_args3)), "/asdf/programs/CopyOftest_demo.R")
+  expect_equal(suppressWarnings(get_file_name_batch(cmd_args3)), "/asdf/programs/CopyOftest_demo.R")
 })

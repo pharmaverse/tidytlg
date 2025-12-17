@@ -1,6 +1,6 @@
 #' Descriptive statistics
 #'
-#' Univariate statitstics for a variables by treatment and/or group.
+#' Univariate statistics for a variables by treatment and/or group.
 #'
 #' @param df (required) dataframe containing records to summarize by treatment.
 #' @param colvar (required) character vector of the treatment variable within

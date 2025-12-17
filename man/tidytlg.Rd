@@ -18,15 +18,16 @@ respective levels. Default: c("TABLE_BY_HEADER", "BY_HEADER1", "BY_HEADER2",
 "BY_HEADER3", "BY_HEADER4", "BY_HEADER5", "HEADER", "N", "VALUE", "NESTED")}
 \item{\code{tidytlg.fontsize.title} - Font size for titles in points. Default: 10}
 \item{\code{tidytlg.fontsize.table.footnote} - Font size for footnotes in points.
-For tables. Default: 9} \item{tidytlg.fontsize.listing.footnote - Font size
+For tables. Default: 9} \item{\code{tidytlg.fontsize.listing.footnote} - Font size
 for footnotes in points. For listings. Default: 8}
 \item{\code{tidytlg.fontsize.graph.footnote} - Font size for footnotes in points.
-For graphs. Default: 8} \item{tidytlg.fontsize.table - Font size for tables
-in points. Default: 9} \item{tidytlg.fontsize.graph - Font size for graphs in
-points. Default: 10} \item{tidytlg.fontsize.listing - Font size for listings
-in poins. Default: 8} \item{tidytlg.right.padding - Amount of right padding
-for cells in points. Default: 1} \item{tidytlg.left.padding - Amount of left
-padding for cells in points. Default: 1} \item{tidytlg.stat_labels - Labels
+For graphs. Default: 8} \item{\code{tidytlg.fontsize.table} - Font size for tables
+in points. Default: 9} \item{\code{tidytlg.fontsize.graph} - Font size for graphs in
+points. Default: 10} \item{\code{tidytlg.fontsize.listing} - Font size for listings
+in points. Default: 8} \item{\code{tidytlg.right.padding} - Amount of right padding
+for cells in points. Default: 1} \item{\code{tidytlg.left.padding} - Amount of left
+padding for cells in points. Default: 1}
+\item{\code{tidytlg.stat_labels} - Labels
 to be used for each summary statistic in the output table.  Will need to have
 all available statistics if this option is changed!}
 \item{\code{tidytlg.precision.extra} - Value to be added on for each summary
@@ -42,7 +43,7 @@ for frequency tables. Default: \code{statlist("n (x.x)")}}
 \item{\code{tidytlg.stat_labels} - A \code{data.frame} controlling how the stats
 are labeled in a \code{univar} table. See 'Default Stat Labels' section
 for defaults.}
-\item{tidytlg.denoms.message - A \code{boolean}, should a message print
+\item{\code{tidytlg.denoms.message} - A \code{boolean}, should a message print
 detailing what the denominators are?}
 }
 }
@@ -50,48 +51,48 @@ detailing what the denominators are?}
 \section{Default Stat Labels}{
 \tabular{ll}{
    \strong{stat} \tab \strong{label} \cr
-   N \tab N \cr
-   SUM \tab Sum \cr
-   MEAN \tab Mean \cr
-   GeoMEAN \tab Geometric Mean \cr
-   SD \tab Std. Dev. \cr
-   SE \tab Std. Error \cr
-   GSD \tab Geometric Std. Dev. \cr
-   GSE \tab Geometric Std. Error \cr
-   CV \tab CV \cr
-   MEANSD \tab Mean (SD) \cr
-   MEANSE \tab Mean (SE) \cr
-   MEDIAN \tab Median \cr
-   MIN \tab Minimum \cr
-   MAX \tab Maximum \cr
-   RANGE \tab Range \cr
-   Q1 \tab First quartile \cr
-   Q3 \tab Third quartile \cr
-   IQRANGE \tab IQ range \cr
-   MEDRANGE \tab Median (Range) \cr
-   MEDIQRANGE \tab Median (Q1; Q3) \cr
-   MEAN_CI \tab Mean (95\% C.I.) \cr
-   GeoMEAN_CI \tab Geometric Mean (95\% C.I.) \cr
+   \code{N} \tab N \cr
+   \code{SUM} \tab Sum \cr
+   \code{MEAN} \tab Mean \cr
+   \code{GeoMEAN} \tab Geometric Mean \cr
+   \code{SD} \tab Std. Deviation \cr
+   \code{SE} \tab Std. Error \cr
+   \code{GSD} \tab Geometric Std. Deviation \cr
+   \code{GSE} \tab Geometric Std. Error \cr
+   \code{CV} \tab CV \cr
+   \code{MEANSD} \tab Mean (SD) \cr
+   \code{MEANSE} \tab Mean (SE) \cr
+   \code{MEDIAN} \tab Median \cr
+   \code{MIN} \tab Minimum \cr
+   \code{MAX} \tab Maximum \cr
+   \code{RANGE} \tab Range \cr
+   \code{Q1} \tab First quartile \cr
+   \code{Q3} \tab Third quartile \cr
+   \code{IQRANGE} \tab IQ range \cr
+   \code{MEDRANGE} \tab Median (Range) \cr
+   \code{MEDIQRANGE} \tab Median (Q1; Q3) \cr
+   \code{MEAN_CI} \tab Mean (95\% C.I.) \cr
+   \code{GeoMEAN_CI} \tab Geometric Mean (95\% C.I.) \cr
 }
 }
 
 \section{Default Precision Extra}{
 \tabular{ll}{
    \strong{stat} \tab \strong{extra} \cr
-   N \tab 0 \cr
-   SUM \tab 0 \cr
-   MEAN \tab 1 \cr
-   GeoMEAN \tab 1 \cr
-   SD \tab 2 \cr
-   SE \tab 2 \cr
-   GSD \tab 2 \cr
-   GSE \tab 2 \cr
-   CV \tab 1 \cr
-   MEDIAN \tab 1 \cr
-   MIN \tab 0 \cr
-   MAX \tab 0 \cr
-   Q1 \tab 1 \cr
-   Q3 \tab 1 \cr
+   \code{N} \tab 0 \cr
+   \code{SUM} \tab 0 \cr
+   \code{MEAN} \tab 1 \cr
+   \code{GeoMEAN} \tab 1 \cr
+   \code{SD} \tab 2 \cr
+   \code{SE} \tab 2 \cr
+   \code{GSD} \tab 2 \cr
+   \code{GSE} \tab 2 \cr
+   \code{CV} \tab 1 \cr
+   \code{MEDIAN} \tab 1 \cr
+   \code{MIN} \tab 0 \cr
+   \code{MAX} \tab 0 \cr
+   \code{Q1} \tab 1 \cr
+   \code{Q3} \tab 1 \cr
    \code{LCL_MEAN} \tab 2 \cr
    \code{UCL_MEAN} \tab 2 \cr
    \code{LCL_GeoMEAN} \tab 2 \cr
@@ -140,7 +141,7 @@ Authors:
 Other contributors:
 \itemize{
   \item Janssen R&D [copyright holder, funder]
-  \item David Hugh-Jones (Author of included huxtable library) [copyright holder]
+  \item David Hugh-Jones (Author of included 'huxtable' library) [copyright holder]
 }
 
 }

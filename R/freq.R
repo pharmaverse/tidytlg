@@ -279,7 +279,7 @@ freq <- function(df,
       rowbyvar = rowbyvar,
       colvar = colvar,
       rowvar = rowvar,
-      hasBigN = "N" %in% statlist[["stats"]],
+      has_big_n = "N" %in% statlist[["stats"]],
       row_header = row_header
     ) %>%
     # Pivot table
@@ -355,7 +355,9 @@ derive_freq <- function(df, denom_df, colvar, rowbyvar, tablebyvar, rowvar,
   # turn this into a HEADER
   if (nested) {
     row_type_value <- "NESTED"
-  } else if (!is.null({{ rowtext }}) &&
+  } else if (!is.null(
+    {{ rowtext }}
+  ) &&
     !is_named({{ rowtext }}) &&
     nrow(res) == length(unique(res[[colvar]])) &&
     !("N" %in% statlist[["stats"]])) {
@@ -500,38 +502,39 @@ drop_values <- function(df, cutoff, rowvar, cutoff_stat, colvar, drop_by) {
   # If there is no cutoff, just return the dataframe
   if (is.null(cutoff)) {
     df
-  } # If there is a cutoff:
-  else {
+  } else { # If there is a cutoff:
     # If the cutoff specifies a column name:
     if (grepl(">=", cutoff)) {
-      cutoff <- paste0("`", cutoff %>%
-        stringr::str_replace_all("& ", "& `") %>%
-        stringr::str_replace_all("\\| ", "| `") %>%
-        stringr::str_replace_all(" >=", "` >="))
+      cutoff <- paste0(
+        "`", cutoff |>
+          stringr::str_replace_all("& ", "& `") |>
+          stringr::str_replace_all("\\| ", "| `") |>
+          stringr::str_replace_all(" >=", "` >=")
+      )
       cutoff <- as.list(parse(text = cutoff))
 
       pivot_id_cols <- unname(c(drop_by, rowvar, "nested_level", "row_type"))
       kept_values <- suppressMessages(
-        df %>%
+        df |>
           pivot_wider(
             id_cols = any_of(pivot_id_cols),
             names_from = all_of(colvar),
             values_from = all_of(c(cutoff_stat)),
             values_fill = 0
-          ) %>%
+          ) |>
           # Get a list of values from specified column that are >= to the cutoff
-          filter(!!!cutoff) %>%
-          select(!!rowvar) %>%
+          filter(!!!cutoff) |>
+          select(!!rowvar) |>
           unlist()
       )
 
       # If the column name doesn't specify a column name:
     } else {
       # Determine the values to keep
-      kept_values <- df %>%
+      kept_values <- df |>
         # Get a list of values that have a value >= the cutoff
-        filter(!!sym(cutoff_stat) >= as.numeric(trimws(cutoff))) %>%
-        select(!!rowvar) %>%
+        filter(!!sym(cutoff_stat) >= as.numeric(trimws(cutoff))) |>
+        select(!!rowvar) |>
         unlist()
     }
     # Filter everything that wasn't found above.
@@ -658,7 +661,7 @@ sort_freq <- function(df,
         add_row(row_header_df %>% slice(i), .before = row_header_location[i])
     }
   }
-  return(df %>% select(-any_of(paste0("n", colvar_cols))))
+  df |> select(-any_of(paste0("n", colvar_cols)))
 }
 
 #' Round values in a freq table
@@ -668,7 +671,7 @@ sort_freq <- function(df,
 #' @noRd
 round_freq <- function(df, decimal) {
   # format pct using roundSAS
-  df %>%
+  df |>
     mutate(pct = roundSAS(pct, digits = as.numeric(decimal), as_char = TRUE))
 }
 
@@ -786,9 +789,10 @@ pivot_freq <- function(df, colvar, rowvar, rowbyvar, tablebyvar, statlist,
         across(
           .cols = paste0("n", levels(df[[colvar]])),
           function(x) {
-            ifelse(row_type %>%
-              stringr::str_detect("HEADER"),
-            max(x, na.rm = TRUE) + n() + 1 - row_number(), x
+            ifelse(
+              row_type |>
+                stringr::str_detect("HEADER"),
+              max(x, na.rm = TRUE) + n() + 1 - row_number(), x
             )
           }
         )
@@ -871,14 +875,14 @@ rowtext_freq <- function(res, rowtext, rowvar, rowbyvar, tablebyvar,
 
 #' Logic for merging in bigN and rowbyvar
 #'
-#' @param hasBigN boolean. Does the table have a big N in the statlist?
+#' @param has_big_n boolean. Does the table have a big N in the statlist?
 #'
 #' @noRd
-byvar_merge_freq <- function(df, tablebyvar, rowbyvar, colvar, rowvar, hasBigN,
+byvar_merge_freq <- function(df, tablebyvar, rowbyvar, colvar, rowvar, has_big_n,
                              row_header) {
-  df %>%
-    bigN_merge(colvar, rowvar, rowbyvar, tablebyvar, hasBigN) %>%
-    row_header_merge(colvar, rowvar, rowbyvar, tablebyvar, row_header) %>%
+  df |>
+    big_n_merge(colvar, rowvar, rowbyvar, tablebyvar, has_big_n) |>
+    row_header_merge(colvar, rowvar, rowbyvar, tablebyvar, row_header) |>
     rowbyvar_merge(colvar, rowvar, rowbyvar, tablebyvar)
 }
 
@@ -904,8 +908,8 @@ add_meta_freq <- function(table, df, colvar, tablebyvar) {
 
 #' Merge in bigN rows
 #' @noRd
-bigN_merge <- function(df, colvar, rowvar, rowbyvar, tablebyvar, hasBigN) {
-  if (hasBigN) {
+big_n_merge <- function(df, colvar, rowvar, rowbyvar, tablebyvar, has_big_n) {
+  if (has_big_n) {
     df %>%
       var_merge(
         nestby = c(colvar, rowbyvar, tablebyvar),

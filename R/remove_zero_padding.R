@@ -1,10 +1,10 @@
-#' Removes noop padding from an RTF markup
+#' Removes no-op padding from an RTF markup
 #'
 #' @details
-#' Removes noop padding, which is padding that has a thickness of zero
+#' Removes no-op padding, which is padding that has a thickness of zero
 #' from an RTF markup.
 #'
-#' @param rtf `character(1)` RTF markup
+#' @param rtf `character(1)` RTF markup.
 #'
 #' @return `character(1)` RTF markup with removed zero padding
 #' @keywords internal

@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_newrows.R
 \name{add_newrows}
 \alias{add_newrows}
-\title{Add the newrows variable to the results dataframe.}
+\title{Add the \code{newrows} variable to the results dataframe.}
 \usage{
 add_newrows(df, tableby = NULL, groupby = NULL)
 }
@@ -21,7 +21,7 @@ dataframe with the variable \code{newrows} and \code{roworder} added.
 \code{newrows} is used by \code{gentlg} to insert line breaks.
 }
 \description{
-The newrows variable is used by \code{gentlg()} to define when to add a blank row
+The \code{newrows} variable is used by \code{gentlg()} to define when to add a blank row
 to the output. Data will be grouped by \code{anbr} and the variables passed into
 the \code{tableby} and \code{groupby} parameters. \code{newrows} will be set to 1
 for the first record in each group, except for the first row in the data.

@@ -108,8 +108,12 @@ gentlg_single <- function(huxme = NULL,
   }
 
   wrote_png <- FALSE
-  if (is_graph(tlf) &&
-    is.null(plotnames) &&
+  if (is_graph(
+    tlf
+  ) &&
+    is.null(
+      plotnames
+    ) &&
     inherits(huxme, "ggplot")) {
     a_file <- "__tempggplot__"
     tmpdir <- base::tempdir()
@@ -125,10 +129,15 @@ gentlg_single <- function(huxme = NULL,
     wrote_png <- TRUE
   }
 
-  if (is_graph(tlf) &&
-    is.null(plotwidth) &&
+  if (is_graph(
+    tlf
+  ) &&
+    is.null(
+      plotwidth
+    ) &&
     is.null(plotheight)) {
-    png_d <- dim(readPNG(ifelse(wrote_png,
+    png_d <- dim(readPNG(ifelse(
+      wrote_png,
       paste0(tmpdir, "/__tempggplot__"), plotnames
     )))
     plotheight <- png_d[1]
@@ -184,24 +193,44 @@ gentlg_single <- function(huxme = NULL,
   }
 
   if (!is.null(wcol) && !is_graph(tlf)) {
-    if ((length(wcol) == 1 && (!is.numeric(wcol) || wcol > 1)) ||
-      (length(wcol) > 1 && is_format_rtf(format) &&
-        (!is.numeric(wcol) ||
-          sum(!(colnames(huxme) %in% c(formatcolumns))) != length(wcol) ||
-          sum(wcol) > 1))) {
+    if (
+      (length(wcol) == 1 && (!is.numeric(wcol) || wcol > 1)) ||
+        (length(wcol) > 1 && is_format_rtf(format) &&
+          (
+            !is.numeric(wcol) ||
+              sum(!(colnames(huxme) %in% c(formatcolumns))) != length(wcol) ||
+              sum(wcol) > 1
+          ))
+    ) {
       stop("wcol not defined properly. Consult the documentation via ?gentlg.")
     }
     if (is_format_html(format) && length(wcol) > 1) {
-      warning("Format = 'HTML'. Only the first argument of wcol will be used. For more information, consult the documentation via ?gentlg.")
+      warning(
+        paste0(
+          "Format = 'HTML'. Only the first argument of wcol will be used. ",
+          "For more information, consult the documentation via ?gentlg."
+        )
+      )
     }
   }
 
-  if (!is.null(colspan) && substr(tolower(tlf), 1, 1) %in% c("t", "l") && sum(lapply(colspan, length) == (sum(!(colnames(huxme) %in% c(formatcolumns))))) != length(colspan)) {
-    stop("The length of each colspan argument needs to be equal to the amount of columns in the output data frame. Consult the documentation via ?gentlg.")
+  if (
+    !is.null(colspan) &&
+      substr(tolower(tlf), 1, 1) %in% c("t", "l") &&
+      sum(lapply(colspan, length) == (sum(!(colnames(huxme) %in% c(formatcolumns))))) != length(colspan)
+  ) {
+    stop(
+      paste0(
+        "The length of each colspan argument needs to be equal to the amount of columns ",
+        "in the output data frame. Consult the documentation via ?gentlg."
+      )
+    )
   }
 
-  if (substr(tolower(tlf), 1, 1) %in% "l" && !is.na(idvars[1]) &&
-    sum(!idvars %in% colnames(huxme)) > 0) {
+  if (
+    substr(tolower(tlf), 1, 1) %in% "l" && !is.na(idvars[1]) &&
+      sum(!idvars %in% colnames(huxme)) > 0
+  ) {
     stop("One of the idvars is not part of the column headers. Consult the documentation via ?gentlg.")
   }
 
@@ -221,50 +250,66 @@ gentlg_single <- function(huxme = NULL,
   } else {
     boldme <- NULL
   }
-  if ("indentme" %in% colnames(huxme) &&
-    length(which(huxme$indentme == 0)) > 0) {
+  if (
+    "indentme" %in% colnames(huxme) &&
+      length(which(huxme$indentme == 0)) > 0
+  ) {
     indentme0 <- which(huxme$indentme == 0)
   } else {
     indentme0 <- NULL
   }
-  if ("indentme" %in% colnames(huxme) &&
-    length(which(huxme$indentme == 1)) > 0) {
+  if (
+    "indentme" %in% colnames(huxme) &&
+      length(which(huxme$indentme == 1)) > 0
+  ) {
     indentme1 <- which(huxme$indentme == 1)
   } else {
     indentme1 <- NULL
   }
-  if ("indentme" %in% colnames(huxme) &&
-    length(which(huxme$indentme == 2)) > 0) {
+  if (
+    "indentme" %in% colnames(huxme) &&
+      length(which(huxme$indentme == 2)) > 0
+  ) {
     indentme2 <- which(huxme$indentme == 2)
   } else {
     indentme2 <- NULL
   }
-  if ("indentme" %in% colnames(huxme) &&
-    length(which(huxme$indentme == 3)) > 0) {
+  if (
+    "indentme" %in% colnames(huxme) &&
+      length(which(huxme$indentme == 3)) > 0
+  ) {
     indentme3 <- which(huxme$indentme == 3)
   } else {
     indentme3 <- NULL
   }
-  if ("indentme" %in% colnames(huxme) &&
-    length(which(huxme$indentme == 4)) > 0) {
+  if (
+    "indentme" %in% colnames(huxme) &&
+      length(which(huxme$indentme == 4)) > 0
+  ) {
     indentme4 <- which(huxme$indentme == 4)
   } else {
     indentme4 <- NULL
   }
-  if ("indentme" %in% colnames(huxme) &&
-    length(which(huxme$indentme == 5)) > 0) {
+  if (
+    "indentme" %in% colnames(huxme) &&
+      length(which(huxme$indentme == 5)) > 0
+  ) {
     indentme5 <- which(huxme$indentme == 5)
   } else {
     indentme5 <- NULL
   }
-  if ("indentme" %in% colnames(huxme) &&
-    length(which(huxme$indentme == 6)) > 0) {
+  if (
+    "indentme" %in% colnames(huxme) &&
+      length(which(huxme$indentme == 6)) > 0
+  ) {
     indentme6 <- which(huxme$indentme == 6)
   } else {
     indentme6 <- NULL
   }
-  if ("newpage" %in% colnames(huxme) &&
-    length(which(huxme$newpage == 1)) > 0) {
+  if (
+    "newpage" %in% colnames(huxme) &&
+      length(which(huxme$newpage == 1)) > 0
+  ) {
     newpage <- which(huxme$newpage == 1)
   } else {
     newpage <- NULL
@@ -308,7 +353,7 @@ gentlg_single <- function(huxme = NULL,
         unlist(use.names = FALSE)
     }
 
-    return(df)
+    df
   }
 
   if (toupper(format) == "HTML") {
@@ -346,10 +391,26 @@ gentlg_single <- function(huxme = NULL,
       if (toupper(format) == "RTF") {
         huxme[i, ] <- paste0(
           "",
-          pngrtfcode(ifelse(wrote_png, paste0(tmpdir, "/", plotnames[i]), plotnames[i]), width = plotwidth, height = plotheight), "\\line"
+          pngrtfcode(
+            ifelse(wrote_png, paste0(tmpdir, "/", plotnames[i]), plotnames[i]),
+            width = plotwidth, height = plotheight
+          ), "\\line"
         )
       } else {
-        huxme[i, ] <- paste0("<center>", "<img src=\"", ifelse(wrote_png, paste0(tmpdir, "/", plotnames[i]), plotnames[i]), "\"", " alt=\"", file, "\" style=\"width:", round(plotwidth * 96 / 2.54, 0), "px; height:", round(plotheight * 96 / 2.54, 0), "px; \"> <br/>", "</center>")
+        huxme[i, ] <- paste0(
+          "<center>", "<img src=\"",
+          ifelse(
+            wrote_png,
+            paste0(tmpdir, "/", plotnames[i]),
+            plotnames[i]
+          ),
+          "\"", " alt=\"",
+          file,
+          "\" style=\"width:",
+          round(plotwidth * 96 / 2.54, 0),
+          "px; height:",
+          round(plotheight * 96 / 2.54, 0), "px; \"> <br/>", "</center>"
+        )
       }
     }
   }
@@ -422,7 +483,9 @@ gentlg_single <- function(huxme = NULL,
       if (ncol(ht) == length(colheader)) {
         ht[1, ] <- colheader
       } else {
-        usethis::ui_warn("Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns")
+        usethis::ui_warn(
+          "Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns"
+        )
       }
       ht[1, ] <- paste0("\\keepn\\trhdr ", ht[1, ]) # Make repeated treatments on each page
       formatindex <- 1
@@ -607,7 +670,9 @@ gentlg_single <- function(huxme = NULL,
       }
     } else if (is_format_html(format)) {
       for (i in seq_along(indentme0)) {
-        ht[indentme0[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px}px'> {ht[indentme0[i], 1]}")
+        ht[indentme0[i], 1] <- glue::glue(
+          "<div style='text-indent: -{px}px; padding-left: {px}px'> {ht[indentme0[i], 1]}"
+        )
       }
     }
   }
@@ -623,7 +688,9 @@ gentlg_single <- function(huxme = NULL,
       }
     } else if (is_format_html(format)) {
       for (i in seq_along(indentme1)) {
-        ht[indentme1[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*2}px'> {ht[indentme1[i], 1]}")
+        ht[indentme1[i], 1] <- glue::glue(
+          "<div style='text-indent: -{px}px; padding-left: {px*2}px'> {ht[indentme1[i], 1]}"
+        )
       }
     }
   }
@@ -639,7 +706,9 @@ gentlg_single <- function(huxme = NULL,
       }
     } else if (is_format_html(format)) {
       for (i in seq_along(indentme2)) {
-        ht[indentme2[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*3}px'> {ht[indentme2[i], 1]}")
+        ht[indentme2[i], 1] <- glue::glue(
+          "<div style='text-indent: -{px}px; padding-left: {px*3}px'> {ht[indentme2[i], 1]}"
+        )
       }
     }
   }
@@ -655,7 +724,9 @@ gentlg_single <- function(huxme = NULL,
       }
     } else if (is_format_html(format)) {
       for (i in seq_along(indentme3)) {
-        ht[indentme3[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*4}px'> {ht[indentme3[i], 1]}")
+        ht[indentme3[i], 1] <- glue::glue(
+          "<div style='text-indent: -{px}px; padding-left: {px*4}px'> {ht[indentme3[i], 1]}"
+        )
       }
     }
   }
@@ -671,7 +742,9 @@ gentlg_single <- function(huxme = NULL,
       }
     } else if (is_format_html(format)) {
       for (i in seq_along(indentme4)) {
-        ht[indentme4[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*5}px'> {ht[indentme4[i], 1]}")
+        ht[indentme4[i], 1] <- glue::glue(
+          "<div style='text-indent: -{px}px; padding-left: {px*5}px'> {ht[indentme4[i], 1]}"
+        )
       }
     }
   }
@@ -687,7 +760,9 @@ gentlg_single <- function(huxme = NULL,
       }
     } else if (is_format_html(format)) {
       for (i in seq_along(indentme5)) {
-        ht[indentme5[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*6}px'> {ht[indentme5[i], 1]}")
+        ht[indentme5[i], 1] <- glue::glue(
+          "<div style='text-indent: -{px}px; padding-left: {px*6}px'> {ht[indentme5[i], 1]}"
+        )
       }
     }
   }
@@ -703,7 +778,9 @@ gentlg_single <- function(huxme = NULL,
       }
     } else if (is_format_html(format)) {
       for (i in seq_along(indentme6)) {
-        ht[indentme6[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*7}px'> {ht[indentme6[i], 1]}")
+        ht[indentme6[i], 1] <- glue::glue(
+          "<div style='text-indent: -{px}px; padding-left: {px*7}px'> {ht[indentme6[i], 1]}"
+        )
       }
     }
   }
@@ -723,7 +800,7 @@ gentlg_single <- function(huxme = NULL,
       huxtable::bold(tmp) <- TRUE
       ret <- huxtable::add_rows(dsnin, tmp, after = 0)
       ret <- ret[seq_len(nrow(ret)), ]
-      return(ret)
+      ret
     } else {
       ht2 <- dsnin[1, ]
       ht2[1, ] <- ""
@@ -737,7 +814,7 @@ gentlg_single <- function(huxme = NULL,
       )
       dsnin <- rbind(dsnin[nrow(dsnin), ], dsnin[1:(nrow(dsnin) - 1), ])
       dsnin <- dsnin[seq_len(nrow(dsnin) - 1), ]
-      return(dsnin)
+      dsnin
     }
   }
 
@@ -872,7 +949,7 @@ gentlg_single <- function(huxme = NULL,
     ifelse(getOption("tidytlg.add_datetime"),
       ht <- add_footer(ht, paste0(
         "[", adjfilename, ".", tolower(format), "]",
-        paste0("[", getFileName(), "] "),
+        paste0("[", get_file_name(), "] "),
         toupper(format(Sys.time(),
           format = "%d%b%Y, %H:%M"
         ))
