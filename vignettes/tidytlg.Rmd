@@ -334,8 +334,8 @@ library(ggplot2)
 library(tidytlg)
 
 # read adsl from PhUSE test data factory
-testdata <- "https://github.com/phuse-org/TestDataFactory/tree/main/Updated/TDF_ADaM"
-adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
+testdata <- "https://github.com/phuse-org/TestDataFactory/raw/refs/heads/main/Updated/TDF_ADaM/adsl.xpt"
+adsl <- read_xpt(url(testdata))
 
 tblid <- "Graph01"
 
@@ -405,8 +405,8 @@ library(haven)
 library(tidytlg)
 
 # read adsl from PhUSE test data factory
-testdata <- "https://github.com/phuse-org/TestDataFactory/tree/main/Updated/TDF_ADaM"
-adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
+testdata <- "https://github.com/phuse-org/TestDataFactory/raw/refs/heads/main/Updated/TDF_ADaM/adsl.xpt"
+adsl <- read_xpt(url(testdata))
 
 # Process data
 adsl <- adsl %>%
@@ -476,8 +476,8 @@ library(haven)
 library(tidytlg)
 
 # read adsl from PhUSE test data factory
-testdata <- "https://github.com/phuse-org/TestDataFactory/tree/main/Updated/TDF_ADaM"
-adsl <- read_xpt(url(paste0(testdata, "adsl.xpt")))
+testdata <- "https://github.com/phuse-org/TestDataFactory/raw/refs/heads/main/Updated/TDF_ADaM/adsl.xpt"
+adsl <- read_xpt(url(testdata))
 
 # Process data
 adsl <- adsl %>%
