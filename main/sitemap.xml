@@ -1,141 +1,49 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/articles/freq.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/symbols.html</loc>
-  </url>
-  <url>
-    <loc>/articles/tbl_manipulation.html</loc>
-  </url>
-  <url>
-    <loc>/articles/tidytlg.html</loc>
-  </url>
-  <url>
-    <loc>/articles/tlgsetup.html</loc>
-  </url>
-  <url>
-    <loc>/articles/univar.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/add_bottom_borders.html</loc>
-  </url>
-  <url>
-    <loc>/reference/add_format.html</loc>
-  </url>
-  <url>
-    <loc>/reference/add_indent.html</loc>
-  </url>
-  <url>
-    <loc>/reference/add_newrows.html</loc>
-  </url>
-  <url>
-    <loc>/reference/bind_table.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cdisc-adae.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cdisc-adlb.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cdisc-adsl.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cdisc-advs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/char2factor.html</loc>
-  </url>
-  <url>
-    <loc>/reference/col_borders.html</loc>
-  </url>
-  <url>
-    <loc>/reference/column_metadata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/files.html</loc>
-  </url>
-  <url>
-    <loc>/reference/freq.html</loc>
-  </url>
-  <url>
-    <loc>/reference/generate_results.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gentlg.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/insert_empty_rows.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nested_freq.html</loc>
-  </url>
-  <url>
-    <loc>/reference/no_borders.html</loc>
-  </url>
-  <url>
-    <loc>/reference/old_format.html</loc>
-  </url>
-  <url>
-    <loc>/reference/remove_zero_padding.html</loc>
-  </url>
-  <url>
-    <loc>/reference/replace_na_with_blank.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rmdpstitle.html</loc>
-  </url>
-  <url>
-    <loc>/reference/roundSAS.html</loc>
-  </url>
-  <url>
-    <loc>/reference/row_border.html</loc>
-  </url>
-  <url>
-    <loc>/reference/single_border.html</loc>
-  </url>
-  <url>
-    <loc>/reference/spanning_borders.html</loc>
-  </url>
-  <url>
-    <loc>/reference/spanning_headers.html</loc>
-  </url>
-  <url>
-    <loc>/reference/statlist.html</loc>
-  </url>
-  <url>
-    <loc>/reference/table_metadata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tidytlg.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tlgsetup.html</loc>
-  </url>
-  <url>
-    <loc>/reference/univar.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/articles/freq.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/symbols.html</loc></url>
+<url><loc>/articles/tbl_manipulation.html</loc></url>
+<url><loc>/articles/tidytlg.html</loc></url>
+<url><loc>/articles/tlgsetup.html</loc></url>
+<url><loc>/articles/univar.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/add_bottom_borders.html</loc></url>
+<url><loc>/reference/add_format.html</loc></url>
+<url><loc>/reference/add_indent.html</loc></url>
+<url><loc>/reference/add_newrows.html</loc></url>
+<url><loc>/reference/bind_table.html</loc></url>
+<url><loc>/reference/cdisc-adae.html</loc></url>
+<url><loc>/reference/cdisc-adlb.html</loc></url>
+<url><loc>/reference/cdisc-adsl.html</loc></url>
+<url><loc>/reference/cdisc-advs.html</loc></url>
+<url><loc>/reference/char2factor.html</loc></url>
+<url><loc>/reference/col_borders.html</loc></url>
+<url><loc>/reference/column_metadata.html</loc></url>
+<url><loc>/reference/files.html</loc></url>
+<url><loc>/reference/freq.html</loc></url>
+<url><loc>/reference/generate_results.html</loc></url>
+<url><loc>/reference/gentlg.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/insert_empty_rows.html</loc></url>
+<url><loc>/reference/nested_freq.html</loc></url>
+<url><loc>/reference/no_borders.html</loc></url>
+<url><loc>/reference/old_format.html</loc></url>
+<url><loc>/reference/remove_zero_padding.html</loc></url>
+<url><loc>/reference/replace_na_with_blank.html</loc></url>
+<url><loc>/reference/rmdpstitle.html</loc></url>
+<url><loc>/reference/roundSAS.html</loc></url>
+<url><loc>/reference/row_border.html</loc></url>
+<url><loc>/reference/single_border.html</loc></url>
+<url><loc>/reference/spanning_borders.html</loc></url>
+<url><loc>/reference/spanning_headers.html</loc></url>
+<url><loc>/reference/statlist.html</loc></url>
+<url><loc>/reference/table_metadata.html</loc></url>
+<url><loc>/reference/tidytlg.html</loc></url>
+<url><loc>/reference/tlgsetup.html</loc></url>
+<url><loc>/reference/univar.html</loc></url>
 </urlset>
+

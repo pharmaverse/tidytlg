@@ -1,0 +1,64 @@
+# SAS rounding in R
+
+`roundSAS` is an alternative rounding function, ensuring that decimals
+equal or bigger than 5 are rounded upwards to the nearest number and
+returned as character vector.
+
+## Usage
+
+``` r
+roundSAS(x, digits = 0, as_char = FALSE, na_char = NULL)
+```
+
+## Arguments
+
+- x:
+
+  Numeric vector.
+
+- digits:
+
+  An integer specifying the number of decimal places to be displayed
+  after rounding. Default is 0.
+
+- as_char:
+
+  logical value indicating conversion of rounded numerical vector to
+  character vector; default is `FALSE`.
+
+- na_char:
+
+  A character string indicating missing value; if not specified, `"NA"`
+  is created.
+
+## Value
+
+character vector of rounded values
+
+## Details
+
+At the midpoint of a decimal place (e.g. 0.5, 1.5), the round function
+in R rounds to the nearest even number (i.e. 0.5 is rounded to 0; 1.5 is
+rounded to 2), whereas SAS rounds to the nearest number (i.e. 0.5 is
+rounded to 1; 1.5 is rounded to 2). The `roundSAS` function is an
+alternative rounding function for R that ensures rounding to the nearest
+number, as done in SAS. `roundSAS` comes from this Stack Overflow
+[post](https://stackoverflow.com/questions/12688717/round-up-from-5).
+
+## Examples
+
+``` r
+### input data vector with midpoint decimals
+x <- c(-2.5, -1.5, -0.5, 0.5, 1.5, 2.5)
+
+### rounds to integer
+roundSAS(x, digits = 0)
+#> [1] -3 -2 -1  1  2  3
+
+### input data vector with a missing value
+y <- c(8.65, 8.75, NA, 9.85, 9.95)
+
+### rounds to tenths and label the missing value with "NE"
+roundSAS(y, digits = 1, as_char = TRUE, na_char = "NE")
+#> [1] "8.7"  "8.8"  "NE"   "9.9"  "10.0"
+```
