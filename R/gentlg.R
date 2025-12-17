@@ -315,7 +315,9 @@ gentlg <- function(huxme = NULL,
     bottom_borders <- list(bottom_borders)
   }
   assertthat::assert_that(is.list(border_fns))
-  if (length(border_fns) == 0 ||
+  if (length(
+    border_fns
+  ) == 0 ||
     (length(border_fns) > 0 && !is.list(border_fns[[1]]))) {
     border_fns <- list(border_fns)
   }

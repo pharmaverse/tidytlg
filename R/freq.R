@@ -355,7 +355,9 @@ derive_freq <- function(df, denom_df, colvar, rowbyvar, tablebyvar, rowvar,
   # turn this into a HEADER
   if (nested) {
     row_type_value <- "NESTED"
-  } else if (!is.null({{ rowtext }}) &&
+  } else if (!is.null(
+    {{ rowtext }}
+  ) &&
     !is_named({{ rowtext }}) &&
     nrow(res) == length(unique(res[[colvar]])) &&
     !("N" %in% statlist[["stats"]])) {
