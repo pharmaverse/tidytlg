@@ -30,13 +30,13 @@ Source:
 
 Masel N, Haesendonckx S, Alexandra Papadopoulou P, Wang S, Miller E,
 Kosiba N, Ceney A, Pagacz K (2025). *tidytlg: Create TLGs using the
-'tidyverse'*. R package version 0.10.0.9000,
+'tidyverse'*. R package version 0.11.0,
 <https://pharmaverse.github.io/tidytlg/main/>.
 
     @Manual{,
       title = {tidytlg: Create TLGs using the 'tidyverse'},
       author = {Nicholas Masel and Steven Haesendonckx and Pelagia {Alexandra Papadopoulou} and Sheng-Wei Wang and Eli Miller and Nathan Kosiba and Aidan Ceney and Konrad Pagacz},
       year = {2025},
-      note = {R package version 0.10.0.9000},
+      note = {R package version 0.11.0},
       url = {https://pharmaverse.github.io/tidytlg/main/},
     }
