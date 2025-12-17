@@ -17,7 +17,7 @@
 - Updated `gentlg()` to support refined control over the appearance of bottom borders
   in tables via new arguments `bottom_borders` and `border_fns`. See documentation
   for these arguments for more information.
-- Adjusted the text acompanying the page numbers to correctly reflect the contents
+- Adjusted the text accompanying the page numbers to correctly reflect the contents
   of the printed documents produced by `gentlg()`.
 
 # tidytlg 0.1.4
@@ -30,7 +30,7 @@
 
 # tidytlg 0.1.2
 
-- Fixed bug where the use of the 'wcol' argument in `gentlg()` would error when no formatting variables were present (#14)
+- Fixed bug where the use of the `wcol` argument in `gentlg()` would error when no formatting variables were present (#14)
 - `gentlg()` now supports multiple plots passed in the 'plotnames' argument (#13)
 - Fixed `check_args()` function to remove some tests that were too strict (#12)
 

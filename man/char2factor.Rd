@@ -25,10 +25,10 @@ counterpart.
 \examples{
 df <- tibble::tribble(
   ~TRT01P, ~TRT01PN,
-  "Placebo",   1,
-  "Low Dose",  2,
+  "Placebo", 1,
+  "Low Dose", 2,
   "High Dose", 3
-  )
+)
 
 # alphabetical order
 dplyr::arrange(df, TRT01P)

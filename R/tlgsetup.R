@@ -1,8 +1,8 @@
 #' Setup data to support the specified column type
 #'
-#' tlgsetup is useful for pre-processing total columns and columns composed of
-#' other columns. tlgsetup is called internally by `generate_results()` and can
-#' be run manually for custom tables.
+#' `tlgsetup` is useful for pre-processing total columns and columns composed of
+#' other columns. `tlgsetup` is called internally by `generate_results()`
+#' and can be run manually for custom tables.
 #'
 #' @param df dataframe of records for analysis
 #' @param var character vector that identifies the numeric column/treatment
@@ -12,14 +12,13 @@
 #'   too, this is ignored.
 #' @param column_metadata A dataframe containing the column metadata. This will
 #'   be used in place of `column_metadata_file`.
-#' @param tbltype A value used to subset the `column_metadata`, both this and the
-#'   file requirements are needed to bind the data to the table.
+#' @param tbltype A value used to subset the `column_metadata`, both this
+#'   and the file requirements are needed to bind the data to the table.
 #'
 #' @return dataframe with observations added to support the column type as well
 #'   as the factor variable `colnbr` which is used as our new column summary
-#'   variable. Regardless of if a `coldef` exists in data, the column will exist in
-#'   the table.
-#' @export
+#'   variable. Regardless of if a `coldef` exists in data,
+#'   the column will exist in the table.
 #'
 #' @examples
 #' df <-
@@ -43,6 +42,7 @@
 #'   )
 #'
 #' tlgsetup(df, "TRT01AN", column_metadata = column_metadata)
+#' @export
 tlgsetup <-
   function(df,
            var,

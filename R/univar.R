@@ -2,32 +2,32 @@
 #'
 #' Univariate statitstics for a variables by treatment and/or group.
 #'
-#' @param df (required) dataframe containing records to summarize by treatment
+#' @param df (required) dataframe containing records to summarize by treatment.
 #' @param colvar (required) character vector of the treatment variable within
-#'   the dataframe
-#' @param tablebyvar (optional) repeat entire table by variable within df
+#'   the dataframe.
+#' @param tablebyvar (optional) repeat entire table by variable within `df`.
 #' @param rowvar (required) character vector of variable to summarize within the
-#'   dataframe
-#' @param rowbyvar (optional) repeat `rowvar` by variable within df
-#' @param statlist (optional) statlist object of stats to keep (default =
-#'   statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE")))
+#'   dataframe.
+#' @param rowbyvar (optional) repeat `rowvar` by variable within `df`.
+#' @param statlist (optional) `statlist` object of stats to keep (default =
+#'   `statlist(c("N", "MEANSD", "MEDIAN", "RANGE", "IQRANGE"))`).
 #' @param decimal (optional) decimal precision root level, when using
-#'   `presisionby` this will be used as the base decimal cap (default = 1)
+#'   `presisionby` this will be used as the base decimal cap (default = 1).
 #' @param precisionby (optional) vector of by variable(s) to use when
-#'   calculating parameter based precision
+#'   calculating parameter based precision.
 #' @param precisionon (optional) variable to use when calculating parameter
-#'   based precision. If `precisionby` is specified but not `precisionon` this will
-#'   default to `rowvar`
+#'   based precision. If `precisionby` is specified but not `precisionon`
+#'   this will default to `rowvar`.
 #' @param wide (optional) logical indicating to convert labels to column and
-#'   columns to labels (default = FALSE)
+#'   columns to labels (default = `FALSE`).
 #' @param alpha (optional) alpha level for 2-sided confidence interval (default
-#'   = 0.05)
+#'   = 0.05).
 #' @param rowtext (optional) A text string to replace the `label` value on the
 #'   table. Useful for tables with a single row.
 #' @param row_header (optional) A row to add as a header for the table.
-#' @param .keep (optional) Should the `rowbyvar` and `tablebyvar` be output in the
-#'   table.  If FALSE, `rowbyvar` will still be output in the `label` column.
-#'   (default = TRUE)
+#' @param .keep (optional) Should the `rowbyvar` and `tablebyvar` be
+#'   output in the table. If `FALSE`, `rowbyvar` will still be output
+#'   in the `label` column. (default = `TRUE`).
 #' @param .ord Should the ordering columns be output with the table? This is
 #'   useful if a table needs to be merged or reordered in any way after build.
 #' @param ... (optional) Named arguments to be included as columns on the table.
@@ -155,7 +155,7 @@ univar <- function(df,
 
   # build precision data for later
   if (!is.null(precisionby) ||
-    !is.null(precisionon)) {
+    !is.null(precisionon)) { # nolint indentation_linter
     if (!all(c(precisionby) %in% (c(tablebyvar, rowbyvar)))) {
       stop(
         "All values of argument `precisionby` must be a part of either
@@ -371,8 +371,8 @@ update_missing <- function(df) {
     "MEAN_CI" = "- (-; -)",
     "GeoMEAN_CI" = "- (-; -)"
   )
-  ret <- df %>%
-    group_by(name) %>%
+  ret <- df |>
+    group_by(name) |>
     mutate(
       value = ifelse(value == missing_base[[name[1]]],
         missing_update[[name[1]]], value
@@ -387,9 +387,9 @@ update_missing <- function(df) {
         ),
         value
       )
-    ) %>%
+    ) |>
     ungroup()
-  return(ret)
+  ret
 }
 
 #' Round values from derived dataframe
@@ -700,7 +700,7 @@ get_summaries <- function(statlist, rowvar, alpha) {
       .data[[rowvar]][.data[[rowvar]] > 0]
     )))),
     tval = ifelse(.data$N > 1, stats::qt(1 - (alpha / 2),
-      df = (.data$N - 1)
+      df = (.data$N - 1) # nolint indentation_linter
     ), NA_real_),
     LCL_MEAN = .data$MEAN - .data$tval * .data$SE,
     UCL_MEAN = .data$MEAN + .data$tval * .data$SE,

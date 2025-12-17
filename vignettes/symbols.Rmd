@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 # Symbols
 
-Symbols can be added to the label column via unicode.  Here is a quick reference to commonly used symbols.
+Symbols can be added to the label column via `UNICODE`.  Here is a quick reference to commonly used symbols.
 
 
 ```{r setup, echo = FALSE}
@@ -63,7 +63,7 @@ tidytlg::gentlg(df,
 
 # Superscripts and Subscripts
 
-Superscripts and Subscripts can be added to the label column via unicode.
+Superscripts and Subscripts can be added to the label column via `UNICODE`.
 
 ```{r eval = FALSE}
 df <- tibble::tibble(
@@ -80,7 +80,7 @@ tidytlg::gentlg(df,
 ```
 
 
-Superscripts and Subscripts can be added to the footnotes via unicode as well.
+Superscripts and Subscripts can be added to the footnotes via `UNICODE` as well.
 
 ```{r eval = FALSE}
 df <- tibble::tibble(

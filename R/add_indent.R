@@ -80,13 +80,13 @@ add_indent <- function(df) {
         dplyr::case_when(
           row_type == "TABLE_BY_HEADER" ~ 0,
           grepl("BY_HEADER[0-9]", row_type) ~ 0 + add_tableby_to_default
-            + group_level,
+            + group_level, # nolint indentation_linter
           row_type == "HEADER" ~ 0 + add_tableby_to_default + group_level,
           row_type == "N" ~ 1 + add_tableby_to_default + group_level,
           row_type == "VALUE" ~ value_add + add_tableby_to_default
-            + group_level,
+            + group_level, # nolint indentation_linter
           row_type == "NESTED" ~ nested_level + add_tableby_to_default
-            + group_level,
+            + group_level, # nolint indentation_linter
           TRUE ~ 0
         )
     ) %>%
