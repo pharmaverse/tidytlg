@@ -778,7 +778,9 @@ gentlg_single <- function(huxme = NULL,
       }
     } else if (is_format_html(format)) {
       for (i in seq_along(indentme6)) {
-        ht[indentme6[i], 1] <- glue::glue("<div style='text-indent: -{px}px; padding-left: {px*7}px'> {ht[indentme6[i], 1]}")
+        ht[indentme6[i], 1] <- glue::glue(
+          "<div style='text-indent: -{px}px; padding-left: {px*7}px'> {ht[indentme6[i], 1]}"
+        )
       }
     }
   }
