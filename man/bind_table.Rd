@@ -2,7 +2,7 @@
 % Please edit documentation in R/bind_table.R
 \name{bind_table}
 \alias{bind_table}
-\title{Bind a set of tidytlg tables together with formatting variables}
+\title{Bind a set of \code{tidytlg} tables together with formatting variables}
 \usage{
 bind_table(
   ...,
@@ -18,94 +18,109 @@ bind_table(
 )
 }
 \arguments{
-\item{...}{(required) a set of tidytlg tables to bind together}
+\item{...}{(required) a set of \code{tidytlg} tables to bind together}
 
-\item{colvar}{(required) treatment variable within df to use to summarize.
+\item{colvar}{(required) treatment variable within \code{df} to use to summarize.
 Required if \code{add_count} is TRUE.}
 
-\item{tablebyvar}{(optional) repeat entire table by variable within df}
+\item{tablebyvar}{(optional) repeat entire table by variable within \code{df}.}
 
-\item{rowbyvar}{(optional) any rowbyvar values used to create the table}
+\item{rowbyvar}{(optional) any \code{rowbyvar} values used to create the table.}
 
-\item{prefix}{(optional) text to prefix the values of tablebyvar with}
+\item{prefix}{(optional) text to prefix the values of \code{tablebyvar} with.}
 
-\item{add_count}{(optional) Should a count be included in the tablebyvar?
-(default = TRUE)}
+\item{add_count}{(optional) Should a count be included in the \code{tablebyvar}?
+(default = \code{TRUE})}
 
 \item{add_format}{(optional) Should format be added to the output table?
-This is done using the add_format function. (default = TRUE)}
+This is done using the \code{add_format} function. (default = \code{TRUE})}
 
-\item{column_metadata_file}{(optional) An excel file for column_metadata.
+\item{column_metadata_file}{(optional) An excel file for \code{column_metadata}.
 Does not change the behavior of the function binds the column metadata
-for \code{gentlg}. If a column_metadata dataframe is passed in too,
+for \code{gentlg}. If a \code{column_metadata} dataframe is passed in too,
 this is ignored.}
 
 \item{column_metadata}{(optional) A dataframe containing the column metadata.
-This will be used in place of column_metadata_file.}
+This will be used in place of \code{column_metadata_file.}}
 
-\item{tbltype}{(optional) A value used to subset the column_metadata_file.}
+\item{tbltype}{(optional) A value used to subset the \code{column_metadata_file.}}
 }
 \value{
-The tidytlg tables bound together reflecting the tablebyvars used
+The \code{tidytlg} tables bound together reflecting the
+\code{tablebyvars} used.
 }
 \description{
-bind_table combines analysis results with formatting variables (indentme, newrows, newpage)
-based on by variables (tablebyvar, rowbyvar), such that appropriate formatting (indentation,
-line break, page break) can be applied in creating the output. It can also attach the column
-metadata attribute, which will be automatically used in \code{gentlg} for creating output.
+\code{bind_table} combines analysis results with formatting variables
+(\code{indentme}, \code{newrows}, \code{newpage}) based on \code{by} variables
+(\code{tablebyvar}, \code{rowbyvar}), such that appropriate formatting (indentation,
+line break, page break) can be applied while creating the output.
+It can also attach the column metadata attribute,
+which will be automatically used in \code{gentlg} for creating output.
 }
 \examples{
 library(magrittr)
 
 # bind tables together
 t1 <- cdisc_adsl \%>\%
-  freq(colvar = "TRT01PN",
-       rowvar = "ITTFL",
-       statlist = statlist("n"),
-       subset = ITTFL == "Y",
-       rowtext = "Analysis set: ITT")
+  freq(
+    colvar = "TRT01PN",
+    rowvar = "ITTFL",
+    statlist = statlist("n"),
+    subset = ITTFL == "Y",
+    rowtext = "Analysis set: ITT"
+  )
 
 t2 <- cdisc_adsl \%>\%
-  univar(colvar = "TRT01PN",
-         rowvar = "AGE",
-         decimal = 0,
-         row_header = "Age, years")
+  univar(
+    colvar = "TRT01PN",
+    rowvar = "AGE",
+    decimal = 0,
+    row_header = "Age, years"
+  )
 
 bind_table(t1, t2)
 
 # bind tables together w/by groups
 t1 <- cdisc_adsl \%>\%
-  freq(colvar = "TRT01PN",
-       rowvar = "ITTFL",
-       rowbyvar = "SEX",
-       statlist = statlist("n"),
-       subset = ITTFL == "Y",
-       rowtext = "Analysis set: ITT")
+  freq(
+    colvar = "TRT01PN",
+    rowvar = "ITTFL",
+    rowbyvar = "SEX",
+    statlist = statlist("n"),
+    subset = ITTFL == "Y",
+    rowtext = "Analysis set: ITT"
+  )
 
 t2 <- cdisc_adsl \%>\%
-  univar(colvar = "TRT01PN",
-         rowvar = "AGE",
-         rowbyvar = "SEX",
-         decimal = 0,
-         row_header = "Age, years")
+  univar(
+    colvar = "TRT01PN",
+    rowvar = "AGE",
+    rowbyvar = "SEX",
+    decimal = 0,
+    row_header = "Age, years"
+  )
 
 bind_table(t1, t2, rowbyvar = "SEX")
 
 # bind tables together w/table by groups
 t1 <- cdisc_adsl \%>\%
-  freq(colvar = "TRT01PN",
-       rowvar = "ITTFL",
-       tablebyvar = "SEX",
-       statlist = statlist("n"),
-       subset = ITTFL == "Y",
-       rowtext = "Analysis set: ITT")
+  freq(
+    colvar = "TRT01PN",
+    rowvar = "ITTFL",
+    tablebyvar = "SEX",
+    statlist = statlist("n"),
+    subset = ITTFL == "Y",
+    rowtext = "Analysis set: ITT"
+  )
 
 t2 <- cdisc_adsl \%>\%
-  univar(colvar = "TRT01PN",
-         rowvar = "AGE",
-         tablebyvar = "SEX",
-         decimal = 0,
-         row_header = "Age, years")
+  univar(
+    colvar = "TRT01PN",
+    rowvar = "AGE",
+    tablebyvar = "SEX",
+    decimal = 0,
+    row_header = "Age, years"
+  )
 
 bind_table(t1, t2, tablebyvar = "SEX")
 

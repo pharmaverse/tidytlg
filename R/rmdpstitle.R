@@ -1,18 +1,18 @@
 #' Get Titles and Footnotes for all TLGs or one specific TLG
 #'
 #' @param df dataframe with three variables; table name, row identifier (TITLE
-#'   or FOOTNOTEn), and title/footnote text to display
+#'   or FOOTNOTEn), and title or footnote text to display.
 #' @param tblid  character vector containing the table id, optional, used to
-#'   subset df to a specific table (defaults to tblid)
-#' @param idvar  character vector containing the variable in df that contains
-#'   your table id
-#' @param identifier  character vector containing the variable name in df that
-#'   contains your record identifier (defaults to "identifier")
-#' @param text  character vector containing the variable name in df that
-#'   contains your title and footnote text (defaults to "text")
+#'   subset `df` to a specific table (defaults to `tblid`).
+#' @param idvar  character vector containing the variable in `df` that contains
+#'   your table id.
+#' @param identifier character vector containing the variable name in `df` that
+#'   contains your record identifier (defaults to "identifier").
+#' @param text  character vector containing the variable name in `df` that
+#'   contains your title and footnote text (defaults to "text").
 #'
-#' @return list of length two, the first element contains the titles as a tibble
-#'   and the second contains the footnotes as a list
+#' @return list of length two, the first element contains the titles
+#'   as a `tibble` and the second contains the footnotes as a list.
 #' @export
 #'
 #' @examples

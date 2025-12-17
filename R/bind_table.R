@@ -1,29 +1,32 @@
-#' Bind a set of tidytlg tables together with formatting variables
+#' Bind a set of `tidytlg` tables together with formatting variables
 #'
-#' bind_table combines analysis results with formatting variables (indentme, newrows, newpage)
-#' based on by variables (tablebyvar, rowbyvar), such that appropriate formatting (indentation,
-#' line break, page break) can be applied in creating the output. It can also attach the column
-#' metadata attribute, which will be automatically used in `gentlg` for creating output.
+#' `bind_table` combines analysis results with formatting variables
+#' (`indentme`, `newrows`, `newpage`) based on `by` variables
+#' (`tablebyvar`, `rowbyvar`), such that appropriate formatting (indentation,
+#' line break, page break) can be applied while creating the output.
+#' It can also attach the column metadata attribute,
+#' which will be automatically used in `gentlg` for creating output.
 #'
-#' @param ... (required) a set of tidytlg tables to bind together
-#' @param colvar (required) treatment variable within df to use to summarize.
+#' @param ... (required) a set of `tidytlg` tables to bind together
+#' @param colvar (required) treatment variable within `df` to use to summarize.
 #'   Required if `add_count` is TRUE.
-#' @param tablebyvar (optional) repeat entire table by variable within df
-#' @param rowbyvar (optional) any rowbyvar values used to create the table
-#' @param prefix (optional) text to prefix the values of tablebyvar with
-#' @param add_count (optional) Should a count be included in the tablebyvar?
-#'   (default = TRUE)
+#' @param tablebyvar (optional) repeat entire table by variable within `df`.
+#' @param rowbyvar (optional) any `rowbyvar` values used to create the table.
+#' @param prefix (optional) text to prefix the values of `tablebyvar` with.
+#' @param add_count (optional) Should a count be included in the `tablebyvar`?
+#'   (default = `TRUE`)
 #' @param add_format (optional) Should format be added to the output table?
-#'   This is done using the add_format function. (default = TRUE)
-#' @param column_metadata_file (optional) An excel file for column_metadata.
+#'   This is done using the `add_format` function. (default = `TRUE`)
+#' @param column_metadata_file (optional) An excel file for `column_metadata`.
 #'   Does not change the behavior of the function binds the column metadata
-#'   for `gentlg`. If a column_metadata dataframe is passed in too,
+#'   for `gentlg`. If a `column_metadata` dataframe is passed in too,
 #'   this is ignored.
 #' @param column_metadata (optional) A dataframe containing the column metadata.
-#'   This will be used in place of column_metadata_file.
-#' @param tbltype (optional) A value used to subset the column_metadata_file.
+#'   This will be used in place of `column_metadata_file.`
+#' @param tbltype (optional) A value used to subset the `column_metadata_file.`
 #'
-#' @return The tidytlg tables bound together reflecting the tablebyvars used
+#' @return The `tidytlg` tables bound together reflecting the
+#' `tablebyvars` used.
 #' @export
 #'
 #' @examples
@@ -135,13 +138,13 @@ bind_table <- function(...,
       }
   } else {
     dfs <- purrr::map_dfr(dfs_, ~ add_rowtext_by(.x,
-      tablebyvar = tablebyvar,
+      tablebyvar = tablebyvar, # nolint indentation_linter
       env = env
     ))
 
     if (add_count) {
       first_freq <- min(which(purrr::map_chr(dfs_, first_class) ==
-        "tidytlg.freq"))
+        "tidytlg.freq")) # nolint indentation_linter
       denoms_ <- attr(dfs_[[first_freq]], "denom")
 
       res <- dfs %>%
@@ -265,7 +268,7 @@ add_anbr <- function(df, env = parent.frame()) {
 
   # check if anbr has been added or if it's not a valid numeric
   if ("anbr" %in% names(df) &&
-    !all(is.na(suppressWarnings(as.numeric(df[["anbr"]]))))) {
+    !all(is.na(suppressWarnings(as.numeric(df[["anbr"]]))))) { # nolint indentation_linter
     # update counter to be the max anbr in the input df for future layers
     anbr_values <- df[["anbr"]]
     assign("anbr_counter",

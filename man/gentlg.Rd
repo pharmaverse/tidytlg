@@ -2,7 +2,7 @@
 % Please edit documentation in R/gentlg.R
 \name{gentlg}
 \alias{gentlg}
-\title{Output a tidytlg table}
+\title{Output a \code{tidytlg} table}
 \usage{
 gentlg(
   huxme = NULL,
@@ -31,11 +31,11 @@ gentlg(
 }
 \arguments{
 \item{huxme}{(optional) For tables and listings, A list of input dataframes
-containing all columns of interest. For graphs, either NULL or a  list of ggplot
-objects. Vectorized.}
+containing all columns of interest. For graphs, either \code{NULL} or
+a list of \code{ggplot} objects. Vectorized.}
 
 \item{tlf}{(optional) String, representing the output choice. Choices are
-"Table" "Listing" "Figure". Abbreviations are allowed eg "T" for Table.
+"Table" "Listing" "Figure". Abbreviations are allowed eg. "T" for Table.
 Strings can be either upper- or lowercase. Vectorized. (Default = "Table")}
 
 \item{format}{(optional) String, representing the output format. Choices are
@@ -49,13 +49,14 @@ is identified through the use of the same column name in adjacent elements.
 Vectorized.}
 
 \item{idvars}{(optional) Character vector defining the columns of a listing
-where repeated values should be removed recursively. If NULL then
-all column names are used in the algorithm. If NA, then the listing remains
+where repeated values should be removed recursively. If \code{NULL} then
+all column names are used in the algorithm. If \code{NA}, then the listing remains
 as is.}
 
 \item{plotnames}{(optional) Character vector containing the names of the png
 files, with their extension to be incorporated for figure outputs.
-The png files need to be located in the path defined by the parameter \code{opath}.}
+The PNG files need to be located in the path defined by the
+parameter \code{opath}.}
 
 \item{plotwidth}{(optional) Numerical value that indicates the plot width in
 cm for figure outputs. (Default = 6)}
@@ -72,27 +73,28 @@ remainder of the available space. Alternatively, a vector can be used to
 represent the widths of all columns in the final output. The order of the
 arguments needs to correspond to the order of the columns in the \code{huxme}
 dataset, that are not part of the formatting algorithms
-(eg anbr, roworder, newpage, newrow, indentme, boldme, by_value, by_order).
+(eg. \code{anbr}, \code{roworder}, \code{newpage}, \code{newrow},
+\code{indentme}, \code{boldme}, \code{by_value}, \code{by_order}).
 The sum of the widths in the vector needs to be less or equal to one. When
-'format="HTML"' wcol can take only one value, the width of the first column.
-(Default = 0.45)}
+\code{format="HTML"} \code{wcol} can take only one value, the width
+of the first column. (Default = 0.45).}
 
 \item{orientation}{(optional) String: "portrait" or "landscape".
 (Default = "portrait")}
 
 \item{opath}{(optional) File path pointing to the output files
-(including .png files for graphs). (Default = ".")}
+(including PNG files for graphs). (Default = ".").}
 
 \item{title_file}{An Excel file that will be read in
 with \code{readxl::read_excel()} to be used as the \code{title} and \code{footers} arugment.
 The use of \code{title} or \code{footers} will override the values passed by this
-argument. The file should be either an xls or xlsx file with the columns
-'TABLE ID', 'IDENTIFIER', and TEXT'. The file will be read in, subset to
-where the tblid matches the tlf argument, and identifiers with 'title' or
+argument. The file should be either an \code{xls} or \code{xlsx} file with the columns
+\verb{TABLE ID}, \code{IDENTIFIER}, and \code{TEXT}. The file will be read in, subset to
+where the \code{tblid} matches the \code{tlf} argument, and identifiers with 'title' or
 'footnote' will be used to populate the table.}
 
 \item{file}{(required) String. Output identifier.
-File name will be adjusted to be lowercase and have - and _ removed,
+File name will be adjusted to be lowercase and have \code{-} and \verb{_} removed,
 this will not affect table title.}
 
 \item{title}{(required) String. Title of the output. Vectorized.}
@@ -101,35 +103,41 @@ this will not affect table title.}
 to be included. Vectorized.}
 
 \item{print.hux}{(optional) Logical, indicating whether the output should be
-printed to RTF ('format' = "rtf") / displayed as HTML ('format' = "HTML").
-(Default = TRUE) Note that RTF is written using \code{quick_rtf_jnj()}
-function and that the HTML is displayed via the huxtable::print_html
+printed to RTF \code{('format' = "rtf")} or displayed
+as HTML \code{('format' = "HTML")}.
+(Default = \code{TRUE}). Note that RTF is written using \code{quick_rtf_jnj()}
+function and that the HTML is displayed via the \code{huxtable::print_html}
 function.}
 
 \item{watermark}{(optional) String containing the desired watermark for
 RTF outputs. Vectorized.}
 
 \item{colheader}{(optional) Character vector that contains the column labels
-for a table or listing. Default uses the column labels of huxme. Vectorized.}
+for a table or listing. Default uses the column labels of \code{huxme}.
+Vectorized.}
 
 \item{pagenum}{(optional) Logical. When true page numbers are added on the
-right side of the footer section in the format page x/y.
-Vectorized. (Default = FALSE)}
+right side of the footer section in the format page \code{x/y}.
+Vectorized. (Default = \code{FALSE}).}
 
-\item{bottom_borders}{(optional) Matrix or \code{"old_format"}. A matrix indicating where to add the bottom
-borders. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information. If \code{"old_format"},
-then borders are added to the \code{colspan} and \code{colheader} rows. (Default = "old_format").}
+\item{bottom_borders}{(optional) Matrix or \code{"old_format"}.
+A matrix indicating where to add the bottom
+borders. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information.
+If \code{"old_format"}, then borders are added to the \code{colspan} and \code{colheader}
+rows. (Default = "old_format").}
 
-\item{border_fns}{(optional) List. A list of functions that transform the matrix
-passed to \code{bottom_borders}. Vectorized. See \code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information.}
+\item{border_fns}{(optional) List. A list of functions that transform
+the matrix passed to \code{bottom_borders}. Vectorized. See
+\code{\link[=add_bottom_borders]{add_bottom_borders()}} for more information.}
 
 \item{alignments}{(optional) List of named lists. Vectorized.
-(Default = list()) Used to specify individual column or cell alignments.
+(Default = \code{list()}) Used to specify individual column or cell alignments.
 Each named list contains \code{row}, \code{col}, and \code{value}, which are passed to
 \code{\link[huxtable:align]{huxtable::set_align()}} to set the alignments.}
 }
 \value{
-A list of formatted huxtables with desired properties for output to an RTF/HTML
+A list of formatted \code{huxtables} with desired
+properties for output to an RTF or HTML.
 }
 \description{
 Generate and output a huxtable with desired properties
@@ -137,18 +145,18 @@ During this function call, the huxtable can be written to an RTF or
 displayed in HTML. \code{gentlg} is vectorized, see parameter descriptions
 to learn for which arguments.
 }
-\section{Huxme Details}{
+\section{\code{Huxme} Details}{
 
 For tables and listings, formatting of the output can be dictated through the
 formatting columns
 (\code{newrows}, \code{indentme}, \code{boldme}, \code{newpage}), present in the input dataframe.
-The final huxtable will display all columns of the input dataframe, except
-any recognized formatting/sorting columns.
-For tables, the algorithm uses
-the column \code{label} as first column. The remaining columns are treated as
-summary columns.
-For graphs, you can pass a ggplot object directly into huxme and gentlg will
-save a png with with \code{ggplot2::ggsave()} and output an rtf.
+The final \code{huxtable} will display all columns of the input dataframe, except
+any recognized formatting or sorting columns.
+For tables, the algorithm uses the column \code{label} as first column.
+The remaining columns are treated as summary columns.
+For graphs, you can pass a \code{ggplot} object directly
+into \code{huxme} and \code{gentlg} will save a PNG with with \code{ggplot2::ggsave()}
+and output an RTF.
 }
 
 \examples{

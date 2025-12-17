@@ -4,7 +4,7 @@
 \name{cdisc adae}
 \alias{cdisc adae}
 \alias{cdisc_adae}
-\title{ADAE data created from subsetting the CDISC ADAE dataset}
+\title{\code{ADAE} data created from subsetting the \code{CDISC} \code{ADAE} dataset}
 \format{
 A data frame with 84 rows and 55 variables:
 \describe{
@@ -73,7 +73,7 @@ CDISC SDTM/ADAM Pilot Project.
 cdisc_adae
 }
 \description{
-ADAE data created from subsetting the CDISC ADAE dataset
+\code{ADAE} data created from subsetting the \code{CDISC} \code{ADAE} dataset
 }
 \keyword{CDISC}
 \keyword{adae}

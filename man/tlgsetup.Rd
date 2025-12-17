@@ -25,28 +25,28 @@ too, this is ignored.}
 \item{column_metadata}{A dataframe containing the column metadata. This will
 be used in place of \code{column_metadata_file}.}
 
-\item{tbltype}{A value used to subset the \code{column_metadata}, both this and the
-file requirements are needed to bind the data to the table.}
+\item{tbltype}{A value used to subset the \code{column_metadata}, both this
+and the file requirements are needed to bind the data to the table.}
 }
 \value{
 dataframe with observations added to support the column type as well
 as the factor variable \code{colnbr} which is used as our new column summary
-variable. Regardless of if a \code{coldef} exists in data, the column will exist in
-the table.
+variable. Regardless of if a \code{coldef} exists in data,
+the column will exist in the table.
 }
 \description{
-tlgsetup is useful for pre-processing total columns and columns composed of
-other columns. tlgsetup is called internally by \code{generate_results()} and can
-be run manually for custom tables.
+\code{tlgsetup} is useful for pre-processing total columns and columns composed of
+other columns. \code{tlgsetup} is called internally by \code{generate_results()}
+and can be run manually for custom tables.
 }
 \examples{
 df <-
   tibble::tribble(
-  ~TRT01AN, ~USUBJID,
-  0,        "A",
- 54,       "B",
- 81,       "C"
-)
+    ~TRT01AN, ~USUBJID,
+    0, "A",
+    54, "B",
+    81, "C"
+  )
 
 tlgsetup(df, "TRT01AN", column_metadata = column_metadata)
 

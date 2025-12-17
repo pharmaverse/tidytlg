@@ -9,10 +9,11 @@
 #' @param colvar (required) treatment variable within df to use to summarize
 #' @param tablebyvar (optional) repeat entire table by variable within df.
 #' @param rowvar (required) nested levels separated by a star, for example
-#'   AEBODSYS*AEDECOD,  this can handle up to three levels.
+#'   `AEBODSYS*AEDECOD`,  this can handle up to three levels.
 #' @param rowbyvar (optional) repeat `rowvar` by variable within df
-#' @param statlist (optional) count/percent type to return (default = "n (x.x)")
-#' @param decimal (optional) decimal precision root level (default = 1)
+#' @param statlist (optional) count/percent type to return
+#'   `(default = "n (x.x)")`
+#' @param decimal (optional) decimal precision root level `(default = 1)`
 #' @param cutoff (optional) numeric value used to cut the data to a percentage
 #'   threshold, if any column meets the threshold the entire record is kept.
 #' @param cutoff_stat (optional) The value to cutoff by, n or pct. (default =
@@ -21,19 +22,19 @@
 #'   `dplyr::filter()` function to subset the data.frame
 #' @param descending_by (optional) The column or columns to sort descending
 #'   values by. Can also provide a named list to do ascending order. ex.
-#'   c("VarName1" = "asc", "VarName2" = "desc") would sort by VarName1 in
-#'   ascending order and VarName2 in descending order. If not provided, the
+#'   `c("VarName1" = "asc", "VarName2" = "desc")` would sort by `VarName1` in
+#'   ascending order and `VarName2` in descending order. If not provided, the
 #'   columns will be sorted alphabetically.
 #' @param display_missing (optional) Should the "missing" values be displayed?
-#'   (default = FALSE)
+#'   (default = `FALSE`)
 #' @param rowtext (optional) A character vector used to rename the `label`
 #'   column. If named, names will give the new level and values will be the
 #'   replaced value. If unnamed, and the table has only one row, the `rowtext`
 #'   will rename the `label` of the row.
 #' @param row_header (optional) A character vector to be added to the table.
-#' @param .keep (optional) Should the `rowbyvar` and `tablebyvar` be output in the
-#'   table.  If FALSE, `rowbyvar` will still be output in the `label` column.
-#'   (default = TRUE)
+#' @param .keep (optional) Should the `rowbyvar` and `tablebyvar` be
+#'   output in the table. If `FALSE`, `rowbyvar` will still be output
+#'   in the `label` column. `(default = TRUE)`.
 #' @param .ord Should the ordering columns be output with the table? This is
 #'   useful if a table needs to be merged or reordered in any way after build.
 #' @param ... (optional) Named arguments to be included as columns on the table.
@@ -319,7 +320,6 @@ derive_nested <- function(df, denom_df, colvar, level, rowbyvar, tablebyvar,
     mutate(
       nested_level = 0
     )
-
 
 
   # Get derivations for second level
