@@ -66,8 +66,8 @@ gentlg(
 #>    Analysis Set: ITT            86                84                84         
 #>    Age (Years)                                                                 
 #>    N                            86                84                84         
-#>      <div style='border-bottom:1pt solid'> [demo1.html][] 17DEC2025,           
-#>                                                                17:27           
+#>      <div style='border-bottom:1pt solid'> [demo1.html][] 19DEC2025,           
+#>                                                                07:26           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -126,8 +126,8 @@ gentlg(
 #>                                                                                
 #>    Age (Years)                                                                 
 #>    N                            86                84                84         
-#>      <div style='border-bottom:1pt solid'> [demo2.html][] 17DEC2025,           
-#>                                                                17:27           
+#>      <div style='border-bottom:1pt solid'> [demo2.html][] 19DEC2025,           
+#>                                                                07:26           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -199,8 +199,8 @@ gentlg(
 #>    -17.76px;                                                                   
 #>    padding-left:                                                               
 #>    35.52px'> N                                                                 
-#>      <div style='border-bottom:1pt solid'> [demo3.html][] 17DEC2025,           
-#>                                                                17:27           
+#>      <div style='border-bottom:1pt solid'> [demo3.html][] 19DEC2025,           
+#>                                                                07:26           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -271,8 +271,8 @@ gentlg(
 #>    -17.76px;                                                                   
 #>    padding-left:                                                               
 #>    35.52px'> N                                                                 
-#>      <div style='border-bottom:1pt solid'> [demo4.html][] 17DEC2025,           
-#>                                                                17:27           
+#>      <div style='border-bottom:1pt solid'> [demo4.html][] 19DEC2025,           
+#>                                                                07:26           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -384,8 +384,8 @@ gentlg(
 #>    -17.76px;                                                                   
 #>    padding-left:                                                               
 #>    53.28px'> Mean (SD)                                                         
-#>      <div style='border-bottom:1pt solid'> [demo5.html][] 17DEC2025,           
-#>                                                                17:27           
+#>      <div style='border-bottom:1pt solid'> [demo5.html][] 19DEC2025,           
+#>                                                                07:26           
 #> 
 #> Column names: label, 0, 54, 81
 ```
