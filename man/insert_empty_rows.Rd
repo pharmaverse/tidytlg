@@ -17,9 +17,14 @@ Inserts empty rows into a data frame
 }
 \details{
 \code{gentlg} allows for formatting the input table based on formatting columns
-(see \code{\link[=gentlg]{gentlg()}}). One of the formatting mechanisms is empty row insertion. This
-function inserts the empty rows based on the \code{newrows} column in the data
-frame. The new rows are inserted before the rows with value \code{1} in the
+(see \code{\link[=gentlg]{gentlg()}}). One of the formatting mechanisms is empty row insertion.
+This function inserts the empty rows based on the \code{newrows} column in the
+data frame. The new rows are inserted before the rows with value \code{1} in the
 \code{newrows} column.
 }
-\keyword{internal}
+\examples{
+df <- iris[1:10, ]
+df <- as.data.frame(apply(df, 2, as.character))
+df$newrows <- c(0, 1, 0, 1, 1, 0, 0, 0, 0, 0)
+insert_empty_rows(df)
+}

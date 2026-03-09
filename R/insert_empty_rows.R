@@ -2,15 +2,21 @@
 #'
 #' @details
 #' `gentlg` allows for formatting the input table based on formatting columns
-#' (see [gentlg()]). One of the formatting mechanisms is empty row insertion. This
-#' function inserts the empty rows based on the `newrows` column in the data
-#' frame. The new rows are inserted before the rows with value `1` in the
+#' (see [gentlg()]). One of the formatting mechanisms is empty row insertion.
+#' This function inserts the empty rows based on the `newrows` column in the
+#' data frame. The new rows are inserted before the rows with value `1` in the
 #' `newrows` column.
 #'
 #' @param huxme `data.frame` The input data frame.
 #'
 #' @return A data frame with added new empty rows.
-#' @keywords internal
+#' @export
+#'
+#' @examples
+#' df <- iris[1:10, ]
+#' df <- as.data.frame(apply(df, 2, as.character))
+#' df$newrows <- c(0, 1, 0, 1, 1, 0, 0, 0, 0, 0)
+#' insert_empty_rows(df)
 insert_empty_rows <- function(huxme, newrows = huxme$newrows) {
   if (is.null(newrows)) {
     return(huxme)
