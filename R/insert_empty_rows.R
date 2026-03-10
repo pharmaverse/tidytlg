@@ -22,6 +22,8 @@ insert_empty_rows <- function(huxme, newrows = huxme$newrows) {
   if (is.null(newrows)) {
     return(huxme)
   }
+  assertthat::assert_that(is.data.frame(huxme))
+  assertthat::assert_that(is.numeric(newrows))
   assertthat::assert_that(nrow(huxme) == length(newrows))
 
   format_columns <- c("row_type", "anbr", "indentme", "roworder", "newrows")
