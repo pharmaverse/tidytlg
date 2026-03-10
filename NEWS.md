@@ -1,5 +1,7 @@
 # tidytlg 0.11.0.9000
 
+- Exported functions `get_file_name()` and `insert_empty_rows()`.
+
 # tidytlg 0.11.0
 
 - Fixed RTF landscape tag (#54).

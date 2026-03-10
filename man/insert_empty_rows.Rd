@@ -8,6 +8,8 @@ insert_empty_rows(huxme, newrows = huxme$newrows)
 }
 \arguments{
 \item{huxme}{\code{data.frame} The input data frame.}
+
+\item{newrows}{\code{integer} A numeric vector specifying where the new rows should be inserted.}
 }
 \value{
 A data frame with added new empty rows.

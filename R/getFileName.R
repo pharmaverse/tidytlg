@@ -8,7 +8,9 @@
 #' @return The file path up untill the program's name.
 #' @param file name of the file
 #'
-#' @noRd
+#' @export
+#' @examples
+#' get_file_name()
 get_file_name <- function() {
   ##### If run from MCD BATCH\
   file_name <- get_file_name_batch(commandArgs(trailingOnly = FALSE))
