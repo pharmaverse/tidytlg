@@ -5,7 +5,7 @@
 #'
 #' @author Steven haesendonckx {shaesen2@@its.jnj.com}
 #'
-#' @return The file path up untill the program's name.
+#' @return The file path up until the program's name.
 #' @param file name of the file
 #'
 #' @export

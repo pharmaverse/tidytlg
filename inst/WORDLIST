@@ -1,28 +1,5 @@
-<<<<<<< HEAD
-TLG
-TLGs
-tlf
-tidyverse
-Tidyverse
-dataframe
-RTF
-HTML
-SDTM
-PHUSE
-ORCID
-Papadopoulou
-Sheng
-Janssen
-CDISC
-BMI
-JNJ
-jnj
-||||||| 91bb692
-=======
 BMI
 CDISC
-HTML
-JNJ
 Janssen
 ORCID
 PHUSE
@@ -33,15 +10,18 @@ Sheng
 TLG
 TLGs
 Tidyverse
-dataframe
+Timepoint
+Vectorized
+envsetup
+funder
+getFileName
+haesendonckx
+hardcoded
+huxtable
 jnj
+neighbouring
 ppapadop
+preprocessed
 shaesen
 tidyverse
-tlf
-neighbouring
-hardcoded
-funder
-huxtable
-envsetup
->>>>>>> 8341e0b
+vectorized

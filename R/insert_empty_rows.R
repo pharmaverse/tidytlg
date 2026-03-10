@@ -8,7 +8,8 @@
 #' `newrows` column.
 #'
 #' @param huxme `data.frame` The input data frame.
-#' @param newrows `integer` A numeric vector specifying where the new rows should be inserted.
+#' @param newrows `integer` A numeric vector specifying where the new rows
+#' should be inserted.
 #'
 #' @return A data frame with added new empty rows.
 #' @export

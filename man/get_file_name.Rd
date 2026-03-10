@@ -10,7 +10,7 @@ get_file_name()
 \item{file}{name of the file}
 }
 \value{
-The file path up untill the program's name.
+The file path up until the program's name.
 }
 \description{
 This function returns the file path up until the program's
