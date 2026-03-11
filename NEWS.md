@@ -1,5 +1,7 @@
 # tidytlg 0.11.0.9000
 
+- Replaced leading whitespaces in header col 1 with left-indentation RTF markup.
+
 # tidytlg 0.11.0
 
 - Fixed RTF landscape tag (#54).
