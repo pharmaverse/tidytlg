@@ -241,6 +241,23 @@ gentlg <- function(huxme = NULL,
     stopifnot("Each item of `alignments` must be a list" = is.list(alignment))
   }
 
+  # if wcol is a list, then huxme must be a list with same length,
+  # and wcol[[i]] must be a vector with as many numeric values
+  # as number of columns in huxme[[i]]
+  if (is.list(wcol)) {
+    stopifnot(is.list(huxme))
+    stopifnot(length(huxme) == length(wcol))
+    # the following checks are also made inside gentlg_single()
+    formatcolumns <- c(
+      "anbr", "roworder", "boldme", "indentme", "newrows", "newpage",
+      "rowvar", "row_type", "nested_level", "group_level"
+    )
+    for (i in seq_along(wcol)) {
+      stopifnot(is.numeric(wcol[[i]]))
+      stopifnot(length(wcol[[i]]) == length(dplyr::setdiff(colnames(huxme[[i]]), formatcolumns)))
+    }
+  }
+
   adjfilename <- stringr::str_replace_all(
     stringr::str_to_lower(file),
     "(-|_)", ""
@@ -332,6 +349,10 @@ gentlg <- function(huxme = NULL,
     alignments <- list(alignments)
   }
 
+  if (!is.list(wcol)) {
+    wcol <- list(wcol)
+  }
+
   hts <- mapply(
     function(ht,
              colspan,
@@ -343,7 +364,8 @@ gentlg <- function(huxme = NULL,
              bottom_borders,
              border_fns,
              alignments,
-             index) {
+             index,
+             wcol_i) {
       gentlg_single(
         huxme = ht,
         tlf = tlf,
@@ -353,7 +375,7 @@ gentlg <- function(huxme = NULL,
         plotnames = plotnames,
         plotwidth = plotwidth,
         plotheight = plotheight,
-        wcol = wcol,
+        wcol = wcol_i,
         orientation = orientation,
         opath = opath,
         title_file = title_file,
@@ -381,6 +403,7 @@ gentlg <- function(huxme = NULL,
     border_fns,
     alignments,
     seq_len(length(huxme)),
+    wcol,
     SIMPLIFY = FALSE
   )
 
