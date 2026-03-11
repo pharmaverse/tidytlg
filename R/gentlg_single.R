@@ -476,6 +476,18 @@ gentlg_single <- function(huxme = NULL,
   #############################
   ###       Huxit!          ###
   #############################
+
+  replace_leading_whitespaces_with_indentation <- function(x) {
+    # get number of whitespaces at the beginning of column 1 in the header
+    num_whitespaces <- attr(regexpr("^\\s*", x), "match.length")
+    # 2 whitespaces represent an indentation of 0.125 inches = 180 twips
+    # e.g. 4 whitespaces represent a left-indentation of 0.25 inches = 360 twips
+    num_twips <- num_whitespaces * 90
+    raw_rtf_markup <- paste0("\\intbl\\li", num_twips, "\\fi0")
+    x <- paste0(raw_rtf_markup, " ", trimws(x, "left"))
+    return(x)
+  }
+
   if (is_format_rtf(format)) {
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
       ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
@@ -487,12 +499,14 @@ gentlg_single <- function(huxme = NULL,
           "Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns"
         )
       }
+      ht[1, 1] <- replace_leading_whitespaces_with_indentation(ht[1, 1])
       ht[1, ] <- paste0("\\keepn\\trhdr ", ht[1, ]) # Make repeated treatments on each page
       formatindex <- 1
     } else if (tolower(substr(tlf, 1, 1)) %in% c("l")) {
       ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
         huxtable::set_width(value = huxwidth)
       ht[1, ] <- colheader
+      ht[1, 1] <- replace_leading_whitespaces_with_indentation(ht[1, 1])
       ht[1, ] <- paste0("\\keepn\\trhdr ", ht[1, ]) # Make repeated treatments on each page
       formatindex <- 1
     } else if (tolower(substr(tlf, 1, 1)) %in% c("f", "g")) {
@@ -563,6 +577,7 @@ gentlg_single <- function(huxme = NULL,
     ### add row one by one to maintain huxtable structure
     if (is_format_rtf(format)) {
       for (i in rev(seq_len(length(colspan)))) {
+        colspan[[i]][1] <- replace_leading_whitespaces_with_indentation(colspan[[i]][1])
         ht <- huxtable::insert_row(ht, paste0("\\keepn\\trhdr ", colspan[[i]]),
           after = 0, fill = ""
         ) %>%
