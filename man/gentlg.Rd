@@ -64,9 +64,14 @@ cm for figure outputs. (Default = 6)}
 \item{plotheight}{(optional) Numerical value that indicates the plot height
 in cm for figure outputs. (Default = 5)}
 
-\item{wcol}{(optional) Can be a single numerical value that represents the
-width of the first column or a vector, specifying the lengths of all columns
-in the final table or listing.\cr
+\item{wcol}{(optional) Can be one of:
+\itemize{
+\item a single numerical value that represents the width of the first column
+\item a vector, specifying the widths of all columns in the final table or listing
+\item a list of vectors (applicable when huxme is a list), specifying
+the widths of all columns for each element in huxme\cr
+}
+
 When a single numerical value is used, this will be taken as the column width
 for the first column. The other columns will be equally spaced across the
 remainder of the available space. Alternatively, a vector can be used to
