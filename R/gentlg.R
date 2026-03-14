@@ -245,7 +245,7 @@ gentlg <- function(huxme = NULL,
   }
 
   # if wcol is a list, then huxme must be a list with same length,
-  # and wcol[[i]] must be a vector with as many numeric values
+  # and wcol[[i]] must be a length 1 vector or a vector with as many numeric values
   # as number of columns in huxme[[i]]
   if (is.list(wcol)) {
     stopifnot(is.list(huxme))
