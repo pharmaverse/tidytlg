@@ -249,15 +249,27 @@ gentlg <- function(huxme = NULL,
   # as number of columns in huxme[[i]]
   if (is.list(wcol)) {
     stopifnot(is.list(huxme))
-    stopifnot(length(huxme) == length(wcol))
+    if (!is.list(huxme)) {
+      stop("Argument 'wcol' is a list but 'huxme' isn't; please convert it to list when calling gentlg().")
+    }
+    if (length(huxme) != length(wcol)) {
+      stop("Arguments 'wcol' and 'huxme' must have the same length.")
+    }
     # the following checks are also made inside gentlg_single()
     formatcolumns <- c(
       "anbr", "roworder", "boldme", "indentme", "newrows", "newpage",
       "rowvar", "row_type", "nested_level", "group_level"
     )
     for (i in seq_along(wcol)) {
-      stopifnot(is.numeric(wcol[[i]]))
-      stopifnot(length(wcol[[i]]) == length(dplyr::setdiff(colnames(huxme[[i]]), formatcolumns)))
+      if (!is.numeric(wcol[[i]])) {
+        stop("wcol[[", i, "]] must be (a vector of) numeric.")
+      }
+      # wcol[[i]] must be a length 1 vector or a vector of length equal of ncol(huxme[[i]])
+      expected_length <- length(dplyr::setdiff(colnames(huxme[[i]]), formatcolumns))
+      if (length(wcol[[i]]) != 1 && length(wcol[[i]]) != expected_length) {
+        stop("wcol[[", i, "]] must be a length 1 vector or contain as many values as number of columns (i.e. ",
+             expected_length, "), but its length is ", length(wcol[[i]]), ".")
+      }
     }
   }
 
@@ -395,18 +407,18 @@ gentlg <- function(huxme = NULL,
         index_in_result = index
       )
     },
-    huxme,
-    colspan,
-    title,
-    footers,
-    watermark,
-    colheader,
-    pagenum,
-    bottom_borders,
-    border_fns,
-    alignments,
-    seq_len(length(huxme)),
-    wcol,
+    ht = huxme,
+    colspan = colspan,
+    title = title,
+    footers = footers,
+    watermark = watermark,
+    colheader = colheader,
+    pagenum = pagenum,
+    bottom_borders = bottom_borders,
+    border_fns = border_fns,
+    alignments = alignments,
+    index = seq_len(length(huxme)),
+    wcol_i = wcol,
     SIMPLIFY = FALSE
   )
 
