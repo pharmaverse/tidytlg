@@ -248,7 +248,6 @@ gentlg <- function(huxme = NULL,
   # and wcol[[i]] must be a length 1 vector or a vector with as many numeric values
   # as number of columns in huxme[[i]]
   if (is.list(wcol)) {
-    stopifnot(is.list(huxme))
     if (!is.list(huxme)) {
       stop("Argument 'wcol' is a list but 'huxme' isn't; please convert it to list when calling gentlg().")
     }
