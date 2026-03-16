@@ -59,3 +59,63 @@ test_that("replace_lead_whitespaces_ind() is replacing whitespaces", {
   res <- as.character(res[[1]][2, 1])
   expect_equal(res, "\\keepn\\trhdr Gender")
 })
+
+test_that("gentlg() wcol checks", {
+  df <- data.frame(label = c("boy", "girl"), name = c("Bob", "Lily"), age = c(12, 15))
+
+  # example passing 1 colwidth per page
+  wcol <- list(c(0.5), c(0.25))
+  expect_no_error(hux_tables <- gentlg(
+    huxme = list(df, df),
+    wcol = wcol,
+    print.hux = FALSE
+  ))
+
+  for (i in seq_along(wcol)) {
+    ht <- hux_tables[[i]]
+    num_cols <- ncol(ht)
+    actual_colwidths <- huxtable::col_width(ht)
+    # expect that the 1st colwidth is what we specified in the function call
+    expect_equal(as.numeric(actual_colwidths[1]), wcol[[i]])
+    # expect that the rest of columns have the same width
+    expect_true(length(unique(as.numeric(actual_colwidths[2:num_cols]))) == 1)
+    # expect that the sum of all colwidths is 1
+    expect_true(sum(actual_colwidths) == 1)
+  }
+
+  # example passing all colwidths explicitly
+  wcol <- list(c(0.5, 0.3, 0.2), c(0.4, 0.4, 0.2))
+  expect_no_error(hux_tables <- gentlg(
+    huxme = list(df, df),
+    wcol = wcol,
+    print.hux = FALSE
+  ))
+
+  for (i in seq_along(wcol)) {
+    ht <- hux_tables[[i]]
+    num_cols <- ncol(ht)
+    expected_colwidths <- wcol[[i]]
+    actual_colwidths <- as.numeric(huxtable::col_width(ht))
+    expect_equal(expected_colwidths, actual_colwidths)
+    expect_true(sum(actual_colwidths) == 1)
+  }
+
+  # examples passing wrong colwidths
+  wcol <- list(c(0.5, 0.3), c(0.4, 0.4, 0.2))
+  expect_error(hux_tables <- gentlg(
+    huxme = list(df, df),
+    wcol = wcol,
+    print.hux = FALSE
+  ),
+  "must be a length 1 vector or contain as many values as number of columns"
+  )
+
+  wcol <- list(c(0.5, 0.2, 0.5), c(0.4, 0.4, 0.2))
+  expect_error(hux_tables <- gentlg(
+    huxme = list(df, df),
+    wcol = wcol,
+    print.hux = FALSE
+  ),
+  "wcol not defined properly"
+  )
+})
