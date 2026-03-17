@@ -80,7 +80,7 @@ test_that("gentlg() wcol checks", {
     # expect that the rest of columns have the same width
     expect_true(length(unique(as.numeric(actual_colwidths[2:num_cols]))) == 1)
     # expect that the sum of all colwidths is 1
-    expect_true(sum(actual_colwidths) == 1)
+    expect_equal(sum(actual_colwidths), 1, tolerance = 1e-6)
   }
 
   # example passing all colwidths explicitly
@@ -97,7 +97,7 @@ test_that("gentlg() wcol checks", {
     expected_colwidths <- wcol[[i]]
     actual_colwidths <- as.numeric(huxtable::col_width(ht))
     expect_equal(expected_colwidths, actual_colwidths)
-    expect_true(sum(actual_colwidths) == 1)
+    expect_equal(sum(actual_colwidths), 1, tolerance = 1e-6)
   }
 
   # examples passing wrong colwidths
