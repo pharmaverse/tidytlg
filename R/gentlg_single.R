@@ -477,19 +477,6 @@ gentlg_single <- function(huxme = NULL,
   ###       Huxit!          ###
   #############################
 
-  replace_leading_whitespaces_with_indentation <- function(x) {
-    # get number of whitespaces at the beginning of column 1 in the header
-    num_whitespaces <- attr(regexpr("^\\s*", x), "match.length")
-    # 2 whitespaces represent an indentation of 0.125 inches = 180 twips
-    # e.g. 4 whitespaces represent a left-indentation of 0.25 inches = 360 twips
-    num_twips <- num_whitespaces * 90
-    if (num_twips > 0) {
-      raw_rtf_markup <- paste0("\\intbl\\li", num_twips, "\\fi0")
-      x <- paste0(raw_rtf_markup, " ", trimws(x, "left"))
-    }
-    return(x)
-  }
-
   if (is_format_rtf(format)) {
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
       ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%

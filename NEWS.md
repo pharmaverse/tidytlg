@@ -1,6 +1,6 @@
 # tidytlg 0.11.0.9000
 
-- Replaced leading whitespaces in header col 1 with left-indentation RTF markup.
+- Updated `gentlg_single()` to replace, in the first column of tables/listings headers, every leading whitespace with 90 twips (0.0625 inches) left-indentation RTF markup.
 
 # tidytlg 0.11.0
 

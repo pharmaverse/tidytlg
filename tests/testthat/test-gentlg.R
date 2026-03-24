@@ -42,3 +42,20 @@ test_that("custom alignments work", {
   expect_equal(align_property_2[4, 2], "center")
   expect_equal(align_property_2[3, 3], "right")
 })
+
+test_that("replace_leading_whitespaces_with_indentation() is replacing whitespaces", {
+  # case when there are 2 leading whitespaces, should insert 180 twips
+  df <- data.frame(label = c("boy", "girl"), name = c("Bob", "Lily"), age = c(12, 15))
+  expect_no_error(res <- gentlg(huxme = df,
+         print.hux = FALSE,
+         colheader = c("  Gender", "Name", "Age")))
+  res <- as.character(res[[1]][2, 1])
+  expect_equal(res, "\\keepn\\trhdr \\intbl\\li180\\fi0 Gender")
+
+  # case when there are no leading whitespaces, should leave it as is
+  expect_no_error(res <- gentlg(huxme = df,
+                                print.hux = FALSE,
+                                colheader = c("Gender", "Name", "Age")))
+  res <- as.character(res[[1]][2, 1])
+  expect_equal(res, "\\keepn\\trhdr Gender")
+})
