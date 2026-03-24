@@ -255,6 +255,7 @@ gentlg <- function(huxme = NULL,
         "vector, otherwise pass a non-data.frame list to 'huxme'."
       )
     }
+    ## already know wcol is a list and huxme is a non-data.frame list 
     if (length(huxme) != length(wcol)) {
       stop("Arguments 'wcol' and 'huxme' must have the same length.")
     }
