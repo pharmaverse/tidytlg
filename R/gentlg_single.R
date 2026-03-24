@@ -488,14 +488,14 @@ gentlg_single <- function(huxme = NULL,
           "Column header not used; {length(colheader)} column header provided, but data contain {ncol(ht)} columns"
         )
       }
-      ht[1, 1] <- replace_leading_whitespaces_with_indentation(ht[1, 1])
+      ht[1, 1] <- replace_lead_whitespaces_ind(ht[1, 1])
       ht[1, ] <- paste0("\\keepn\\trhdr ", ht[1, ]) # Make repeated treatments on each page
       formatindex <- 1
     } else if (tolower(substr(tlf, 1, 1)) %in% c("l")) {
       ht <- huxtable::as_hux(huxme, add_colnames = TRUE) |>
         huxtable::set_width(value = huxwidth)
       ht[1, ] <- colheader
-      ht[1, 1] <- replace_leading_whitespaces_with_indentation(ht[1, 1])
+      ht[1, 1] <- replace_lead_whitespaces_ind(ht[1, 1])
       ht[1, ] <- paste0("\\keepn\\trhdr ", ht[1, ]) # Make repeated treatments on each page
       formatindex <- 1
     } else if (tolower(substr(tlf, 1, 1)) %in% c("f", "g")) {
@@ -566,7 +566,7 @@ gentlg_single <- function(huxme = NULL,
     ### add row one by one to maintain huxtable structure
     if (is_format_rtf(format)) {
       for (i in rev(seq_len(length(colspan)))) {
-        colspan[[i]][1] <- replace_leading_whitespaces_with_indentation(colspan[[i]][1])
+        colspan[[i]][1] <- replace_lead_whitespaces_ind(colspan[[i]][1])
         ht <- huxtable::insert_row(ht, paste0("\\keepn\\trhdr ", colspan[[i]]),
           after = 0, fill = ""
         ) |>
