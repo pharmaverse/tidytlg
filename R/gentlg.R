@@ -248,8 +248,12 @@ gentlg <- function(huxme = NULL,
   # and wcol[[i]] must be a length 1 vector or a vector with as many numeric values
   # as number of columns in huxme[[i]]
   if (is.list(wcol)) {
-    if (!is.list(huxme)) {
-      stop("Argument 'wcol' is a list but 'huxme' isn't; please convert it to list when calling gentlg().")
+    if (!(is.list(huxme) && !is.data.frame(huxme))) {
+      stop(
+        "'wcol' appears to be a list while huxme is not a list of tables/listings. ",
+        "If you intended 'wcol' to apply to the single output, convert it to a ",
+        "vector, otherwise pass a non-data.frame list to 'huxme'."
+      )
     }
     if (length(huxme) != length(wcol)) {
       stop("Arguments 'wcol' and 'huxme' must have the same length.")
