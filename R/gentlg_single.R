@@ -47,23 +47,23 @@ gentlg_single <- function(huxme = NULL,
       stop("'title_file' file must have columns: 'TABLE ID',
            'IDENTIFIER', and 'TEXT'")
     }
-    title_df <- title_df %>%
+    title_df <- title_df |>
       filter(`TABLE ID` == file)
 
     if (is.null(title) && nrow(title_df) > 0) {
-      title <- title_df %>%
-        filter(str_detect(IDENTIFIER, regex("title", ignore_case = TRUE))) %>%
+      title <- title_df |>
+        filter(str_detect(IDENTIFIER, regex("title", ignore_case = TRUE))) |>
         extract2("TEXT")
       if (length(title) == 0) {
         title <- NULL
       }
     }
     if (is.null(footers) && nrow(title_df) > 0) {
-      footers <- title_df %>%
+      footers <- title_df |>
         filter(str_detect(
           IDENTIFIER,
           regex("^footnote", ignore_case = TRUE)
-        )) %>%
+        )) |>
         extract2("TEXT")
       if (length(footers) == 0) {
         footers <- NULL
@@ -75,21 +75,21 @@ gentlg_single <- function(huxme = NULL,
     cm <- attr(huxme, "column_metadata")
     cm <- cm[, colSums(is.na(cm)) < nrow(cm)]
     if (any(str_detect(names(cm), "span"))) {
-      colspan <- cm %>%
-        select(starts_with("span")) %>%
-        as.list() %>%
+      colspan <- cm |>
+        select(starts_with("span")) |>
+        as.list() |>
         unname()
       colspan <- colspan[!purrr::map_lgl(colspan, ~ all(is.na(.)))]
-      colspan <- purrr::map(colspan, ~ c("", replace_na_with_blank(.))) %>%
+      colspan <- purrr::map(colspan, ~ c("", replace_na_with_blank(.))) |>
         rev()
     }
   }
   if (!is.null(attr(huxme, "column_metadata")) && is.null(colheader)) {
     cm <- attr(huxme, "column_metadata")
     if ("decode" %in% names(cm)) {
-      colheader <- cm %>%
-        select(decode) %>%
-        unlist() %>%
+      colheader <- cm |>
+        select(decode) |>
+        unlist() |>
         unname()
       colheader <- c("", colheader)
       names(colheader) <- c("label", paste0("col", seq_len(nrow(cm))))
@@ -149,7 +149,7 @@ gentlg_single <- function(huxme = NULL,
 
   # Check if the huxme is blank, this will error out in R < 4
   if (ncol(huxme) > 0) {
-    huxme <- huxme %>%
+    huxme <- huxme |>
       select(!c(any_of("func"), ends_with("_ord")))
   }
 
@@ -332,24 +332,24 @@ gentlg_single <- function(huxme = NULL,
   #############################
 
   .to_html <- function(df) {
-    list_df <- df %>%
-      as.list() %>%
+    list_df <- df |>
+      as.list() |>
       lapply(gsub,
         pattern = "(\\{\\\\super)(.*?)(\\})",
         replacement = "<sup>\\2</sup>"
-      ) %>%
+      ) |>
       lapply(gsub,
         pattern = "(\\{\\\\sub)(.*?)(\\})",
         replacement = "<sub>\\2</sub>"
-      ) %>%
-      lapply(gsub, pattern = "\\\\n", replacement = "<br/>") %>%
+      ) |>
+      lapply(gsub, pattern = "\\\\n", replacement = "<br/>") |>
       lapply(gsub, pattern = "\\\\line", replacement = "<br/>")
 
     if (base::inherits(df, "data.frame")) {
-      df <- list_df %>%
+      df <- list_df |>
         data.frame(stringsAsFactors = FALSE, check.names = FALSE)
     } else if (base::inherits(df, "character") && !is.null(df)) {
-      df <- list_df %>%
+      df <- list_df |>
         unlist(use.names = FALSE)
     }
 
@@ -429,7 +429,7 @@ gentlg_single <- function(huxme = NULL,
     }
 
     if (!is.na(idvars[1]) && dim(huxme)[1] >= 1) {
-      for (i in rev(seq_len(length(idvars)))) {
+      for (i in rev(seq_along(idvars))) {
         less <- idvars[1:i]
         huxme[duplicated(huxme[, less]), less] <- ""
       }
@@ -479,7 +479,7 @@ gentlg_single <- function(huxme = NULL,
 
   if (is_format_rtf(format)) {
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
-      ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
+      ht <- huxtable::as_hux(huxme, add_colnames = TRUE) |>
         huxtable::set_width(value = huxwidth)
       if (ncol(ht) == length(colheader)) {
         ht[1, ] <- colheader
@@ -492,21 +492,21 @@ gentlg_single <- function(huxme = NULL,
       ht[1, ] <- paste0("\\keepn\\trhdr ", ht[1, ]) # Make repeated treatments on each page
       formatindex <- 1
     } else if (tolower(substr(tlf, 1, 1)) %in% c("l")) {
-      ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
+      ht <- huxtable::as_hux(huxme, add_colnames = TRUE) |>
         huxtable::set_width(value = huxwidth)
       ht[1, ] <- colheader
       ht[1, 1] <- replace_leading_whitespaces_with_indentation(ht[1, 1])
       ht[1, ] <- paste0("\\keepn\\trhdr ", ht[1, ]) # Make repeated treatments on each page
       formatindex <- 1
     } else if (tolower(substr(tlf, 1, 1)) %in% c("f", "g")) {
-      ht <- huxtable::as_hux(huxme, add_colnames = FALSE) %>%
+      ht <- huxtable::as_hux(huxme, add_colnames = FALSE) |>
         huxtable::set_width(value = huxwidth)
     } else {
       stop("tlf can have following character values: Table, Listing, Graph, Figure")
     }
   } else if (is_format_html(format)) {
     if (tolower(substr(tlf, 1, 1)) %in% c("t")) {
-      ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
+      ht <- huxtable::as_hux(huxme, add_colnames = TRUE) |>
         huxtable::set_width(value = huxwidth)
       if (ncol(ht) == length(colheader)) {
         ht[1, ] <- colheader
@@ -518,20 +518,20 @@ gentlg_single <- function(huxme = NULL,
 
       formatindex <- 1
     } else if (tolower(substr(tlf, 1, 1)) %in% c("l")) {
-      ht <- huxtable::as_hux(huxme, add_colnames = TRUE) %>%
+      ht <- huxtable::as_hux(huxme, add_colnames = TRUE) |>
         huxtable::set_width(value = huxwidth)
       ht[1, ] <- colheader
       formatindex <- 1
     } else if (tolower(substr(tlf, 1, 1)) %in% c("f", "g")) {
-      ht <- huxtable::as_hux(huxme, add_colnames = FALSE) %>%
+      ht <- huxtable::as_hux(huxme, add_colnames = FALSE) |>
         huxtable::set_width(value = huxwidth)
     } else {
       stop("tlf can have following character values: Table, Listing, Graph, Figure")
     }
   }
 
-  ht <- ht %>%
-    huxtable::set_right_padding(value = getOption("tidytlg.right.padding")) %>%
+  ht <- ht |>
+    huxtable::set_right_padding(value = getOption("tidytlg.right.padding")) |>
     huxtable::set_left_padding(value = getOption("tidytlg.left.padding"))
 
   #############################
@@ -569,12 +569,12 @@ gentlg_single <- function(huxme = NULL,
         colspan[[i]][1] <- replace_leading_whitespaces_with_indentation(colspan[[i]][1])
         ht <- huxtable::insert_row(ht, paste0("\\keepn\\trhdr ", colspan[[i]]),
           after = 0, fill = ""
-        ) %>%
+        ) |>
           huxtable::set_number_format(row = 1, col = seq_len(ncol(ht)), value = NA)
       }
     } else if (is_format_html(format)) {
       ### add row one by one to maintain huxtable structure
-      for (i in rev(seq_len(length(colspan)))) {
+      for (i in rev(seq_along(colspan))) {
         ht <- huxtable::insert_row(ht, paste0(colspan[[i]]), after = 0)
       }
     }
@@ -616,10 +616,10 @@ gentlg_single <- function(huxme = NULL,
 
   ### font size
   if ((tolower(substr(tlf, 1, 1)) %in% "l")) {
-    ht <- ht %>%
+    ht <- ht |>
       huxtable::set_font_size(value = getOption("tidytlg.fontsize.listing"))
   } else {
-    ht <- ht %>%
+    ht <- ht |>
       huxtable::set_font_size(value = getOption("tidytlg.fontsize.table"))
   }
 
@@ -878,8 +878,8 @@ gentlg_single <- function(huxme = NULL,
       getOption("tidytlg.fontsize.table")
     ) / 10
 
-    ht <- huxtable::set_top_border(ht, 1, value = bordervalue) %>%
-      huxtable::set_bottom_border(1, value = bordervalue) %>%
+    ht <- huxtable::set_top_border(ht, 1, value = bordervalue) |>
+      huxtable::set_bottom_border(1, value = bordervalue) |>
       huxtable::set_bottom_border(nrow(ht), value = bordervalue)
   } else if (is_format_html(format)) {
     ht[1, ] <- paste0("<div style='border-top :1pt solid; border-bottom :1pt solid; '> ", ht[1, ])
@@ -908,7 +908,7 @@ gentlg_single <- function(huxme = NULL,
           font_size = size, border = 0
         )
       }
-      return(dsnin)
+      dsnin
     }
   } else if (is_format_html(format)) {
     add_footer <- function(dsnin, footer, first = FALSE, size = fontsize) {
@@ -929,7 +929,7 @@ gentlg_single <- function(huxme = NULL,
           font_size = size, border = 0
         )
       }
-      return(dsnin)
+      dsnin
     }
   }
 
