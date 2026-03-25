@@ -6,9 +6,6 @@
 \usage{
 get_file_name()
 }
-\arguments{
-\item{file}{name of the file}
-}
 \value{
 The file path up until the program's name.
 }
