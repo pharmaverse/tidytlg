@@ -84,7 +84,7 @@ test_that("gentlg() wcol checks", {
   }
 
   # example passing all colwidths explicitly
-  wcol <- list(c(0.5, 0.3, 0.2), c(0.4, 0.4, 0.2))
+  wcol <- list(c(0.5, 0.3, 0.2), c(0.4))
   expect_no_error(hux_tables <- gentlg(
     huxme = list(df, df),
     wcol = wcol,
@@ -107,7 +107,7 @@ test_that("gentlg() wcol checks", {
     wcol = wcol,
     print.hux = FALSE
   ),
-  "must be a length 1 vector or contain as many values as number of columns"
+  "wcol\\'s length must be 1 or the length of final output"
   )
 
   wcol <- list(c(0.5, 0.2, 0.5), c(0.4, 0.4, 0.2))
@@ -117,5 +117,23 @@ test_that("gentlg() wcol checks", {
     print.hux = FALSE
   ),
   "wcol not defined properly"
+  )
+
+  wcol <- list(c(0.5, 0.3), c(0.4, 0.4, 0.2))
+  expect_error(hux_tables <- gentlg(
+    huxme = df,
+    wcol = wcol,
+    print.hux = FALSE
+  ),
+  "\\'wcol\\' appears to be"
+  )
+
+  wcol <- list(c(0.5, 0.2, 0.5), c(0.4, 0.4, 0.2))
+  expect_error(hux_tables <- gentlg(
+    huxme = list(df, df, df),
+    wcol = wcol,
+    print.hux = FALSE
+  ),
+  "Arguments \\'wcol\\' and \\'huxme\\' must have the same length."
   )
 })

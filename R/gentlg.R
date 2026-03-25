@@ -35,10 +35,10 @@
 #' @param plotheight (optional) Numerical value that indicates the plot height
 #' in cm for figure outputs. (Default = 5)
 #' @param wcol (optional) Can be one of:
-#' - a single numerical value that represents the width of the first column
-#' - a vector, specifying the widths of all columns in the final table or listing
-#' - a list of vectors (applicable when huxme is a list), specifying
-#' the widths of all columns for each element in huxme\cr
+#' - a single numeric value that represents the width of the first column
+#' - a numeric vector, specifying the widths of all columns in the final table or listing
+#' - a list of numeric vectors (applicable when `huxme` is a list). Each element
+#' can specify the widths of all columns or the width of the first column only\cr
 #'
 #' When a single numerical value is used, this will be taken as the column width
 #' for the first column. The other columns will be equally spaced across the
@@ -194,6 +194,26 @@
 #'   )
 #' )
 #'
+#' final_2 <- data.frame(
+#'   label = c(
+#'     "Overall", "Safety Analysis Set",
+#'     "Any Adverse event{\\super a}", "- Serious Adverse Event"
+#'   ),
+#'   Drug_A = c("", "40", "10 (25%)", "0"),
+#'   Drug_B = c("", "40", "10 (25%)", "0")
+#' )
+#'
+#' gentlg(
+#'   huxme = list(final_2, final_2),
+#'   wcol = list(c(0.70, 0.15, 0.15), c(0.5)),
+#'   file = "TSFAEX",
+#'   title = "This is Amazing Demonstration 1",
+#'   footers = c(
+#'     "Note: For demonstrative purposes only",
+#'     "{\\super a} Subjects are counted once for any given event."
+#'   )
+#' )
+#'
 #' # Produce output in HTML format
 #' hux <- gentlg(
 #'   huxme = final,
@@ -248,33 +268,15 @@ gentlg <- function(huxme = NULL,
   # and wcol[[i]] must be a length 1 vector or a vector with as many numeric values
   # as number of columns in huxme[[i]]
   if (is.list(wcol)) {
-    if (!(is.list(huxme) && !is.data.frame(huxme))) {
-      stop(
-        "'wcol' appears to be a list while huxme is not a list of tables/listings. ",
-        "If you intended 'wcol' to apply to the single output, convert it to a ",
-        "vector, otherwise pass a non-data.frame list to 'huxme'."
-      )
-    }
-    ## already know wcol is a list and huxme is a non-data.frame list 
-    if (length(huxme) != length(wcol)) {
-      stop("Arguments 'wcol' and 'huxme' must have the same length.")
-    }
-    # the following checks are also made inside gentlg_single()
-    formatcolumns <- c(
-      "anbr", "roworder", "boldme", "indentme", "newrows", "newpage",
-      "rowvar", "row_type", "nested_level", "group_level"
-    )
-    for (i in seq_along(wcol)) {
-      if (!is.numeric(wcol[[i]])) {
-        stop("wcol[[", i, "]] must be (a vector of) numeric.")
-      }
-      # wcol[[i]] must be a length 1 vector or a vector of length equal of ncol(huxme[[i]])
-      expected_length <- length(dplyr::setdiff(colnames(huxme[[i]]), formatcolumns))
-      if (length(wcol[[i]]) != 1 && length(wcol[[i]]) != expected_length) {
-        stop("wcol[[", i, "]] must be a length 1 vector or contain as many values as number of columns (i.e. ",
-             expected_length, "), but its length is ", length(wcol[[i]]), ".")
-      }
-    }
+    assertthat::assert_that(is.list(huxme) && !is.data.frame(huxme),
+                            msg = paste0(
+                              "'wcol' appears to be a list while huxme is not a list of tables/listings. ",
+                              "If you intended 'wcol' to apply to the single output, convert it to a ",
+                              "vector, otherwise pass a non-data.frame list to 'huxme'."
+                            ))
+    ## already know wcol is a list and huxme is a non-data.frame list
+    assertthat::assert_that(length(huxme) == length(wcol),
+                            msg = "Arguments 'wcol' and 'huxme' must have the same length.")
   }
 
   adjfilename <- stringr::str_replace_all(
@@ -384,7 +386,7 @@ gentlg <- function(huxme = NULL,
              border_fns,
              alignments,
              index,
-             wcol_i) {
+             wcol) {
       gentlg_single(
         huxme = ht,
         tlf = tlf,
@@ -394,7 +396,7 @@ gentlg <- function(huxme = NULL,
         plotnames = plotnames,
         plotwidth = plotwidth,
         plotheight = plotheight,
-        wcol = wcol_i,
+        wcol = wcol,
         orientation = orientation,
         opath = opath,
         title_file = title_file,
@@ -422,7 +424,7 @@ gentlg <- function(huxme = NULL,
     border_fns = border_fns,
     alignments = alignments,
     index = seq_len(length(huxme)),
-    wcol_i = wcol,
+    wcol = wcol,
     SIMPLIFY = FALSE
   )
 
