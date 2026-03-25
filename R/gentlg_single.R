@@ -565,7 +565,7 @@ gentlg_single <- function(huxme = NULL,
 
     ### add row one by one to maintain huxtable structure
     if (is_format_rtf(format)) {
-      for (i in rev(seq_len(length(colspan)))) {
+      for (i in rev(seq_along(colspan))) {
         colspan[[i]][1] <- replace_lead_whitespaces_ind(colspan[[i]][1])
         ht <- huxtable::insert_row(ht, paste0("\\keepn\\trhdr ", colspan[[i]]),
           after = 0, fill = ""

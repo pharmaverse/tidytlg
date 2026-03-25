@@ -8,9 +8,9 @@
 #' @param x `character(1)` a string to replace the leading whitespaces.
 #'
 #' @examples
-#' replace_lead_whitespaces_ind("    this is x")
+#' tidytlg:::replace_lead_whitespaces_ind("    this is x")
 #' # [1] "\\intbl\\li360\\fi0 this is x"
-#' replace_lead_whitespaces_ind("this is x")
+#' tidytlg:::replace_lead_whitespaces_ind("this is x")
 #' # [1] "this is x"
 #'
 #' @return `character(1)` RTF markup with leading whitespaces replaced.
