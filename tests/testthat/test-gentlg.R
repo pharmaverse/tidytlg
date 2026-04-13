@@ -74,7 +74,7 @@ test_that("gentlg() sets the right colwidths when passing a combination of vecto
     num_cols <- ncol(ht)
     actual_colwidths <- as.numeric(huxtable::col_width(ht))
     if (length(wcol[[i]]) == 1) {
-      expected_colwidths <- c(wcol[[i]], rep((1 - wcol[[i]])/(num_cols - 1), num_cols - 1))
+      expected_colwidths <- c(wcol[[i]], rep((1 - wcol[[i]]) / (num_cols - 1), num_cols - 1))
     } else {
       expected_colwidths <- wcol[[i]]
     }
@@ -142,4 +142,3 @@ test_that("gentlg() validates hux length equals wcol length if wcol is a list", 
   "Arguments \\'wcol\\' and \\'huxme\\' must have the same length."
   )
 })
-
