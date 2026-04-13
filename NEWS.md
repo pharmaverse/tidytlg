@@ -1,6 +1,7 @@
 # tidytlg 0.11.0.9000
 
 - Exported functions `get_file_name()` and `insert_empty_rows()`.
+- Updated `gentlg_single()` to replace, in the first column of tables/listings headers, every leading whitespace with 90 twips (0.0625 inches) left-indentation RTF markup.
 
 # tidytlg 0.11.0
 
