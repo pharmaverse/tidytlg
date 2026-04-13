@@ -12,6 +12,7 @@ using Tidyverse. This can be achieved multiple ways with this package.
 ### Development version
 
 ``` r
+
 # install.packages("devtools")
 devtools::install_github("pharmaverse/tidytlg")
 ```
@@ -19,6 +20,7 @@ devtools::install_github("pharmaverse/tidytlg")
 ## Functional method example
 
 ``` r
+
 library(dplyr)
 library(tidytlg)
 
@@ -64,6 +66,7 @@ gentlg(huxme       = tbl ,
 ## Metadata method example
 
 ``` r
+
 library(dplyr)
 library(tidytlg)
 

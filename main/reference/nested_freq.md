@@ -123,23 +123,23 @@ nested_freq(
 
 A dataframe of nested results by `colvar` and optional `tablebyvar`.
 There are a few additional variable sets added to support multiple
-requirements.  
-  
+requirements.\
+\
 The level variables (`level1_`, `level2_`, `level3_`) will carry down
 the counts for each level to every record. This allows for easy sorting
-of nested groups.  
-  
+of nested groups.\
+\
 The header variables (`header1`, `header2`, `header3`) will flag the
 header for each level to ensure each level header is sorted to the top
-of the level.  
-  
+of the level.\
+\
 The n variables ("n\_*") provide a numeric variable containing frequency
-for each `colvar`. This can be used to sort and filter records.  
-  
+for each `colvar`. This can be used to sort and filter records.\
+\
 The pct variables ("pct\_*") provide a numeric variable containing
 percentages for each `colvar`. This can be used to sort and filter
-records.  
-  
+records.\
+\
 
 ## Examples
 

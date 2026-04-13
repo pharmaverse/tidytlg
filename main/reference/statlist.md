@@ -120,6 +120,7 @@ statistics.
 ## Examples
 
 ``` r
+
 freq(
   mtcars,
   colvar = "gear",

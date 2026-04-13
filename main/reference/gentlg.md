@@ -91,7 +91,7 @@ gentlg(
 
   (optional) Can be a single numerical value that represents the width
   of the first column or a vector, specifying the lengths of all columns
-  in the final table or listing.  
+  in the final table or listing.\
   When a single numerical value is used, this will be taken as the
   column width for the first column. The other columns will be equally
   spaced across the remainder of the available space. Alternatively, a
@@ -219,6 +219,7 @@ Pelagia Alexandra Papadopoulou <ppapadop@its.jnj.com>
 ## Examples
 
 ``` r
+
 final <- data.frame(
   label = c(
     "Overall", "Safety Analysis Set",

@@ -9,6 +9,7 @@ summarizing `N`, `MEAN (SD)`, `MEDIAN`, `RANGE`, `IQ Range` for the
 `Age` variable in `ADSL`.
 
 ``` r
+
 tbl <- cdisc_adsl |>
   univar(
     colvar = "TRT01PN",
@@ -67,6 +68,7 @@ A customized example is shown below for displaying `N`,
 variable in `ADSL`.
 
 ``` r
+
 tbl <- cdisc_adsl |>
   univar(
     colvar = "TRT01PN",
@@ -104,6 +106,7 @@ function call of `univar` is shown below for presenting the data using a
 base decimal value of 2.
 
 ``` r
+
 tbl <- cdisc_adsl |>
   univar(
     colvar = "TRT01PN",
@@ -143,6 +146,7 @@ addition, we would like the precision to be data driven and varied by
 parameter, which can be achieved by setting `precisionby = "PARAMCD"`.
 
 ``` r
+
 tbl <- cdisc_advs |>
   univar(
     colvar = "TRTAN",
@@ -204,6 +208,7 @@ CHG to calculate precision, similar to the above example we still use
 `decimal = 4` to cap our decimal spaces at 4.
 
 ``` r
+
 tbl <- cdisc_advs |>
   filter(PARAMCD == "SYSBP") |>
   univar(
@@ -236,6 +241,7 @@ variables may have different precision. We also calculate precision by
 variable.
 
 ``` r
+
 tbl <- cdisc_advs |>
   filter(PARAMCD == "SYSBP") |>
   univar(

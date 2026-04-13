@@ -22,6 +22,7 @@ Here is an example call to [`tidytlg::gentlg()`](../reference/gentlg.md)
 that will add the symbols to the label column.
 
 ``` r
+
 df <- tibble::tibble(
   label = c("\u2264", "\u2265"),
   col1 = c("100", "200")
@@ -38,6 +39,7 @@ Superscripts and Subscripts can be added to the label column via
 `UNICODE`.
 
 ``` r
+
 df <- tibble::tibble(
   label = c(
     "This is a superscript a{\\super a}",
@@ -55,6 +57,7 @@ Superscripts and Subscripts can be added to the footnotes via `UNICODE`
 as well.
 
 ``` r
+
 df <- tibble::tibble(
   label = c(
     "This is a superscript a{\\super a}",
@@ -75,6 +78,7 @@ Sometimes you need add a line break into your RTF. Inserting `'\\\\\\n'`
 into your string will add your line break for you.
 
 ``` r
+
 df <- tibble::tibble(
   label = c("Bodysystem \\\n Preferred Term"),
   col1 = c("100")
@@ -88,6 +92,7 @@ tidytlg::gentlg(df,
 If you need a line break followed by a tab, just add in `'\\\\li180'`.
 
 ``` r
+
 df <- tibble::tibble(
   label = c("Bodysystem\\\n\\li180Preferred Term"),
   col1 = c("100")

@@ -18,7 +18,7 @@
 
 - **Janssen R&D**. Copyright holder, funder.
 
-- **David Hugh-Jones**. Copyright holder.  
+- **David Hugh-Jones**. Copyright holder.\
   Author of included 'huxtable' library
 
 - **Konrad Pagacz**. Author, maintainer.
@@ -29,14 +29,14 @@ Source:
 [`DESCRIPTION`](https://github.com/pharmaverse/tidytlg/blob/main/DESCRIPTION)
 
 Masel N, Haesendonckx S, Alexandra Papadopoulou P, Wang S, Miller E,
-Kosiba N, Ceney A, Pagacz K (2025). *tidytlg: Create TLGs using the
+Kosiba N, Ceney A, Pagacz K (2026). *tidytlg: Create TLGs using the
 'tidyverse'*. R package version 0.11.0.9000,
 <https://pharmaverse.github.io/tidytlg/main/>.
 
     @Manual{,
       title = {tidytlg: Create TLGs using the 'tidyverse'},
       author = {Nicholas Masel and Steven Haesendonckx and Pelagia {Alexandra Papadopoulou} and Sheng-Wei Wang and Eli Miller and Nathan Kosiba and Aidan Ceney and Konrad Pagacz},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.11.0.9000},
       url = {https://pharmaverse.github.io/tidytlg/main/},
     }

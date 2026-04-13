@@ -21,6 +21,7 @@ The example below shows you a very basic `tbl` data frame, and how this
 HTML output.
 
 ``` r
+
 library(dplyr)
 library(tidytlg)
 
@@ -41,6 +42,7 @@ knitr::kable(tbl)
 | N                 | 86   | 84   | 84   |
 
 ``` r
+
 
 # render tbl
 gentlg(
@@ -66,8 +68,8 @@ gentlg(
 #>    Analysis Set: ITT            86                84                84         
 #>    Age (Years)                                                                 
 #>    N                            86                84                84         
-#>      <div style='border-bottom:1pt solid'> [demo1.html][] 19DEC2025,           
-#>                                                                07:26           
+#>      <div style='border-bottom:1pt solid'> [demo1.html][] 13APR2026,           
+#>                                                                14:04           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -84,6 +86,7 @@ For inserting a blank line prior to the second row (i.e. `Age (Years)`),
 we will need to add the `newrows` variable with `value = 1`.
 
 ``` r
+
 tbl <- tbl %>%
   mutate(newrows = case_when(
     label == "Age (Years)" ~ 1,
@@ -100,6 +103,7 @@ knitr::kable(tbl)
 | N                 | 86   | 84   | 84   |       0 |
 
 ``` r
+
 
 # render tbl
 gentlg(
@@ -126,8 +130,8 @@ gentlg(
 #>                                                                                
 #>    Age (Years)                                                                 
 #>    N                            86                84                84         
-#>      <div style='border-bottom:1pt solid'> [demo2.html][] 19DEC2025,           
-#>                                                                07:26           
+#>      <div style='border-bottom:1pt solid'> [demo2.html][] 13APR2026,           
+#>                                                                14:04           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -139,6 +143,7 @@ For adding one indentation to the `N` row, we will need to add the
 (two will result in two indentation, and so on).
 
 ``` r
+
 tbl <- tbl %>%
   mutate(indentme = case_when(
     label == "N" ~ 1,
@@ -155,6 +160,7 @@ knitr::kable(tbl)
 | N                 | 86   | 84   | 84   |       0 |        1 |
 
 ``` r
+
 
 # render tbl
 gentlg(
@@ -199,8 +205,8 @@ gentlg(
 #>    -17.76px;                                                                   
 #>    padding-left:                                                               
 #>    35.52px'> N                                                                 
-#>      <div style='border-bottom:1pt solid'> [demo3.html][] 19DEC2025,           
-#>                                                                07:26           
+#>      <div style='border-bottom:1pt solid'> [demo3.html][] 13APR2026,           
+#>                                                                14:04           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -211,6 +217,7 @@ To enable bold font on the row of `Age (Years)`, the `boldme` variable
 with `value = 1` will need to be added.
 
 ``` r
+
 tbl <- tbl %>%
   mutate(boldme = case_when(
     label == "Age (Years)" ~ 1,
@@ -227,6 +234,7 @@ knitr::kable(tbl)
 | N                 | 86   | 84   | 84   |       0 |        1 |      0 |
 
 ``` r
+
 
 # render tbl
 gentlg(
@@ -271,8 +279,8 @@ gentlg(
 #>    -17.76px;                                                                   
 #>    padding-left:                                                               
 #>    35.52px'> N                                                                 
-#>      <div style='border-bottom:1pt solid'> [demo4.html][] 19DEC2025,           
-#>                                                                07:26           
+#>      <div style='border-bottom:1pt solid'> [demo4.html][] 13APR2026,           
+#>                                                                14:04           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -300,6 +308,7 @@ function, we create the `anbr` (analysis number) variable as the
 identifier of this `tbl` chunk.
 
 ``` r
+
 tbl <- cdisc_adsl %>%
   univar(
     colvar = "TRT01PN",
@@ -324,6 +333,7 @@ above (`add_indent`, `add_newrows`, `add_newpage`), can then be applied
 to the `tbl` for creating the formatting variables.
 
 ``` r
+
 tbl <- cdisc_adsl %>%
   univar(
     colvar = "TRT01PN",
@@ -345,6 +355,7 @@ knitr::kable(tbl)
 | Mean (SD) | 69.6 (14.40) | 75.6 (6.73) | 72.2 (9.23) | VALUE | 01 | 2 | 3 | 0 | 0 |
 
 ``` r
+
 
 # render tbl
 gentlg(
@@ -384,8 +395,8 @@ gentlg(
 #>    -17.76px;                                                                   
 #>    padding-left:                                                               
 #>    53.28px'> Mean (SD)                                                         
-#>      <div style='border-bottom:1pt solid'> [demo5.html][] 19DEC2025,           
-#>                                                                07:26           
+#>      <div style='border-bottom:1pt solid'> [demo5.html][] 13APR2026,           
+#>                                                                14:04           
 #> 
 #> Column names: label, 0, 54, 81
 ```

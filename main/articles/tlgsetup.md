@@ -1,6 +1,7 @@
 # Column Metadata & How tidytlg Sets Up Your Data Using \`tlgsetup\`
 
 ``` r
+
 library(dplyr)
 library(tidytlg)
 ```
@@ -16,6 +17,7 @@ how to combine columns, column labels and spanning headers across
 columns.
 
 ``` r
+
 column_metadata <-
   tibble::tribble(
     ~tbltype, ~coldef, ~decode,                ~span1,
@@ -50,6 +52,7 @@ allows us to define column order as well as label in one variable.
 Let’s read in `adsl` and check the dimensions.
 
 ``` r
+
 data("cdisc_adsl")
 adsl <- cdisc_adsl %>%
   filter(ITTFL == "Y") %>%
@@ -73,6 +76,7 @@ observations to support the `type1` column structure and check out the
 dimensions.
 
 ``` r
+
 setup_table <- tlgsetup(adsl,
   var = "TRT01PN",
   column_metadata = column_metadata
@@ -101,6 +105,7 @@ If we take a look at the observation counts for `colnbr`, we see the 168
 records added to the data support `Total Xanomeline` as we expected!
 
 ``` r
+
 setup_table %>%
   group_by(colnbr) %>%
   count()

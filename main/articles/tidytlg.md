@@ -82,6 +82,7 @@ Factory](https://github.com/phuse-org/TestDataFactory/tree/main/Updated/TDF_ADaM
 to illustrate the creation of a demographic table.
 
 ``` r
+
 # Prep Environment -------------------------------------------------------------
 library(dplyr)
 library(haven)
@@ -98,6 +99,7 @@ Before generating analysis summary, the analysis data need to be
 processed first as shown in the code below.
 
 ``` r
+
 # Process Data -----------------------------------------------------------------
 adsl <- adsl %>%
   filter(ITTFL == "Y") %>%
@@ -146,6 +148,7 @@ univariate statistical analysis
 [`vignette("univar")`](../articles/univar.md).
 
 ``` r
+
 # Generate Results -------------------------------------------------------------
 
 ## Analysis set row
@@ -184,6 +187,7 @@ table output sequentially and store the results in individual objects
 into a single `tbl` dataframe through the `bind_table` function call.
 
 ``` r
+
 # Format Results ---------------------------------------------------------------
 
 tbl <- bind_table(t1, t2, t3,
@@ -226,6 +230,7 @@ layout, please see the
 more details.
 
 ``` r
+
 knitr::kable(tbl)
 ```
 
@@ -250,6 +255,7 @@ Please ensure that the `titles.xls` file contains the records of titles
 and footnotes for the specified `tblid`.
 
 ``` r
+
 tblid <- "Table01"
 
 gentlg(
@@ -266,6 +272,7 @@ To create the html output, users need to specify the `format` argument
 as “HTML” and `print.hux` argument as `FALSE` in the `gentlg` call.
 
 ``` r
+
 gentlg(
   huxme = tbl,
   format = "HTML",
@@ -313,6 +320,7 @@ need to pay attention to:
   width and apply to every column.
 
 ``` r
+
 # Prep Environment -------------------------------------------------------------
 library(dplyr)
 library(haven)
@@ -383,6 +391,7 @@ In the `gentlg` function, users need to:
 The code below will create the RTF output of the plot.
 
 ``` r
+
 # Prep Environment -------------------------------------------------------------
 library(dplyr)
 library(haven)
@@ -464,6 +473,7 @@ function. That’s why we need to specify the column metadata in the
 `generate_results` call.
 
 ``` r
+
 library(dplyr)
 library(haven)
 library(tidytlg)
@@ -545,6 +555,7 @@ The code below provides an example of summarizing age and race by gender
 using `tablebyvar`.
 
 ``` r
+
 library(dplyr)
 library(haven)
 library(tidytlg)

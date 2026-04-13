@@ -16,6 +16,7 @@ the one row summary with the row heading specified in the `rowtext`
 argument.
 
 ``` r
+
 tbl <- cdisc_adsl %>%
   freq(
     colvar = "TRT01PN",
@@ -43,6 +44,7 @@ with:
   variable such as age groups, gender, race, ethnicity, etc.
 
 ``` r
+
 tbl <- cdisc_adsl %>%
   freq(
     colvar = "TRT01PN",
@@ -70,6 +72,7 @@ variable with the customized order and labels for enabling the
 user-defined sorting.
 
 ``` r
+
 tbl <- cdisc_adsl %>%
   mutate(
     SEX = factor(SEX, levels = c("M", "F"), labels = c("Male", "Female"))
@@ -98,6 +101,7 @@ denominator, which can be done by specifying
 `statlist = statlist("n/N (x.x%)")`.
 
 ``` r
+
 tbl <- cdisc_adsl %>%
   mutate(SEX = factor(
     SEX,
@@ -129,6 +133,7 @@ should also be split by `SEX` in addition to `TRT01PN`, which can be
 done by `statlist(c("N","n (x.x%)"), denoms_by = c("SEX", "TRT01PN"))`.
 
 ``` r
+
 tbl <- cdisc_adsl %>%
   mutate(SEX = factor(
     SEX,
@@ -171,6 +176,7 @@ When using `rowbyvar` to create by-processing summaries, some levels of
 the `rowvar` may have zero records as shown in the example below.
 
 ``` r
+
 tbl <- cdisc_adsl %>%
   freq(
     colvar = "TRT01PN",
@@ -198,6 +204,7 @@ To remove the zero record rows and create the data driven summary, users
 can specify the `pad = FALSE` in the `freq` function.
 
 ``` r
+
 tbl <- cdisc_adsl %>%
   freq(
     colvar = "TRT01PN",
@@ -231,6 +238,7 @@ though the counts are coming from `ADAE.` The example below shows a
 table counting `AEDECOD` but using `ADSL` to calculate the denominators.
 
 ``` r
+
 adae <- cdisc_adae %>%
   rename(TRT01AN = TRTAN)
 
@@ -275,6 +283,7 @@ denominators are calculated by we use the `denoms_by` argument to the
 `colvar` of `TRT01PN` as our `denoms_by`.
 
 ``` r
+
 tbl <- adae %>%
   freq(
     denom_df = cdisc_adsl,
@@ -343,6 +352,7 @@ In the example below, we will show you how to use these arguments in the
 `AEBODSYS` and `AEDECOD`.
 
 ``` r
+
 adae <- cdisc_adae %>%
   filter(SAFFL == "Y", TRTEMFL == "Y") %>%
   filter(AEBODSYS %in% c(
@@ -364,6 +374,7 @@ addition, we would like to sort the output by the active drug group
 `descending_by = "81"`.
 
 ``` r
+
 tbl <- nested_freq(adae,
   denom_df = adsl,
   colvar = "TRT01AN",
@@ -410,6 +421,7 @@ only one count in any treatment columns, we can specify `cutoff = 2` and
 `cutoff_stat = "n"` in the `nested_freq` call below.
 
 ``` r
+
 tbl <- nested_freq(adae,
   denom_df = adsl,
   colvar = "TRT01AN",
@@ -445,6 +457,7 @@ active arm of `TRT01AN = 81` (i.e. not considering the other arms), we
 can specify `cutoff = "81 >= 2"` and `cutoff_stat = "n"`.
 
 ``` r
+
 tbl <- nested_freq(adae,
   denom_df = adsl,
   colvar = "TRT01AN",
