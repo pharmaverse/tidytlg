@@ -423,13 +423,13 @@ gentlg <- function(huxme = NULL,
     bottom_borders = bottom_borders,
     border_fns = border_fns,
     alignments = alignments,
-    index = seq_len(length(huxme)),
+    index = seq_along(huxme),
     wcol = wcol,
     SIMPLIFY = FALSE
   )
 
   if (print.hux == FALSE) {
-    return(lapply(hts, function(ht) ht$ht))
+    lapply(hts, function(ht) ht$ht)
   } else if (print.hux == TRUE && is_format_rtf(format)) {
     quick_rtf_jnj(lapply(hts, function(ht) ht$ht),
       file = paste(file.path(opath, adjfilename), ".rtf", sep = ""),
