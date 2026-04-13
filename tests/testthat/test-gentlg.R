@@ -47,7 +47,6 @@ test_that("custom alignments work", {
 
 test_that("replace_lead_whitespaces_ind() is replacing whitespaces", {
   # case when there are 2 leading whitespaces, should insert 180 twips
-  df <- data.frame(label = c("boy", "girl"), name = c("Bob", "Lily"), age = c(12, 15))
   expect_no_error(res <- gentlg(huxme = df,
          print.hux = FALSE,
          colheader = c("  Gender", "Name", "Age")))
