@@ -16,7 +16,11 @@ envsetup
 funder
 getFileName
 haesendonckx
+colwidths
+envsetup
+funder
 hardcoded
+huxme
 huxtable
 jnj
 neighbouring
@@ -26,3 +30,5 @@ shaesen
 tidyverse
 twips
 vectorized
+vectorized
+wcol

@@ -64,9 +64,14 @@ cm for figure outputs. (Default = 6)}
 \item{plotheight}{(optional) Numerical value that indicates the plot height
 in cm for figure outputs. (Default = 5)}
 
-\item{wcol}{(optional) Can be a single numerical value that represents the
-width of the first column or a vector, specifying the lengths of all columns
-in the final table or listing.\cr
+\item{wcol}{(optional) Can be one of:
+\itemize{
+\item a single numeric value that represents the width of the first column
+\item a numeric vector, specifying the widths of all columns in the final table or listing
+\item a list of numeric vectors (applicable when \code{huxme} is a list). Each element
+can specify the widths of all columns or the width of the first column only\cr
+}
+
 When a single numerical value is used, this will be taken as the column width
 for the first column. The other columns will be equally spaced across the
 remainder of the available space. Alternatively, a vector can be used to
@@ -239,6 +244,26 @@ gentlg(
 
     # Align cell "Drug: B" to the right
     list(row = 2, col = 3, value = "right")
+  )
+)
+
+final_2 <- data.frame(
+  label = c(
+    "Overall", "Safety Analysis Set",
+    "Any Adverse event{\\\\super a}", "- Serious Adverse Event"
+  ),
+  Drug_A = c("", "40", "10 (25\%)", "0"),
+  Drug_B = c("", "40", "10 (25\%)", "0")
+)
+
+gentlg(
+  huxme = list(final_2, final_2),
+  wcol = list(c(0.70, 0.15, 0.15), c(0.5)),
+  file = "TSFAEX",
+  title = "This is Amazing Demonstration 1",
+  footers = c(
+    "Note: For demonstrative purposes only",
+    "{\\\\super a} Subjects are counted once for any given event."
   )
 )
 
