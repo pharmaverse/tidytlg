@@ -2,9 +2,13 @@
 
 ## tidytlg 0.11.0.9000
 
+- Exported functions [`get_file_name()`](../reference/get_file_name.md)
+  and [`insert_empty_rows()`](../reference/insert_empty_rows.md).
 - Updated `gentlg_single()` to replace, in the first column of
   tables/listings headers, every leading whitespace with 90 twips
   (0.0625 inches) left-indentation RTF markup.
+- [`gentlg()`](../reference/gentlg.md) argument `wcol` now allows for a
+  list of column width vectors when `huxme` is a list of tables.
 
 ## tidytlg 0.11.0
 

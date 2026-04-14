@@ -61,6 +61,11 @@
 
   Output a `tidytlg` table
 
+- [`get_file_name()`](get_file_name.md) : getFileName
+
+- [`insert_empty_rows()`](insert_empty_rows.md) : Inserts empty rows
+  into a data frame
+
 - [`nested_freq()`](nested_freq.md) : Generate nested count/percent for
   two or three levels
 
