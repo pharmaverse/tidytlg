@@ -20,7 +20,8 @@ gentlg_single <- function(huxme = NULL,
                           bottom_borders = NULL,
                           border_fns = list(),
                           alignments = list(),
-                          index_in_result = 1) {
+                          index_in_result = 1,
+                          footers_one_row = FALSE) {
   assertthat::is.count(index_in_result)
   # check all the arguments being passed in except ...
   assertthat::assert_that(
@@ -934,6 +935,13 @@ gentlg_single <- function(huxme = NULL,
   }
 
   if (!is.null(footers)) {
+    if (isTRUE(footers_one_row)) {
+      if (is_format_rtf(format)) {
+        footers <- paste(footers, collapse = " \\line ")
+      } else {
+        footers <- paste(footers, collapse = " <br/> ")
+      }
+    }
     ht <- add_footer(ht, footers[1], first = TRUE)
 
     if (length(footers) > 1) {
