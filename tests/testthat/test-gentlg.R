@@ -1,7 +1,6 @@
 df <- data.frame(label = c("boy", "girl"), name = c("Bob", "Lily"), age = c(12, 15))
 
 test_that("custom alignments work", {
-  df <- data.frame(label = c("boy", "girl"), name = c("Bob", "Lily"), age = c(12, 15))
 
   # `alignments` must be a list of named lists
   expect_error(gentlg(huxme = df, print.hux = FALSE, alignments = 1), "`alignments` must be a list")
@@ -141,4 +140,19 @@ test_that("gentlg() validates hux length equals wcol length if wcol is a list", 
   ),
   "Arguments \\'wcol\\' and \\'huxme\\' must have the same length."
   )
+})
+
+test_that("gentlg() saves footnotes as one row or multiple rows depending on 'footers_one_row'", {
+  footers <- c("Footer 1", "Footer 2", "Footer 3")
+  ht1 <- gentlg(huxme = df, print.hux = FALSE)[[1]]
+  ht2 <- gentlg(huxme = df, print.hux = FALSE, footers = footers)[[1]]
+  ht3 <- gentlg(huxme = df, print.hux = FALSE, footers = footers, footers_one_row = TRUE)[[1]]
+  # check the overal number of rows
+  expect_equal(nrow(ht2), nrow(ht1) + length(footers))
+  expect_equal(nrow(ht3), nrow(ht1) + 1)
+  # check the footers content
+  ht2_footers <- as.data.frame(ht2[5:7, 1])[, 1]
+  ht3_footers <- as.data.frame(ht3[5, 1])[, 1]
+  expect_equal(ht2_footers, c("\\line Footer 1", "Footer 2", "Footer 3"))
+  expect_equal(ht3_footers, "\\line Footer 1 \\line Footer 2 \\line Footer 3")
 })
