@@ -1,7 +1,6 @@
 df <- data.frame(label = c("boy", "girl"), name = c("Bob", "Lily"), age = c(12, 15))
 
 test_that("custom alignments work", {
-
   # `alignments` must be a list of named lists
   expect_error(gentlg(huxme = df, print.hux = FALSE, alignments = 1), "`alignments` must be a list")
 
@@ -46,16 +45,20 @@ test_that("custom alignments work", {
 
 test_that("replace_lead_whitespaces_ind() is replacing whitespaces", {
   # case when there are 2 leading whitespaces, should insert 180 twips
-  expect_no_error(res <- gentlg(huxme = df,
-         print.hux = FALSE,
-         colheader = c("  Gender", "Name", "Age")))
+  expect_no_error(res <- gentlg(
+    huxme = df,
+    print.hux = FALSE,
+    colheader = c("  Gender", "Name", "Age")
+  ))
   res <- as.character(res[[1]][2, 1])
   expect_equal(res, "\\keepn\\trhdr \\intbl\\li180\\fi0 Gender")
 
   # case when there are no leading whitespaces, should leave it as is
-  expect_no_error(res <- gentlg(huxme = df,
-                                print.hux = FALSE,
-                                colheader = c("Gender", "Name", "Age")))
+  expect_no_error(res <- gentlg(
+    huxme = df,
+    print.hux = FALSE,
+    colheader = c("Gender", "Name", "Age")
+  ))
   res <- as.character(res[[1]][2, 1])
   expect_equal(res, "\\keepn\\trhdr Gender")
 })
@@ -100,45 +103,49 @@ test_that("gentlg() sets the right colwidths when passing all colwidths explicit
 
 test_that("gentlg() validates that if hux is a single data.frame, wcol cannot be a list", {
   wcol <- list(c(0.5), c(0.4, 0.4, 0.2))
-  expect_error(hux_tables <- gentlg(
-    huxme = df,
-    wcol = wcol,
-    print.hux = FALSE
-  ),
-  "\\'wcol\\' appears to be"
+  expect_error(
+    hux_tables <- gentlg(
+      huxme = df,
+      wcol = wcol,
+      print.hux = FALSE
+    ),
+    "\\'wcol\\' appears to be"
   )
 })
 
 test_that("gentlg() validates each element in wcol has the correct length", {
   wcol <- list(c(0.5, 0.3), c(0.4, 0.4, 0.2))
-  expect_error(hux_tables <- gentlg(
-    huxme = list(df, df),
-    wcol = wcol,
-    print.hux = FALSE
-  ),
-  "wcol\\'s length must be 1 or the length of final output"
+  expect_error(
+    hux_tables <- gentlg(
+      huxme = list(df, df),
+      wcol = wcol,
+      print.hux = FALSE
+    ),
+    "wcol\\'s length must be 1 or the length of final output"
   )
 })
 
 test_that("gentlg() validates that the sum of colwidths is 1", {
   wcol <- list(c(0.5, 0.2, 0.5), c(0.4, 0.4, 0.2))
-  expect_error(hux_tables <- gentlg(
-    huxme = list(df, df),
-    wcol = wcol,
-    print.hux = FALSE
-  ),
-  "wcol not defined properly"
+  expect_error(
+    hux_tables <- gentlg(
+      huxme = list(df, df),
+      wcol = wcol,
+      print.hux = FALSE
+    ),
+    "wcol not defined properly"
   )
 })
 
 test_that("gentlg() validates hux length equals wcol length if wcol is a list", {
   wcol <- list(c(0.5), c(0.4, 0.4, 0.2))
-  expect_error(hux_tables <- gentlg(
-    huxme = list(df, df, df),
-    wcol = wcol,
-    print.hux = FALSE
-  ),
-  "Arguments \\'wcol\\' and \\'huxme\\' must have the same length."
+  expect_error(
+    hux_tables <- gentlg(
+      huxme = list(df, df, df),
+      wcol = wcol,
+      print.hux = FALSE
+    ),
+    "Arguments \\'wcol\\' and \\'huxme\\' must have the same length."
   )
 })
 
