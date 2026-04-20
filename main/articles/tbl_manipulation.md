@@ -69,7 +69,7 @@ gentlg(
 #>    Age (Years)                                                                 
 #>    N                            86                84                84         
 #>      <div style='border-bottom:1pt solid'> [demo1.html][] 20APR2026,           
-#>                                                                13:40           
+#>                                                                13:48           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -131,7 +131,7 @@ gentlg(
 #>    Age (Years)                                                                 
 #>    N                            86                84                84         
 #>      <div style='border-bottom:1pt solid'> [demo2.html][] 20APR2026,           
-#>                                                                13:40           
+#>                                                                13:48           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -206,7 +206,7 @@ gentlg(
 #>    padding-left:                                                               
 #>    35.52px'> N                                                                 
 #>      <div style='border-bottom:1pt solid'> [demo3.html][] 20APR2026,           
-#>                                                                13:40           
+#>                                                                13:48           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -280,7 +280,7 @@ gentlg(
 #>    padding-left:                                                               
 #>    35.52px'> N                                                                 
 #>      <div style='border-bottom:1pt solid'> [demo4.html][] 20APR2026,           
-#>                                                                13:40           
+#>                                                                13:48           
 #> 
 #> Column names: label, col1, col2, col3
 ```
@@ -396,7 +396,7 @@ gentlg(
 #>    padding-left:                                                               
 #>    53.28px'> Mean (SD)                                                         
 #>      <div style='border-bottom:1pt solid'> [demo5.html][] 20APR2026,           
-#>                                                                13:40           
+#>                                                                13:48           
 #> 
 #> Column names: label, 0, 54, 81
 ```
