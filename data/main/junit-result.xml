@@ -1,322 +1,322 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="bind_table" timestamp="2026-04-20T13:42:23Z" hostname="f57f097ef769" tests="5" skipped="0" failures="0" errors="0" time="1.101">
-    <testcase time="0.713" classname="bind_table" name="anbr_is_assigned_correctly"/>
-    <testcase time="0.0190000000000001" classname="bind_table" name="anbr_is_assigned_correctly"/>
-    <testcase time="0.0089999999999999" classname="bind_table" name="format_variables_are_added"/>
-    <testcase time="0.00300000000000011" classname="bind_table" name="format_variables_are_added"/>
-    <testcase time="0.357" classname="bind_table" name="bind_table_can_handle_non_tidytlg_tables"/>
+  <testsuite name="bind_table" timestamp="2026-04-20T13:49:38Z" hostname="79d49a006484" tests="5" skipped="0" failures="0" errors="0" time="1.425">
+    <testcase time="0.921" classname="bind_table" name="anbr_is_assigned_correctly"/>
+    <testcase time="0.024" classname="bind_table" name="anbr_is_assigned_correctly"/>
+    <testcase time="0.012" classname="bind_table" name="format_variables_are_added"/>
+    <testcase time="0.00299999999999989" classname="bind_table" name="format_variables_are_added"/>
+    <testcase time="0.465" classname="bind_table" name="bind_table_can_handle_non_tidytlg_tables"/>
   </testsuite>
-  <testsuite name="borders" timestamp="2026-04-20T13:42:24Z" hostname="f57f097ef769" tests="5" skipped="0" failures="0" errors="0" time="0.618">
-    <testcase time="0.175" classname="borders" name="default_uses_old_format"/>
-    <testcase time="0.114" classname="borders" name="No_borders_generates_rtf_with_no_borders"/>
-    <testcase time="0.117" classname="borders" name="Spanning_borders_in_the_first_row"/>
-    <testcase time="0.108" classname="borders" name="Inserts_separated_borders_in_the_second_row"/>
-    <testcase time="0.104" classname="borders" name="Inserts_separated_borders_under_the_first_row_for_a_listing"/>
+  <testsuite name="borders" timestamp="2026-04-20T13:49:38Z" hostname="79d49a006484" tests="5" skipped="0" failures="0" errors="0" time="0.801">
+    <testcase time="0.225" classname="borders" name="default_uses_old_format"/>
+    <testcase time="0.147" classname="borders" name="No_borders_generates_rtf_with_no_borders"/>
+    <testcase time="0.154" classname="borders" name="Spanning_borders_in_the_first_row"/>
+    <testcase time="0.139" classname="borders" name="Inserts_separated_borders_in_the_second_row"/>
+    <testcase time="0.136" classname="borders" name="Inserts_separated_borders_under_the_first_row_for_a_listing"/>
   </testsuite>
-  <testsuite name="check_args" timestamp="2026-04-20T13:42:24Z" hostname="f57f097ef769" tests="91" skipped="0" failures="0" errors="0" time="2.319">
-    <testcase time="0.0880000000000001" classname="check_args" name="checks_for_univar_function_correctly"/>
-    <testcase time="0.0739999999999998" classname="check_args" name="checks_for_univar_function_correctly"/>
-    <testcase time="0.00800000000000001" classname="check_args" name="checks_for_univar_function_correctly"/>
-    <testcase time="0.0760000000000001" classname="check_args" name="checks_for_univar_function_correctly"/>
-    <testcase time="0.0750000000000002" classname="check_args" name="checks_for_univar_function_correctly"/>
-    <testcase time="0.0149999999999997" classname="check_args" name="checks_for_univar_function_correctly"/>
-    <testcase time="0.0710000000000002" classname="check_args" name="checks_for_univar_function_correctly"/>
+  <testsuite name="check_args" timestamp="2026-04-20T13:49:39Z" hostname="79d49a006484" tests="91" skipped="0" failures="0" errors="0" time="3.013">
+    <testcase time="0.116" classname="check_args" name="checks_for_univar_function_correctly"/>
+    <testcase time="0.097" classname="check_args" name="checks_for_univar_function_correctly"/>
     <testcase time="0.0110000000000001" classname="check_args" name="checks_for_univar_function_correctly"/>
-    <testcase time="0.0129999999999999" classname="check_args" name="checks_for_univar_function_correctly"/>
-    <testcase time="0.0630000000000002" classname="check_args" name="checks_for_freq_function_correctly"/>
-    <testcase time="0.0629999999999997" classname="check_args" name="checks_for_freq_function_correctly"/>
-    <testcase time="0.00900000000000034" classname="check_args" name="checks_for_freq_function_correctly"/>
-    <testcase time="0.13" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
-    <testcase time="0.128" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
-    <testcase time="0.0109999999999997" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
-    <testcase time="0.127" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
-    <testcase time="0.205" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
-    <testcase time="0.00999999999999979" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
-    <testcase time="0.0100000000000002" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
-    <testcase time="0.089" classname="check_args" name="check_updates_to_check_gentlg"/>
-    <testcase time="0.0139999999999998" classname="check_args" name="check_updates_to_check_gentlg"/>
-    <testcase time="0.0110000000000001" classname="check_args" name="check_updates_to_check_gentlg"/>
-    <testcase time="0.00700000000000012" classname="check_args" name="check_updates_to_check_gentlg"/>
-    <testcase time="0.0089999999999999" classname="check_args" name="check_updates_to_check_gentlg"/>
-    <testcase time="0.00999999999999979" classname="check_args" name="check_updates_to_check_gentlg"/>
-    <testcase time="0.012" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0979999999999999" classname="check_args" name="checks_for_univar_function_correctly"/>
+    <testcase time="0.0960000000000001" classname="check_args" name="checks_for_univar_function_correctly"/>
+    <testcase time="0.02" classname="check_args" name="checks_for_univar_function_correctly"/>
+    <testcase time="0.093" classname="check_args" name="checks_for_univar_function_correctly"/>
+    <testcase time="0.0140000000000002" classname="check_args" name="checks_for_univar_function_correctly"/>
+    <testcase time="0.0169999999999999" classname="check_args" name="checks_for_univar_function_correctly"/>
+    <testcase time="0.0819999999999999" classname="check_args" name="checks_for_freq_function_correctly"/>
+    <testcase time="0.081" classname="check_args" name="checks_for_freq_function_correctly"/>
+    <testcase time="0.0110000000000001" classname="check_args" name="checks_for_freq_function_correctly"/>
+    <testcase time="0.17" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
+    <testcase time="0.165999999999999" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
+    <testcase time="0.0150000000000006" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
+    <testcase time="0.167" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
+    <testcase time="0.272" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
+    <testcase time="0.0129999999999999" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
+    <testcase time="0.0129999999999999" classname="check_args" name="checks_for_nested_freq_function_correctly"/>
+    <testcase time="0.111" classname="check_args" name="check_updates_to_check_gentlg"/>
+    <testcase time="0.0179999999999998" classname="check_args" name="check_updates_to_check_gentlg"/>
+    <testcase time="0.0129999999999999" classname="check_args" name="check_updates_to_check_gentlg"/>
+    <testcase time="0.0100000000000007" classname="check_args" name="check_updates_to_check_gentlg"/>
+    <testcase time="0.0119999999999996" classname="check_args" name="check_updates_to_check_gentlg"/>
+    <testcase time="0.0129999999999999" classname="check_args" name="check_updates_to_check_gentlg"/>
+    <testcase time="0.0150000000000006" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0169999999999995" classname="check_args" name="test_freq_update"/>
     <testcase time="0.0140000000000002" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.00999999999999979" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0089999999999999" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0110000000000001" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0100000000000002" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.00999999999999979" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0110000000000001" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0139999999999998" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0180000000000002" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0150000000000001" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0189999999999997" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0180000000000002" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0169999999999999" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0180000000000002" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0119999999999996" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0140000000000002" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0129999999999999" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0140000000000002" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0140000000000002" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0199999999999996" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0200000000000005" classname="check_args" name="test_freq_update"/>
     <testcase time="0.0229999999999997" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0179999999999998" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0180000000000007" classname="check_args" name="test_freq_update"/>
-    <testcase time="0.0119999999999996" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.00699999999999967" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0110000000000001" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.00999999999999979" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0110000000000001" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0150000000000006" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.024" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0229999999999997" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0230000000000006" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0229999999999997" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0270000000000001" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.024" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.024" classname="check_args" name="test_freq_update"/>
+    <testcase time="0.0149999999999997" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.00900000000000034" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0140000000000002" classname="check_args" name="Test_univar_new_checks"/>
     <testcase time="0.0139999999999993" classname="check_args" name="Test_univar_new_checks"/>
     <testcase time="0.0140000000000002" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0129999999999999" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0170000000000003" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.016" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0199999999999996" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0140000000000002" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0140000000000002" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0140000000000002" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0109999999999992" classname="check_args" name="Test_univar_new_checks"/>
-    <testcase time="0.0110000000000001" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0100000000000007" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0109999999999992" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0120000000000005" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.00999999999999979" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0110000000000001" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0119999999999996" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0120000000000005" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0190000000000001" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0179999999999998" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0179999999999998" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0180000000000007" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0219999999999994" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0209999999999999" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0250000000000004" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0179999999999998" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0179999999999998" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0179999999999998" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0150000000000006" classname="check_args" name="Test_univar_new_checks"/>
+    <testcase time="0.0139999999999993" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0130000000000008" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.016" classname="check_args" name="new_check_errors_nested_freq"/>
     <testcase time="0.0149999999999997" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0150000000000006" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0149999999999997" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0179999999999998" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0180000000000007" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0179999999999998" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0179999999999998" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0170000000000003" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0219999999999994" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0180000000000007" classname="check_args" name="new_check_errors_nested_freq"/>
-    <testcase time="0.0179999999999998" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0129999999999999" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0140000000000002" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.016" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.016" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0199999999999996" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0190000000000001" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0190000000000001" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.024" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0229999999999997" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.024" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0230000000000006" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0229999999999997" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0270000000000001" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.0229999999999997" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.024" classname="check_args" name="new_check_errors_nested_freq"/>
+    <testcase time="0.00900000000000034" classname="check_args" name="Errors_for_check_generate_results"/>
     <testcase time="0.00699999999999967" classname="check_args" name="Errors_for_check_generate_results"/>
-    <testcase time="0.00600000000000023" classname="check_args" name="Errors_for_check_generate_results"/>
-    <testcase time="0.00499999999999989" classname="check_args" name="Errors_for_check_generate_results"/>
-    <testcase time="0.00699999999999967" classname="check_args" name="Errors_for_check_generate_results"/>
-    <testcase time="0.00600000000000023" classname="check_args" name="Errors_for_check_generate_results"/>
-    <testcase time="0.077" classname="check_args" name="Test_add_format"/>
-    <testcase time="0.00700000000000056" classname="check_args" name="Test_add_format"/>
-    <testcase time="0.00999999999999979" classname="check_args" name="Test_add_format"/>
+    <testcase time="0.00800000000000001" classname="check_args" name="Errors_for_check_generate_results"/>
+    <testcase time="0.00800000000000001" classname="check_args" name="Errors_for_check_generate_results"/>
+    <testcase time="0.00800000000000001" classname="check_args" name="Errors_for_check_generate_results"/>
+    <testcase time="0.0990000000000002" classname="check_args" name="Test_add_format"/>
     <testcase time="0.00899999999999945" classname="check_args" name="Test_add_format"/>
-    <testcase time="0.00700000000000056" classname="check_args" name="Test_add_format"/>
-    <testcase time="0.00899999999999945" classname="check_args" name="Test_add_format"/>
-    <testcase time="0.0140000000000002" classname="check_args" name="Test_add_format"/>
-    <testcase time="0.069" classname="check_args" name="Sparse_dfs_pass_check_wcol_works_as_expected_with_sparse_dfs"/>
+    <testcase time="0.0120000000000005" classname="check_args" name="Test_add_format"/>
+    <testcase time="0.0119999999999996" classname="check_args" name="Test_add_format"/>
+    <testcase time="0.00900000000000034" classname="check_args" name="Test_add_format"/>
+    <testcase time="0.0129999999999999" classname="check_args" name="Test_add_format"/>
+    <testcase time="0.016" classname="check_args" name="Test_add_format"/>
+    <testcase time="0.0880000000000001" classname="check_args" name="Sparse_dfs_pass_check_wcol_works_as_expected_with_sparse_dfs"/>
   </testsuite>
-  <testsuite name="colheader" timestamp="2026-04-20T13:42:27Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.241">
-    <testcase time="0.24" classname="colheader" name="colheader_works_as_expected_for_listings"/>
-    <testcase time="0.00100000000000033" classname="colheader" name="colheader_works_as_expected_for_listings"/>
+  <testsuite name="colheader" timestamp="2026-04-20T13:49:42Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.313">
+    <testcase time="0.311" classname="colheader" name="colheader_works_as_expected_for_listings"/>
+    <testcase time="0.00199999999999978" classname="colheader" name="colheader_works_as_expected_for_listings"/>
   </testsuite>
-  <testsuite name="colspan" timestamp="2026-04-20T13:42:27Z" hostname="f57f097ef769" tests="3" skipped="0" failures="0" errors="0" time="0.645">
-    <testcase time="0.643" classname="colspan" name="colspan_works_as_expected"/>
-    <testcase time="0.000999999999999446" classname="colspan" name="colspan_works_as_expected"/>
+  <testsuite name="colspan" timestamp="2026-04-20T13:49:42Z" hostname="79d49a006484" tests="3" skipped="0" failures="0" errors="0" time="0.837">
+    <testcase time="0.834" classname="colspan" name="colspan_works_as_expected"/>
     <testcase time="0.00100000000000033" classname="colspan" name="colspan_works_as_expected"/>
+    <testcase time="0.00199999999999978" classname="colspan" name="colspan_works_as_expected"/>
   </testsuite>
-  <testsuite name="freq" timestamp="2026-04-20T13:42:27Z" hostname="f57f097ef769" tests="7" skipped="0" failures="0" errors="0" time="0.811">
-    <testcase time="0.235" classname="freq" name="tablebyvar_tables_can_be_binded_together"/>
-    <testcase time="0.0469999999999997" classname="freq" name="tablebyvar_tables_can_be_binded_together"/>
-    <testcase time="0.101" classname="freq" name="rowbyvar_creates_tables_as_expected"/>
-    <testcase time="0.157" classname="freq" name="rowbyvar_creates_tables_as_expected"/>
-    <testcase time="0.101" classname="freq" name="missing_values_are_displayed_as_expected"/>
-    <testcase time="0.0860000000000003" classname="freq" name="default_denoms_by_is_set_properly"/>
-    <testcase time="0.0839999999999996" classname="freq" name="default_denoms_by_is_set_properly"/>
+  <testsuite name="freq" timestamp="2026-04-20T13:49:43Z" hostname="79d49a006484" tests="7" skipped="0" failures="0" errors="0" time="1.056">
+    <testcase time="0.299" classname="freq" name="tablebyvar_tables_can_be_binded_together"/>
+    <testcase time="0.0640000000000001" classname="freq" name="tablebyvar_tables_can_be_binded_together"/>
+    <testcase time="0.133" classname="freq" name="rowbyvar_creates_tables_as_expected"/>
+    <testcase time="0.204999999999999" classname="freq" name="rowbyvar_creates_tables_as_expected"/>
+    <testcase time="0.131" classname="freq" name="missing_values_are_displayed_as_expected"/>
+    <testcase time="0.115" classname="freq" name="default_denoms_by_is_set_properly"/>
+    <testcase time="0.109" classname="freq" name="default_denoms_by_is_set_properly"/>
   </testsuite>
-  <testsuite name="freq_cutoff" timestamp="2026-04-20T13:42:28Z" hostname="f57f097ef769" tests="4" skipped="0" failures="0" errors="0" time="0.216">
-    <testcase time="0.0750000000000002" classname="freq_cutoff" name="cutoff_and_cutoff_stat_work_as_expected"/>
-    <testcase time="0.00199999999999978" classname="freq_cutoff" name="cutoff_and_cutoff_stat_work_as_expected"/>
-    <testcase time="0.0720000000000001" classname="freq_cutoff" name="cutoff_and_cutoff_stat_work_as_expected"/>
-    <testcase time="0.0670000000000002" classname="freq_cutoff" name="cutoff_and_cutoff_stat_work_as_expected"/>
+  <testsuite name="freq_cutoff" timestamp="2026-04-20T13:49:44Z" hostname="79d49a006484" tests="4" skipped="0" failures="0" errors="0" time="0.277">
+    <testcase time="0.0960000000000001" classname="freq_cutoff" name="cutoff_and_cutoff_stat_work_as_expected"/>
+    <testcase time="0.00300000000000011" classname="freq_cutoff" name="cutoff_and_cutoff_stat_work_as_expected"/>
+    <testcase time="0.0909999999999993" classname="freq_cutoff" name="cutoff_and_cutoff_stat_work_as_expected"/>
+    <testcase time="0.0870000000000015" classname="freq_cutoff" name="cutoff_and_cutoff_stat_work_as_expected"/>
   </testsuite>
-  <testsuite name="freq_descending_by" timestamp="2026-04-20T13:42:28Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.142">
-    <testcase time="0.0720000000000001" classname="freq_descending_by" name="descending_by_will_sort_by_the_column_named_passed_but_will_"/>
-    <testcase time="0.0700000000000003" classname="freq_descending_by" name="descending_by_will_sort_by_the_column_named_passed_but_will_"/>
+  <testsuite name="freq_descending_by" timestamp="2026-04-20T13:49:44Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.185">
+    <testcase time="0.093" classname="freq_descending_by" name="descending_by_will_sort_by_the_column_named_passed_but_will_"/>
+    <testcase time="0.0919999999999987" classname="freq_descending_by" name="descending_by_will_sort_by_the_column_named_passed_but_will_"/>
   </testsuite>
-  <testsuite name="freq_ord" timestamp="2026-04-20T13:42:29Z" hostname="f57f097ef769" tests="5" skipped="0" failures="0" errors="0" time="0.438">
-    <testcase time="0.0699999999999994" classname="freq_ord" name="freq_tables_can_be_ordered_as_expected"/>
-    <testcase time="0.0730000000000004" classname="freq_ord" name="freq_tables_can_be_ordered_as_expected"/>
-    <testcase time="0.0869999999999997" classname="freq_ord" name="freq_tables_can_be_ordered_as_expected"/>
-    <testcase time="0.0960000000000001" classname="freq_ord" name="freq_tables_can_be_ordered_as_expected"/>
-    <testcase time="0.112" classname="freq_ord" name="freq_tables_can_be_ordered_as_expected"/>
+  <testsuite name="freq_ord" timestamp="2026-04-20T13:49:45Z" hostname="79d49a006484" tests="5" skipped="0" failures="0" errors="0" time="0.564">
+    <testcase time="0.0899999999999999" classname="freq_ord" name="freq_tables_can_be_ordered_as_expected"/>
+    <testcase time="0.0940000000000012" classname="freq_ord" name="freq_tables_can_be_ordered_as_expected"/>
+    <testcase time="0.110999999999999" classname="freq_ord" name="freq_tables_can_be_ordered_as_expected"/>
+    <testcase time="0.124000000000001" classname="freq_ord" name="freq_tables_can_be_ordered_as_expected"/>
+    <testcase time="0.145" classname="freq_ord" name="freq_tables_can_be_ordered_as_expected"/>
   </testsuite>
-  <testsuite name="freq_pad" timestamp="2026-04-20T13:42:29Z" hostname="f57f097ef769" tests="3" skipped="0" failures="0" errors="0" time="0.228">
-    <testcase time="0.221" classname="freq_pad" name="pad_argument_works_as_expected"/>
+  <testsuite name="freq_pad" timestamp="2026-04-20T13:49:45Z" hostname="79d49a006484" tests="3" skipped="0" failures="0" errors="0" time="0.294">
+    <testcase time="0.285" classname="freq_pad" name="pad_argument_works_as_expected"/>
     <testcase time="0.00399999999999956" classname="freq_pad" name="pad_argument_works_as_expected"/>
-    <testcase time="0.00300000000000011" classname="freq_pad" name="pad_argument_works_as_expected"/>
+    <testcase time="0.00500000000000078" classname="freq_pad" name="pad_argument_works_as_expected"/>
   </testsuite>
-  <testsuite name="freq_sparse" timestamp="2026-04-20T13:42:29Z" hostname="f57f097ef769" tests="4" skipped="0" failures="0" errors="0" time="0.299">
-    <testcase time="0.0780000000000003" classname="freq_sparse" name="sparse_data_is_handled_correctly"/>
-    <testcase time="0.0620000000000003" classname="freq_sparse" name="sparse_data_is_handled_correctly"/>
-    <testcase time="0.0869999999999997" classname="freq_sparse" name="sparse_data_is_handled_correctly"/>
-    <testcase time="0.0720000000000001" classname="freq_sparse" name="sparse_data_is_handled_correctly"/>
+  <testsuite name="freq_sparse" timestamp="2026-04-20T13:49:46Z" hostname="79d49a006484" tests="4" skipped="0" failures="0" errors="0" time="0.381">
+    <testcase time="0.0980000000000008" classname="freq_sparse" name="sparse_data_is_handled_correctly"/>
+    <testcase time="0.0809999999999995" classname="freq_sparse" name="sparse_data_is_handled_correctly"/>
+    <testcase time="0.109999999999999" classname="freq_sparse" name="sparse_data_is_handled_correctly"/>
+    <testcase time="0.0920000000000005" classname="freq_sparse" name="sparse_data_is_handled_correctly"/>
   </testsuite>
-  <testsuite name="freq_subset" timestamp="2026-04-20T13:42:30Z" hostname="f57f097ef769" tests="1" skipped="0" failures="0" errors="0" time="0.181">
-    <testcase time="0.180999999999999" classname="freq_subset" name="subset_will_filter_records_as_expected"/>
+  <testsuite name="freq_subset" timestamp="2026-04-20T13:49:46Z" hostname="79d49a006484" tests="1" skipped="0" failures="0" errors="0" time="0.188">
+    <testcase time="0.188000000000001" classname="freq_subset" name="subset_will_filter_records_as_expected"/>
   </testsuite>
-  <testsuite name="gentlg" timestamp="2026-04-20T13:42:30Z" hostname="f57f097ef769" tests="26" skipped="0" failures="0" errors="0" time="0.919">
-    <testcase time="0.00999999999999979" classname="gentlg" name="custom_alignments_work"/>
+  <testsuite name="gentlg" timestamp="2026-04-20T13:49:46Z" hostname="79d49a006484" tests="26" skipped="0" failures="0" errors="0" time="1.207">
+    <testcase time="0.0129999999999999" classname="gentlg" name="custom_alignments_work"/>
+    <testcase time="0.00399999999999956" classname="gentlg" name="custom_alignments_work"/>
+    <testcase time="0.0890000000000004" classname="gentlg" name="custom_alignments_work"/>
     <testcase time="0.00300000000000011" classname="gentlg" name="custom_alignments_work"/>
-    <testcase time="0.0690000000000008" classname="gentlg" name="custom_alignments_work"/>
-    <testcase time="0.00200000000000067" classname="gentlg" name="custom_alignments_work"/>
-    <testcase time="0.129" classname="gentlg" name="custom_alignments_work"/>
+    <testcase time="0.17" classname="gentlg" name="custom_alignments_work"/>
     <testcase time="0.00300000000000011" classname="gentlg" name="custom_alignments_work"/>
-    <testcase time="0.00199999999999889" classname="gentlg" name="custom_alignments_work"/>
-    <testcase time="0.00200000000000067" classname="gentlg" name="custom_alignments_work"/>
-    <testcase time="0.0670000000000002" classname="gentlg" name="replace_lead_whitespaces_ind_is_replacing_whitespaces"/>
-    <testcase time="0.00799999999999912" classname="gentlg" name="replace_lead_whitespaces_ind_is_replacing_whitespaces"/>
-    <testcase time="0.0660000000000007" classname="gentlg" name="replace_lead_whitespaces_ind_is_replacing_whitespaces"/>
-    <testcase time="0.00900000000000034" classname="gentlg" name="replace_lead_whitespaces_ind_is_replacing_whitespaces"/>
-    <testcase time="0.132" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_a_combination_of_vectors_and_numeric_values"/>
+    <testcase time="0.00299999999999834" classname="gentlg" name="custom_alignments_work"/>
+    <testcase time="0.00300000000000011" classname="gentlg" name="custom_alignments_work"/>
+    <testcase time="0.088000000000001" classname="gentlg" name="replace_lead_whitespaces_ind_is_replacing_whitespaces"/>
+    <testcase time="0.0109999999999992" classname="gentlg" name="replace_lead_whitespaces_ind_is_replacing_whitespaces"/>
+    <testcase time="0.0860000000000003" classname="gentlg" name="replace_lead_whitespaces_ind_is_replacing_whitespaces"/>
+    <testcase time="0.011000000000001" classname="gentlg" name="replace_lead_whitespaces_ind_is_replacing_whitespaces"/>
+    <testcase time="0.177" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_a_combination_of_vectors_and_numeric_values"/>
     <testcase time="0.00300000000000011" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_a_combination_of_vectors_and_numeric_values"/>
-    <testcase time="0.00200000000000067" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_a_combination_of_vectors_and_numeric_values"/>
-    <testcase time="0.132999999999999" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_all_colwidths_explicitly"/>
-    <testcase time="0.00200000000000067" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_all_colwidths_explicitly"/>
-    <testcase time="0.00199999999999889" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_all_colwidths_explicitly"/>
-    <testcase time="0.00699999999999967" classname="gentlg" name="gentlg_validates_that_if_hux_is_a_single_data.frame_wcol_cannot_be_a_list"/>
-    <testcase time="0.0130000000000017" classname="gentlg" name="gentlg_validates_each_element_in_wcol_has_the_correct_length"/>
-    <testcase time="0.0129999999999999" classname="gentlg" name="gentlg_validates_that_the_sum_of_colwidths_is_1"/>
-    <testcase time="0.00599999999999845" classname="gentlg" name="gentlg_validates_hux_length_equals_wcol_length_if_wcol_is_a_list"/>
-    <testcase time="0.217000000000001" classname="gentlg" name="gentlg_saves_footnotes_as_one_row_or_multiple_rows_depending_on_footers_one_row_"/>
+    <testcase time="0.00300000000000011" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_a_combination_of_vectors_and_numeric_values"/>
+    <testcase time="0.173999999999999" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_all_colwidths_explicitly"/>
+    <testcase time="0.00300000000000011" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_all_colwidths_explicitly"/>
+    <testcase time="0.00300000000000011" classname="gentlg" name="gentlg_sets_the_right_colwidths_when_passing_all_colwidths_explicitly"/>
+    <testcase time="0.00799999999999912" classname="gentlg" name="gentlg_validates_that_if_hux_is_a_single_data.frame_wcol_cannot_be_a_list"/>
+    <testcase time="0.0170000000000012" classname="gentlg" name="gentlg_validates_each_element_in_wcol_has_the_correct_length"/>
+    <testcase time="0.0169999999999995" classname="gentlg" name="gentlg_validates_that_the_sum_of_colwidths_is_1"/>
+    <testcase time="0.00799999999999912" classname="gentlg" name="gentlg_validates_hux_length_equals_wcol_length_if_wcol_is_a_list"/>
+    <testcase time="0.285" classname="gentlg" name="gentlg_saves_footnotes_as_one_row_or_multiple_rows_depending_on_footers_one_row_"/>
+    <testcase time="0.00400000000000134" classname="gentlg" name="gentlg_saves_footnotes_as_one_row_or_multiple_rows_depending_on_footers_one_row_"/>
+    <testcase time="0.0179999999999989" classname="gentlg" name="gentlg_saves_footnotes_as_one_row_or_multiple_rows_depending_on_footers_one_row_"/>
     <testcase time="0.00300000000000011" classname="gentlg" name="gentlg_saves_footnotes_as_one_row_or_multiple_rows_depending_on_footers_one_row_"/>
-    <testcase time="0.0139999999999993" classname="gentlg" name="gentlg_saves_footnotes_as_one_row_or_multiple_rows_depending_on_footers_one_row_"/>
-    <testcase time="0.00200000000000067" classname="gentlg" name="gentlg_saves_footnotes_as_one_row_or_multiple_rows_depending_on_footers_one_row_"/>
   </testsuite>
-  <testsuite name="get_file_name" timestamp="2026-04-20T13:42:31Z" hostname="f57f097ef769" tests="3" skipped="0" failures="0" errors="0" time="0.015">
-    <testcase time="0.0100000000000016" classname="get_file_name" name="getFileNameBatch_returns_the_expected_results"/>
-    <testcase time="0.00299999999999834" classname="get_file_name" name="getFileNameBatch_returns_the_expected_results"/>
-    <testcase time="0.00200000000000067" classname="get_file_name" name="getFileNameBatch_returns_the_expected_results"/>
+  <testsuite name="get_file_name" timestamp="2026-04-20T13:49:47Z" hostname="79d49a006484" tests="3" skipped="0" failures="0" errors="0" time="0.019">
+    <testcase time="0.0140000000000011" classname="get_file_name" name="getFileNameBatch_returns_the_expected_results"/>
+    <testcase time="0.00199999999999889" classname="get_file_name" name="getFileNameBatch_returns_the_expected_results"/>
+    <testcase time="0.00300000000000011" classname="get_file_name" name="getFileNameBatch_returns_the_expected_results"/>
   </testsuite>
-  <testsuite name="insert_empty_rows" timestamp="2026-04-20T13:42:31Z" hostname="f57f097ef769" tests="11" skipped="0" failures="0" errors="0" time="0.51">
-    <testcase time="0.0080000000000009" classname="insert_empty_rows" name="Does_not_insert_rows_if_the_newrows_column_does_not_exist"/>
-    <testcase time="0.00499999999999901" classname="insert_empty_rows" name="Does_not_insert_rows_if_the_newrows_column_is_all_0s"/>
-    <testcase time="0.00500000000000078" classname="insert_empty_rows" name="Inserts_rows_when_there_are_1s_in_the_newrows_column"/>
-    <testcase time="0.00499999999999901" classname="insert_empty_rows" name="Inserts_an_empty_row_when_the_1_is_in_the_last_row_of_newrows"/>
-    <testcase time="0.00600000000000023" classname="insert_empty_rows" name="Inserts_empty_rows_when_there_are_2_1s_in_the_last_two_rows_of_newros"/>
-    <testcase time="0.00500000000000078" classname="insert_empty_rows" name="Zeroes_the_newrows_column"/>
-    <testcase time="0.00600000000000023" classname="insert_empty_rows" name="Preserves_the_formatting_columns"/>
-    <testcase time="0.00199999999999889" classname="insert_empty_rows" name="Preserves_the_formatting_columns"/>
+  <testsuite name="insert_empty_rows" timestamp="2026-04-20T13:49:47Z" hostname="79d49a006484" tests="11" skipped="0" failures="0" errors="0" time="0.673">
+    <testcase time="0.00999999999999979" classname="insert_empty_rows" name="Does_not_insert_rows_if_the_newrows_column_does_not_exist"/>
+    <testcase time="0.00699999999999967" classname="insert_empty_rows" name="Does_not_insert_rows_if_the_newrows_column_is_all_0s"/>
+    <testcase time="0.0080000000000009" classname="insert_empty_rows" name="Inserts_rows_when_there_are_1s_in_the_newrows_column"/>
+    <testcase time="0.00699999999999967" classname="insert_empty_rows" name="Inserts_an_empty_row_when_the_1_is_in_the_last_row_of_newrows"/>
+    <testcase time="0.00699999999999967" classname="insert_empty_rows" name="Inserts_empty_rows_when_there_are_2_1s_in_the_last_two_rows_of_newros"/>
+    <testcase time="0.0080000000000009" classname="insert_empty_rows" name="Zeroes_the_newrows_column"/>
+    <testcase time="0.00699999999999967" classname="insert_empty_rows" name="Preserves_the_formatting_columns"/>
     <testcase time="0.00300000000000011" classname="insert_empty_rows" name="Preserves_the_formatting_columns"/>
-    <testcase time="0.00200000000000067" classname="insert_empty_rows" name="Preserves_the_formatting_columns"/>
-    <testcase time="0.462999999999999" classname="insert_empty_rows" name="Inserts_empty_rows_when_the_input_table_has_newrows"/>
+    <testcase time="0.00300000000000011" classname="insert_empty_rows" name="Preserves_the_formatting_columns"/>
+    <testcase time="0.00300000000000011" classname="insert_empty_rows" name="Preserves_the_formatting_columns"/>
+    <testcase time="0.609999999999999" classname="insert_empty_rows" name="Inserts_empty_rows_when_the_input_table_has_newrows"/>
   </testsuite>
-  <testsuite name="metadata" timestamp="2026-04-20T13:42:31Z" hostname="f57f097ef769" tests="1" skipped="0" failures="0" errors="0" time="0.362">
-    <testcase time="0.361999999999998" classname="metadata" name="the_metadata_table_method_works_as_expected"/>
+  <testsuite name="metadata" timestamp="2026-04-20T13:49:48Z" hostname="79d49a006484" tests="1" skipped="0" failures="0" errors="0" time="0.479">
+    <testcase time="0.479000000000001" classname="metadata" name="the_metadata_table_method_works_as_expected"/>
   </testsuite>
-  <testsuite name="multiple-tables-in-rtf" timestamp="2026-04-20T13:42:32Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.394">
-    <testcase time="0.391" classname="multiple_tables_in_rtf" name="multiple_tables_are_printed_to_one_rtf_file"/>
+  <testsuite name="multiple-tables-in-rtf" timestamp="2026-04-20T13:49:48Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.518">
+    <testcase time="0.514999999999999" classname="multiple_tables_in_rtf" name="multiple_tables_are_printed_to_one_rtf_file"/>
     <testcase time="0.00300000000000011" classname="multiple_tables_in_rtf" name="multiple_tables_are_printed_to_one_rtf_file"/>
   </testsuite>
-  <testsuite name="nested" timestamp="2026-04-20T13:42:32Z" hostname="f57f097ef769" tests="7" skipped="0" failures="0" errors="0" time="1.232">
-    <testcase time="0.143000000000001" classname="nested" name="Row_sorting_works_as_expected_with_and_without_a_descending_by_argument"/>
-    <testcase time="0.143000000000001" classname="nested" name="Row_sorting_works_as_expected_with_and_without_a_descending_by_argument"/>
-    <testcase time="0.199" classname="nested" name="Three_level_nested_sorting_works_as_expected"/>
-    <testcase time="0.119999999999999" classname="nested" name="nested_values_can_span_over_higher_levels"/>
-    <testcase time="0.125" classname="nested" name="nested_values_can_span_over_higher_levels"/>
-    <testcase time="0.364000000000001" classname="nested" name="nested_values_can_span_over_higher_levels"/>
-    <testcase time="0.138" classname="nested" name="subValues_in_a_nested_count_layer_should_respect_rowbyvar"/>
+  <testsuite name="nested" timestamp="2026-04-20T13:49:49Z" hostname="79d49a006484" tests="7" skipped="0" failures="0" errors="0" time="1.629">
+    <testcase time="0.186" classname="nested" name="Row_sorting_works_as_expected_with_and_without_a_descending_by_argument"/>
+    <testcase time="0.187000000000001" classname="nested" name="Row_sorting_works_as_expected_with_and_without_a_descending_by_argument"/>
+    <testcase time="0.263" classname="nested" name="Three_level_nested_sorting_works_as_expected"/>
+    <testcase time="0.159999999999998" classname="nested" name="nested_values_can_span_over_higher_levels"/>
+    <testcase time="0.164000000000001" classname="nested" name="nested_values_can_span_over_higher_levels"/>
+    <testcase time="0.488999999999999" classname="nested" name="nested_values_can_span_over_higher_levels"/>
+    <testcase time="0.18" classname="nested" name="subValues_in_a_nested_count_layer_should_respect_rowbyvar"/>
   </testsuite>
-  <testsuite name="nested_cutoff" timestamp="2026-04-20T13:42:33Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.49">
-    <testcase time="0.145999999999999" classname="nested_cutoff" name="the_cutoff_argument_in_nested_drops_values_with_no_subordiate_items"/>
-    <testcase time="0.344000000000001" classname="nested_cutoff" name="the_cutoff_argument_in_nested_drops_values_with_no_subordiate_items"/>
+  <testsuite name="nested_cutoff" timestamp="2026-04-20T13:49:51Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.646">
+    <testcase time="0.190000000000001" classname="nested_cutoff" name="the_cutoff_argument_in_nested_drops_values_with_no_subordiate_items"/>
+    <testcase time="0.456" classname="nested_cutoff" name="the_cutoff_argument_in_nested_drops_values_with_no_subordiate_items"/>
   </testsuite>
-  <testsuite name="nested_freq" timestamp="2026-04-20T13:42:34Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.265">
-    <testcase time="0.129999999999999" classname="nested_freq" name="nested_freq_can_handle_subset_argument"/>
-    <testcase time="0.135" classname="nested_freq" name="nested_freq_can_handle_row_header"/>
+  <testsuite name="nested_freq" timestamp="2026-04-20T13:49:51Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.352">
+    <testcase time="0.173999999999999" classname="nested_freq" name="nested_freq_can_handle_subset_argument"/>
+    <testcase time="0.178000000000001" classname="nested_freq" name="nested_freq_can_handle_row_header"/>
   </testsuite>
-  <testsuite name="nested_ord" timestamp="2026-04-20T13:42:34Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.305">
-    <testcase time="0.132000000000001" classname="nested_ord" name="nested_tables_work_with_.ord_as_expected"/>
-    <testcase time="0.173" classname="nested_ord" name="nested_tables_work_with_.ord_as_expected"/>
+  <testsuite name="nested_ord" timestamp="2026-04-20T13:49:52Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.403">
+    <testcase time="0.171999999999999" classname="nested_ord" name="nested_tables_work_with_.ord_as_expected"/>
+    <testcase time="0.231" classname="nested_ord" name="nested_tables_work_with_.ord_as_expected"/>
   </testsuite>
-  <testsuite name="page_numbers" timestamp="2026-04-20T13:42:34Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.436">
-    <testcase time="0.218999999999999" classname="page_numbers" name="Page_numbers_are_added_on_each_page"/>
-    <testcase time="0.217000000000001" classname="page_numbers" name="The_page_number_mentions_the_table"/>
+  <testsuite name="page_numbers" timestamp="2026-04-20T13:49:52Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.564">
+    <testcase time="0.283000000000001" classname="page_numbers" name="Page_numbers_are_added_on_each_page"/>
+    <testcase time="0.280999999999999" classname="page_numbers" name="The_page_number_mentions_the_table"/>
   </testsuite>
-  <testsuite name="png" timestamp="2026-04-20T13:42:35Z" hostname="f57f097ef769" tests="2" skipped="1" failures="0" errors="0" time="0.339">
-    <testcase time="0.237" classname="png" name="gentlg_will_preserve_aspect_ratio_of_pngs">
+  <testsuite name="png" timestamp="2026-04-20T13:49:53Z" hostname="79d49a006484" tests="2" skipped="1" failures="0" errors="0" time="0.402">
+    <testcase time="0.27" classname="png" name="gentlg_will_preserve_aspect_ratio_of_pngs">
       <skipped message="Reason: Sys.getenv(&quot;RENV_PATHS_CACHE&quot;) == &quot;&quot; is TRUE ('test-png.R:17:3')"/>
     </testcase>
-    <testcase time="0.101999999999999" classname="png" name="gentlg_can_take_multiple_plotnames_arguments"/>
+    <testcase time="0.132000000000001" classname="png" name="gentlg_can_take_multiple_plotnames_arguments"/>
   </testsuite>
-  <testsuite name="quick_rtf_jnj" timestamp="2026-04-20T13:42:35Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.013">
-    <testcase time="0.00999999999999979" classname="quick_rtf_jnj" name="errors_work_as_expected"/>
-    <testcase time="0.00300000000000011" classname="quick_rtf_jnj" name="errors_work_as_expected"/>
+  <testsuite name="quick_rtf_jnj" timestamp="2026-04-20T13:49:53Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.018">
+    <testcase time="0.0129999999999981" classname="quick_rtf_jnj" name="errors_work_as_expected"/>
+    <testcase time="0.00500000000000256" classname="quick_rtf_jnj" name="errors_work_as_expected"/>
   </testsuite>
-  <testsuite name="remove_zero_padding" timestamp="2026-04-20T13:42:35Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.013">
-    <testcase time="0.00900000000000034" classname="remove_zero_padding" name="Removes_zero_padding_real_rtf_"/>
-    <testcase time="0.00399999999999956" classname="remove_zero_padding" name="Removes_zero_padding"/>
+  <testsuite name="remove_zero_padding" timestamp="2026-04-20T13:49:53Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.017">
+    <testcase time="0.0109999999999992" classname="remove_zero_padding" name="Removes_zero_padding_real_rtf_"/>
+    <testcase time="0.00600000000000023" classname="remove_zero_padding" name="Removes_zero_padding"/>
   </testsuite>
-  <testsuite name="roundSAS" timestamp="2026-04-20T13:42:35Z" hostname="f57f097ef769" tests="6" skipped="0" failures="0" errors="0" time="0.033">
-    <testcase time="0.0080000000000009" classname="roundSAS" name="T1.1_for_rounding_up_midpoint_values"/>
-    <testcase time="0.00399999999999956" classname="roundSAS" name="T1.2_for_rounding_negative_values_to_0"/>
-    <testcase time="0.0080000000000009" classname="roundSAS" name="T1.2_for_rounding_up_midpoint_values_and_convert_to_character"/>
-    <testcase time="0.00399999999999956" classname="roundSAS" name="T2.1_when_converting_to_character_with_missing_values"/>
-    <testcase time="0.00499999999999901" classname="roundSAS" name="T2.2_when_converting_to_character_and_na_char_is_specified"/>
-    <testcase time="0.00400000000000134" classname="roundSAS" name="T3.1_when_converting_to_character_and_value_is_negative_but_rounds_to_0"/>
+  <testsuite name="roundSAS" timestamp="2026-04-20T13:49:53Z" hostname="79d49a006484" tests="6" skipped="0" failures="0" errors="0" time="0.043">
+    <testcase time="0.00899999999999679" classname="roundSAS" name="T1.1_for_rounding_up_midpoint_values"/>
+    <testcase time="0.00600000000000023" classname="roundSAS" name="T1.2_for_rounding_negative_values_to_0"/>
+    <testcase time="0.0100000000000016" classname="roundSAS" name="T1.2_for_rounding_up_midpoint_values_and_convert_to_character"/>
+    <testcase time="0.00600000000000023" classname="roundSAS" name="T2.1_when_converting_to_character_with_missing_values"/>
+    <testcase time="0.00600000000000023" classname="roundSAS" name="T2.2_when_converting_to_character_and_na_char_is_specified"/>
+    <testcase time="0.00600000000000023" classname="roundSAS" name="T3.1_when_converting_to_character_and_value_is_negative_but_rounds_to_0"/>
   </testsuite>
-  <testsuite name="spanning_headers" timestamp="2026-04-20T13:42:35Z" hostname="f57f097ef769" tests="5" skipped="0" failures="0" errors="0" time="0.037">
-    <testcase time="0.00999999999999979" classname="spanning_headers" name="T1.1_NA."/>
-    <testcase time="0.00699999999999967" classname="spanning_headers" name="T1.2_."/>
-    <testcase time="0.00600000000000023" classname="spanning_headers" name="T2.1_one_spanning_header."/>
-    <testcase time="0.00699999999999967" classname="spanning_headers" name="T2.2_two_spanning_headers."/>
-    <testcase time="0.00699999999999967" classname="spanning_headers" name="T2.3_three_spanning_headers."/>
+  <testsuite name="spanning_headers" timestamp="2026-04-20T13:49:53Z" hostname="79d49a006484" tests="5" skipped="0" failures="0" errors="0" time="0.052">
+    <testcase time="0.0139999999999993" classname="spanning_headers" name="T1.1_NA."/>
+    <testcase time="0.00900000000000034" classname="spanning_headers" name="T1.2_."/>
+    <testcase time="0.00900000000000034" classname="spanning_headers" name="T2.1_one_spanning_header."/>
+    <testcase time="0.00999999999999801" classname="spanning_headers" name="T2.2_two_spanning_headers."/>
+    <testcase time="0.0100000000000016" classname="spanning_headers" name="T2.3_three_spanning_headers."/>
   </testsuite>
-  <testsuite name="titles" timestamp="2026-04-20T13:42:35Z" hostname="f57f097ef769" tests="1" skipped="0" failures="0" errors="0" time="0.231">
-    <testcase time="0.231" classname="titles" name="titles_file_addes_titles_as_expected"/>
+  <testsuite name="titles" timestamp="2026-04-20T13:49:53Z" hostname="79d49a006484" tests="1" skipped="0" failures="0" errors="0" time="0.305">
+    <testcase time="0.305" classname="titles" name="titles_file_addes_titles_as_expected"/>
   </testsuite>
-  <testsuite name="tlgsetup" timestamp="2026-04-20T13:42:35Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.166">
-    <testcase time="0.0890000000000004" classname="tlgsetup" name="tlgsetup_will_factorize_the_colnbr"/>
-    <testcase time="0.077" classname="tlgsetup" name="tlgsetup_will_factorize_the_colnbr"/>
+  <testsuite name="tlgsetup" timestamp="2026-04-20T13:49:53Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.217">
+    <testcase time="0.116" classname="tlgsetup" name="tlgsetup_will_factorize_the_colnbr"/>
+    <testcase time="0.100999999999999" classname="tlgsetup" name="tlgsetup_will_factorize_the_colnbr"/>
   </testsuite>
-  <testsuite name="univar" timestamp="2026-04-20T13:42:36Z" hostname="f57f097ef769" tests="16" skipped="0" failures="0" errors="0" time="1.45">
-    <testcase time="0.956" classname="univar" name="univar_outputs_are_named_as_expected"/>
-    <testcase time="0.00400000000000134" classname="univar" name="univar_outputs_are_named_as_expected"/>
-    <testcase time="0.000999999999999446" classname="univar" name="univar_outputs_are_named_as_expected"/>
-    <testcase time="0.000999999999999446" classname="univar" name="univar_outputs_are_named_as_expected"/>
+  <testsuite name="univar" timestamp="2026-04-20T13:49:55Z" hostname="79d49a006484" tests="16" skipped="0" failures="0" errors="0" time="1.929">
+    <testcase time="1.285" classname="univar" name="univar_outputs_are_named_as_expected"/>
+    <testcase time="0.00500000000000256" classname="univar" name="univar_outputs_are_named_as_expected"/>
+    <testcase time="0.000999999999997669" classname="univar" name="univar_outputs_are_named_as_expected"/>
     <testcase time="0.00100000000000122" classname="univar" name="univar_outputs_are_named_as_expected"/>
-    <testcase time="0.000999999999999446" classname="univar" name="univar_outputs_are_named_as_expected"/>
-    <testcase time="0.000999999999999446" classname="univar" name="univar_outputs_are_named_as_expected"/>
+    <testcase time="0.00199999999999889" classname="univar" name="univar_outputs_are_named_as_expected"/>
     <testcase time="0.00100000000000122" classname="univar" name="univar_outputs_are_named_as_expected"/>
-    <testcase time="0.000999999999999446" classname="univar" name="univar_outputs_are_named_as_expected"/>
-    <testcase time="0.000999999999999446" classname="univar" name="univar_outputs_are_named_as_expected"/>
-    <testcase time="0.00699999999999967" classname="univar" name="univar_computes_statistics_as_expected"/>
-    <testcase time="0.0870000000000015" classname="univar" name="rowtext_works_as_expected_with_univar"/>
-    <testcase time="0.101999999999999" classname="univar" name="rowtext_works_as_expected_with_univar"/>
-    <testcase time="0.118" classname="univar" name="rowtext_works_as_expected_with_univar"/>
-    <testcase time="0.0890000000000004" classname="univar" name="univar_can_handle_sparse_data_as_expected"/>
-    <testcase time="0.0790000000000006" classname="univar" name="MEANSE_statlist_works_as_expected"/>
+    <testcase time="0.00100000000000122" classname="univar" name="univar_outputs_are_named_as_expected"/>
+    <testcase time="0.00199999999999889" classname="univar" name="univar_outputs_are_named_as_expected"/>
+    <testcase time="0.000999999999997669" classname="univar" name="univar_outputs_are_named_as_expected"/>
+    <testcase time="0.00100000000000122" classname="univar" name="univar_outputs_are_named_as_expected"/>
+    <testcase time="0.00900000000000034" classname="univar" name="univar_computes_statistics_as_expected"/>
+    <testcase time="0.114999999999998" classname="univar" name="rowtext_works_as_expected_with_univar"/>
+    <testcase time="0.136000000000003" classname="univar" name="rowtext_works_as_expected_with_univar"/>
+    <testcase time="0.149999999999999" classname="univar" name="rowtext_works_as_expected_with_univar"/>
+    <testcase time="0.117000000000001" classname="univar" name="univar_can_handle_sparse_data_as_expected"/>
+    <testcase time="0.102" classname="univar" name="MEANSE_statlist_works_as_expected"/>
   </testsuite>
-  <testsuite name="univar_keep" timestamp="2026-04-20T13:42:37Z" hostname="f57f097ef769" tests="1" skipped="0" failures="0" errors="0" time="0.127">
-    <testcase time="0.126999999999999" classname="univar_keep" name=".keep_works_as_expected_for_univar_tables"/>
+  <testsuite name="univar_keep" timestamp="2026-04-20T13:49:56Z" hostname="79d49a006484" tests="1" skipped="0" failures="0" errors="0" time="0.162">
+    <testcase time="0.161999999999999" classname="univar_keep" name=".keep_works_as_expected_for_univar_tables"/>
   </testsuite>
-  <testsuite name="univar_ord" timestamp="2026-04-20T13:42:37Z" hostname="f57f097ef769" tests="3" skipped="0" failures="0" errors="0" time="0.355">
-    <testcase time="0.109" classname="univar_ord" name="univar_works_with_.ord_as_expected"/>
-    <testcase time="0.117000000000001" classname="univar_ord" name="univar_works_with_.ord_as_expected"/>
-    <testcase time="0.129" classname="univar_ord" name="univar_works_with_.ord_as_expected"/>
+  <testsuite name="univar_ord" timestamp="2026-04-20T13:49:56Z" hostname="79d49a006484" tests="3" skipped="0" failures="0" errors="0" time="0.465">
+    <testcase time="0.141999999999999" classname="univar_ord" name="univar_works_with_.ord_as_expected"/>
+    <testcase time="0.152000000000001" classname="univar_ord" name="univar_works_with_.ord_as_expected"/>
+    <testcase time="0.170999999999999" classname="univar_ord" name="univar_works_with_.ord_as_expected"/>
   </testsuite>
-  <testsuite name="univar_precision" timestamp="2026-04-20T13:42:37Z" hostname="f57f097ef769" tests="2" skipped="0" failures="0" errors="0" time="0.258">
-    <testcase time="0.132" classname="univar_precision" name="univar_computes_by_parameter_precision"/>
-    <testcase time="0.125999999999999" classname="univar_precision" name="univar_computes_by_parameter_precision"/>
+  <testsuite name="univar_precision" timestamp="2026-04-20T13:49:56Z" hostname="79d49a006484" tests="2" skipped="0" failures="0" errors="0" time="0.343">
+    <testcase time="0.175000000000001" classname="univar_precision" name="univar_computes_by_parameter_precision"/>
+    <testcase time="0.167999999999999" classname="univar_precision" name="univar_computes_by_parameter_precision"/>
   </testsuite>
-  <testsuite name="univar_rowbyvar" timestamp="2026-04-20T13:42:38Z" hostname="f57f097ef769" tests="4" skipped="0" failures="0" errors="0" time="0.479">
-    <testcase time="0.116" classname="univar_rowbyvar" name="rowbyvar_works_as_expected_for_univar"/>
-    <testcase time="0.105" classname="univar_rowbyvar" name="rowbyvar_works_as_expected_for_univar"/>
-    <testcase time="0.129000000000001" classname="univar_rowbyvar" name="rowbyvar_works_as_expected_for_univar"/>
-    <testcase time="0.128999999999998" classname="univar_rowbyvar" name="rowbyvar_works_as_expected_for_univar"/>
+  <testsuite name="univar_rowbyvar" timestamp="2026-04-20T13:49:57Z" hostname="79d49a006484" tests="4" skipped="0" failures="0" errors="0" time="0.632">
+    <testcase time="0.152000000000001" classname="univar_rowbyvar" name="rowbyvar_works_as_expected_for_univar"/>
+    <testcase time="0.138999999999999" classname="univar_rowbyvar" name="rowbyvar_works_as_expected_for_univar"/>
+    <testcase time="0.170999999999999" classname="univar_rowbyvar" name="rowbyvar_works_as_expected_for_univar"/>
+    <testcase time="0.170000000000002" classname="univar_rowbyvar" name="rowbyvar_works_as_expected_for_univar"/>
   </testsuite>
-  <testsuite name="univar_rowtext" timestamp="2026-04-20T13:42:38Z" hostname="f57f097ef769" tests="3" skipped="0" failures="0" errors="0" time="0.243">
-    <testcase time="0.0960000000000001" classname="univar_rowtext" name="rowtext_works_as_expected_for_univar_tables"/>
-    <testcase time="0.0710000000000015" classname="univar_rowtext" name="rowtext_works_as_expected_for_univar_tables"/>
-    <testcase time="0.0760000000000005" classname="univar_rowtext" name="rowtext_works_as_expected_for_univar_tables"/>
+  <testsuite name="univar_rowtext" timestamp="2026-04-20T13:49:57Z" hostname="79d49a006484" tests="3" skipped="0" failures="0" errors="0" time="0.312">
+    <testcase time="0.123999999999999" classname="univar_rowtext" name="rowtext_works_as_expected_for_univar_tables"/>
+    <testcase time="0.0899999999999999" classname="univar_rowtext" name="rowtext_works_as_expected_for_univar_tables"/>
+    <testcase time="0.097999999999999" classname="univar_rowtext" name="rowtext_works_as_expected_for_univar_tables"/>
   </testsuite>
-  <testsuite name="utility" timestamp="2026-04-20T13:42:38Z" hostname="f57f097ef769" tests="6" skipped="0" failures="0" errors="0" time="0.033">
-    <testcase time="0.00799999999999912" classname="utility" name="T1.1_no_changes_if_no_NA."/>
-    <testcase time="0.00499999999999901" classname="utility" name="T1.2_blanks_in_place_of_NA_for_character."/>
-    <testcase time="0.00499999999999901" classname="utility" name="T1.3_blanks_in_place_of_NA_for_factor."/>
-    <testcase time="0.00500000000000256" classname="utility" name="T1.4_NA_added_as_a_factor_level_for_factor."/>
-    <testcase time="0.00499999999999901" classname="utility" name="T1.1_label_preserved."/>
-    <testcase time="0.00499999999999901" classname="utility" name="T1.2_levels_based_off_the_numeric_variable."/>
+  <testsuite name="utility" timestamp="2026-04-20T13:49:57Z" hostname="79d49a006484" tests="6" skipped="0" failures="0" errors="0" time="0.043">
+    <testcase time="0.0100000000000016" classname="utility" name="T1.1_no_changes_if_no_NA."/>
+    <testcase time="0.00700000000000145" classname="utility" name="T1.2_blanks_in_place_of_NA_for_character."/>
+    <testcase time="0.00599999999999667" classname="utility" name="T1.3_blanks_in_place_of_NA_for_factor."/>
+    <testcase time="0.00700000000000145" classname="utility" name="T1.4_NA_added_as_a_factor_level_for_factor."/>
+    <testcase time="0.00600000000000023" classname="utility" name="T1.1_label_preserved."/>
+    <testcase time="0.00700000000000145" classname="utility" name="T1.2_levels_based_off_the_numeric_variable."/>
   </testsuite>
 </testsuites>
