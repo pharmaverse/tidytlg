@@ -939,7 +939,7 @@ gentlg_single <- function(huxme = NULL,
       if (is_format_rtf(format)) {
         footers <- paste(footers, collapse = " \\line ")
       } else {
-        footers <- paste(footers, collapse = " <br/> ")
+        footers <- paste(footers, collapse = " <br /> ")
       }
     }
     ht <- add_footer(ht, footers[1], first = TRUE)
