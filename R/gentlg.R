@@ -272,14 +272,16 @@ gentlg <- function(huxme = NULL,
   # as number of columns in huxme[[i]]
   if (is.list(wcol)) {
     assertthat::assert_that(is.list(huxme) && !is.data.frame(huxme),
-                            msg = paste0(
-                              "'wcol' appears to be a list while huxme is not a list of tables/listings. ",
-                              "If you intended 'wcol' to apply to the single output, convert it to a ",
-                              "vector, otherwise pass a non-data.frame list to 'huxme'."
-                            ))
+      msg = paste0(
+        "'wcol' appears to be a list while huxme is not a list of tables/listings. ",
+        "If you intended 'wcol' to apply to the single output, convert it to a ",
+        "vector, otherwise pass a non-data.frame list to 'huxme'."
+      )
+    )
     ## already know wcol is a list and huxme is a non-data.frame list
     assertthat::assert_that(length(huxme) == length(wcol),
-                            msg = "Arguments 'wcol' and 'huxme' must have the same length.")
+      msg = "Arguments 'wcol' and 'huxme' must have the same length."
+    )
   }
 
   adjfilename <- stringr::str_replace_all(
