@@ -357,7 +357,7 @@ gentlg_single <- function(huxme = NULL,
     df
   }
 
-  if (toupper(format) == "HTML") {
+  if (is_format_html(format)) {
     huxme <- .to_html(huxme)
     if (!is.null(huxme) && dim(huxme)[1] > 0) huxme <- .to_html(huxme)
     if (!is.null(footers)) footers <- .to_html(footers)
@@ -389,7 +389,7 @@ gentlg_single <- function(huxme = NULL,
     huxme <- data.frame(cbind(col1 = seq_along(plotnames)))
 
     for (i in seq_along(plotnames)) {
-      if (toupper(format) == "RTF") {
+      if (is_format_rtf(format)) {
         huxme[i, ] <- paste0(
           "",
           pngrtfcode(
