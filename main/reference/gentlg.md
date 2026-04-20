@@ -30,7 +30,8 @@ gentlg(
   pagenum = FALSE,
   bottom_borders = "old_format",
   border_fns = list(),
-  alignments = list()
+  alignments = list(),
+  footers_one_row = FALSE
 )
 ```
 
@@ -195,6 +196,11 @@ gentlg(
   `col`, and `value`, which are passed to
   [`huxtable::set_align()`](https://hughjonesd.github.io/huxtable/reference/align.html)
   to set the alignments.
+
+- footers_one_row:
+
+  (optional) Logical. Whether to export the footers as a single table
+  row (Default = `FALSE`).
 
 ## Value
 

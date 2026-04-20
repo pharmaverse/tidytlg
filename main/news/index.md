@@ -9,6 +9,8 @@
   (0.0625 inches) left-indentation RTF markup.
 - [`gentlg()`](../reference/gentlg.md) argument `wcol` now allows for a
   list of column width vectors when `huxme` is a list of tables.
+- [`gentlg()`](../reference/gentlg.md) new argument `footers_one_row`
+  which allows to merge footers as a single table row (default = FALSE)
 
 ## tidytlg 0.11.0
 
