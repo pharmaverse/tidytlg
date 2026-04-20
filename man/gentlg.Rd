@@ -26,7 +26,8 @@ gentlg(
   pagenum = FALSE,
   bottom_borders = "old_format",
   border_fns = list(),
-  alignments = list()
+  alignments = list(),
+  footers_one_row = FALSE
 )
 }
 \arguments{
@@ -139,6 +140,9 @@ the matrix passed to \code{bottom_borders}. Vectorized. See
 (Default = \code{list()}) Used to specify individual column or cell alignments.
 Each named list contains \code{row}, \code{col}, and \code{value}, which are passed to
 \code{\link[huxtable:align]{huxtable::set_align()}} to set the alignments.}
+
+\item{footers_one_row}{(optional) Logical. Whether to export the footers
+as a single table row (Default = \code{FALSE}).}
 }
 \value{
 A list of formatted \code{huxtables} with desired

@@ -94,6 +94,8 @@
 #' (Default = `list()`) Used to specify individual column or cell alignments.
 #' Each named list contains `row`, `col`, and `value`, which are passed to
 #' [huxtable::set_align()] to set the alignments.
+#' @param footers_one_row (optional) Logical. Whether to export the footers
+#' as a single table row (Default = `FALSE`).
 #'
 #' @section `Huxme` Details:
 #' For tables and listings, formatting of the output can be dictated through the
@@ -256,7 +258,8 @@ gentlg <- function(huxme = NULL,
                    pagenum = FALSE,
                    bottom_borders = "old_format",
                    border_fns = list(),
-                   alignments = list()) {
+                   alignments = list(),
+                   footers_one_row = FALSE) {
   # Validate `alignments` here because of its complicated data structure
   stopifnot("`alignments` must be a list" = is.list(alignments))
 
@@ -306,7 +309,8 @@ gentlg <- function(huxme = NULL,
       pagenum = pagenum,
       bottom_borders = bottom_borders,
       border_fns = border_fns,
-      alignments = alignments
+      alignments = alignments,
+      footers_one_row = footers_one_row
     )
 
     if (print.hux == FALSE) {
@@ -410,7 +414,8 @@ gentlg <- function(huxme = NULL,
         bottom_borders = bottom_borders,
         border_fns = border_fns,
         alignments = alignments,
-        index_in_result = index
+        index_in_result = index,
+        footers_one_row = footers_one_row
       )
     },
     ht = huxme,
