@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' tidytlg:::replace_lead_whitespaces_ind("    this is x")
-#' # [1] "\\intbl\\li360\\fi0 this is x"
+#' # [1] "\intbl\li360\fi0 this is x"
 #' tidytlg:::replace_lead_whitespaces_ind("this is x")
 #' # [1] "this is x"
 #'
