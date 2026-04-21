@@ -19,3 +19,5 @@ benchmark/*
 huxtable-output\.rtf
 docs
 pkgdown/
+**tar.gz
+**Rcheck

@@ -17,5 +17,5 @@ name.
 get_file_name()
 }
 \author{
-Steven haesendonckx {shaesen2@its.jnj.com}
+Steven Haesendonckx, \email{shaesen2@its.jnj.com}
 }

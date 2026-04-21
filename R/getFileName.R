@@ -3,7 +3,7 @@
 #' @description This function returns the file path up until the program's
 #'   name.
 #'
-#' @author Steven haesendonckx {shaesen2@@its.jnj.com}
+#' @author Steven Haesendonckx, \email{shaesen2@@its.jnj.com}
 #'
 #' @return The file path up until the program's name.
 #' @export
