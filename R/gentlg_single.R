@@ -934,7 +934,9 @@ gentlg_single <- function(huxme = NULL,
     }
   }
 
+  footer_border_rows <- integer()
   if (!is.null(footers)) {
+    footer_border_rows <- nrow(ht) + 1L
     if (isTRUE(footers_one_row)) {
       if (is_format_rtf(format)) {
         footers <- paste(footers, collapse = " \\line ")
@@ -957,32 +959,28 @@ gentlg_single <- function(huxme = NULL,
   )
 
 
-  ifelse(is.null(ht), ht <- ht,
-    ifelse(getOption("tidytlg.add_datetime"),
-      ht <- add_footer(ht, paste0(
-        "[", adjfilename, ".", tolower(format), "]",
-        paste0("[", get_file_name(), "] "),
-        toupper(format(Sys.time(),
-          format = "%d%b%Y, %H:%M"
-        ))
-      ),
+  if (!is.null(ht) && getOption("tidytlg.add_datetime")) {
+    ht <- add_footer(ht, paste0(
+      "[", adjfilename, ".", tolower(format), "]",
+      paste0("[", get_file_name(), "] "),
+      toupper(format(Sys.time(),
+        format = "%d%b%Y, %H:%M"
+      ))
+    ),
       size = 8
-      ),
-      ht <- add_footer(ht, " ", size = 8)
     )
-  )
+    footer_border_rows <- c(footer_border_rows, nrow(ht))
+  }
 
   if (is_format_rtf(format)) {
-    ht <- huxtable::set_top_border(ht, nrow(ht) - length(footers),
-      value = huxtable::brdr(bordervalue,
-        color = "black"
+    # Separate real footers without drawing a line above the last data row.
+    for (footer_row in footer_border_rows) {
+      ht <- huxtable::set_top_border(ht, footer_row,
+        value = huxtable::brdr(bordervalue,
+          color = "black"
+        )
       )
-    )
-    ht <- huxtable::set_top_border(ht, nrow(ht),
-      value = huxtable::brdr(bordervalue,
-        color = "black"
-      )
-    )
+    }
   } else if (is_format_html(format)) {
     ht[nrow(ht), ] <- paste0(
       "<div style='border-bottom:1pt solid'> ",

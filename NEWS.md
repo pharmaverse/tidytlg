@@ -1,5 +1,6 @@
 # tidytlg 0.11.0.9000
 
+- Fixed an extra blank footer row when `tidytlg.add_datetime = FALSE`, preserving the borders around data and footnotes (#59).
 - Exported functions `get_file_name()` and `insert_empty_rows()`.
 - Updated `gentlg_single()` to replace, in the first column of tables/listings headers, every leading whitespace with 90 twips (0.0625 inches) left-indentation RTF markup.
 - `gentlg()` argument `wcol` now allows for a list of column width vectors when `huxme` is a list of tables.
